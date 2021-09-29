@@ -17,7 +17,7 @@ $formeta 	= array_shift($getMeta);
 $imgmeta 	= $formeta['pict']; 
 
 if (@$_GET['to']!='') {
-	$invto 	= $_GET['to'];
+	$invto 	= 'To:<br><br><span>'.$_GET['to'].'</span>';
 } else {
 	$invto 	= '';
 }
@@ -47,7 +47,7 @@ if (@$_GET['to']!='') {
 	<meta name="twitter:label1" content="Written by">
 	<meta name="twitter:data1" content="Numura.id">
 
-
+	<link href="<?PHP echo base_url(); ?>assets/wd-assets/marsha/stylesheet.css" rel="stylesheet">
 	<link rel="alternate" type="application/rss+xml" title="Numura.id &raquo; Feed" href="https://numura.id/feed/" />
 	<link rel="alternate" type="application/rss+xml" title="Numura.id &raquo; Umpan Komentar" href="https://numura.id/comments/feed/" />
 	<link rel='stylesheet' id='bdt-uikit-css'  href='<?PHP echo base_url(); ?>assets/themepw1/wp-content/plugins/bdthemes-element-pack/assets/css/bdt-uikita25a.css?ver=3.5.5' type='text/css' media='all' />
@@ -70,8 +70,26 @@ if (@$_GET['to']!='') {
 	<link rel='stylesheet' id='elementor-icons-fa-regular-css'  href='<?PHP echo base_url(); ?>assets/themepw1/wp-content/plugins/elementor/assets/lib/font-awesome/css/regular.minb683.css?ver=5.12.0' type='text/css' media='all' />
 	<script type='text/javascript' src='<?PHP echo base_url(); ?>assets/themepw1/wp-includes/js/jquery/jquery4a5f.js?ver=1.12.4-wp' id='jquery-core-js'></script>
 	<link rel='shortlink' href='https://numura.id/?p=24224' />
+
+	<link href="https://fonts.googleapis.com/css?family=Dosis:300,400,600,700%7COpen+Sans:300,400,700%7CPlayfair+Display:400,400i,700,700i" rel="stylesheet">
+	
 	<style type="text/css">
 		@import url('https://fonts.cdnfonts.com/css/bunch-blossoms-personal-use');
+		body {
+			font: 300 14px/25px Open Sans, Arial,sans-serif;
+		}
+		.img-ourwed {
+			max-width: 220px!important;
+		    margin-top: 0%;
+		    margin-bottom: -5%;
+		}
+		@media (max-width: 761px) {
+			.img-ourwed {
+				max-width: 180px!important;
+				margin-top: -20px;
+    			margin-bottom: -20px;
+			}
+		}
 		svg { width: 1em; height: 1em; fill: currentColor; display: inline-block; vertical-align: middle; margin-top: -2px; } 
 		.elementor-widget-divider--view-line_icon .elementor-divider-separator:after, .elementor-widget-divider--view-line_icon .elementor-divider-separator:before, .elementor-widget-divider--view-line_text .elementor-divider-separator:after, .elementor-widget-divider--view-line_text .elementor-divider-separator:before {
 		    display: block;
@@ -83,12 +101,25 @@ if (@$_GET['to']!='') {
 		    border-top: var(--divider-border-width) var(--divider-border-style) var(--divider-color);
 		}
 		.elementor-24224 .elementor-element.elementor-element-53053e1 .elementor-heading-title {
-			font-family: 'Bunch Blossoms Personal Use', sans-serif;
-			font-weight: normal;
+			font: italic 400 20px/30px Playfair Display, Arial!important;
+			margin-top: -75px;
+		}
+		.elementor-24224 .elementor-element.elementor-element-53053e1 .elementor-heading-title span {
+			font-family: marsha, Dosis!important;
+			font-size: 70px;
 		}
 		.elementor-24224 .elementor-element.elementor-element-860d850 .elementor-heading-title {
 			font-family: 'Bunch Blossoms Personal Use', sans-serif;
 			font-weight: normal;
+		}
+		.elementor-24224 .elementor-element.elementor-element-2467aaa .elementor-heading-title {
+			font: normal 500 20px/30px Playfair Display, Arial!important;
+		}
+		.elementor-24224 .elementor-element.elementor-element-b8a5e50 .elementor-button {
+			font: normal 600 16px/20px Playfair Display, Arial!important;
+		}
+		.elementor-24224 .elementor-element.elementor-element-96cf73b {
+			margin-top: -20px!important;
 		}
 		@media (min-width: 1240px) {
 			.elementor-24224 .elementor-element.elementor-element-860d850 .elementor-heading-title {
@@ -97,11 +128,18 @@ if (@$_GET['to']!='') {
 			}
 		}
 		@media (max-width: 767px) {
-			.elementor-24224 .elementor-element.elementor-element-860d850 .elementor-heading-title {
-				font-size: 25px;
+			.elementor-24224 .elementor-element.elementor-element-d2576d5 .elementor-heading-title span {
+				font-size: 42px!important;
+			}
+			.elementor-24224 .elementor-element.elementor-element-d2576d5 .elementor-heading-title {
+				font-size: 67px!important;
 			}
 			.elementor-24224 .elementor-element.elementor-element-53053e1 .elementor-heading-title {
-				font-size: 23px;
+				font: italic 400 20px/25px Playfair Display, Arial!important;
+				margin-top: -45px;
+			}
+			.elementor-24224 .elementor-element.elementor-element-53053e1 .elementor-heading-title span {
+				font-size: 50px;
 			}
 		}
 	</style>
@@ -146,7 +184,8 @@ if (@$_GET['to']!='') {
 
 										<div class="elementor-element elementor-element-860d850 elementor-widget elementor-widget-heading" data-id="860d850" data-element_type="widget" data-widget_type="heading.default">
 											<div class="elementor-widget-container">
-												<p class="elementor-heading-title elementor-size-default">The Wedding</p>
+												<!-- <p class="elementor-heading-title elementor-size-default">The Wedding</p> -->
+												<img id="imgourwed" src="<?PHP echo base_url(); ?>assets/wd-assets/ourwedding_wh.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/ourwedding_wh.gif" class="img-ourwed skrollable skrollable-before">
 											</div>
 										</div>
 
@@ -160,7 +199,7 @@ if (@$_GET['to']!='') {
 				
 										<div class="elementor-element elementor-element-d2576d5 elementor-widget elementor-widget-heading" data-id="d2576d5" data-element_type="widget" data-widget_type="heading.default">
 											<div class="elementor-widget-container">
-												<span class="elementor-heading-title elementor-size-default"><?PHP echo $queen; ?> & <?PHP echo $king; ?></span>
+												<span class="elementor-heading-title elementor-size-default"><?PHP echo $queen; ?> <span>&</span> <?PHP echo $king; ?></span>
 											</div>
 										</div>
 										
@@ -180,7 +219,9 @@ if (@$_GET['to']!='') {
 															<div class="elementor-widget-wrap">
 																<div class="elementor-element elementor-element-53053e1 elementor-widget elementor-widget-heading" data-id="53053e1" data-element_type="widget" data-widget_type="heading.default">
 																	<div class="elementor-widget-container">
-																		<h3 class="elementor-heading-title elementor-size-default">Special Invite To: <?PHP echo '<br><br>'.$invto; ?></h3>
+																		<h3 class="elementor-heading-title elementor-size-default">
+																			Special Invite <?PHP echo $invto; ?>
+																		</h3>
 																	</div>
 																</div>
 
@@ -286,7 +327,14 @@ if (@$_GET['to']!='') {
 	<script type='text/javascript' src='<?PHP echo base_url(); ?>assets/themepw1/wp-content/plugins/weddingpress/assets/js/dce-editor-copy16b9.js?ver=2.5.2' id='dce-clipboard-js-js'></script>
 	
 	<script type='text/javascript' src='<?PHP echo base_url(); ?>assets/themepw1/wp-content/themes/landingpress-wp/assets/js/script.min0226.js?ver=3.1.2' id='landingpress-js'></script>
-	
+
+	<script type='text/javascript' src='<?PHP echo base_url(); ?>assets/wd-assets/glanz_library.js'></script>
+	<script type='text/javascript' src='<?PHP echo base_url(); ?>assets/wd-assets/glanz_script.js'></script>
+	<!-- <script>
+		$(function() {
+		    $('#imgourwed').attr('src','<?PHP echo base_url(); ?>assets/wd-assets/ourwedding_wh.gif');
+		});
+	</script>	 -->
 </body>
 
 </html>
