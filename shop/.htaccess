@@ -1,0 +1,20 @@
+<ifModule mod_headers.c>
+    Header set Connection keep-alive
+</ifModule>
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    Options All -Indexes
+    
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.*)$ index.php/$1 [QSA,L]
+    
+    </IfModule>
+
+    <IfModule !mod_rewrite.c>
+        # If we don't have mod_rewrite installed, all 404's
+        # can be sent to index.php, and everything works as normal.
+        # Submitted by: ElliotHaughin
+
+    ErrorDocument 404 /index.php
+</IfModule>
