@@ -101,7 +101,7 @@ if (@$_GET['to']!='') {
 		    border-top: var(--divider-border-width) var(--divider-border-style) var(--divider-color);
 		}
 		.elementor-24224 .elementor-element.elementor-element-53053e1 .elementor-heading-title {
-			font: italic 400 20px/30px Playfair Display, Arial!important;
+			font: 400 20px/30px Dosis, Arial!important;
 			margin-top: -75px;
 		}
 		.elementor-24224 .elementor-element.elementor-element-53053e1 .elementor-heading-title span {
@@ -113,10 +113,10 @@ if (@$_GET['to']!='') {
 			font-weight: normal;
 		}
 		.elementor-24224 .elementor-element.elementor-element-2467aaa .elementor-heading-title {
-			font: normal 500 20px/30px Playfair Display, Arial!important;
+			font: normal 500 20px/30px Dosis, Arial!important;
 		}
 		.elementor-24224 .elementor-element.elementor-element-b8a5e50 .elementor-button {
-			font: normal 600 16px/20px Playfair Display, Arial!important;
+			font: normal 600 16px/20px Dosis, Arial!important;
 		}
 		.elementor-24224 .elementor-element.elementor-element-96cf73b {
 			margin-top: -20px!important;
@@ -135,7 +135,7 @@ if (@$_GET['to']!='') {
 				font-size: 67px!important;
 			}
 			.elementor-24224 .elementor-element.elementor-element-53053e1 .elementor-heading-title {
-				font: italic 400 20px/25px Playfair Display, Arial!important;
+				font: 400 20px/25px Dosis, Arial!important;
 				margin-top: -45px;
 			}
 			.elementor-24224 .elementor-element.elementor-element-53053e1 .elementor-heading-title span {

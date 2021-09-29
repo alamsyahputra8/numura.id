@@ -76,6 +76,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 	<meta name="twitter:label2" content="">
 	<meta name="twitter:data2" content="">
 
+	<link href="<?PHP echo base_url(); ?>assets/wd-assets/marsha/stylesheet.css" rel="stylesheet">
 
 	<link rel="alternate" type="application/rss+xml" title="Numura.id &raquo; Feed" href="https://numura.id/feed/" />
 	<link rel="alternate" type="application/rss+xml" title="Numura.id &raquo; Umpan Komentar" href="https://numura.id/comments/feed/" />
@@ -101,14 +102,34 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 	<link rel='stylesheet' id='elementor-icons-fa-solid-css'  href='<?PHP echo base_url(); ?>assets/themepw1/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.minb683.css?ver=5.12.0' type='text/css' media='all' />
 	<link rel='stylesheet' id='elementor-icons-fa-regular-css'  href='<?PHP echo base_url(); ?>assets/themepw1/wp-content/plugins/elementor/assets/lib/font-awesome/css/regular.minb683.css?ver=5.12.0' type='text/css' media='all' />
 	<link rel='stylesheet' id='elementor-icons-fa-brands-css'  href='<?PHP echo base_url(); ?>assets/themepw1/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.minb683.css?ver=5.12.0' type='text/css' media='all' />
+
+	<link href="https://fonts.googleapis.com/css?family=Dosis:300,400,600,700%7COpen+Sans:300,400,700%7CPlayfair+Display:400,400i,700,700i" rel="stylesheet">
 	
 	<link rel='shortlink' href='https://numura.id/?p=24192' />
 	<style type="text/css">
 		@import url('https://fonts.cdnfonts.com/css/bunch-blossoms-personal-use');
+
+		.img-ourwed {
+			max-width: 220px!important;
+		    margin-top: -10%;
+		    margin-bottom: -5%;
+		}
+		@media (max-width: 761px) {
+			.img-ourwed {
+				max-width: 140px!important;
+			    margin-top: -90px;
+			    margin-bottom: 50px;
+			}
+		}
+
 		svg { width: 1em; height: 1em; fill: currentColor; display: inline-block; vertical-align: middle; margin-top: -2px; } 
-		.elementor-24192 .elementor-element.elementor-element-3688c961 .elementor-heading-title span {
-			font-family: 'Bunch Blossoms Personal Use', sans-serif;
+		.elementor-24192 .elementor-element.elementor-element-3688c961 .elementor-heading-title {
+			font-family: marsha, Arial!important;
 			font-weight: normal;
+			font-size: 145px;
+		}
+		.elementor-24192 .elementor-element.elementor-element-3688c961 .elementor-heading-title span {
+			font-size: 60px;
 		}
 		.elementor-24192 .elementor-element.elementor-element-12e9168b .elementor-heading-title {
 			font-family: 'Bunch Blossoms Personal Use', sans-serif;
@@ -121,7 +142,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 	    		font-size: 39px;
 			}
 			.elementor-24192 .elementor-element.elementor-element-5875a54e .elementor-heading-title {
-				font-size: 23px;
+				font: 400 23px/30px Dosis, Arial!important;
 			}
 		}
 		@media (max-width: 767px) {
@@ -131,10 +152,13 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 			    font-size: 29px;
 			}
 			.elementor-24192 .elementor-element.elementor-element-5875a54e .elementor-heading-title {
-			    font-size: 18px;
+				font: 400 18px/25px Dosis, Arial!important;
 			}
 			.elementor-24192 .elementor-element.elementor-element-3688c961 .elementor-heading-title {
-			    font-size: 52px;
+			    font-size: 69px;
+			}
+				.elementor-24192 .elementor-element.elementor-element-3688c961 .elementor-heading-title span {
+				font-size: 40px;
 			}
 		}
 	</style>
@@ -174,7 +198,8 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 
 										<div class="elementor-element elementor-element-12e9168b elementor-widget elementor-widget-heading" data-id="12e9168b" data-element_type="widget" data-widget_type="heading.default">
 											<div class="elementor-widget-container">
-												<p class="elementor-heading-title elementor-size-default">The Wedding </p>
+												<!-- <p class="elementor-heading-title elementor-size-default">The Wedding </p> -->
+												<img id="imgourwed" src="<?PHP echo base_url(); ?>assets/wd-assets/ourwedding_wh.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/ourwedding_wh.gif" class="img-ourwed skrollable skrollable-before">
 											</div>
 										</div>
 
@@ -188,15 +213,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 
 										<div class="elementor-element elementor-element-3688c961 elementor-widget elementor-widget-heading" data-id="3688c961" data-element_type="widget" data-widget_type="heading.default">
 											<div class="elementor-widget-container">
-												<span class="elementor-heading-title elementor-size-default"><span><?PHP echo $queen; ?></span> & <span><?PHP echo $king; ?></span></span>
-											</div>
-										</div>
-
-										<div class="elementor-element elementor-element-13ef06e elementor-widget elementor-widget-spacer" data-id="13ef06e" data-element_type="widget" data-widget_type="spacer.default" style="margin-bottom: 90px;">
-											<div class="elementor-widget-container">
-												<div class="elementor-spacer">
-													<div class="elementor-spacer-inner"></div>
-												</div>
+												<span class="elementor-heading-title elementor-size-default"><?PHP echo $queen; ?> <span>&</span> <?PHP echo $king; ?></span>
 											</div>
 										</div>
 
@@ -1060,5 +1077,8 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 	            });
 	        });     
 		</script>
+
+		<script type='text/javascript' src='<?PHP echo base_url(); ?>assets/wd-assets/glanz_library.js'></script>
+		<script type='text/javascript' src='<?PHP echo base_url(); ?>assets/wd-assets/glanz_script.js'></script>
 	</body>
 </html>
