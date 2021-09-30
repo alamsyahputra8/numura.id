@@ -429,6 +429,9 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 			}
 		}
 		@media (max-width: 767px) {
+			.kt-portlet__head-title {
+				font-size: 3rem;
+			}
 			.elementor-24192 .elementor-element.elementor-element-7fc1ec99 .elementor-heading-title {
 				font-family: marsha, Arial;
 				font-size: 45px;
@@ -1429,7 +1432,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 												<div class="elementor-widget-container">
 													<p class="elementor-heading-title elementor-size-default">
 														<span style="color: #ffffff;">
-															<a style="color: #ffffff; font-family: Dosis, Arial;" href="https://numura.id/" target="_blank" rel="noopener">&copy; Numura.id - <?PHP echo date('Y'); ?></a>
+															<a style="color: #ffffff; font-family: Dosis, Arial; position: relative; z-index: 99;" href="https://numura.id/" target="_blank" rel="noopener">&copy; Numura.id - <?PHP echo date('Y'); ?></a>
 														</span>
 													</p>
 												</div>
