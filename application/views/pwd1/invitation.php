@@ -11,6 +11,7 @@ $rsvpnum	= $data['rsvp_number'];
 $acciglive 	= $data['account_ig'];
 $timelive 	= $data['time_live'];
 $modlive 	= $data['module_live'];
+$bgquotes 	= $data['img_quotes'];
 
 $getDetail 	= $this->db->query("SELECT * FROM detail_person where orderid=?", $baseid)->result_array();
 $detail 	= array_shift($getDetail);
@@ -96,7 +97,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 	<link rel='stylesheet' id='elementor-frontend-css'  href='<?PHP echo base_url(); ?>assets/themepw1/wp-content/plugins/elementor/assets/css/frontend.min677a.css?ver=3.0.9' type='text/css' media='all' />
 	<link rel='stylesheet' id='elementor-frontend-inline-css'  href='<?PHP echo base_url(); ?>assets/themepw1/basecss.css' type='text/css' media='all' />
 	<style id='elementor-frontend-inline-css' type='text/css'>
-		.elementor-24192 .elementor-element.elementor-element-2b45caa1:not(.elementor-motion-effects-element-type-background), .elementor-24192 .elementor-element.elementor-element-2b45caa1 > .elementor-motion-effects-container > .elementor-motion-effects-layer{background-image:url("<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $imgfirst; ?>");background-position:center center;background-repeat:no-repeat;background-size:cover;}
+		.elementor-24192 .elementor-element.elementor-element-2b45caa1:not(.elementor-motion-effects-element-type-background), .elementor-24192 .elementor-element.elementor-element-2b45caa1 > .elementor-motion-effects-container > .elementor-motion-effects-layer{background-image:url("<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $bgquotes; ?>");background-position:center center;background-repeat:no-repeat;background-size:cover;}
 		.elementor-element.elementor-element-642a72e .twae-wrapper .twae-timeline-centered .twae-icon {
 		    border-color: #D6D6D6;
 		}
