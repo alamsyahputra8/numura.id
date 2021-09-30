@@ -10,6 +10,7 @@ $cekmodig	= $data['module_ig'];
 $rsvpnum	= $data['rsvp_number'];
 $acciglive 	= $data['account_ig'];
 $timelive 	= $data['time_live'];
+$modlive 	= $data['module_live'];
 
 $getDetail 	= $this->db->query("SELECT * FROM detail_person where orderid=?", $baseid)->result_array();
 $detail 	= array_shift($getDetail);
@@ -1258,6 +1259,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																						<span class="elementor-button-text">Angpau</span>
 																					</span>
 																				</a>
+																				<?PHP if ($modlive==1) { ?>
 																				<a href="https://instagram.com/<?PHP echo $acciglive; ?>" class="elementor-button elementor-size-sm" role="button">
 																					<span class="elementor-button-content-wrapper">
 																						<span class="elementor-button-icon elementor-align-icon-left">
@@ -1266,6 +1268,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																						<span class="elementor-button-text">Live</span>
 																					</span>
 																				</a>
+																				<?PHP } ?>
 																				<a href="#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjExOTUiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D" target="_blank" class="elementor-button-link elementor-button elementor-size-sm" role="button">
 																					<span class="elementor-button-content-wrapper">
 																						<span class="elementor-button-icon elementor-align-icon-left">
@@ -1278,6 +1281,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																		</div>
 																	</div>
 
+																	<?PHP if ($modlive==1) { ?>
 																	<div class="elementor-element elementor-element-495f4f10 animated-slow wdp-sticky-section-no elementor-widget elementor-widget-heading animated fadeInDown" data-id="495f4f10" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInDown&quot;}" data-widget_type="heading.default">
 																		<div class="elementor-widget-container">
 																			<p class="elementor-heading-title elementor-size-default">
@@ -1285,6 +1289,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																			</p>
 																		</div>
 																	</div>
+																	<?PHP } ?>
 																</div>
 															</div>
 														</div>
