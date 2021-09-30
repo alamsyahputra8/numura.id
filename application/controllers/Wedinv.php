@@ -102,6 +102,22 @@ class Wedinv extends CI_Controller {
 		}
 	}	
 
+	public function confirm(){
+		$url 				= "Wedding Invitation";
+		$activity 			= "CONFIRMATION";
+
+		$name				= trim(strip_tags(stripslashes($this->input->post('rname',true))));
+		$address 			= trim(strip_tags(stripslashes($this->input->post('raddr',true))));
+		$confirm 			= trim(strip_tags(stripslashes($this->input->post('konfhadir',true))));
+		
+		$json				= array(
+								'name'		=> $name,
+								'address'	=> $address,
+								'confirm'	=> $confirm
+							);
+		print json_encode($json);
+	}
+
 	public function update(){
 		if(checkingsessionpwt()){
 			$userdata		= $this->session->userdata('sesspwt'); 

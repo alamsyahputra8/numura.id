@@ -7,6 +7,9 @@ $audio 		= $data['music'];
 $theday 	= $data['theday'];
 $prokes 	= $data['prokes'];
 $cekmodig	= $data['module_ig'];
+$rsvpnum	= $data['rsvp_number'];
+$acciglive 	= $data['account_ig'];
+$timelive 	= $data['time_live'];
 
 $getDetail 	= $this->db->query("SELECT * FROM detail_person where orderid=?", $baseid)->result_array();
 $detail 	= array_shift($getDetail);
@@ -93,6 +96,50 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 	<link rel='stylesheet' id='elementor-frontend-inline-css'  href='<?PHP echo base_url(); ?>assets/themepw1/basecss.css' type='text/css' media='all' />
 	<style id='elementor-frontend-inline-css' type='text/css'>
 		.elementor-24192 .elementor-element.elementor-element-2b45caa1:not(.elementor-motion-effects-element-type-background), .elementor-24192 .elementor-element.elementor-element-2b45caa1 > .elementor-motion-effects-container > .elementor-motion-effects-layer{background-image:url("<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $imgfirst; ?>");background-position:center center;background-repeat:no-repeat;background-size:cover;}
+		.elementor-element.elementor-element-642a72e .twae-wrapper .twae-timeline-centered .twae-icon {
+		    border-color: #D6D6D6;
+		}
+		.elementor-element.elementor-element-642a72e .twae-wrapper .twae-icon {
+		    background-color: #D8AD83;
+		    color: #fff9ed;
+		}
+		.elementor-element.elementor-element-642a72e .twae-wrapper span.twae-label {
+		    font-size: 20px;
+		    font-weight: 600;
+		    color: #D8AD83;
+		}
+		.elementor-element.elementor-element-642a72e .twae-wrapper:after {
+		    background-color: #D6D6D6;
+		}
+		.elementor-element.elementor-element-642a72e .twae-wrapper .twae-line::before {
+		    background-color: #D6D6D6;
+		}
+		.elementor-element.elementor-element-642a72e .twae-wrapper:before {
+		    background-color: #D6D6D6;
+		}
+		.elementor-element.elementor-element-642a72e .twae-wrapper .twae-data-container:after {
+		    border-right-color: #D8AD83;
+		}
+		.elementor-element.elementor-element-642a72e .twae-wrapper .twae-description {
+		    font-size: 16px;
+		    font-weight: normal;
+		    color: #333333;
+		}
+		.elementor-element.elementor-element-642a72e .twae-wrapper .twae-data-container span.twae-title {
+		    color: #D8AD83;
+		}
+		.twae-timeline-centered .twae-timeline-entry .twae-timeline-entry-inner .twae-data-container.twae-bg-orange:after {
+		    border-color: transparent #e9662c transparent transparent;
+		}
+		.twae-timeline-centered .twae-timeline-entry .twae-timeline-entry-inner .twae-data-container.twae-bg-orange:after {
+		    border-right-color: #D8AD83;
+		}
+		.elementor-element.elementor-element-642a72e .twae-wrapper .twae-right-aligned .twae-data-container {
+		    border-left-color: #D8AD83;
+		}
+		.elementor-element.elementor-element-642a72e .twae-wrapper .twae-data-container {
+		    background-color: #fff9ed;
+		}
 	</style>
 	<link rel='stylesheet' id='elementor-pro-css'  href='<?PHP echo base_url(); ?>assets/themepw1/wp-content/plugins/elementor-pro/assets/css/frontend.min677a.css?ver=3.0.9' type='text/css' media='all' />
 	<link rel='stylesheet' id='weddingpress-wdp-css'  href='<?PHP echo base_url(); ?>assets/themepw1/wp-content/plugins/weddingpress/assets/css/wdp16b9.css?ver=2.5.2' type='text/css' media='all' />
@@ -109,17 +156,131 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 	<style type="text/css">
 		@import url('https://fonts.cdnfonts.com/css/bunch-blossoms-personal-use');
 
+		.elementor-24192 .elementor-element.elementor-element-52da08f6 > .elementor-element-populated{
+			margin: 5% 0% 0% 0%;
+		}
+		.elementor-24192 .elementor-element.elementor-element-104b980b .elementor-heading-title, .elementor-24192 .elementor-element.elementor-element-65ac96dc .elementor-image-box-description, .elementor-24192 .elementor-element.elementor-element-5f389a91 .elementor-image-box-description, .elementor-24192 .elementor-element.elementor-element-77c63747 .elementor-image-box-description, .elementor-24192 .elementor-element.elementor-element-705ece2 .elementor-image-box-description, .elementor-24192 .elementor-element.elementor-element-31df6edd .elementor-heading-title {
+			color: #3D3D3D;
+		    font-family: Dosis, Arial;
+		    font-size: 20px;
+		}
+		.elementor-24192 .elementor-element.elementor-element-5a026908:not(.elementor-motion-effects-element-type-background), .elementor-24192 .elementor-element.elementor-element-5a026908 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+			background-color: #343434;
+		}
+		.elementor-24192 .elementor-element.elementor-element-452e86e0:not(.elementor-motion-effects-element-type-background), .elementor-24192 .elementor-element.elementor-element-452e86e0 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+			background-color: #343434;
+		}
+		.elementor-element.elementor-element-3d2384d1 .elementor-button, .elementor-widget-button .elementor-button {
+		    background-color: #D8AD83;
+		    font-family: Dosis, Arial;
+		}
+		.elementor-element.elementor-element-f11f7a4 .elementor-heading-title {
+		    color: #FFFFFF;
+		    font-family: Dosis, Arial;
+		    font-size: 20px;
+		    font-weight: 500;
+		    text-transform: uppercase;
+		    line-height: 1em;
+		    letter-spacing: 0px;
+		    text-align: center;
+		}
+		.elementor-element.elementor-element-495f4f10 .elementor-heading-title {
+		    color: #FFFFFF;
+		    font-family: Dosis, Arial;
+		    font-size: 18px;
+		    font-weight: 500;
+		    font-style: italic;
+		    line-height: 1em;
+		    letter-spacing: 0px;
+		    text-align: center;
+		}
+		.elementor-24192 .elementor-element.elementor-element-2ca1d2b9 .wpkoi-elements-countdown-label {
+			font-family: Playfair Display, Dosis, Arial;
+			font-style: italic;
+		}
+		.elementor-24192 .elementor-element.elementor-element-2ca1d2b9 .wpkoi-elements-countdown-item > div {
+			border-radius: 100%;
+			width: 100px;
+			height: 100px;
+		}
+		.lokasistyle {
+			font: 400 18px/25px Dosis, Arial
+		}
+		.lokasistyle b {
+			font: italic 400 30px/40px Playfair Display, Arial;
+		}
+		.elementor-24192 .elementor-element.elementor-element-511adc5d .elementor-icon-box-description, .elementor-24192 .elementor-element.elementor-element-2b09609f .elementor-icon-box-description, .elementor-24192 .elementor-element.elementor-element-796f30e8 .elementor-heading-title, .elementor-24192 .elementor-element.elementor-element-831d65e .elementor-heading-title {
+			font-family: Dosis, Arial;
+		}
+		.elementor-24192 .elementor-element.elementor-element-4c157348 > .elementor-element-populated, .elementor-24192 .elementor-element.elementor-element-323848f6 > .elementor-element-populated {
+			padding: 20px 0px 20px 0px;
+			border: 0px;
+		}
+		.elementor-24192 .elementor-element.elementor-element-1742ff63 > .elementor-element-populated {
+			padding: 0px 30px 0px 30px;
+		}
+		.elementor-24192 .elementor-element.elementor-element-511adc5d .elementor-icon-box-title, .elementor-24192 .elementor-element.elementor-element-7b890f23 .elementor-icon-box-title, .elementor-24192 .elementor-element.elementor-element-2b09609f .elementor-icon-box-title {
+			font-family: marsha, Arial;
+			font-size: 36px;
+		}
+		#back-to-top {
+			bottom: 15px;
+		}
+		.elementor-24192 .elementor-element.elementor-element-4e6ab9b4 > .elementor-widget-container {
+			margin : 80px 0px -40px 0px;
+			position: relative;
+			z-index: 1;
+		}
+		.elementor-24192 .elementor-element.elementor-element-4e6ab9b4 .elementor-heading-title {
+			font-family: marsha, Arial;
+		}
+		.elementor-24192 .elementor-element.elementor-element-cb44a05 .elementor-heading-title {
+			color: #d8ad83;
+			font-family: marsha, Arial;
+    		font-size: 63px;
+		}
+		.elementor-24192 .elementor-element.elementor-element-79fbcdd0 .elementor-heading-title {
+			color: #54595f;
+		    font-family: Dosis,Arial;
+		    font-size: 21px;
+		}
+		.elementor-24192 .elementor-element.elementor-element-1f6ec9de .elementor-heading-title {
+			color: #d8ad83;
+		    font-family: marsha, Arial;
+		    font-size: 64px;
+		    padding-top: 10px;
+		}
+		.img-savethedate {
+			max-width: 250px!important;
+		    margin-top: -70px;
+		    margin-bottom: -60px;
+		    position: relative;
+		    z-index: 2;
+		}
+		.img-rsvp {
+			max-width: 290px!important;
+    		margin: 4% auto;
+		}
+		.img-thnk {
+			max-width: 210px!important;
+    		margin: 20px auto;
+		}
+		.img-justmar {
+			max-width: 250px!important;
+		    margin-top: 25px;
+			margin-bottom: -80px;
+		}
 		.img-ourwed {
 			max-width: 220px!important;
 		    margin-top: -10%;
 		    margin-bottom: -5%;
 		}
-		@media (max-width: 761px) {
-			.img-ourwed {
-				max-width: 140px!important;
-			    margin-top: -90px;
-			    margin-bottom: 50px;
-			}
+		.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-title, .elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-title {
+			font-family: marsha, Arial!important;
+		}
+
+		.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-description, .elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-description {
+			font-family: Dosis, Arial!important;
 		}
 
 		svg { width: 1em; height: 1em; fill: currentColor; display: inline-block; vertical-align: middle; margin-top: -2px; } 
@@ -135,6 +296,82 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 			font-family: 'Bunch Blossoms Personal Use', sans-serif;
 			font-weight: normal;
 		}
+
+		.elementor-24192 .elementor-element.elementor-element-7fc1ec99 .elementor-heading-title {
+			font-family: marsha, Arial;
+			font-size: 65px;
+			margin-top: 5%;
+		}
+
+		.elementor-widget-button .elementor-button {
+			font-family: Dosis, Arial;
+		}
+
+		.borderprofile {
+			width: 280px;
+		    height: 280px;
+		    margin-bottom: -276px;
+		    z-index: 1;
+		    position: relative;
+		    margin-left: auto;
+		    margin-right: auto;
+		    margin-top: 10px;
+		    background: url('<?PHP echo base_url(); ?>assets/wd-assets/borderprof.png') no-repeat center;
+		    background-size: 100% auto;
+		}
+		.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-wrapper .elementor-image-box-img {
+			width: 250px;
+		    border-radius: 100%;
+		    height: 250px;
+		    margin-bottom: 10px;
+		    background: url('<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictw; ?>') no-repeat center;
+		    background-size: 105% auto;
+		    margin-top: 15px;
+		    position: relative;
+    		z-index: 2;
+    		border: 10px solid #fcfcfc;
+		}
+		.elementor-24192 .elementor-element.elementor-element-44ca98a7 .elementor-heading-title {
+			color: #ffffff;
+			font: italic 400 25px/35px Playfair Display, Arial;
+		}
+		.elementor-24192 .elementor-element.elementor-element-2b45caa1 > .elementor-background-overlay {
+		    background-color: #2E2E2E;
+		    opacity: 0.59;
+		    /*mix-blend-mode: multiply;*/
+		    mix-blend-mode: normal;
+		    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+		}
+		.elementor-24192 .elementor-element.elementor-element-71e01087 > .elementor-element-populated {
+		    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+		    padding: 30px;
+		    background-color: transparent!important;
+		    border: none;
+		}
+		.elementor-24192 .elementor-element.elementor-element-a370ef0 .elementor-heading-title {
+		    color: #ffffff;
+		    font: 400 20px/30px Dosis, Arial;
+		    letter-spacing: 2px;
+		}
+		.elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-wrapper .elementor-image-box-img {
+			width: 250px;
+		    border-radius: 100%;
+		    height: 250px;
+		    margin-bottom: 10px;
+		    background: url('<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictm; ?>') no-repeat center;
+		    background-size: 105% auto;
+		    margin-top: 15px;
+		    position: relative;
+    		z-index: 2;
+    		border: 10px solid #fcfcfc;
+		}
+		.elementor-24192 .elementor-element.elementor-element-c1e288d .elementor-heading-title {
+			font-family: Dosis, Arial;
+		    font-size: 16px;
+		    letter-spacing: 2px;
+		    font-weight: 400;
+		}
+
 		@media (min-width: 1240px) {
 			.elementor-24192 .elementor-element.elementor-element-12e9168b .elementor-heading-title {
 				margin-bottom: -40px;
@@ -146,6 +383,63 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 			}
 		}
 		@media (max-width: 767px) {
+			.elementor-24192 .elementor-element.elementor-element-7fc1ec99 .elementor-heading-title {
+				font-family: marsha, Arial;
+				font-size: 45px;
+			}
+			.elementor-24192 .elementor-element.elementor-element-c1e288d .elementor-heading-title {
+				font-family: Dosis, Arial;
+			    font-size: 16px;
+			    letter-spacing: 2px;
+			    font-weight: 400;
+			}
+			.elementor-24192 .elementor-element.elementor-element-2ca1d2b9 .wpkoi-elements-countdown-item > div {
+				width: 80px;
+			    height: 80px;
+			    padding-top: 6px;
+			}
+			.elementor-24192 .elementor-element.elementor-element-4e6ab9b4 > .elementor-widget-container {
+				margin: 50px 0px -30px 0px;
+			}
+			.elementor-24192 .elementor-element.elementor-element-4e6ab9b4 .elementor-heading-title {
+				font-size: 32px;
+			}
+			.elementor-24192 .elementor-element.elementor-element-44ca98a7 .elementor-heading-title {
+				font: italic 400 18px/22px Playfair Display, Arial;
+			}
+			.elementor-24192 .elementor-element.elementor-element-a370ef0 .elementor-heading-title {
+				font: 400 15px/20px Dosis, Arial;
+			}
+			.elementor-24192 .elementor-element.elementor-element-1f6ec9de .elementor-heading-title {
+				font-size: 34px;
+    			padding-top: 0px;
+			}
+			.elementor-24192 .elementor-element.elementor-element-cb44a05 .elementor-heading-title {
+				font-size: 33px;
+			}
+			.img-savethedate {
+				max-width: 200px!important;
+			    margin-top: -110px;
+			    margin-bottom: -40px;
+			}
+			.img-rsvp {
+				max-width: 200px!important;
+    			margin: 10% auto;
+			}
+			.img-thnk {
+			    max-width: 180px!important;
+    			margin: 10px auto;
+			}
+			.img-justmar {
+			    max-width: 200px!important;
+			    margin-top: 15px;
+    			margin-bottom: -50px;
+			}
+			.img-ourwed {
+				max-width: 140px!important;
+			    margin-top: -90px;
+			    margin-bottom: 50px;
+			}
 			.elementor-24192 .elementor-element.elementor-element-12e9168b .elementor-heading-title {
 			    margin-bottom: -30px;
 			    margin-top: 90px;
@@ -231,7 +525,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 											</div>
 										</div>
 
-										<section class="elementor-section elementor-inner-section elementor-element elementor-element-12843932 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="12843932" data-element_type="section" data-settings="{&quot;sticky&quot;:&quot;top&quot;,&quot;sticky_offset&quot;:100,&quot;sticky_on&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;],&quot;sticky_effects_offset&quot;:0}">
+										<section class="elementor-section elementor-inner-section elementor-element elementor-element-12843932 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="12843932" data-element_type="section" data-settings="{&quot;sticky&quot;:&quot;top&quot;,&quot;sticky_offset&quot;:100,&quot;sticky_on&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;],&quot;sticky_effects_offset&quot;:0}" style="right: 0px; bottom: 40px; position: fixed; z-index: 99;">
 											<div class="elementor-container elementor-column-gap-default">
 												<div class="elementor-row">
 													<div class="elementor-column elementor-col-33 elementor-inner-column elementor-element elementor-element-31e953f2" data-id="31e953f2" data-element_type="column">
@@ -294,15 +588,15 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-39197983" data-id="39197983" data-element_type="column">
 								<div class="elementor-column-wrap elementor-element-populated">
 									<div class="elementor-widget-wrap">
-										<div class="elementor-element elementor-element-79fbcdd0 elementor-widget elementor-widget-heading" data-id="79fbcdd0" data-element_type="widget" data-widget_type="heading.default">
+										<!-- <div class="elementor-element elementor-element-79fbcdd0 elementor-widget elementor-widget-heading" data-id="79fbcdd0" data-element_type="widget" data-widget_type="heading.default">
 											<div class="elementor-widget-container">
 												<p class="elementor-heading-title elementor-size-default">Tentang Kami</p>
 											</div>
-										</div>
+										</div> -->
 
 										<div class="elementor-element elementor-element-1f6ec9de elementor-widget elementor-widget-heading" data-id="1f6ec9de" data-element_type="widget" data-widget_type="heading.default">
 											<div class="elementor-widget-container">
-												<p class="elementor-heading-title elementor-size-default">PASANGAN MEMPELAI</p>
+												<p class="elementor-heading-title elementor-size-default">- Pasangan Mempelai -</p>
 											</div>
 										</div>
 
@@ -315,8 +609,9 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																<div class="elementor-element elementor-element-1b62ac7c elementor-position-top elementor-vertical-align-top elementor-widget elementor-widget-image-box" data-id="1b62ac7c" data-element_type="widget" data-widget_type="image-box.default">
 																	<div class="elementor-widget-container">
 																		<div class="elementor-image-box-wrapper">
+																			<div class="borderprofile"></div>
 																			<figure class="elementor-image-box-img">
-																				<img width="508" height="447" src="<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictw; ?>" class="attachment-full size-full" alt="" loading="lazy" />
+																				<!-- <img width="508" height="447" src="<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictw; ?>" class="attachment-full size-full" alt="" loading="lazy" /> -->
 																			</figure>
 																			<div class="elementor-image-box-content">
 																				<p class="elementor-image-box-title"><?PHP echo $fullqueen; ?></p>
@@ -342,8 +637,9 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																<div class="elementor-element elementor-element-6d611096 elementor-position-top elementor-vertical-align-top elementor-widget elementor-widget-image-box" data-id="6d611096" data-element_type="widget" data-widget_type="image-box.default">
 																	<div class="elementor-widget-container">
 																		<div class="elementor-image-box-wrapper">
+																			<div class="borderprofile"></div>
 																			<figure class="elementor-image-box-img">
-																				<img width="508" height="447" src="<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictm; ?>" class="attachment-full size-full" alt="" loading="lazy" />
+																				<!-- <img width="508" height="447" src="<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictm; ?>" class="attachment-full size-full" alt="" loading="lazy" /> -->
 																			</figure>
 																			<div class="elementor-image-box-content">
 																				<p class="elementor-image-box-title"><?PHP echo $fullking; ?></p>
@@ -376,7 +672,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 
 										<div class="elementor-element elementor-element-cb44a05 elementor-widget elementor-widget-heading" data-id="cb44a05" data-element_type="widget" data-widget_type="heading.default">
 											<div class="elementor-widget-container">
-												<p class="elementor-heading-title elementor-size-default">CERITA KITA</p>
+												<p class="elementor-heading-title elementor-size-default">- Cerita Kita -</p>
 											</div>
 										</div>
 
@@ -395,6 +691,63 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 												</div>
 											</div>
 										</div>
+
+										<div class="elementor-element elementor-element-642a72e wdp-sticky-section-no elementor-widget elementor-widget-weddingpress-timeline" data-id="642a72e" data-element_type="widget" data-widget_type="weddingpress-timeline.default" style="margin-top: 20px; display: none;">
+											<div class="elementor-widget-container">
+												<div class="twae-vertical twae-wrapper twae-centered">    
+													<div class="twae-timeline-centered twae-timeline-sm twae-line ">
+														<article class="twae-timeline-entry twae-right-aligned">
+															<div class="twae-timeline-entry-inner">
+																<time class="twae-label-extra-label">
+																	<span class="twae-label">Jul 1994</span>
+																	<span class="twae-extra-label"></span>
+																</time>
+																<div class="twae-bg-orange twae-icon"><i aria-hidden="true" class="fas fa-heart"></i></div>
+																<div class="twae-bg-orange twae-data-container">
+																	<span class="twae-title">Awal Bertemu</span>
+																	<div class="twae-description">
+																		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Erat enim res aperta. Ne discipulum abducam, times. Primum quid tu dicis breve? An haec ab eo non dicuntur?
+																	</div>
+																</div>
+															</div>
+														</article>
+
+														<article class="twae-timeline-entry twae-left-aligned">
+															<div class="twae-timeline-entry-inner">
+																<time class="twae-label-extra-label">
+																	<span class="twae-label">Jul 1994</span>
+																	<span class="twae-extra-label"></span>
+																</time>
+																<div class="twae-bg-orange twae-icon"><i aria-hidden="true" class="fas fa-heart"></i></div>
+																<div class="twae-bg-orange twae-data-container">
+																	<span class="twae-title">Awal Bertemu</span>
+																	<div class="twae-description">
+																		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Erat enim res aperta. Ne discipulum abducam, times. Primum quid tu dicis breve? An haec ab eo non dicuntur?
+																	</div>
+																</div>
+															</div>
+														</article>
+
+														<article class="twae-timeline-entry twae-right-aligned">
+															<div class="twae-timeline-entry-inner">
+																<time class="twae-label-extra-label">
+																	<span class="twae-label">Jul 1994</span>
+																	<span class="twae-extra-label"></span>
+																</time>
+																<div class="twae-bg-orange twae-icon"><i aria-hidden="true" class="fas fa-heart"></i></div>
+																<div class="twae-bg-orange twae-data-container">
+																	<span class="twae-title">Awal Bertemu</span>
+																	<div class="twae-description">
+																		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Erat enim res aperta. Ne discipulum abducam, times. Primum quid tu dicis breve? An haec ab eo non dicuntur?
+																	</div>
+																</div>
+															</div>
+														</article>
+													</div>
+												</div>
+											</div>
+										</div>
+
 									</div>
 								</div>
 							</div>
@@ -404,6 +757,14 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 				
 				<section class="elementor-section elementor-top-section elementor-element elementor-element-2b45caa1 elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-id="2b45caa1" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 					<div class="elementor-background-overlay"></div>
+					
+					<div class="elementor-element elementor-element-12e9168b elementor-widget elementor-widget-heading" data-id="12e9168b" data-element_type="widget" data-widget_type="heading.default">
+						<div class="elementor-widget-container">
+							<!-- <p class="elementor-heading-title elementor-size-default">The Wedding </p> -->
+							<img src="<?PHP echo base_url(); ?>assets/wd-assets/just_wh.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/just_wh.gif" class="img-justmar skrollable skrollable-before">
+						</div>
+					</div>
+
 					<div class="elementor-container elementor-column-gap-default">
 						<div class="elementor-row">
 							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-71e01087" data-id="71e01087" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
@@ -434,13 +795,14 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 									<div class="elementor-widget-wrap">
 										<div class="elementor-element elementor-element-655b6036 elementor-widget elementor-widget-heading" data-id="655b6036" data-element_type="widget" data-widget_type="heading.default">
 											<div class="elementor-widget-container">
-												<p class="elementor-heading-title elementor-size-default">Acara Spesial</p>
+												<!-- <p class="elementor-heading-title elementor-size-default">Acara Spesial</p> -->
 											</div>
 										</div>
 
 										<div class="elementor-element elementor-element-4e6ab9b4 elementor-widget elementor-widget-heading" data-id="4e6ab9b4" data-element_type="widget" data-widget_type="heading.default">
+											<img id="imgsavethedate" src="<?PHP echo base_url(); ?>assets/wd-assets/savethedate.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/savethedate.gif" class="img-savethedate skrollable skrollable-before">
 											<div class="elementor-widget-container">
-												<p class="elementor-heading-title elementor-size-default">Pernikahan Kami</p>
+												<p class="elementor-heading-title elementor-size-default"><?PHP echo $thedate; ?></p>
 											</div>
 										</div>
 									</div>
@@ -456,67 +818,30 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 							<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-1742ff63 elementor-invisible" data-id="1742ff63" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation&quot;:&quot;slideInUp&quot;}">
 								<div class="elementor-column-wrap elementor-element-populated">
 									<div class="elementor-widget-wrap">
-										<div class="elementor-element elementor-element-55c50266 elementor-view-stacked elementor-shape-circle elementor-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="55c50266" data-element_type="widget" data-widget_type="icon-box.default">
-											<div class="elementor-widget-container">
-												<div class="elementor-icon-box-wrapper">
-													<div class="elementor-icon-box-icon">
-														<span class="elementor-icon elementor-animation-" >
-															<i aria-hidden="true" class="fas fa-hands-helping"></i>
-														</span>
-													</div>
-
-													<div class="elementor-icon-box-content">
-														<p class="elementor-icon-box-title">
-															<span >Akad Nikah</span>
-														</p>
-													</div>
-												</div>
-											</div>
-										</div>
-
 										<section class="elementor-section elementor-inner-section elementor-element elementor-element-7abed6a elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="7abed6a" data-element_type="section">
 											<div class="elementor-container elementor-column-gap-default">
 												<div class="elementor-row">
-													<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-4c157348" data-id="4c157348" data-element_type="column">
+													<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-4c157348" data-id="4c157348" data-element_type="column" style="width: 100%;">
 														<div class="elementor-column-wrap elementor-element-populated">
 															<div class="elementor-widget-wrap">
 																<div class="elementor-element elementor-element-511adc5d elementor-view-default elementor-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="511adc5d" data-element_type="widget" data-widget_type="icon-box.default">
 																	<div class="elementor-widget-container">
-																		<div class="elementor-icon-box-wrapper">
-																			<div class="elementor-icon-box-icon">
-																				<span class="elementor-icon elementor-animation-" >
-																					<i aria-hidden="true" class="far fa-calendar-alt"></i>
-																				</span>
-																			</div>
-																			<div class="elementor-icon-box-content">
-																				<p class="elementor-icon-box-title">
-																					<span ></span>
-																				</p>
-																				<p class="elementor-icon-box-description"> <?PHP echo $akaddate; ?></p>
-																			</div>
+																		<div class="elementor-icon-box-content">
+																			<p class="elementor-icon-box-title" style="text-align: center;">
+																				<span >Akad Nikah</span>
+																			</p>
 																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-
-													<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-5adb0dda" data-id="5adb0dda" data-element_type="column">
-														<div class="elementor-column-wrap elementor-element-populated">
-															<div class="elementor-widget-wrap">
-																<div class="elementor-element elementor-element-67196c50 elementor-view-default elementor-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="67196c50" data-element_type="widget" data-widget_type="icon-box.default">
-																	<div class="elementor-widget-container">
 																		<div class="elementor-icon-box-wrapper">
-																			<div class="elementor-icon-box-icon">
-																				<span class="elementor-icon elementor-animation-" >
-																					<i aria-hidden="true" class="far fa-clock"></i>
-																				</span>
-																			</div>
 																			<div class="elementor-icon-box-content">
-																				<p class="elementor-icon-box-title">
-																					<span ></span>
+																				<p class="elementor-heading-title elementor-size-default">
+																					<b>Tempat</b>:<br><span class="lokasistyle"><?PHP echo $akadat; ?></span><br><br>
 																				</p>
-																				<p class="elementor-icon-box-description"><?PHP echo $akadstart; ?> WIB<br>- <?PHP echo $akadto; ?> WIB</p>
+																				<p class="elementor-icon-box-description" style="font-size: 18px; font-weight: 600;">
+																					<i aria-hidden="true" class="far fa-calendar-alt"></i> <?PHP echo $akaddate; ?>
+																				</p>
+																				<p class="elementor-icon-box-description">
+																					<i aria-hidden="true" class="far fa-clock"></i> <?PHP echo $akadstart; ?> WIB - <?PHP echo $akadto; ?> WIB
+																				</p>
 																			</div>
 																		</div>
 																	</div>
@@ -527,13 +852,6 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 												</div>
 											</div>
 										</section>
-
-										<div class="elementor-element elementor-element-796f30e8 elementor-widget elementor-widget-heading" data-id="796f30e8" data-element_type="widget" data-widget_type="heading.default">
-											<div class="elementor-widget-container">
-												<p class="elementor-heading-title elementor-size-default">
-													<b>Tempat</b>:<br> <?PHP echo $akadat; ?><br></p>
-												</div>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -541,68 +859,31 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 								<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-5052e735 elementor-invisible" data-id="5052e735" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation&quot;:&quot;slideInUp&quot;,&quot;animation_delay&quot;:300}">
 									<div class="elementor-column-wrap elementor-element-populated">
 										<div class="elementor-widget-wrap">
-											<div class="elementor-element elementor-element-7b890f23 elementor-view-stacked elementor-shape-circle elementor-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="7b890f23" data-element_type="widget" data-widget_type="icon-box.default">
-												<div class="elementor-widget-container">
-													<div class="elementor-icon-box-wrapper">
-														<div class="elementor-icon-box-icon">
-															<span class="elementor-icon elementor-animation-" >
-																<i aria-hidden="true" class="fas fa-hands-helping"></i>
-															</span>
-														</div>
-
-														<div class="elementor-icon-box-content">
-															<p class="elementor-icon-box-title">
-																<span >Resepsi Pernikahan</span>
-															</p>
-														</div>
-													</div>
-												</div>
-											</div>
 
 											<section class="elementor-section elementor-inner-section elementor-element elementor-element-2bca82c4 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="2bca82c4" data-element_type="section">
 												<div class="elementor-container elementor-column-gap-default">
 													<div class="elementor-row">
-														<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-323848f6" data-id="323848f6" data-element_type="column">
-															<div class="elementor-column-wrap elementor-element-populated">
+														<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-323848f6" data-id="323848f6" data-element_type="column" style="width: 100%;">
+															<div class="elementor-column-wrap elementor-element-populated" style="padding-top: 0px; margin-top:0px;">
 																<div class="elementor-widget-wrap">
 																	<div class="elementor-element elementor-element-2b09609f elementor-view-default elementor-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="2b09609f" data-element_type="widget" data-widget_type="icon-box.default">
 																		<div class="elementor-widget-container">
-																			<div class="elementor-icon-box-wrapper">
-																				<div class="elementor-icon-box-icon">
-																					<span class="elementor-icon elementor-animation-" >
-																						<i aria-hidden="true" class="far fa-calendar-alt"></i>
-																					</span>
-																				</div>
-																				<div class="elementor-icon-box-content">
-																					<p class="elementor-icon-box-title">
-																						<span ></span>
-																					</p>
-																					<p class="elementor-icon-box-description"><?PHP echo $reseptiondate; ?></p>
-																				</div>
+																			<div class="elementor-icon-box-content">
+																				<p class="elementor-icon-box-title" style="text-align: center;">
+																					<span >Resepsi Pernikahan</span>
+																				</p>
 																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-
-														<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-3e325003" data-id="3e325003" data-element_type="column">
-															<div class="elementor-column-wrap elementor-element-populated">
-																<div class="elementor-widget-wrap">
-																	<div class="elementor-element elementor-element-2128270c elementor-view-default elementor-position-top elementor-vertical-align-top elementor-widget elementor-widget-icon-box" data-id="2128270c" data-element_type="widget" data-widget_type="icon-box.default">
-																		<div class="elementor-widget-container">
 																			<div class="elementor-icon-box-wrapper">
-																				<div class="elementor-icon-box-icon">
-																					<span class="elementor-icon elementor-animation-" >
-																						<i aria-hidden="true" class="far fa-clock"></i>
-																					</span>
-																				</div>
-
 																				<div class="elementor-icon-box-content">
-																					<p class="elementor-icon-box-title">
-																						<span ></span>
+																					<p class="elementor-heading-title elementor-size-default">
+																						<b>Tempat</b>:<br><span class="lokasistyle"><?PHP echo $reseptionat; ?></span><br><br>
 																					</p>
-																					<p class="elementor-icon-box-description"><?PHP echo $reseptionstart; ?> WIB<br>- <?PHP echo $reseptionto; ?> WIB</p>
+																					<p class="elementor-icon-box-description" style="font-size: 18px; font-weight: 600;">
+																						<i aria-hidden="true" class="far fa-calendar-alt"></i> <?PHP echo $reseptiondate; ?>
+																					</p>
+																					<p class="elementor-icon-box-description">
+																						<i aria-hidden="true" class="far fa-clock"></i> <?PHP echo $reseptionstart; ?> WIB - <?PHP echo $reseptionto; ?> WIB
+																					</p>
 																				</div>
 																			</div>
 																		</div>
@@ -613,12 +894,6 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 													</div>
 												</div>
 											</section>
-
-											<div class="elementor-element elementor-element-831d65e elementor-widget elementor-widget-heading" data-id="831d65e" data-element_type="widget" data-widget_type="heading.default">
-												<div class="elementor-widget-container">
-													<p class="elementor-heading-title elementor-size-default"><b>Tempat</b>:<br><?PHP echo $reseptionat; ?></p>
-												</div>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -673,20 +948,8 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 													</script>
 												</div>
 											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-					
-					<section class="elementor-section elementor-top-section elementor-element elementor-element-5a026908 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5a026908" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-								<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-ae61cf" data-id="ae61cf" data-element_type="column">
-									<div class="elementor-column-wrap elementor-element-populated">
-										<div class="elementor-widget-wrap">
-											<div class="elementor-element elementor-element-5366a54f elementor-invisible elementor-widget elementor-widget-google_maps" data-id="5366a54f" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}" data-widget_type="google_maps.default">
+
+											<div class="elementor-element elementor-element-5366a54f elementor-invisible elementor-widget elementor-widget-google_maps" data-id="5366a54f" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}" data-widget_type="google_maps.default" style="margin-top: 40px;">
 												<div class="elementor-widget-container">
 													<div class="elementor-custom-embed">
 														<?PHP echo $maplocation; ?>
@@ -708,6 +971,70 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 													</div>
 												</div>
 											</div>
+											<br><br><br>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					
+					<section class="elementor-section elementor-top-section elementor-element elementor-element-5a026908 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="5a026908" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+						<div class="elementor-container elementor-column-gap-default">
+							<div class="elementor-row">
+								<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-ae61cf" data-id="ae61cf" data-element_type="column">
+									<div class="elementor-column-wrap elementor-element-populated">
+										<div class="elementor-widget-wrap">
+
+											<div class="elementor-element elementor-element-7fc1ec99 elementor-widget elementor-widget-heading" data-id="7fc1ec99" data-element_type="widget" data-widget_type="heading.default">
+												<div class="elementor-widget-container">
+													<img src="<?PHP echo base_url(); ?>assets/wd-assets/rsvp_wh.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/rsvp_wh.gif" class="img-rsvp skrollable skrollable-before">
+												</div>
+											</div>
+
+											<div class="elementor-element elementor-element-388c5ffd elementor-widget elementor-widget-weddingpress-guestbook" data-id="388c5ffd" data-element_type="widget" data-widget_type="weddingpress-guestbook.default">
+												<div class="elementor-widget-container">
+													<div class="guestbook-box-content elementor-comment-box-wrapper" data-id="<?PHP echo $queen; ?><?PHP echo $king; ?>">
+														<div class="comment-form-container">
+															<form id="rsvp-box" method="post">
+																<div class="guestbook-label">
+																	<label class="elementor-screen-only">Nama</label>
+																</div>
+																<input type="hidden" name="roid" id="roid" value="<?PHP echo $baseid; ?>">
+																<input class="form-control" type="text" name="rname" id="rname" placeholder="Isikan Nama" required >
+
+																<div class="guestbook-label">
+																	<label class="elementor-screen-only">Alamat</label>
+																</div>
+																<input class="form-control" type="text" name="raddr" id="raddr" placeholder="Isikan Alamat" required >
+
+																<div class="wdp-form-field-option wdp-option-type-radio" style="color: #FFF; font-family: Dosis, Arial;">
+																	<div>
+																		<label for="wdp-form-option-32499ed6 wdp-form-option-32499ed6" class="">
+																		Konfirmasi Kehadiran :
+																		</label>
+																	</div>
+
+																	<div>
+																		<label class="to-select-option"><input type="radio" name="konfhadir" class="wdp-form-option wdp-form-option" required="1" id="konfhadir" value="Iya, Saya akan Hadir"> Iya, Saya akan Hadir</label>
+																	</div>
+																	<div>
+																		<label class="to-select-option"><input type="radio" name="konfhadir" class="wdp-form-option wdp-form-option" required="1" id="konfhadir" value="Saya Masih Ragu"> Saya Masih Ragu</label>
+																	</div>
+																	<div>
+																		<label class="to-select-option"><input type="radio" name="konfhadir" class="wdp-form-option wdp-form-option" required="1" id="konfhadir" value="Maaf, Saya Tidak Bisa Hadir"> Maaf, Saya Tidak Bisa Hadir</label>
+																	</div>
+																</div>
+																<div class="elementor-button-wrapper">
+																	<button type="submit" id="rsvpviawa" class="elementor-button-link elementor-button elementor-size-sm">
+																		Reservasi via Whatsapp
+																	</button>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+											</div>
 
 											<div class="elementor-element elementor-element-27aa024b elementor-widget-divider--separator-type-pattern elementor-widget elementor-widget-divider" data-id="27aa024b" data-element_type="widget" data-widget_type="divider.default">
 												<div class="elementor-widget-container">
@@ -719,7 +1046,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 
 											<div class="elementor-element elementor-element-7fc1ec99 elementor-widget elementor-widget-heading" data-id="7fc1ec99" data-element_type="widget" data-widget_type="heading.default">
 												<div class="elementor-widget-container">
-													<p class="elementor-heading-title elementor-size-default">Kirimkan Pesan</p>
+													<p class="elementor-heading-title elementor-size-default">- Kirimkan Pesan -</p>
 												</div>
 											</div>
 
@@ -764,7 +1091,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 															?>
 															<div class="user-guestbook">
 																<div>
-																	<img src="<?PHP echo base_url(); ?>assets/themepw1/wp-content/uploads/2020/12/07-2.png" title="07.png" alt="07.png" />
+																	<img src="<?PHP echo base_url(); ?>assets/wd-assets/07-2.png" title="07.png" alt="07.png" />
 																</div>
 
 																<div class="guestbook">
@@ -791,13 +1118,9 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 							</div>
 						</div>
 					</section>
+
 					<section class="elementor-section elementor-top-section elementor-element elementor-element-7b2b2ab2 elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-invisible" data-id="7b2b2ab2" data-element_type="section" data-settings="{&quot;shape_divider_top&quot;:&quot;clouds&quot;,&quot;animation&quot;:&quot;fadeInUp&quot;}">
-						<div class="elementor-shape elementor-shape-top" data-negative="false">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27.8" preserveAspectRatio="xMidYMax slice">
-  								<path class="elementor-shape-fill" d="M0 0v6.7c1.9-.8 4.7-1.4 8.5-1 9.5 1.1 11.1 6 11.1 6s2.1-.7 4.3-.2c2.1.5 2.8 2.6 2.8 2.6s.2-.5 1.4-.7c1.2-.2 1.7.2 1.7.2s0-2.1 1.9-2.8c1.9-.7 3.6.7 3.6.7s.7-2.9 3.1-4.1 4.7 0 4.7 0 1.2-.5 2.4 0 1.7 1.4 1.7 1.4h1.4c.7 0 1.2.7 1.2.7s.8-1.8 4-2.2c3.5-.4 5.3 2.4 6.2 4.4.4-.4 1-.7 1.8-.9 2.8-.7 4 .7 4 .7s1.7-5 11.1-6c9.5-1.1 12.3 3.9 12.3 3.9s1.2-4.8 5.7-5.7c4.5-.9 6.8 1.8 6.8 1.8s.6-.6 1.5-.9c.9-.2 1.9-.2 1.9-.2s5.2-6.4 12.6-3.3c7.3 3.1 4.7 9 4.7 9s1.9-.9 4 0 2.8 2.4 2.8 2.4 1.9-1.2 4.5-1.2 4.3 1.2 4.3 1.2.2-1 1.4-1.7 2.1-.7 2.1-.7-.5-3.1 2.1-5.5 5.7-1.4 5.7-1.4 1.5-2.3 4.2-1.1c2.7 1.2 1.7 5.2 1.7 5.2s.3-.1 1.3.5c.5.4.8.8.9 1.1.5-1.4 2.4-5.8 8.4-4 7.1 2.1 3.5 8.9 3.5 8.9s.8-.4 2 0 1.1 1.1 1.1 1.1 1.1-1.1 2.3-1.1 2.1.5 2.1.5 1.9-3.6 6.2-1.2 1.9 6.4 1.9 6.4 2.6-2.4 7.4 0c3.4 1.7 3.9 4.9 3.9 4.9s3.3-6.9 10.4-7.9 11.5 2.6 11.5 2.6.8 0 1.2.2c.4.2.9.9.9.9s4.4-3.1 8.3.2c1.9 1.7 1.5 5 1.5 5s.3-1.1 1.6-1.4c1.3-.3 2.3.2 2.3.2s-.1-1.2.5-1.9 1.9-.9 1.9-.9-4.7-9.3 4.4-13.4c5.6-2.5 9.2.9 9.2.9s5-6.2 15.9-6.2 16.1 8.1 16.1 8.1.7-.2 1.6-.4V0H0z"/>
-  							</svg>
-  						</div>
-						
+
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
 								<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-52da08f6" data-id="52da08f6" data-element_type="column">
@@ -885,7 +1208,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 
 											<div class="elementor-element elementor-element-31df6edd elementor-widget elementor-widget-heading" data-id="31df6edd" data-element_type="widget" data-widget_type="heading.default">
 												<div class="elementor-widget-container">
-													<p class="elementor-heading-title elementor-size-default">Bagi para tamu undangan diharapkan mengikuti protokol pencegahan COVID-19.</p>
+													<p class="elementor-heading-title elementor-size-default">Bagi para tamu undangan diharapkan mengikuti protokol pencegahan COVID-19.</p><br><br>
 												</div>
 											</div>
 										</div>
@@ -908,11 +1231,80 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 								<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-402fddb3" data-id="402fddb3" data-element_type="column">
 									<div class="elementor-column-wrap elementor-element-populated">
 										<div class="elementor-widget-wrap">
+											<img src="<?PHP echo base_url(); ?>assets/wd-assets/thnyou_wh.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/thnyou_wh.gif" class="img-thnk skrollable skrollable-before">
+
+											<section class="elementor-section elementor-inner-section elementor-element elementor-element-e7355ef elementor-section-boxed elementor-section-height-default elementor-section-height-default wdp-sticky-section-no" data-id="e7355ef" data-element_type="section">
+												<div class="elementor-container elementor-column-gap-default">
+													<div class="elementor-row">
+														<div class="elementor-column elementor-col-100 elementor-inner-column elementor-element elementor-element-2058462 wdp-sticky-section-no" data-id="2058462" data-element_type="column">
+															<div class="elementor-column-wrap elementor-element-populated">
+																<div class="elementor-widget-wrap">
+																	<div class="elementor-element elementor-element-f11f7a4 wdp-sticky-section-no elementor-widget elementor-widget-heading" data-id="f11f7a4" data-element_type="widget" data-widget_type="heading.default">
+																		<div class="elementor-widget-container">
+																			<p class="elementor-heading-title elementor-size-default">
+																			untuk yang berhalangan hadir, kami tambahkan fitur dibawah ini
+																			</p>
+																		</div>
+																	</div>
+																
+																	<div class="elementor-element elementor-element-3d2384d1 elementor-align-center animated-slow wdp-sticky-section-no elementor-widget elementor-widget-button animated fadeInUp" data-id="3d2384d1" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}" data-widget_type="button.default">
+																		<div class="elementor-widget-container">
+																			<div class="elementor-button-wrapper">
+																				<a href="#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjExOTQiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D" target="_blank" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+																					<span class="elementor-button-content-wrapper">
+																						<span class="elementor-button-icon elementor-align-icon-left">
+																							<i aria-hidden="true" class="fas fa-money-bill-wave"></i>
+																						</span>
+																						<span class="elementor-button-text">Angpau</span>
+																					</span>
+																				</a>
+																				<a href="https://instagram.com/<?PHP echo $acciglive; ?>" class="elementor-button elementor-size-sm" role="button">
+																					<span class="elementor-button-content-wrapper">
+																						<span class="elementor-button-icon elementor-align-icon-left">
+																							<i aria-hidden="true" class="fab fa-instagram"></i>
+																						</span>
+																						<span class="elementor-button-text">Live</span>
+																					</span>
+																				</a>
+																				<a href="#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjExOTUiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D" target="_blank" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+																					<span class="elementor-button-content-wrapper">
+																						<span class="elementor-button-icon elementor-align-icon-left">
+																							<i aria-hidden="true" class="fas fa-gift"></i>
+																						</span>
+																						<span class="elementor-button-text">Send a gift</span>
+																					</span>
+																				</a>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="elementor-element elementor-element-495f4f10 animated-slow wdp-sticky-section-no elementor-widget elementor-widget-heading animated fadeInDown" data-id="495f4f10" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInDown&quot;}" data-widget_type="heading.default">
+																		<div class="elementor-widget-container">
+																			<p class="elementor-heading-title elementor-size-default">
+																				Live streaming dapat disaksikan  pada <?PHP echo $timelive; ?>
+																			</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</section>
+
+											<div class="elementor-element elementor-element-27aa024b elementor-widget-divider--separator-type-pattern elementor-widget elementor-widget-divider" data-id="27aa024b" data-element_type="widget" data-widget_type="divider.default">
+												<div class="elementor-widget-container">
+													<div class="elementor-divider" style="--divider-pattern-url: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' overflow='visible' height='100%' viewBox='0 0 24 24' stroke='%23d8ad83' stroke-width='3' fill='none' stroke-linecap='square' stroke-miterlimit='10'%3E%3Cpolyline points='0,18 12,6 24,18 '/%3E%3C/svg%3E&quot;); padding-top: 20px; padding-bottom: 0px;">
+														<span class="elementor-divider-separator"></span>
+													</div>
+												</div>
+											</div>
+
 											<div class="elementor-element elementor-element-55c5b54a elementor-widget elementor-widget-heading" data-id="55c5b54a" data-element_type="widget" data-widget_type="heading.default">
 												<div class="elementor-widget-container">
-													<p class="elementor-heading-title elementor-size-default"></strong>  by 💞  
+													<p class="elementor-heading-title elementor-size-default">
 														<span style="color: #ffffff;">
-															<a style="color: #ffffff;" href="https://numura.id/" target="_blank" rel="noopener">Numura.id</a>
+															<a style="color: #ffffff; font-family: Dosis, Arial;" href="https://numura.id/" target="_blank" rel="noopener">&copy; Numura.id - <?PHP echo date('Y'); ?></a>
 														</span>
 													</p>
 												</div>
@@ -1016,6 +1408,70 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 			    document.getElementById("demo").innerHTML = "EXPIRED";
 			  }
 			}, 1000);
+
+			$('#rsvpviawa').click(function(e) {
+	            e.preventDefault();
+	            // alert('cek');
+
+	            var btn = $(this);
+	            var form = $(this).closest('form');           
+
+	            form.validate({
+	                rules: {
+	                    rname: 		{ required: true},
+	                    raddr: 		{ required: true},
+	                }
+	            });
+
+	            if (!form.valid()) {
+	                return;
+	            }
+
+	            btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
+
+	            form.ajaxSubmit({
+	                url: "<?PHP echo base_url(); ?>wedinv/confirm",
+	                type: "POST",
+	                dataType: "json",
+	                beforeSend: function(){ 
+	                   KTApp.block('#post-guestbook-box', {
+	                        overlayColor: '#000000',
+	                        type: 'v2',
+	                        state: 'success',
+	                        message: 'Please wait...'
+	                    });
+	                },
+	                success: function(data) {
+	                    if(data) {
+	                        // similate 2s delay
+	                        console.log(data);
+	                        setTimeout(function() {
+	                            btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+	                            //showErrorMsg(form, 'success', '<strong>Data Insert Success!</strong>');
+
+	                            KTApp.unblock('#post-guestbook-box');
+	                            var url 	= 'https://api.whatsapp.com/send?phone=<?PHP echo $rsvpnum; ?>&text=Halo%20<?PHP echo $queen; ?>%20%26%20<?PHP echo $king; ?>%2C%20saya%20'+data.name+'%20dari%20'+data.address+'%20ingin%20konfirmasi%20kehadiran%20undangan%20pernikahan%20kalian%20pada%20<?PHP echo $thedate; ?>%20bahwa%20'+data.confirm+'%0A%20%0ATerimakasih.';
+	            				window.open(url, '_blank').focus();
+	                            
+	                            var alert = $('#suksesinsert');
+	                			alert.removeClass('kt-hidden').show();
+	                        }, 2000);
+	                    } else {
+	                        // similate 2s delay
+	                        setTimeout(function() {
+	                            btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+	                            showErrorMsg(form, 'danger', '<strong>Data Insert Failed!</strong> Change a few things up and try submitting again.');
+	                            
+	                            KTApp.unblock('#post-guestbook-box');
+	                            
+	                            var alert = $('#gagalinsert');
+	                			alert.removeClass('kt-hidden').show();
+	                        }, 2000);
+	                    }
+	                }
+	            });
+	        });     
+
 			$('#kirimucapan').click(function(e) {
 	            e.preventDefault();
 	            // alert('cek');
