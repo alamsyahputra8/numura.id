@@ -12,6 +12,12 @@ $acciglive 	= $data['account_ig'];
 $timelive 	= $data['time_live'];
 $modlive 	= $data['module_live'];
 $bgquotes 	= $data['img_quotes'];
+$angpaubank	= $data['angpau_bank'];
+$angpaunorek= $data['angpau_norek'];
+$angpauan	= $data['angpau_an'];
+$giftpen 	= $data['gift_penerima'];
+$giftal 	= $data['gift_alamat'];
+$giftphone 	= $data['gift_hp'];
 
 $getDetail 	= $this->db->query("SELECT * FROM detail_person where orderid=?", $baseid)->result_array();
 $detail 	= array_shift($getDetail);
@@ -82,6 +88,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 	<meta name="twitter:data2" content="">
 
 	<link href="<?PHP echo base_url(); ?>assets/wd-assets/marsha/stylesheet.css" rel="stylesheet">
+	<link href="<?PHP echo base_url(); ?>shop/assets/theme/assets/demo/default/base/style.bundle.css" rel="stylesheet">
 
 	<link rel="alternate" type="application/rss+xml" title="Numura.id &raquo; Feed" href="https://numura.id/feed/" />
 	<link rel="alternate" type="application/rss+xml" title="Numura.id &raquo; Umpan Komentar" href="https://numura.id/comments/feed/" />
@@ -158,6 +165,43 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 	<style type="text/css">
 		@import url('https://fonts.cdnfonts.com/css/bunch-blossoms-personal-use');
 
+		.bgangpaurek {
+			margin: 30px auto;
+		    background: #fdf5ed;
+		    padding: 10px;
+		    width: 80%;
+		    border-radius: 10px;
+		}
+		.bgangpaurek .tbig {
+			font: italic 600 20px/30px Playfair Display, Arial;
+		}
+		.bgangpaurek .tbig span {
+			font-size: 14px;
+		}
+		.bgangpaurek .tmid {
+			font: 600 16px/26px Dosis, Arial;
+		}
+		.bgangpaurek .tsmall {
+			font: 400 14px/22px Dosis, Arial;
+		}
+		.kt-portlet__head-title {
+			font-family: marsha, Arial;
+			color: #D8AD83;
+			font-size: 4.5rem;
+			margin: 10px auto;
+		}
+		.descmodal {
+			font-family: Dosis, Arial;
+		}
+		.elementor-widget-weddingpress-guestbook .guestbook-message {
+		    font-family: Dosis, Arial;
+		    font-weight: 600;
+		}
+		.elementor-widget-weddingpress-guestbook .guestbook-name {
+		    font-family: Dosis, Arial;
+		    font-weight: bold;
+		    color: #d8ad83;
+		}
 		.elementor-24192 .elementor-element.elementor-element-52da08f6 > .elementor-element-populated{
 			margin: 5% 0% 0% 0%;
 		}
@@ -1252,7 +1296,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																	<div class="elementor-element elementor-element-3d2384d1 elementor-align-center animated-slow wdp-sticky-section-no elementor-widget elementor-widget-button animated fadeInUp" data-id="3d2384d1" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}" data-widget_type="button.default">
 																		<div class="elementor-widget-container">
 																			<div class="elementor-button-wrapper">
-																				<a href="#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjExOTQiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D" target="_blank" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+																				<a href="#" data-toggle="modal" data-target="#modalangpau" class="elementor-button-link elementor-button elementor-size-sm" role="button">
 																					<span class="elementor-button-content-wrapper">
 																						<span class="elementor-button-icon elementor-align-icon-left">
 																							<i aria-hidden="true" class="fas fa-money-bill-wave"></i>
@@ -1270,7 +1314,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																					</span>
 																				</a>
 																				<?PHP } ?>
-																				<a href="#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjExOTUiLCJ0b2dnbGUiOmZhbHNlfQ%3D%3D" target="_blank" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+																				<a href="#" data-toggle="modal" data-target="#modalgift" class="elementor-button-link elementor-button elementor-size-sm" role="button">
 																					<span class="elementor-button-content-wrapper">
 																						<span class="elementor-button-icon elementor-align-icon-left">
 																							<i aria-hidden="true" class="fas fa-gift"></i>
@@ -1281,6 +1325,81 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																			</div>
 																		</div>
 																	</div>
+
+																	<!-- MODAL ANGPAU -->
+																	<div class="modal fade" id="modalangpau" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+																		<div class="modal-dialog modal-lg" role="document">
+																			<div class="modal-content">
+																				<div class="modal-body kt-portlet kt-portlet--tabs" style="margin-bottom: 0px;">
+																					<div class="kt-portlet__head" style="border: none;">
+																						<div class="" style="width:100%;">
+																							<h1 class="kt-portlet__head-title text-center">- Berikan Angpau -</h1>
+																						</div>
+																						<div class="kt-portlet__head-toolbar">
+																							<a href="#" data-dismiss="modal" class="text-dark"><i class="fa fa-times"></i></a>
+																						</div>
+																					</div>
+																					<div class="kt-portlet__body">
+																						<div class="descmodal text-center">Bagi yang ingin memberikan angpau sebagai hadiah, bisa dilakukan dengan cara transfer ke rekening berikut :</div>
+
+																						<div class="bgangpaurek text-center">
+																							<div class="tbig"><?PHP echo $angpaubank; ?></div>
+																							<div class="tsmall"><?PHP echo $angpaunorek; ?></div>
+																							<div class="tmid"><?PHP echo $angpauan; ?></div>
+																						</div>
+
+																						<div class="descmodal text-center">Silahkan copy nomor rekening <?PHP echo $angpaubank; ?> mempelai dibawah ini:</div>
+																						<div class="descmodal text-center">
+																							<input type="text" readonly name="norek" id="norek" value="<?PHP echo $angpaunorek; ?>">
+																							<a href="#" class="btn btn-dark text-white" id="copynorek">Copy Nomor Rekening</a>
+																						</div><br>
+
+																						<div class="descmodal text-center">Untuk konfirmasi pengiriman Angpau boleh konfirmasi ke nomor Whatsapp di bawah ini.<br>Terimakasih 😊🙏</div>
+																					</div>
+																				</div>
+																				<div class="modal-footer" style="display: block; text-align: center;">
+																					<a href="https://api.whatsapp.com/send?phone=<?PHP echo $rsvpnum; ?>" target="_blank" class="btn btn-dark text-white"><i class="fa fa-paper-plane"></i> Kirim Whatsapp</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<!-- END MODAL ANGPAU -->
+
+																	<!-- MODAL ANGPAU -->
+																	<div class="modal fade" id="modalgift" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+																		<div class="modal-dialog modal-lg" role="document">
+																			<div class="modal-content">
+																				<div class="modal-body kt-portlet kt-portlet--tabs" style="margin-bottom: 0px;">
+																					<div class="kt-portlet__head" style="border: none;">
+																						<div class="" style="width:100%;">
+																							<h1 class="kt-portlet__head-title text-center">- Kirim Kado -</h1>
+																						</div>
+																						<div class="kt-portlet__head-toolbar">
+																							<a href="#" data-dismiss="modal" class="text-dark"><i class="fa fa-times"></i></a>
+																						</div>
+																					</div>
+																					<div class="kt-portlet__body">
+																						<div class="descmodal text-center">Bagi yang ingin memberikan kado sebagai hadiah, bisa dikirim ke alamat berikut :</div>
+
+																						<div class="bgangpaurek text-center">
+																							<div class="tbig">
+																								<span>Penerima :</span><br>
+																								<?PHP echo $giftpen; ?>
+																							</div>
+																							<div class="tmid"><?PHP echo $giftal; ?></div>
+																							<div class="tsmall">Phone : <?PHP echo $giftphone; ?></div>
+																						</div>
+
+																						<div class="descmodal text-center">Untuk konfirmasi pemberian Kado, boleh konfirmasi ke nomor Whatsapp di bawah ini.<br>Terimakasih 😊🙏</div>
+																					</div>
+																				</div>
+																				<div class="modal-footer" style="display: block; text-align: center;">
+																					<a href="https://api.whatsapp.com/send?phone=<?PHP echo $rsvpnum; ?>" target="_blank" class="btn btn-dark text-white"><i class="fa fa-paper-plane"></i> Kirim Whatsapp</a>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<!-- END MODAL ANGPAU -->
 
 																	<?PHP if ($modlive==1) { ?>
 																	<div class="elementor-element elementor-element-495f4f10 animated-slow wdp-sticky-section-no elementor-widget elementor-widget-heading animated fadeInDown" data-id="495f4f10" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInDown&quot;}" data-widget_type="heading.default">
@@ -1477,6 +1596,22 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 	                }
 	            });
 	        });     
+
+			$('#copynorek').click(function(e) {
+	            e.preventDefault();
+		        /* Get the text field */
+				var copyText = document.getElementById("norek");
+
+				/* Select the text field */
+				copyText.select();
+				copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+				/* Copy the text inside the text field */
+				navigator.clipboard.writeText(copyText.value);
+
+				/* Alert the copied text */
+				alert("Nomor Rekening: " + copyText.value + " berhasil di copy.");
+			});
 
 			$('#kirimucapan').click(function(e) {
 	            e.preventDefault();
