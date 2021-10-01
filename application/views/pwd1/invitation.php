@@ -1304,7 +1304,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																						<span class="elementor-button-icon elementor-align-icon-left">
 																							<i aria-hidden="true" class="fas fa-money-bill-wave"></i>
 																						</span>
-																						<span class="elementor-button-text">Angpau</span>
+																						<span class="elementor-button-text">Amplop Digital</span>
 																					</span>
 																				</a>
 																				<?PHP if ($modlive==1) { ?>
@@ -1336,14 +1336,14 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																				<div class="modal-body kt-portlet kt-portlet--tabs" style="margin-bottom: 0px;">
 																					<div class="kt-portlet__head" style="border: none;">
 																						<div class="" style="width:100%;">
-																							<h1 class="kt-portlet__head-title text-center">- Berikan Angpau -</h1>
+																							<h1 class="kt-portlet__head-title text-center">- Amplop Digital -</h1>
 																						</div>
 																						<div class="kt-portlet__head-toolbar">
 																							<a href="#" data-dismiss="modal" class="text-dark"><i class="fa fa-times"></i></a>
 																						</div>
 																					</div>
 																					<div class="kt-portlet__body">
-																						<div class="descmodal text-center">Bagi yang ingin memberikan angpau sebagai hadiah, bisa dilakukan dengan cara transfer ke rekening berikut :</div>
+																						<div class="descmodal text-center">Bagi yang ingin memberikan amplop sebagai hadiah, bisa dilakukan dengan cara transfer ke rekening berikut :</div>
 
 																						<div class="bgangpaurek text-center">
 																							<div class="tbig"><?PHP echo $angpaubank; ?></div>
@@ -1357,7 +1357,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																							<a href="#" class="btn btn-dark text-white" id="copynorek">Copy Nomor Rekening</a>
 																						</div><br>
 
-																						<div class="descmodal text-center">Untuk konfirmasi pengiriman Angpau boleh konfirmasi ke nomor Whatsapp di bawah ini.<br>Terimakasih 😊🙏</div>
+																						<div class="descmodal text-center">Untuk konfirmasi pengiriman Amplop Digital boleh konfirmasi ke nomor Whatsapp di bawah ini.<br>Terimakasih 😊🙏</div>
 																					</div>
 																				</div>
 																				<div class="modal-footer" style="display: block; text-align: center;">
