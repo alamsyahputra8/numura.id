@@ -21,6 +21,9 @@ class Viewfront extends CI_Controller {
 	
 	public function __construct(){
         parent::__construct();
+
+        $this->dbw = $this->load->database('dbw', TRUE);
+
 		date_default_timezone_set("Asia/Bangkok");
         $this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . 'GMT');
         $this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
@@ -84,14 +87,14 @@ class Viewfront extends CI_Controller {
 
 	public function wedding($name){
 		$q 					= "SELECT a.*, b.directory FROM person_order a left join theme b on a.theme=b.id where a.name=?";
-		$cek 				= $this->db->query($q,$name)->num_rows();
+		$cek 				= $this->dbw->query($q,$name)->num_rows();
 
 		if ($cek>0) {
-			$data['getData'] 	= $this->db->query($q,$name)->result_array();
+			$data['getData'] 	= $this->dbw->query($q,$name)->result_array();
 			$data['oidname'] 	= $name;
 
 			// GET THEME
-			$gT 				= $this->db->query($q,$name)->result_array();
+			$gT 				= $this->dbw->query($q,$name)->result_array();
 			$dt 				= array_shift($gT);
 			$data['dirname'] 	= $dt['directory'];
 
@@ -103,14 +106,14 @@ class Viewfront extends CI_Controller {
 
 	public function invitation($name){
 		$q 					= "SELECT a.*, b.directory FROM person_order a left join theme b on a.theme=b.id where a.name=?";
-		$cek 				= $this->db->query($q,$name)->num_rows();
+		$cek 				= $this->dbw->query($q,$name)->num_rows();
 
 		if ($cek>0) {
-			$data['getData'] 	= $this->db->query($q,$name)->result_array();
+			$data['getData'] 	= $this->dbw->query($q,$name)->result_array();
 			$data['oidname'] 	= $name;
 
 			// GET THEME
-			$gT 				= $this->db->query($q,$name)->result_array();
+			$gT 				= $this->dbw->query($q,$name)->result_array();
 			$dt 				= array_shift($gT);
 			$data['dirname'] 	= $dt['directory'];
 

@@ -76,6 +76,7 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
+	// 'hostname' => 'sql260.main-hosting.eu',
 	'username' => 'u679073649_numura',
 	'password' => 'PwtNumura01',
 	'database' => 'u679073649_numura',

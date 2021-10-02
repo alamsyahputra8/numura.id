@@ -4,15 +4,15 @@ $baseid 	= $data['id'];
 $thedate 	= $data['weddingdate'];
 $dirbase 	= $data['name'];
 
-$getDetail 	= $this->db->query("SELECT * FROM detail_person where orderid=?", $baseid)->result_array();
+$getDetail 	= $this->dbw->query("SELECT * FROM detail_person where orderid=?", $baseid)->result_array();
 $detail 	= array_shift($getDetail);
 $queen 		= $detail['nicknamew'];
 $king 		= $detail['nicknamem'];
 
 $qBanner 	= "SELECT * FROM detail_banner where orderid=? order by sort desc";
-$getBanner 	= $this->db->query($qBanner, $baseid)->result_array();
-$jmlban 	= $this->db->query($qBanner, $baseid)->num_rows();
-$getMeta 	= $this->db->query($qBanner, $baseid)->result_array();
+$getBanner 	= $this->dbw->query($qBanner, $baseid)->result_array();
+$jmlban 	= $this->dbw->query($qBanner, $baseid)->num_rows();
+$getMeta 	= $this->dbw->query($qBanner, $baseid)->result_array();
 $formeta 	= array_shift($getMeta);
 $imgmeta 	= $formeta['pict']; 
 

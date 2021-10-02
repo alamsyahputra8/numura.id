@@ -76,6 +76,30 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
+	// 'hostname' => 'sql260.main-hosting.eu',
+	'username' => 'u679073649_numura',
+	'password' => 'PwtNumura01',
+	'database' => 'u679073649_numura',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'development'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+// Konfigurasi database kedua
+$db['dbw'] = array(
+	'hostname' => 'localhost',
+    // 'hostname' => 'sql260.main-hosting.eu',
 	'username' => 'u679073649_wedding',
 	'password' => '@NumuraW3dd1ng',
 	'database' => 'u679073649_wedding',
@@ -94,27 +118,3 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
-
-// Konfigurasi database kedua
-// $db['dbtfa'] = array(
-//     'dsn'	=> '',
-// 	'hostname' => '10.60.161.83',
-// 	'username' => 'postgres',
-// 	'password' => 'Opt#2020',
-// 	'database' => 'opt',
-// 	'schema'   => 'tfa',
-// 	'dbdriver' => 'postgre',
-// 	'dbprefix' => '',
-// 	'pconnect' => FALSE,
-// 	'db_debug' => (ENVIRONMENT !== 'development'),
-// 	'cache_on' => FALSE,
-// 	'cachedir' => '',
-// 	'char_set' => 'utf8',
-// 	'dbcollat' => 'utf8_general_ci',
-// 	'swap_pre' => '',
-// 	'encrypt' => FALSE,
-// 	'compress' => FALSE,
-// 	'stricton' => FALSE,
-// 	'failover' => array(),
-// 	'save_queries' => TRUE
-// );

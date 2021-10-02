@@ -19,7 +19,7 @@ $giftpen 	= $data['gift_penerima'];
 $giftal 	= $data['gift_alamat'];
 $giftphone 	= $data['gift_hp'];
 
-$getDetail 	= $this->db->query("SELECT * FROM detail_person where orderid=?", $baseid)->result_array();
+$getDetail 	= $this->dbw->query("SELECT * FROM detail_person where orderid=?", $baseid)->result_array();
 $detail 	= array_shift($getDetail);
 $queen 		= $detail['nicknamew'];
 $igqueen	= $detail['igw'];
@@ -50,17 +50,17 @@ $quotesby 	= $detail['quotesby'];
 
 $qBanner 	= "SELECT * FROM detail_banner where orderid=? order by sort desc";
 $qBanner2 	= "SELECT * FROM detail_banner where orderid=? and flag_bg=1";
-$getBanner 	= $this->db->query($qBanner, $baseid)->result_array();
-$getBanner2 = $this->db->query($qBanner2, $baseid)->result_array();
-$jmlban 	= $this->db->query($qBanner, $baseid)->num_rows();
-$getMeta 	= $this->db->query($qBanner, $baseid)->result_array();
+$getBanner 	= $this->dbw->query($qBanner, $baseid)->result_array();
+$getBanner2 = $this->dbw->query($qBanner2, $baseid)->result_array();
+$jmlban 	= $this->dbw->query($qBanner, $baseid)->num_rows();
+$getMeta 	= $this->dbw->query($qBanner, $baseid)->result_array();
 $formeta 	= array_shift($getMeta);
 $forbg 		= array_shift($getBanner2);
 $imgmeta 	= $formeta['pict']; 	
 $imgfirst 	= $forbg['pict'];
 
 $qGal 		= "SELECT * FROM detail_gallery where orderid=? order by sort desc";
-$getGal 	= $this->db->query($qGal, $baseid)->result_array();
+$getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 ?>
 <!DOCTYPE html>
 <html lang="id-ID">
@@ -1135,7 +1135,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 															$qUcapan 	= "
 																		SELECT * FROM detail_ucapan where orderid=? order by id desc
 																		";
-															$getUcapan 	= $this->db->query($qUcapan, $baseid)->result_array();
+															$getUcapan 	= $this->dbw->query($qUcapan, $baseid)->result_array();
 															foreach ($getUcapan as $ucp) {
 															?>
 															<div class="user-guestbook">
