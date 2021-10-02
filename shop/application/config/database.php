@@ -101,9 +101,12 @@ $db['default'] = array(
 // Konfigurasi database kedua
 $db['dbw'] = array(
     'dsn'	=> '',
-	'hostname' => 'sql260.main-hosting.eu',
+    'hostname' => 'localhost',
+	// 'hostname' => 'sql260.main-hosting.eu',
 	'username' => 'u679073649_wedding',
 	'password' => '@NumuraW3dd1ng',
+	// 'username' => 'root',
+	// 'password' => '',
 	'database' => 'u679073649_wedding',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
