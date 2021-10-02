@@ -1191,7 +1191,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																		<div class="elementor-widget-container">
 																			<div class="elementor-image-box-wrapper">
 																				<figure class="elementor-image-box-img">
-																					<img width="350" height="350" src="<?PHP echo base_url(); ?>assets/themepw1/wp-content/uploads/2020/12/wdp-ikon_covid_03.png" class="attachment-full size-full" alt="" loading="lazy" />
+																					<img width="350" height="350" src="<?PHP echo base_url(); ?>assets/wd-assets/mask.png" class="attachment-full size-full" alt="" loading="lazy" />
 																				</figure>
 
 																				<div class="elementor-image-box-content">
@@ -1205,11 +1205,11 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																		<div class="elementor-widget-container">
 																			<div class="elementor-image-box-wrapper">
 																				<figure class="elementor-image-box-img">
-																					<img width="350" height="350" src="<?PHP echo base_url(); ?>assets/themepw1/wp-content/uploads/2020/12/wdp-ikon_covid_04.png" class="attachment-full size-full" alt="" loading="lazy" />
+																					<img width="350" height="350" src="<?PHP echo base_url(); ?>assets/wd-assets/distance.png" class="attachment-full size-full" alt="" loading="lazy" />
 																				</figure>
 
 																				<div class="elementor-image-box-content">
-																					<p class="elementor-image-box-description">Jaga jarak antar orang <br>minimal sekitar 1 meter.</p>
+																					<p class="elementor-image-box-description">Jaga jarak antar orang <br>minimal sekitar 2 meter.</p>
 																				</div>
 																			</div>
 																		</div>
@@ -1225,11 +1225,11 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																		<div class="elementor-widget-container">
 																			<div class="elementor-image-box-wrapper">
 																				<figure class="elementor-image-box-img">
-																					<img width="350" height="350" src="<?PHP echo base_url(); ?>assets/themepw1/wp-content/uploads/2020/12/wdp-ikon_covid_01.png" class="attachment-full size-full" alt="" loading="lazy" />
+																					<img width="350" height="350" src="<?PHP echo base_url(); ?>assets/wd-assets/temp.png" class="attachment-full size-full" alt="" loading="lazy" />
 																				</figure>
 
 																				<div class="elementor-image-box-content">
-																					<p class="elementor-image-box-description">Suhu tubuh normal<br>(dibawah 37,5°C)</p>
+																					<p class="elementor-image-box-description">Suhu tubuh normal<br>(dibawah 37,2°C)</p>
 																				</div>
 																			</div>
 																		</div>
@@ -1239,7 +1239,7 @@ $getGal 	= $this->db->query($qGal, $baseid)->result_array();
 																		<div class="elementor-widget-container">
 																			<div class="elementor-image-box-wrapper">
 																				<figure class="elementor-image-box-img">
-																					<img width="350" height="350" src="<?PHP echo base_url(); ?>assets/themepw1/wp-content/uploads/2020/12/wdp-ikon_covid_02.png" class="attachment-full size-full" alt="" loading="lazy" />
+																					<img width="350" height="350" src="<?PHP echo base_url(); ?>assets/wd-assets/wash.png" class="attachment-full size-full" alt="" loading="lazy" />
 																				</figure>
 
 																				<div class="elementor-image-box-content">
