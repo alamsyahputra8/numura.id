@@ -737,4 +737,30 @@ class Viewpanel extends CI_Controller {
 	public function cekkk(){
 		$this->load->view('cek');
 	}
+
+	public function digitalinv(){
+		if(checkingsessionpwt()){
+			$cekAkses			= $this->akses;
+			if ($cekAkses=='') {
+				redirect('panel/error');
+			} else {
+				$data['akses']			= $this->akses;
+				$data['userid']			= $this->userid;
+				
+				// CORE 1
+				$this->load->view('/theme/metronic/base1');
+
+				// CONTENT
+				$this->load->view('panel/digitalinv/index', $data);
+
+				// CORE2
+				$this->load->view('/theme/metronic/base2');
+
+				// PLUGIN JS
+				$this->load->view('/theme/metronic/pluginjs');
+			}
+		} else {
+			
+		}
+	}
 }

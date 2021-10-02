@@ -54,7 +54,7 @@ $route['wedding/(:any)'] 		= 'viewfront/wedding/$1';
 $route['invitation/(:any)'] 	= 'viewfront/invitation/$1';
 
 // ROUTE PANEL PARWATHA
-$route['panel'] 				= 'viewpanel';
+$route['panel'] 				= 'viewfront/panelre';
 $route['panel/ceklogin'] 		= 'login/ceklogin';
 $route['panel/loginotp'] 		= 'login/loginotp';
 $route['panel/userprofile'] 	= 'viewpanel/userprofile';

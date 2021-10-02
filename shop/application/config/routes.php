@@ -88,6 +88,9 @@ $route['detailstok/(:any)'] 	= 'viewpanel/detailstok/$1';
 $route['stokpjg'] 				= 'viewpanel/stokpjg';
 $route['detailstokpjg/(:any)'] 	= 'viewpanel/detailstokpjg/$1';
 
+// DATA DIGITAL INVITATION
+$route['digitalinv'] 			= 'viewpanel/digitalinv';
+
 $route['panel/config'] 			= 'viewpanel/config';
 $route['panel/log'] 			= 'viewpanel/log';
 $route['panel/logout'] 			= 'login/logout';

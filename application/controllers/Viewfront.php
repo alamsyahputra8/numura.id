@@ -42,6 +42,11 @@ class Viewfront extends CI_Controller {
 		$thn		= date("Y");
 		$tglk		= $tgl-1;
     }
+
+    public function panelre(){
+    	$newURL 	= base_url().'shop';
+    	header('Location: '.$newURL);
+    }
 	
 	public function cekcounter(){
 		$ip   		= $_SERVER['REMOTE_ADDR'];
