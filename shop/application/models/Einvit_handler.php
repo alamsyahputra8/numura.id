@@ -66,9 +66,9 @@ class Einvit_handler extends CI_Model {
 	                            ';
 
 				if ($data['status']==1) {
-					$status 	= '<b class="text-success"><i class="fas fa-tshirt"></i> PAID</b>';
+					$status 	= '<b class="text-success"><i class="far fa-check-circle"></i> PAID</b>';
 				} else {
-					$status 	= '<b class="text-warning"><i class="fas fa-tshirt"></i> NOT PAID</b>';
+					$status 	= '<b class="text-warning"><i class="far fa-times-circle"></i> NOT PAID</b>';
 				}
 
 				$btnact			= $btnUpdate.$btnDelete.$btnDetail;
