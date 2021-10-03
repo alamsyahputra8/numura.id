@@ -12,6 +12,88 @@ $('.dp').datepicker({
     format: 'yyyy-mm-dd'
 });
 
+$('.dpt').datetimepicker({
+    todayHighlight: true,
+    autoclose: true,
+    format: 'yyyy-mm-dd hh:ii:00'
+});
+
+$(document).ready(function() {
+    var max_fields      = 20; //maximum input boxes allowed
+    var wrapper         = $("#bgbanner"); //Fields wrapper
+    var add_button      = $(".btnAddBanner"); //Add button ID
+    
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append(`
+                <div class="input-group">
+                    <input type="file" class="form-control" name="banner[]" id="banner">
+                    <a href="#" class="remove_field col-lg-1">
+                        <button class="btn btn-danger btn-sm btn-icon btn-icon-md kt-btn btn-sm">
+                            <i class="la la-close"></i>
+                        </button>
+                    </a>
+                </div>
+                `); //add input box
+        }
+    });
+
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+        recalc();
+    })
+
+    var max_fieldsG     = 20; //maximum input boxes allowed
+    var wrapperG        = $("#bggallery"); //Fields wrapper
+    var add_buttonG     = $(".btnAddGallery"); //Add button ID
+    
+    var xG = 1; //initlal text box count
+    $(add_buttonG).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(xG < max_fieldsG){ //max input box allowed
+            xG++; //text box increment
+            $(wrapperG).append(`
+                <div class="input-group">
+                    <input type="file" class="form-control" name="gallery[]" id="gallery">
+                    <a href="#" class="remove_field col-lg-1">
+                        <button class="btn btn-danger btn-sm btn-icon btn-icon-md kt-btn btn-sm">
+                            <i class="la la-close"></i>
+                        </button>
+                    </a>
+                </div>
+                `); //add input box
+        }
+    });
+
+    $(wrapperG).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+        recalc();
+    })
+});
+
+$('#modlive').click(function(){
+    if($(this).prop("checked") == true){
+        $('#bgiglive').fadeIn('fast'); 
+    }
+    else if($(this).prop("checked") == false){
+        $('#bgiglive').fadeOut('fast');
+    }
+});
+
+$('#modig').click(function(){
+    if($(this).prop("checked") == true){
+        $('#bgigm').fadeIn('fast'); 
+        $('#bgigf').fadeIn('fast'); 
+    }
+    else if($(this).prop("checked") == false){
+        $('#bgigm').fadeOut('fast');
+        $('#bgigf').fadeOut('fast');
+    }
+});
+
 function delay(callback, ms) {
   var timer = 0;
   return function() {
@@ -26,13 +108,49 @@ $('.select2norm').select2({
     placeholder: "Pilih...",
 });
 
+$(document).on('change', '#link', function(e){
+    e.preventDefault();
+    
+    var ceklink = $(this).val(); // get ids of clicked row
+
+    KTApp.block('#addnewfac .modal-content', {
+        overlayColor: '#000000',
+        type: 'v2',
+        state: 'success',
+        message: 'Please wait...'
+    });
+
+    $.ajax({
+        url: '<?PHP echo base_url(); ?>einvit/ceklink',
+        type: 'POST',
+        data: 'ceklink='+ceklink,
+        dataType: 'json'
+    })
+    .done(function(data){
+        KTApp.unblock('#addnewfac .modal-content');
+        var isavail     = data.isavail;
+        if (isavail=='1') {
+            $('#alertlink').fadeIn('fast');
+            $('#saveinsert').attr('disabled', true);
+        } else {
+            $('#alertlink').fadeOut('fast');
+            $('#saveinsert').attr('disabled', false);
+        }
+    })
+    .fail(function(){
+        KTApp.unblock('#addnewfac .modal-content');
+        $('#alertlink').fadeIn('fast');
+        $('#saveinsert').attr('disabled', true);
+    });
+});
+
 $(document).on('keyup', '.pcsval', function(e){
     e.preventDefault();
 
     var form = $(this).closest('form');
 
     form.ajaxSubmit({
-        url: "<?PHP echo base_url(); ?>stokpjg/cektotal",
+        url: "<?PHP echo base_url(); ?>einvit/cektotal",
         type: "POST",
         dataType: 'json',
         beforeSend: function(){ 
@@ -75,7 +193,7 @@ $(document).on('keyup', '.ed_pcsval', function(e){
     var form = $(this).closest('form');
 
     form.ajaxSubmit({
-        url: "<?PHP echo base_url(); ?>stokpjg/cektotaledit",
+        url: "<?PHP echo base_url(); ?>einvit/cektotaledit",
         type: "POST",
         dataType: 'json',
         beforeSend: function(){ 
@@ -121,7 +239,7 @@ $(document).on('click', '.btnupdateM', function(e){
     
     $('.select2norm').val('');
     $.ajax({
-        url: '<?PHP echo base_url(); ?>stokpjg/modal',
+        url: '<?PHP echo base_url(); ?>einvit/modal',
         type: 'POST',
         data: 'id='+uid,
         dataType: 'json'
@@ -147,7 +265,7 @@ $(document).on('click', '.btnupdateM', function(e){
         });
 
         $.ajax({
-            url: '<?PHP echo base_url(); ?>stokpjg/getorder',
+            url: '<?PHP echo base_url(); ?>einvit/getorder',
             data: 'id='+data.id_order,
             type: 'POST',
         })
@@ -180,7 +298,7 @@ $(document).on('click', '.btnPrint', function(e){
     $('#modal-loader').show();  // load ajax loader
     
     $.ajax({
-        url: '<?PHP echo base_url(); ?>stokpjg/modal',
+        url: '<?PHP echo base_url(); ?>einvit/modal',
         type: 'POST',
         data: 'id='+uid,
         dataType: 'json'
@@ -206,7 +324,7 @@ $(document).on('click', '.btndeleteMenu', function(e){
     $('#modal-loader').show();  // load ajax loader
 
     $.ajax({
-        url: '<?PHP echo base_url(); ?>stokpjg/modal',
+        url: '<?PHP echo base_url(); ?>einvit/modal',
         type: 'POST',
         data: 'id='+id,
         dataType: 'json'
@@ -232,7 +350,7 @@ $(document).on('click', '.btnbayarM', function(e){
     $('#modal-loader').show();  // load ajax loader
 
     $.ajax({
-        url: '<?PHP echo base_url(); ?>stokpjg/modal',
+        url: '<?PHP echo base_url(); ?>einvit/modal',
         type: 'POST',
         data: 'id='+id,
         dataType: 'json'
@@ -257,7 +375,7 @@ $(document).on('click', '.btnProses', function(e){
     $('#modal-loader').show();  // load ajax loader
 
     $.ajax({
-        url: '<?PHP echo base_url(); ?>stokpjg/modal',
+        url: '<?PHP echo base_url(); ?>einvit/modal',
         type: 'POST',
         data: 'id='+id,
         dataType: 'json'
@@ -335,22 +453,23 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
             searchDelay: 500,
             processing: true,
             serverSide: true,
-            order: [[ 4, "desc" ]],
+            order: [[ 5, "desc" ]],
             ajax: {
-                url: '<?PHP echo base_url(); ?>stokpjg/getdata',
+                url: '<?PHP echo base_url(); ?>einvit/getdata',
                 type: 'POST',
                 data: {
                     // parameters for custom backend script demo
                     columnsDef: [
-                        'keterangan', 'jml', 'total', 'bayar', 'tgl', 'status', 'actions'],
+                        'orderid', 'link', 'pria', 'wanita', 'tgl', 'createddate', 'status', 'actions'],
                 },
             },
             columns: [
-                {data: 'keterangan', responsivePriority: -1},
-                {data: 'jml'},
-                {data: 'total'},
-                {data: 'bayar'},
+                {data: 'orderid', responsivePriority: -1},
+                {data: 'link', responsivePriority: -1},
+                {data: 'pria'},
+                {data: 'wanita'},
                 {data: 'tgl'},
+                {data: 'createddate'},
                 {data: 'status'},
                 {data: 'actions', responsivePriority: -1},
             ],
@@ -362,7 +481,7 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                 },
                 {
                     targets: 0,
-                    orderable: false,
+                    orderable: true,
                 },
             ],
         });
@@ -479,7 +598,7 @@ var KTFormWidgets = function () {
             placeholder: "Pilih...",
             allowClear: true,
             ajax: {
-                url: "<?PHP echo base_url(); ?>stokpjg/listcustomer",
+                url: "<?PHP echo base_url(); ?>einvit/listcustomer",
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {
@@ -549,15 +668,7 @@ var KTFormWidgets = function () {
 
             form.validate({
                 rules: {
-                    tgl: {
-                        required: true
-                    },
-                    label: {
-                        required: true
-                    },
-                    total: {
-                        required: true
-                    },
+                    orderid: { required: true },
                 }
             });
 
@@ -568,7 +679,7 @@ var KTFormWidgets = function () {
             btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
 
             form.ajaxSubmit({
-                url: "<?PHP echo base_url(); ?>stokpjg/insert",
+                url: "<?PHP echo base_url(); ?>einvit/insert",
                 type: "POST",
                 beforeSend: function(){ 
                    KTApp.block('#addnewfac .modal-content', {
@@ -611,81 +722,6 @@ var KTFormWidgets = function () {
         });     
     }
 
-    var initInsertNew = function () {
-        $('#saveandcreate').click(function(e) {
-            e.preventDefault();
-
-            var btn = $(this);
-            var form = $(this).closest('form');           
-
-            form.validate({
-                rules: {
-                    user: {
-                        required: true
-                    },
-                    masuk: {
-                        required: true
-                    },
-                    keluar: {
-                        required: true
-                    },
-                    tgl: {
-                        required: true
-                    }
-                }
-            });
-
-            if (!form.valid()) {
-                return;
-            }
-
-            btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
-
-            form.ajaxSubmit({
-                url: "<?PHP echo base_url(); ?>stokpjg/insert",
-                type: "POST",
-                beforeSend: function(){ 
-                   KTApp.block('#addnewfac .modal-content', {
-                        overlayColor: '#000000',
-                        type: 'v2',
-                        state: 'success',
-                        message: 'Please wait...'
-                    });
-                },
-                success: function(data) {
-                    if(data) {
-                        // similate 2s delay
-                        setTimeout(function() {
-                            btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-                            //showErrorMsg(form, 'success', '<strong>Data Insert Success!</strong>');
-
-                            KTApp.unblock('#addnewfac .modal-content');
-                            
-                            // $('#addnewfac').modal('toggle');
-                            $('#tabledata').DataTable().ajax.reload();
-                            $('#forminsert')[0].reset();
-                            var alert = $('#suksesinsert');
-                            // $('.select2norm').val(null).trigger('change');
-                            // document.getElementById("name").autofocus;
-                            alert.removeClass('kt-hidden').show();
-                        }, 2000);
-                    } else {
-                        // similate 2s delay
-                        setTimeout(function() {
-                            btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-                            showErrorMsg(form, 'danger', '<strong>Data Insert Failed!</strong> Change a few things up and try submitting again.');
-                            
-                            KTApp.unblock('#addnewfac .modal-content');
-                            
-                            var alert = $('#gagalinsert');
-                            alert.removeClass('kt-hidden').show();
-                        }, 2000);
-                    }
-                }
-            });
-        });     
-    }
-
     var initUpdate = function () {
         $('#saveupdate').click(function(e) {
             e.preventDefault();
@@ -695,21 +731,9 @@ var KTFormWidgets = function () {
 
             form.validate({
                 rules: {
-                    ed_id: {
+                    ed_orderid: {
                         required: true
                     },
-                    ed_user: {
-                        required: true
-                    },
-                    ed_masuk: {
-                        required: true
-                    },
-                    ed_keluar: {
-                        required: true
-                    },
-                    ed_tgl: {
-                        required: true
-                    }
                 }
             });
 
@@ -720,7 +744,7 @@ var KTFormWidgets = function () {
             btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
 
             form.ajaxSubmit({
-                url: "<?PHP echo base_url(); ?>stokpjg/update",
+                url: "<?PHP echo base_url(); ?>einvit/update",
                 type: "POST",
                 beforeSend: function(){ 
                    KTApp.block('#update .modal-content', {
@@ -763,80 +787,13 @@ var KTFormWidgets = function () {
         });     
     }
 
-    var initBayar = function () {
-        $('#paymentBtn').click(function(e) {
-            e.preventDefault();
-
-            var btn = $(this);
-            var form = $(this).closest('form');           
-
-            form.validate({
-                rules: {
-                    idorder: {
-                        required: true
-                    },
-                    jmlbayar: {
-                        required: true
-                    }
-                }
-            });
-
-            if (!form.valid()) {
-                return;
-            }
-
-            btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
-
-            form.ajaxSubmit({
-                url: "<?PHP echo base_url(); ?>stokpjg/payment",
-                type: "POST",
-                beforeSend: function(){ 
-                   KTApp.block('#bayar .modal-content', {
-                        overlayColor: '#000000',
-                        type: 'v2',
-                        state: 'success',
-                        message: 'Please wait...'
-                    });
-                },
-                success: function(data) {
-                    if(data) {
-                        // similate 2s delay
-                        setTimeout(function() {
-                            btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-                            //showErrorMsg(form, 'success', '<strong>Data Insert Success!</strong>');
-                            KTApp.unblock('#bayar .modal-content');
-                            
-                            $('#bayar').modal('toggle');
-
-                            $('#tabledata').DataTable().ajax.reload();
-                            $('#formbayar')[0].reset();
-                            var alert = $('#suksesinsert');
-                            alert.removeClass('kt-hidden').show();
-                        }, 2000);
-                    } else {
-                        // similate 2s delay
-                        setTimeout(function() {
-                            btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-                            
-                            KTApp.unblock('#bayar .modal-content');
-
-                            showErrorMsg(form, 'danger', '<strong>Data Update Failed!</strong> Change a few things up and try submitting again.');
-                            var alert = $('#gagalinsert');
-                            alert.removeClass('kt-hidden').show();
-                        }, 2000);
-                    }
-                }
-            });
-        });     
-    }
-
     var initDelete = function () {
         $('#deleteBtn').click(function(e) {
             e.preventDefault();
             var btn     = $(this);
             var form    = $(this).closest('form');           
             var id      = $("#iddel").val();
-            console.log('ini id delete',id)
+
             if (!form.valid()) {
                 return;
             }
@@ -844,7 +801,7 @@ var KTFormWidgets = function () {
             btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
 
             form.ajaxSubmit({
-                url: "<?PHP echo base_url(); ?>stokpjg/delete",
+                url: "<?PHP echo base_url(); ?>einvit/delete",
                 type: "POST",
                 success: function(data) {
                     if(data) {
@@ -872,58 +829,13 @@ var KTFormWidgets = function () {
         });     
     }
 
-    var initProses = function () {
-        $('#prosesBtn').click(function(e) {
-            e.preventDefault();
-            var btn     = $(this);
-            var form    = $(this).closest('form');           
-            var id      = $("#idapp").val();
-            
-            if (!form.valid()) {
-                return;
-            }
-
-            btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
-
-            form.ajaxSubmit({
-                url: "<?PHP echo base_url(); ?>stokpjg/approve",
-                type: "POST",
-                success: function(data) {
-                    if(data) {
-                        // similate 2s delay
-                        setTimeout(function() {
-                            btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-                            //showErrorMsg(form, 'success', '<strong>Data Insert Success!</strong>');
-                            
-                            $('#proses').modal('toggle');
-                            $('#tabledata').DataTable().ajax.reload();
-                            var alert = $('#suksesinsert');
-                            alert.removeClass('kt-hidden').show();
-                        }, 2000);
-                    } else {
-                        // similate 2s delay
-                        setTimeout(function() {
-                            btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
-                            //showErrorMsg(form, 'danger', '<strong>Data Insert Failed!</strong> Change a few things up and try submitting again.');
-                            var alert = $('#gagalinsert');
-                            alert.removeClass('kt-hidden').show();
-                        }, 2000);
-                    }
-                }
-            });
-        });     
-    }
-
     return {
         // public functions
         init: function() {
             initWidgets(); 
             initInsert();
-            initInsertNew();
             initUpdate();
             initDelete();
-            initProses();
-            initBayar();
         }
     };
 }();
