@@ -104,15 +104,23 @@ class Einvit extends CI_Controller {
 		}
 	}	
 
+	public function testdir(){
+		$link				= 'cek-coba';
+		mkdir('../images/wedding/'.$link, 0777, TRUE);
+	}
+
 	public function insert(){
 		if(checkingsessionpwt()){
-			$url 				= "Stok";
+			$url 				= "Digital Invitation";
 			$activity 			= "INSERT";
 
 			$userdata 			= $this->session->userdata('sesspwt'); 
 			$userid				= $userdata['userid'];
 
-			$tgl				= trim(strip_tags(stripslashes($this->input->post('tgl',true))));
+			$link				= trim(strip_tags(stripslashes($this->input->post('link',true))));
+			mkdir('../images/wedding', $link);
+			exit();
+
 			$label 				= trim(strip_tags(stripslashes($this->input->post('label',true))));
 			$jml 				= trim(strip_tags(stripslashes($this->input->post('totalpcs',true))));
 			$total 				= trim(strip_tags(stripslashes($this->input->post('total',true))));
