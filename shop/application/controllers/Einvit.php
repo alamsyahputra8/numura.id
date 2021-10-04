@@ -262,7 +262,7 @@ class Einvit extends CI_Controller {
 					$tipe_file[$jb]      	= $_FILES['banner']['type'][$jb];
 					$nama_file[$jb]      	= $_FILES['banner']['name'][$jb];
 					$nama_file_unik[$jb] 	= str_replace(' ','_',$nama_file[$jb]);
-					
+
 					$extension 				= pathinfo($nama_file[$jb], PATHINFO_EXTENSION);
 					if (!empty($lokasi_file[$jb])){
 						$vfile_upload[$jb] = $dirfile[$jb] . $nama_file_unik[$jb];
@@ -407,21 +407,23 @@ class Einvit extends CI_Controller {
 
 			$link 		= $d['name'];
 
-			$dirPath 	= '../images/wedding/'.$link.'/';
-			
-			// DELETE FOLDER AND FILES FIRST
-			$dir = '..' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'wedding'  . DIRECTORY_SEPARATOR . $link;
-			$it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
-			$files = new RecursiveIteratorIterator($it,
-			             RecursiveIteratorIterator::CHILD_FIRST);
-			foreach($files as $file) {
-			    if ($file->isDir()){
-			        rmdir($file->getRealPath());
-			    } else {
-			        unlink($file->getRealPath());
-			    }
+			if (!empty($link)) {
+				$dirPath 	= '../images/wedding/'.$link.'/';
+				
+				// DELETE FOLDER AND FILES FIRST
+				$dir = '..' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'wedding'  . DIRECTORY_SEPARATOR . $link;
+				$it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+				$files = new RecursiveIteratorIterator($it,
+				             RecursiveIteratorIterator::CHILD_FIRST);
+				foreach($files as $file) {
+				    if ($file->isDir()){
+				        rmdir($file->getRealPath());
+				    } else {
+				        unlink($file->getRealPath());
+				    }
+				}
+				rmdir($dir);
 			}
-			rmdir($dir);
 
 			$rows 	= $this->dbw->query("DELETE FROM person_order where id='$cond'");
 			$rows2 	= $this->dbw->query("DELETE FROM detail_person where orderid='$cond'");
