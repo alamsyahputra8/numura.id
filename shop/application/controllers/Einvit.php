@@ -409,14 +409,14 @@ class Einvit extends CI_Controller {
 			$dirPath 	= '../images/wedding/'.$link.'/';
 			
 			// DELETE FOLDER AND FILES FIRST
-			$files = glob($dirPath . '*', GLOB_MARK);
-		    foreach ($files as $file) {
-		        if (is_dir($file)) {
-		            self::deleteDir($file);
-		        } else {
-		            unlink($file);
-		        }
-		    }
+			// $files = glob($dirPath . '*', GLOB_MARK);
+		 //    foreach ($files as $file) {
+		 //        if (is_dir($file)) {
+		 //            self::deleteDir($file);
+		 //        } else {
+		 //            unlink($file);
+		 //        }
+		 //    }
 		    rmdir($dirPath);
 
 			$rows 	= $this->query->deleteData('person_order','id',$cond);
