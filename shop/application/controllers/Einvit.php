@@ -308,7 +308,7 @@ class Einvit extends CI_Controller {
 	public function modal(){
 		if(checkingsessionpwt()){
 			$id					= trim(strip_tags(stripslashes($this->input->post('id',true))));
-			
+
 			$dataRoles			= $this->dbw->query("
 								SELECT 
 									a.*
@@ -409,20 +409,23 @@ class Einvit extends CI_Controller {
 			$dirPath 	= '../images/wedding/'.$link.'/';
 			
 			// DELETE FOLDER AND FILES FIRST
-			// $files = glob($dirPath . '*', GLOB_MARK);
-		 //    foreach ($files as $file) {
-		 //        if (is_dir($file)) {
-		 //            self::deleteDir($file);
-		 //        } else {
-		 //            unlink($file);
-		 //        }
-		 //    }
-		    rmdir($dirPath);
+			$dir = '..' . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'wedding'  . DIRECTORY_SEPARATOR . $link;
+			$it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
+			$files = new RecursiveIteratorIterator($it,
+			             RecursiveIteratorIterator::CHILD_FIRST);
+			foreach($files as $file) {
+			    if ($file->isDir()){
+			        rmdir($file->getRealPath());
+			    } else {
+			        unlink($file->getRealPath());
+			    }
+			}
+			rmdir($dir);
 
-			$rows 	= $this->query->deleteData('person_order','id',$cond);
-			$rows2 	= $this->query->deleteData('detail_person','orderid',$cond);
-			$rows3 	= $this->query->deleteData('detail_banner','orderid',$cond);
-			$rows4 	= $this->query->deleteData('detail_gallery','orderid',$cond);
+			$rows 	= $this->dbw->query("DELETE FROM person_order where id='$cond'");
+			$rows2 	= $this->dbw->query("DELETE FROM detail_person where orderid='$cond'");
+			$rows3 	= $this->dbw->query("DELETE FROM detail_banner where orderid='$cond'");
+			$rows4 	= $this->dbw->query("DELETE FROM detail_gallery where orderid='$cond'");
 			
 			if(isset($rows)) {
 				$log = $this->query->insertlog($activity,$url,$cond);
