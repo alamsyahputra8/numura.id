@@ -251,7 +251,7 @@ class Einvit extends CI_Controller {
 				$insDetail 		= $this->dbw->query("
 								INSERT INTO detail_person (orderid, man, nicknamem, igm, sonof, pictm, woman, nicknamew, igw, daughterof, pictw, akadat, akaddate, akadtime, akadto, reseptionat, reseptiondate, reseptiontime, reseptionto, maps, maplink, quotes, quotesby)
 								values
-								('$id', '$king', '$nickm', '$igm', '$sonof', '$filem', '$queen', '$nickf', '$igf', '$daughterof', '$filew', '$akadat', '$akaddate', '$akadstart', '$akadto', '$resepsiat', '$resepsidate', '$resepsistart', '$resepsito', '$embedmap', '$linkmap', '$quotes', '$qby')
+								('$id', '$king', '$nickm', '$igm', '$sonof', '$filem', '$queen', '$nickf', '$igf', '$daughterof', '$filef', '$akadat', '$akaddate', '$akadstart', '$akadto', '$resepsiat', '$resepsidate', '$resepsistart', '$resepsito', '$embedmap', '$linkmap', '$quotes', '$qby')
 								");
 				
 				// UPLOAD BANNER
