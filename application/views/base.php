@@ -93,7 +93,7 @@
                     <!--end: Header Extras-->
 
                     <!--Navigation Resposnive Trigger-->
-                    <div id="mainMenu-trigger"> <a class="lines-button x"><span class="lines"></span></a> </div>
+                    <!-- <div id="mainMenu-trigger"> <a class="lines-button x"><span class="lines"></span></a> </div> -->
                     <!--end: Navigation Resposnive Trigger-->
                     <!--Navigation-->
                     <div id="mainMenu">
