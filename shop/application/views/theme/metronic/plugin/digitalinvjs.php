@@ -698,9 +698,9 @@ var KTFormWidgets = function () {
 
                             KTApp.unblock('#addnewfac .modal-content');
                             
-                            // $('#addnewfac').modal('toggle');
+                            $('#addnewfac').modal('toggle');
                             $('#tabledata').DataTable().ajax.reload();
-                            // $('#forminsert')[0].reset();
+                            $('#forminsert')[0].reset();
                             // $('.select2norm').val(null).trigger('change');
                             var alert = $('#suksesinsert');
                             alert.removeClass('kt-hidden').show();

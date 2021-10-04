@@ -48,8 +48,8 @@ if (@$_GET['to']!='') {
 	<meta name="twitter:data1" content="Numura.id">
 
 	<link href="<?PHP echo base_url(); ?>assets/wd-assets/marsha/stylesheet.css" rel="stylesheet">
-	<link rel="alternate" type="application/rss+xml" title="Numura.id &raquo; Feed" href="https://numura.id/feed/" />
-	<link rel="alternate" type="application/rss+xml" title="Numura.id &raquo; Umpan Komentar" href="https://numura.id/comments/feed/" />
+	<link rel="alternate" type="application/rss+xml" title="Numura.id &raquo; Feed" href="<?PHP echo base_url(); ?>feed/" />
+	<link rel="alternate" type="application/rss+xml" title="Numura.id &raquo; Umpan Komentar" href="<?PHP echo base_url(); ?>comments/feed/" />
 	<link rel='stylesheet' id='bdt-uikit-css'  href='<?PHP echo base_url(); ?>assets/themepw1/wp-content/plugins/bdthemes-element-pack/assets/css/bdt-uikita25a.css?ver=3.5.5' type='text/css' media='all' />
 	<link rel='stylesheet' id='element-pack-site-css'  href='<?PHP echo base_url(); ?>assets/themepw1/wp-content/plugins/bdthemes-element-pack/assets/css/element-pack-site76f3.css?ver=5.7.3' type='text/css' media='all' />
 	<link rel='stylesheet' id='wp-block-library-css'  href='<?PHP echo base_url(); ?>assets/themepw1/wp-includes/css/dist/block-library/style.min24b2.css?ver=5.5.5' type='text/css' media='all' />
@@ -155,7 +155,7 @@ if (@$_GET['to']!='') {
 	<div data-elementor-type="wp-post" data-elementor-id="24224" class="elementor elementor-24224" data-elementor-settings="[]">
 		<div class="elementor-inner">
 			<div class="elementor-section-wrap">
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-79bda4b elementor-section-height-full elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-id="79bda4b" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_gallery&quot;:[<?PHP $xb=0; foreach ($getBanner as $banner) { $xb++; ?>{&quot;id&quot;:<?PHP echo $banner['id']; ?>,&quot;url&quot;:&quot;https:\/\/numura.id\/images\/wedding\/<?PHP echo $dirbase; ?>\/<?PHP echo $banner['pict']; ?>&quot;}<?PHP if ($xb<$jmlban) { echo ','; } ?><?PHP } ?>],&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_transition_duration&quot;:500}">
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-79bda4b elementor-section-height-full elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-id="79bda4b" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;slideshow&quot;,&quot;background_slideshow_gallery&quot;:[<?PHP $xb=0; foreach ($getBanner as $banner) { $xb++; ?>{&quot;id&quot;:<?PHP echo $banner['id']; ?>,&quot;url&quot;:&quot;<?PHP echo base_url(); ?>\/images\/wedding\/<?PHP echo $dirbase; ?>\/<?PHP echo $banner['pict']; ?>&quot;}<?PHP if ($xb<$jmlban) { echo ','; } ?><?PHP } ?>],&quot;background_slideshow_loop&quot;:&quot;yes&quot;,&quot;background_slideshow_slide_duration&quot;:5000,&quot;background_slideshow_slide_transition&quot;:&quot;fade&quot;,&quot;background_slideshow_transition_duration&quot;:500}">
 					<div class="elementor-background-overlay"></div>
 					<div class="elementor-container elementor-column-gap-default">
 						<div class="elementor-row">
