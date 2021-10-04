@@ -420,7 +420,7 @@ class Einvit extends CI_Controller {
 		            unlink($file);
 		        }
 		    }
-		    rmdir($dirPath)
+		    rmdir($dirPath);
 
 			$rows 	= $this->query->deleteData('person_order','id',$cond);
 			$rows2 	= $this->query->deleteData('detail_person','orderid',$cond);
