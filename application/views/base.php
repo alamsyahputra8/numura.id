@@ -141,7 +141,7 @@
                     <div class="portfolio-item img-zoom ct-shirt">
                         <div class="portfolio-item-wrap">
                             <div class="portfolio-image">
-                                <a href="<?PHP echo base_url(); ?>shirt"><img src="<?PHP echo base_url(); ?>images/portfolio/31.png" alt=""></a>
+                                <a href="<?PHP echo base_url(); ?>shirt"><img src="<?PHP echo base_url(); ?>images/iconbase/shirt.jpg" alt=""></a>
                             </div>
                             <div class="portfolio-description">
                                 <a href="<?PHP echo base_url(); ?>shirt">
