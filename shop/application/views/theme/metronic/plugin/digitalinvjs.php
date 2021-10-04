@@ -333,7 +333,7 @@ $(document).on('click', '.btndeleteMenu', function(e){
         console.log(data);
         $('#dynamic-content').hide(); // hide dynamic div
         $('#dynamic-content').show(); // show dynamic div
-        $('#iddel').val(data.id_order);
+        $('#iddel').val(data.id);
         $('#modal-loader').hide();    // hide ajax loader
     })
     .fail(function(){

@@ -308,7 +308,7 @@ class Einvit extends CI_Controller {
 	public function modal(){
 		if(checkingsessionpwt()){
 			$id					= trim(strip_tags(stripslashes($this->input->post('id',true))));
-
+			
 			$dataRoles			= $this->dbw->query("
 								SELECT 
 									a.*
@@ -409,6 +409,14 @@ class Einvit extends CI_Controller {
 			$dirPath 	= '../images/wedding/'.$link.'/';
 			
 			// DELETE FOLDER AND FILES FIRST
+			$files = glob($dirPath . '*', GLOB_MARK);
+		    foreach ($files as $file) {
+		        if (is_dir($file)) {
+		            self::deleteDir($file);
+		        } else {
+		            unlink($file);
+		        }
+		    }
 		    rmdir($dirPath);
 
 			$rows 	= $this->query->deleteData('person_order','id',$cond);
