@@ -105,8 +105,9 @@ class Einvit extends CI_Controller {
 	}	
 
 	public function testdir(){
-		$link				= 'cek-coba';
-		mkdir('../images/wedding/'.$link, 0777, TRUE);
+		$nextyear 			= date('Y')+1;
+		$expired 			= $nextyear.'-'.date('m-d H:i:00');
+		echo $expired;
 	}
 
 	public function insert(){
@@ -117,43 +118,179 @@ class Einvit extends CI_Controller {
 			$userdata 			= $this->session->userdata('sesspwt'); 
 			$userid				= $userdata['userid'];
 
-			$link				= trim(strip_tags(stripslashes($this->input->post('link',true))));
-			mkdir('../images/wedding', $link);
-			exit();
+			$nowdate	= date('Ym');
+			$nowoid		= date('Ymd');
+			$qoid 		= $this->dbw->query("
+						SELECT count(*)+1 nexid FROM person_order where orderid like '$nowdate%'
+						")->result_array();
+			$goid 		= array_shift($qoid);
+			$invID		= $goid['nexid'];
+			$noid 		= str_pad($invID, 4, '0', STR_PAD_LEFT);
+			$orderid 	= $nowoid.$noid;
 
-			$label 				= trim(strip_tags(stripslashes($this->input->post('label',true))));
-			$jml 				= trim(strip_tags(stripslashes($this->input->post('totalpcs',true))));
-			$total 				= trim(strip_tags(stripslashes($this->input->post('total',true))));
+			$link				= trim(strip_tags(stripslashes($this->input->post('link',true))));
+			$theme 				= trim(strip_tags(stripslashes($this->input->post('theme',true))));
+			$wddatetext 		= trim(strip_tags(stripslashes($this->input->post('wddatetext',true))));
+			$wddate 			= trim(strip_tags(stripslashes($this->input->post('wddate',true))));
+			
+			$modlive 			= trim(strip_tags(stripslashes($this->input->post('modlive',true))));
+			$acciglive 			= trim(strip_tags(stripslashes($this->input->post('acciglive',true))));
+			$livetime 			= trim(strip_tags(stripslashes($this->input->post('livetime',true))));
+
+			$rsvpno 			= trim(strip_tags(stripslashes($this->input->post('rsvpno',true))));
+
+			$bankampau 			= trim(strip_tags(stripslashes($this->input->post('bankampau',true))));
+			$banknorek 			= trim(strip_tags(stripslashes($this->input->post('banknorek',true))));
+			$bankan 			= trim(strip_tags(stripslashes($this->input->post('bankan',true))));
+
+			$giftnama 			= trim(strip_tags(stripslashes($this->input->post('giftnama',true))));
+			$gifthp 			= trim(strip_tags(stripslashes($this->input->post('gifthp',true))));
+			$giftalamat 		= trim(strip_tags(stripslashes($this->input->post('giftalamat',true))));
+
+			$backsound 			= $_FILES['backsound']['name'];
+
+			$prokes 			= trim(strip_tags(stripslashes($this->input->post('prokes',true))));
+			$price 				= trim(strip_tags(stripslashes($this->input->post('price',true))));
+			$status 			= trim(strip_tags(stripslashes($this->input->post('status',true))));
+
+			$modig	 			= trim(strip_tags(stripslashes($this->input->post('modig',true))));
+
+			$king	 			= trim(strip_tags(stripslashes($this->input->post('king',true))));
+			$nickm	 			= trim(strip_tags(stripslashes($this->input->post('nickm',true))));
+			$sonof	 			= trim(strip_tags(stripslashes($this->input->post('sonof',true))));
+			$pictm 				= $_FILES['pictm']['name'];
+			$igm	 			= trim(strip_tags(stripslashes($this->input->post('igm',true))));
+
+			$queen	 			= trim(strip_tags(stripslashes($this->input->post('queen',true))));
+			$nickf	 			= trim(strip_tags(stripslashes($this->input->post('nickf',true))));
+			$daughterof	 		= trim(strip_tags(stripslashes($this->input->post('daughterof',true))));
+			$pictf 				= $_FILES['pictf']['name'];
+			$igf	 			= trim(strip_tags(stripslashes($this->input->post('igf',true))));
+
+			$akaddate	 		= trim(strip_tags(stripslashes($this->input->post('akaddate',true))));
+			$akadstart	 		= trim(strip_tags(stripslashes($this->input->post('akadstart',true))));
+			$akadto	 			= trim(strip_tags(stripslashes($this->input->post('akadto',true))));
+			$akadat	 			= trim(strip_tags(stripslashes($this->input->post('akadat',true))));
+
+			$resepsidate	 	= trim(strip_tags(stripslashes($this->input->post('resepsidate',true))));
+			$resepsistart	 	= trim(strip_tags(stripslashes($this->input->post('resepsistart',true))));
+			$resepsito	 		= trim(strip_tags(stripslashes($this->input->post('resepsito',true))));
+			$resepsiat	 		= trim(strip_tags(stripslashes($this->input->post('resepsiat',true))));
+
+			$embedmap	 		= $_POST['embedmap'];
+			$linkmap	 		= trim(strip_tags(stripslashes($this->input->post('linkmap',true))));
+
+			$quotes	 			= trim(strip_tags(stripslashes($this->input->post('quotes',true))));
+			$qby	 			= trim(strip_tags(stripslashes($this->input->post('qby',true))));
+			$qbg 				= $_FILES['qbg']['name'];
+
+			$banner 			= $_FILES['banner']['name'];
+			$gallery 			= $_FILES['gallery']['name'];
+
+			$nextyear 			= date('Y')+1;
+			$expired 			= $nextyear.'-'.date('m-d H:i:00');
+
+			$nowcreate			= date('Y-m-d H:i:s');
+
+			mkdir('../images/wedding/'.$link, 0777, TRUE);
+
+			$dirfile 				= '../images/wedding/'.$link;
+
+			// UPLOAD BACKSOUND
+			$lokasi_file    		= $_FILES['backsound']['tmp_name'];
+			$tipe_file      		= $_FILES['backsound']['type'];
+			$nama_file  	     	= $_FILES['backsound']['name'];
+			$filenamemusic 	 		= str_replace(' ','_',$nama_file);
+			$extension 				= pathinfo($nama_file, PATHINFO_EXTENSION);
+			if (!empty($lokasi_file)){
+				$vfile_upload 		= $dirfile . $filenamemusic;
+				move_uploaded_file($lokasi_file, $vfile_upload);
+			}
+
+			// UPLOAD BG QUOTES
+			$lokasi_fileQ    		= $_FILES['qbg']['tmp_name'];
+			$tipe_fileQ      		= $_FILES['qbg']['type'];
+			$nama_fileQ  	     	= $_FILES['qbg']['name'];
+			$filequotes 	 		= str_replace(' ','_',$nama_fileQ);
+			$extensionQ 			= pathinfo($nama_fileQ, PATHINFO_EXTENSION);
+			if (!empty($lokasi_fileQ)){
+				$vfile_uploadQ 		= $dirfile . $filequotes;
+				move_uploaded_file($lokasi_fileQ, $vfile_uploadQ);
+			}
 
 			$rows 				= $this->dbw->query("
-								INSERT INTO stok_order (label,jml,total_harga,createddate,status,type) values 
-								('$label','$jml','$total','$tgl','1','2')
+								INSERT INTO person_order (orderid, name, weddingdate, theday, package, expired, music, theme, prokes, module_ig, rsvp_number, module_live, account_ig, time_live, angpau_bank, angpau_norek, angpau_an, gift_penerima, gift_alamat, gift_hp, img_quotes, status, price, createddate) values 
+								('$orderid', '$link', '$wddatetext', '$wddate', '1', '$expired', '$filenamemusic', '$theme', '$prokes', '$modig', '$rsvpno', '$modlive', '$acciglive', '$livetime', '$bankampau', '$banknorek', '$bankan', '$giftnama', '$giftalamat', '$gifthp', '$filequotes', '$status', '$price', '$nowcreate')
 								");
+			$id					= $this->dbw->insert_id();
 			
 			if($rows) {
-				$id				= $this->dbw->insert_id();
+				// UPLOAD PROFILE KING
+				$lokasi_fileM    		= $_FILES['pictm']['tmp_name'];
+				$tipe_fileM      		= $_FILES['pictm']['type'];
+				$nama_fileM  	     	= $_FILES['pictm']['name'];
+				$filem 	 				= str_replace(' ','_',$nama_fileM);
+				$extensionM 			= pathinfo($nama_fileM, PATHINFO_EXTENSION);
+				if (!empty($lokasi_fileM)){
+					$vfile_uploadM 		= $dirfile . $filem;
+					move_uploaded_file($lokasi_fileM, $vfile_uploadM);
+				}
+
+				// UPLOAD PROFILE QUEEN
+				$lokasi_fileF    		= $_FILES['pictf']['tmp_name'];
+				$tipe_fileF      		= $_FILES['pictf']['type'];
+				$nama_fileF  	     	= $_FILES['pictf']['name'];
+				$filew 	 				= str_replace(' ','_',$nama_fileF);
+				$extensionF 			= pathinfo($nama_fileF, PATHINFO_EXTENSION);
+				if (!empty($lokasi_fileF)){
+					$vfile_uploadF 		= $dirfile . $filef;
+					move_uploaded_file($lokasi_fileF, $vfile_uploadF);
+				}
 
 				// INSERT DETAIL
-				$getColor 		= $this->dbw->query("
-								SELECT * from color order by 1
-								")->result_array();
+				$insDetail 		= $this->dbw->query("
+								INSERT INTO detail_person (orderid, man, nicknamem, igm, sonof, pictm, woman, nicknamew, igw, daughterof, pictw, akadat, akaddate, akadtime, akadto, reseptionat, reseptiondate, reseptiontime, reseptionto, maps, maplink, quotes, quotesby)
+								values
+								('$id', '$king', '$nickm', '$igm', '$sonof', '$filem', '$queen', '$nikf', '$igf', '$daughterof', '$filew', '$akadat', '$akaddate', '$akadstart', '$akadto', '$respsiat', '$resepsidate', '$resepsistart', '$resepsito', '$embedmap', '$linkmap', '$quotes', '$qby')
+								");
+				
+				// UPLOAD BANNER
+				$jmlBanner 		= count($banner);
+				for($jb=0;$jb<$jmlBanner;$jb++) {
+					$dirfile[$jb] 			= '../images/wedding/'.$link;
+					$lokasi_file[$jb]    	= $_FILES['banner']['tmp_name'][$jb];
+					$tipe_file[$jb]      	= $_FILES['banner']['type'][$jb];
+					$nama_file[$jb]      	= $_FILES['banner']['name'][$jb];
+					$nama_file_unik[$jb] 	= str_replace(' ','_',$nama_file[$jb]);
+					$extension 				= pathinfo($nama_file[$jb], PATHINFO_EXTENSION);
+					if (!empty($lokasi_file[$jb])){
+						$vfile_upload[$jb] = $direktori[$jb] . $nama_file_unik[$jb];
+						move_uploaded_file($lokasi_file[$jb], $vfile_upload[$jb]);
 
-				$getSize 		= $this->dbw->query("
-								SELECT * from size order by sort
-								")->result_array();
+						$insBanner 			= $this->dbw->query("
+											INSERT INTO detail_banner (orderid,pict,sort,flag_bg) values 
+											('$id','$nama_file_unik[$jb]','$jb','0')
+											");
+					}
+				}
 
-				foreach ($getColor as $color) {
-					$colid 	= $color['id'];
-					foreach($getSize as $size) {
-						$sizeid 		= $size['id_size']; 
-						$price 			= $size['hpp_pjg'];
+				// UPLOAD GALLERY
+				$jmlGallery 				= count($gallery);
+				for($jg=0;$jg<$jmlGallery;$jg++) {
+					$dirfile[$jg] 			= '../images/wedding/'.$link;
+					$lokasi_file[$jg]    	= $_FILES['banner']['tmp_name'][$jg];
+					$tipe_file[$jg]      	= $_FILES['banner']['type'][$jg];
+					$nama_file[$jg]      	= $_FILES['banner']['name'][$jg];
+					$nama_file_unik[$jg] 	= str_replace(' ','_',$nama_file[$jg]);
+					$extension 				= pathinfo($nama_file[$jg], PATHINFO_EXTENSION);
+					if (!empty($lokasi_file[$jg])){
+						$vfile_upload[$jg] = $direktori[$jg] . $nama_file_unik[$jg];
+						move_uploaded_file($lokasi_file[$jg], $vfile_upload[$jg]);
 
-						$pcs			= trim(strip_tags(stripslashes($this->input->post('pcscol'.$colid.'siz'.$sizeid,true))));
-
-						$insertDetail 	= $this->dbw->query("
-										INSERT INTO stok_order_detail (id_order,size,color,jml_order,harga,status,type) values 
-										('$id','$sizeid','$colid','$pcs','$price','1','2')
-										");
+						$insGallery 		= $this->dbw->query("
+											INSERT INTO detail_gallery (orderid,pict,thumb,sort) values 
+											('$id','$nama_file_unik[$jg]','$nama_file_unik[$jg]','$jg')
+											");
 					}
 				}
 

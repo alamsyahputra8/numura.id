@@ -376,7 +376,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 											<label for="backsound" class="col-lg-2 col-sm-12 col-form-label">Backsound</label>
 											<div class="col-lg-10 col-sm-12">
 												<div class='input-group'>
-													<input type="file" name="backsound" class="form-control" id="backsound" placeholder="Backsound" required>
+													<input type="file" name="backsound" class="form-control" id="backsound" placeholder="Backsound" required accept=".mp3,audio/*">
 												</div>
 											</div>
 										</div>
@@ -444,6 +444,15 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 										</div>
 
 										<div class="form-group row">
+											<label for="sonof" class="col-lg-2 col-sm-12 col-form-label">Putra dari</label>
+											<div class="col-lg-10 col-sm-12">
+												<div class='input-group'>
+													<input type="text" name="sonof" class="form-control" id="sonof" placeholder="Ex: Bpk. John Doe & Ibu Emily" required>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group row">
 											<label for="pictm" class="col-lg-2 col-sm-12 col-form-label">Profile Picture</label>
 											<div class="col-lg-10 col-sm-12">
 												<div class='input-group'>
@@ -456,7 +465,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 											<label for="igm" class="col-lg-2 col-sm-12 col-form-label">Instagram Account</label>
 											<div class="col-lg-10 col-sm-12">
 												<div class='input-group'>
-													<input type="text" name="igm" class="form-control" id="igm" placeholder="Instagram Account" required>
+													<input type="text" name="igm" class="form-control" id="igm" placeholder="Instagram Account">
 												</div>
 											</div>
 										</div>
@@ -481,6 +490,15 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 										</div>
 
 										<div class="form-group row">
+											<label for="daughterof" class="col-lg-2 col-sm-12 col-form-label">Putri dari</label>
+											<div class="col-lg-10 col-sm-12">
+												<div class='input-group'>
+													<input type="text" name="daughterof" class="form-control" id="daughterof" placeholder="Ex: Bpk. John Doe & Ibu Emily" required>
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group row">
 											<label for="pictf" class="col-lg-2 col-sm-12 col-form-label">Profile Picture</label>
 											<div class="col-lg-10 col-sm-12">
 												<div class='input-group'>
@@ -493,7 +511,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 											<label for="igf" class="col-lg-2 col-sm-12 col-form-label">Instagram Account</label>
 											<div class="col-lg-10 col-sm-12">
 												<div class='input-group'>
-													<input type="text" name="igf" class="form-control" id="igf" placeholder="Instagram Account" required>
+													<input type="text" name="igf" class="form-control" id="igf" placeholder="Instagram Account">
 												</div>
 											</div>
 										</div>
