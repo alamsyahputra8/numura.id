@@ -170,12 +170,12 @@ class Einvit extends CI_Controller {
 			$akaddate	 		= trim(strip_tags(stripslashes($this->input->post('akaddate',true))));
 			$akadstart	 		= trim(strip_tags(stripslashes($this->input->post('akadstart',true))));
 			$akadto	 			= trim(strip_tags(stripslashes($this->input->post('akadto',true))));
-			$akadat	 			= trim(strip_tags(stripslashes($this->input->post('akadat',true))));
+			$akadat	 			= str_replace("'", '`', $this->input->post('akadat',true));
 
 			$resepsidate	 	= trim(strip_tags(stripslashes($this->input->post('resepsidate',true))));
 			$resepsistart	 	= trim(strip_tags(stripslashes($this->input->post('resepsistart',true))));
 			$resepsito	 		= trim(strip_tags(stripslashes($this->input->post('resepsito',true))));
-			$resepsiat	 		= trim(strip_tags(stripslashes($this->input->post('resepsiat',true))));
+			$resepsiat	 		= str_replace("'", '`', $this->input->post('resepsiat',true));
 
 			$embedmap	 		= $_POST['embedmap'];
 			$linkmap	 		= trim(strip_tags(stripslashes($this->input->post('linkmap',true))));
