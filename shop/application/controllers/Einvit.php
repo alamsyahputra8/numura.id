@@ -149,7 +149,7 @@ class Einvit extends CI_Controller {
 
 			$backsound 			= $_FILES['backsound']['name'];
 
-			$prokes 			= trim(strip_tags(stripslashes($this->input->post('prokes',true))));
+			$prokes 			= str_replace("'",'`',trim(strip_tags(stripslashes($this->input->post('prokes',true)))));
 			$price 				= trim(strip_tags(stripslashes($this->input->post('price',true))));
 			$status 			= trim(strip_tags(stripslashes($this->input->post('status',true))));
 
