@@ -50,6 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_cofntroller/my_method
 */
 $route['default_controller']	= 'viewfront';
+$route['shirt'] 				= 'viewfront/shirt';
 $route['wedding/(:any)'] 		= 'viewfront/wedding/$1';
 $route['invitation/(:any)'] 	= 'viewfront/invitation/$1';
 

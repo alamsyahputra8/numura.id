@@ -90,6 +90,13 @@ class Viewfront extends CI_Controller {
 		$this->load->view('/base');
 	}
 
+	public function shirt(){
+		// $data['getSiteData'] 	= $this->query->getData('configsite','*',"");
+		//$data['getRoomCat'] 	= $this->query->getData('category_room','*',"order by id_cat ASC");
+		
+		$this->load->view('/shirt/index');
+	}
+
 	public function wedding($name){
 		$q 					= "SELECT a.*, b.directory FROM person_order a left join theme b on a.theme=b.id where a.name=?";
 		$cek 				= $this->dbw->query($q,$name)->num_rows();
