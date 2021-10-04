@@ -221,7 +221,7 @@
                     <div class="portfolio-item img-zoom ct-mua ct-wedding">
                         <div class="portfolio-item-wrap">
                             <div class="portfolio-image">
-                                <a href="#"><img src="<?PHP echo base_url(); ?>images/portfolio/34.png" alt=""></a>
+                                <a href="#"><img src="<?PHP echo base_url(); ?>images/iconbase/makeup.jpg" alt=""></a>
                             </div>
                             <div class="portfolio-description">
                                 <a href="portfolio-page-grid-gallery.html">
