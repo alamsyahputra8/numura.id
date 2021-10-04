@@ -30,7 +30,7 @@ $(document).ready(function() {
             x++; //text box increment
             $(wrapper).append(`
                 <div class="input-group">
-                    <input type="file" class="form-control" name="banner[]" accept="image/*">
+                    <input type="file" class="form-control" name="banner[]" required>
                     <a href="#" class="remove_field col-lg-1">
                         <button class="btn btn-danger btn-sm btn-icon btn-icon-md kt-btn btn-sm">
                             <i class="la la-close"></i>
@@ -57,7 +57,7 @@ $(document).ready(function() {
             xG++; //text box increment
             $(wrapperG).append(`
                 <div class="input-group">
-                    <input type="file" class="form-control" name="gallery[]" accept="image/*">
+                    <input type="file" class="form-control" name="gallery[]" required>
                     <a href="#" class="remove_field col-lg-1">
                         <button class="btn btn-danger btn-sm btn-icon btn-icon-md kt-btn btn-sm">
                             <i class="la la-close"></i>
@@ -698,9 +698,9 @@ var KTFormWidgets = function () {
 
                             KTApp.unblock('#addnewfac .modal-content');
                             
-                            $('#addnewfac').modal('toggle');
+                            // $('#addnewfac').modal('toggle');
                             $('#tabledata').DataTable().ajax.reload();
-                            $('#forminsert')[0].reset();
+                            // $('#forminsert')[0].reset();
                             // $('.select2norm').val(null).trigger('change');
                             var alert = $('#suksesinsert');
                             alert.removeClass('kt-hidden').show();

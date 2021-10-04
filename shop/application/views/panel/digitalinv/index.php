@@ -181,7 +181,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 						</button>
 					</div-->
 
-					<form class="kt-form kt-form--label-right" id="forminsert" enctype="multipart/form-data" method="POST">
+					<form  method="POST" class="kt-form kt-form--label-right" id="forminsert" enctype="multipart/form-data">
 						<div class="modal-body kt-portlet kt-portlet--tabs" style="margin-bottom: 0px;">
 							<div class="kt-portlet__head">
 								<div class="kt-portlet__head-label">
@@ -644,7 +644,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 											<div class="col-lg-10 col-sm-12">
 												<div id="bgbanner">
 													<div class="input-group">
-									                    <input type="file" class="form-control" name="banner[]" accept="image/*">
+									                    <input type="file" class="form-control" name="banner[]" required>
 									                    <a href="#" class="col-lg-1">
 									                    </a>
 									                </div>
@@ -662,7 +662,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 											<div class="col-lg-10 col-sm-12">
 												<div id="bggallery">
 													<div class="input-group">
-									                    <input type="file" class="form-control" name="gallery[]" accept="image/*">
+									                    <input type="file" class="form-control" name="gallery[]" required>
 									                    <a href="#" class="col-lg-1">
 									                    </a>
 									                </div>
