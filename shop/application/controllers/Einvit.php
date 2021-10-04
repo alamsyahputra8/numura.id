@@ -180,7 +180,7 @@ class Einvit extends CI_Controller {
 			$embedmap	 		= $_POST['embedmap'];
 			$linkmap	 		= trim(strip_tags(stripslashes($this->input->post('linkmap',true))));
 
-			$quotes	 			= trim(strip_tags(stripslashes($this->input->post('quotes',true))));
+			$quotes	 			= str_replace("'",'`',trim(strip_tags(stripslashes($this->input->post('quotes',true)))));
 			$qby	 			= trim(strip_tags(stripslashes($this->input->post('qby',true))));
 			$qbg 				= $_FILES['qbg']['name'];
 
