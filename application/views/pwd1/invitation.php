@@ -889,7 +889,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 																					<i aria-hidden="true" class="far fa-calendar-alt"></i> <?PHP echo $akaddate; ?>
 																				</p>
 																				<p class="elementor-icon-box-description">
-																					<i aria-hidden="true" class="far fa-clock"></i> <?PHP echo $akadstart; ?> WIB - <?PHP echo $akadto; ?> WIB
+																					<i aria-hidden="true" class="far fa-clock"></i> <?PHP echo $akadstart; ?> - <?PHP echo $akadto; ?>
 																				</p>
 																			</div>
 																		</div>
@@ -931,7 +931,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 																						<i aria-hidden="true" class="far fa-calendar-alt"></i> <?PHP echo $reseptiondate; ?>
 																					</p>
 																					<p class="elementor-icon-box-description">
-																						<i aria-hidden="true" class="far fa-clock"></i> <?PHP echo $reseptionstart; ?> WIB - <?PHP echo $reseptionto; ?> WIB
+																						<i aria-hidden="true" class="far fa-clock"></i> <?PHP echo $reseptionstart; ?> - <?PHP echo $reseptionto; ?>
 																					</p>
 																				</div>
 																			</div>
