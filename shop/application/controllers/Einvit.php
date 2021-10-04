@@ -240,7 +240,7 @@ class Einvit extends CI_Controller {
 				$lokasi_fileF    		= $_FILES['pictf']['tmp_name'];
 				$tipe_fileF      		= $_FILES['pictf']['type'];
 				$nama_fileF  	     	= $_FILES['pictf']['name'];
-				$filew 	 				= str_replace(' ','_',$nama_fileF);
+				$filef 	 				= str_replace(' ','_',$nama_fileF);
 				$extensionF 			= pathinfo($nama_fileF, PATHINFO_EXTENSION);
 				if (!empty($lokasi_fileF)){
 					$vfile_uploadF 		= $dirfile . $filef;
@@ -251,7 +251,7 @@ class Einvit extends CI_Controller {
 				$insDetail 		= $this->dbw->query("
 								INSERT INTO detail_person (orderid, man, nicknamem, igm, sonof, pictm, woman, nicknamew, igw, daughterof, pictw, akadat, akaddate, akadtime, akadto, reseptionat, reseptiondate, reseptiontime, reseptionto, maps, maplink, quotes, quotesby)
 								values
-								('$id', '$king', '$nickm', '$igm', '$sonof', '$filem', '$queen', '$nikf', '$igf', '$daughterof', '$filew', '$akadat', '$akaddate', '$akadstart', '$akadto', '$respsiat', '$resepsidate', '$resepsistart', '$resepsito', '$embedmap', '$linkmap', '$quotes', '$qby')
+								('$id', '$king', '$nickm', '$igm', '$sonof', '$filem', '$queen', '$nickf', '$igf', '$daughterof', '$filew', '$akadat', '$akaddate', '$akadstart', '$akadto', '$respsiat', '$resepsidate', '$resepsistart', '$resepsito', '$embedmap', '$linkmap', '$quotes', '$qby')
 								");
 				
 				// UPLOAD BANNER
@@ -278,9 +278,9 @@ class Einvit extends CI_Controller {
 				$jmlGallery 				= count($gallery);
 				for($jg=0;$jg<$jmlGallery;$jg++) {
 					$dirfile[$jg] 			= '../images/wedding/'.$link.'/';
-					$lokasi_file[$jg]    	= $_FILES['banner']['tmp_name'][$jg];
-					$tipe_file[$jg]      	= $_FILES['banner']['type'][$jg];
-					$nama_file[$jg]      	= $_FILES['banner']['name'][$jg];
+					$lokasi_file[$jg]    	= $_FILES['gallery']['tmp_name'][$jg];
+					$tipe_file[$jg]      	= $_FILES['gallery']['type'][$jg];
+					$nama_file[$jg]      	= $_FILES['gallery']['name'][$jg];
 					$nama_file_unik[$jg] 	= str_replace(' ','_',$nama_file[$jg]);
 					$extension 				= pathinfo($nama_file[$jg], PATHINFO_EXTENSION);
 					if (!empty($lokasi_file[$jg])){
