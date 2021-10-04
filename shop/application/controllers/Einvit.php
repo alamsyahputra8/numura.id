@@ -311,6 +311,7 @@ class Einvit extends CI_Controller {
 			echo "SELECT 
 									a.*
 								from person_order a where a.id ='$id'";
+								exit;
 			$dataRoles			= $this->dbw->query("
 								SELECT 
 									a.*
