@@ -232,7 +232,7 @@ class Einvit extends CI_Controller {
 				$nama_file[$jb]      	= $_FILES['banner']['name'][$jb];
 				$nama_file_unik[$jb] 	= str_replace(' ','_',$nama_file[$jb]);
 
-				echo $nama_file_unik[$jb];
+				echo $banner;
 
 				$extension 				= pathinfo($nama_file[$jb], PATHINFO_EXTENSION);
 				if (!empty($lokasi_file[$jb])){
