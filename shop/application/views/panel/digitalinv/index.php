@@ -644,7 +644,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 											<div class="col-lg-10 col-sm-12">
 												<div id="bgbanner">
 													<div class="input-group">
-									                    <input type="file" class="form-control" name="banner[]" id="banner" accept="image/*">
+									                    <input type="file" class="form-control" name="banner[]" accept="image/*">
 									                    <a href="#" class="col-lg-1">
 									                    </a>
 									                </div>
@@ -662,7 +662,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 											<div class="col-lg-10 col-sm-12">
 												<div id="bggallery">
 													<div class="input-group">
-									                    <input type="file" class="form-control" name="gallery[]" id="gallery" accept="image/*">
+									                    <input type="file" class="form-control" name="gallery[]" accept="image/*">
 									                    <a href="#" class="col-lg-1">
 									                    </a>
 									                </div>

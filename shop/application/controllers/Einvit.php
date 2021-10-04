@@ -251,7 +251,7 @@ class Einvit extends CI_Controller {
 				$insDetail 		= $this->dbw->query("
 								INSERT INTO detail_person (orderid, man, nicknamem, igm, sonof, pictm, woman, nicknamew, igw, daughterof, pictw, akadat, akaddate, akadtime, akadto, reseptionat, reseptiondate, reseptiontime, reseptionto, maps, maplink, quotes, quotesby)
 								values
-								('$id', '$king', '$nickm', '$igm', '$sonof', '$filem', '$queen', '$nickf', '$igf', '$daughterof', '$filew', '$akadat', '$akaddate', '$akadstart', '$akadto', '$respsiat', '$resepsidate', '$resepsistart', '$resepsito', '$embedmap', '$linkmap', '$quotes', '$qby')
+								('$id', '$king', '$nickm', '$igm', '$sonof', '$filem', '$queen', '$nickf', '$igf', '$daughterof', '$filew', '$akadat', '$akaddate', '$akadstart', '$akadto', '$resepsiat', '$resepsidate', '$resepsistart', '$resepsito', '$embedmap', '$linkmap', '$quotes', '$qby')
 								");
 				
 				// UPLOAD BANNER
@@ -264,7 +264,7 @@ class Einvit extends CI_Controller {
 					$nama_file_unik[$jb] 	= str_replace(' ','_',$nama_file[$jb]);
 					$extension 				= pathinfo($nama_file[$jb], PATHINFO_EXTENSION);
 					if (!empty($lokasi_file[$jb])){
-						$vfile_upload[$jb] = $direktori[$jb] . $nama_file_unik[$jb];
+						$vfile_upload[$jb] = $dirfile[$jb] . $nama_file_unik[$jb];
 						move_uploaded_file($lokasi_file[$jb], $vfile_upload[$jb]);
 
 						$insBanner 			= $this->dbw->query("
@@ -284,7 +284,7 @@ class Einvit extends CI_Controller {
 					$nama_file_unik[$jg] 	= str_replace(' ','_',$nama_file[$jg]);
 					$extension 				= pathinfo($nama_file[$jg], PATHINFO_EXTENSION);
 					if (!empty($lokasi_file[$jg])){
-						$vfile_upload[$jg] = $direktori[$jg] . $nama_file_unik[$jg];
+						$vfile_upload[$jg] = $dirfile[$jg] . $nama_file_unik[$jg];
 						move_uploaded_file($lokasi_file[$jg], $vfile_upload[$jg]);
 
 						$insGallery 		= $this->dbw->query("
@@ -312,7 +312,7 @@ class Einvit extends CI_Controller {
 			$dataRoles			= $this->dbw->query("
 								SELECT 
 									a.*
-								from stok_order a where a.id_order ='$id'
+								from person_order a where a.id ='$id'
 								")->result_array();
 			
 			header('Content-type: application/json; charset=UTF-8');
@@ -394,14 +394,35 @@ class Einvit extends CI_Controller {
 
 	public function delete(){
 		if(checkingsessionpwt()){
-			$url 		= "Stok";
+			$url 		= "Digital Invitation";
 			$activity 	= "DELETE";
 
-			$cond	= trim(strip_tags(stripslashes($this->input->post('iddel',true))));
+			$cond		= trim(strip_tags(stripslashes($this->input->post('iddel',true))));
+			// GET INFO
+			$q 			= $this->dbw->query("
+						SELECT * FROM person_order where id='$cond'
+						")->result_array();
+			$d 			= array_shift($q);
+
+			$link 		= $d['name'];
+
+			$dirPath 	= '../images/wedding/'.$link.'/';
 			
-			$rows 	= $this->query->deleteData('stok_order','id_order',$cond);
-			$rows2 	= $this->query->deleteData('stok_order_detail','id_order',$cond);
-			$rows3 	= $this->query->deleteData('stok_order_payment','id_order',$cond);
+			// DELETE FOLDER AND FILES FIRST
+			$files = glob($dirPath . '*', GLOB_MARK);
+		    foreach ($files as $file) {
+		        if (is_dir($file)) {
+		            self::deleteDir($file);
+		        } else {
+		            unlink($file);
+		        }
+		    }
+		    rmdir($dirPath)
+
+			$rows 	= $this->query->deleteData('person_order','id',$cond);
+			$rows2 	= $this->query->deleteData('detail_person','orderid',$cond);
+			$rows3 	= $this->query->deleteData('detail_banner','orderid',$cond);
+			$rows4 	= $this->query->deleteData('detail_gallery','orderid',$cond);
 			
 			if(isset($rows)) {
 				$log = $this->query->insertlog($activity,$url,$cond);

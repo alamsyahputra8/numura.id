@@ -30,7 +30,7 @@ $(document).ready(function() {
             x++; //text box increment
             $(wrapper).append(`
                 <div class="input-group">
-                    <input type="file" class="form-control" name="banner[]" id="banner">
+                    <input type="file" class="form-control" name="banner[]">
                     <a href="#" class="remove_field col-lg-1">
                         <button class="btn btn-danger btn-sm btn-icon btn-icon-md kt-btn btn-sm">
                             <i class="la la-close"></i>
@@ -57,7 +57,7 @@ $(document).ready(function() {
             xG++; //text box increment
             $(wrapperG).append(`
                 <div class="input-group">
-                    <input type="file" class="form-control" name="gallery[]" id="gallery">
+                    <input type="file" class="form-control" name="gallery[]">
                     <a href="#" class="remove_field col-lg-1">
                         <button class="btn btn-danger btn-sm btn-icon btn-icon-md kt-btn btn-sm">
                             <i class="la la-close"></i>
