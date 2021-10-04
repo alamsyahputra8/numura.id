@@ -223,6 +223,45 @@ class Einvit extends CI_Controller {
 								('$orderid', '$link', '$wddatetext', '$wddate', '1', '$expired', '$filenamemusic', '$theme', '$prokes', '$modig', '$rsvpno', '$modlive', '$acciglive', '$livetime', '$bankampau', '$banknorek', '$bankan', '$giftnama', '$giftalamat', '$gifthp', '$filequotes', '$status', '$price', '$nowcreate')
 								");
 			$id					= $this->dbw->insert_id();
+
+			// UPLOAD BANNER
+			$jmlBanner 		= count($banner);
+			for($jb=0;$jb<$jmlBanner;$jb++) {
+				$lokasi_file[$jb]    	= $_FILES['banner']['tmp_name'][$jb];
+				$tipe_file[$jb]      	= $_FILES['banner']['type'][$jb];
+				$nama_file[$jb]      	= $_FILES['banner']['name'][$jb];
+				$nama_file_unik[$jb] 	= str_replace(' ','_',$nama_file[$jb]);
+
+				$extension 				= pathinfo($nama_file[$jb], PATHINFO_EXTENSION);
+				if (!empty($lokasi_file[$jb])){
+					$vfile_upload[$jb] = $dirfile . $nama_file_unik[$jb];
+					move_uploaded_file($lokasi_file[$jb], $vfile_upload[$jb]);
+
+					$insBanner 			= $this->dbw->query("
+										INSERT INTO detail_banner (orderid,pict,sort,flag_bg) values 
+										('$id','$nama_file_unik[$jb]','$jb','0')
+										");
+				}
+			}
+
+			// UPLOAD GALLERY
+			$jmlGallery 				= count($gallery);
+			for($jg=0;$jg<$jmlGallery;$jg++) {
+				$lokasi_file[$jg]    	= $_FILES['gallery']['tmp_name'][$jg];
+				$tipe_file[$jg]      	= $_FILES['gallery']['type'][$jg];
+				$nama_file[$jg]      	= $_FILES['gallery']['name'][$jg];
+				$nama_file_unik[$jg] 	= str_replace(' ','_',$nama_file[$jg]);
+				$extension 				= pathinfo($nama_file[$jg], PATHINFO_EXTENSION);
+				if (!empty($lokasi_file[$jg])){
+					$vfile_upload[$jg] = $dirfile . $nama_file_unik[$jg];
+					move_uploaded_file($lokasi_file[$jg], $vfile_upload[$jg]);
+
+					$insGallery 		= $this->dbw->query("
+										INSERT INTO detail_gallery (orderid,pict,thumb,sort) values 
+										('$id','$nama_file_unik[$jg]','$nama_file_unik[$jg]','$jg')
+										");
+				}
+			}
 			
 			if($rows) {
 				// UPLOAD PROFILE KING
@@ -253,47 +292,6 @@ class Einvit extends CI_Controller {
 								values
 								('$id', '$king', '$nickm', '$igm', '$sonof', '$filem', '$queen', '$nickf', '$igf', '$daughterof', '$filef', '$akadat', '$akaddate', '$akadstart', '$akadto', '$resepsiat', '$resepsidate', '$resepsistart', '$resepsito', '$embedmap', '$linkmap', '$quotes', '$qby')
 								");
-				
-				// UPLOAD BANNER
-				$jmlBanner 		= count($banner);
-				for($jb=0;$jb<$jmlBanner;$jb++) {
-					$dirfile[$jb] 			= '../images/wedding/'.$link.'/';
-					$lokasi_file[$jb]    	= $_FILES['banner']['tmp_name'][$jb];
-					$tipe_file[$jb]      	= $_FILES['banner']['type'][$jb];
-					$nama_file[$jb]      	= $_FILES['banner']['name'][$jb];
-					$nama_file_unik[$jb] 	= str_replace(' ','_',$nama_file[$jb]);
-
-					$extension 				= pathinfo($nama_file[$jb], PATHINFO_EXTENSION);
-					if (!empty($lokasi_file[$jb])){
-						$vfile_upload[$jb] = $dirfile[$jb] . $nama_file_unik[$jb];
-						move_uploaded_file($lokasi_file[$jb], $vfile_upload[$jb]);
-
-						$insBanner 			= $this->dbw->query("
-											INSERT INTO detail_banner (orderid,pict,sort,flag_bg) values 
-											('$id','$nama_file_unik[$jb]','$jb','0')
-											");
-					}
-				}
-
-				// UPLOAD GALLERY
-				$jmlGallery 				= count($gallery);
-				for($jg=0;$jg<$jmlGallery;$jg++) {
-					$dirfile[$jg] 			= '../images/wedding/'.$link.'/';
-					$lokasi_file[$jg]    	= $_FILES['gallery']['tmp_name'][$jg];
-					$tipe_file[$jg]      	= $_FILES['gallery']['type'][$jg];
-					$nama_file[$jg]      	= $_FILES['gallery']['name'][$jg];
-					$nama_file_unik[$jg] 	= str_replace(' ','_',$nama_file[$jg]);
-					$extension 				= pathinfo($nama_file[$jg], PATHINFO_EXTENSION);
-					if (!empty($lokasi_file[$jg])){
-						$vfile_upload[$jg] = $dirfile[$jg] . $nama_file_unik[$jg];
-						move_uploaded_file($lokasi_file[$jg], $vfile_upload[$jg]);
-
-						$insGallery 		= $this->dbw->query("
-											INSERT INTO detail_gallery (orderid,pict,thumb,sort) values 
-											('$id','$nama_file_unik[$jg]','$nama_file_unik[$jg]','$jg')
-											");
-					}
-				}
 
 				$log 			= $this->query->insertlog($activity,$url,$id);
 
