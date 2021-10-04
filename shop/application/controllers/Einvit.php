@@ -227,36 +227,21 @@ class Einvit extends CI_Controller {
 			// UPLOAD BANNER
 			$jmlBanner 		= count($banner);
 			for($jb=0;$jb<$jmlBanner;$jb++) {
-				$config['upload_path'] 		= $dirfile;
-				$config['file_name'] 		= $_FILES['banner']['name'][$jb];
-				$config['allowed_types'] 	= 'gif|jpg|png|JPG|jpeg';
-				 
-				$this->load->library('upload');
-				$this->upload->initialize($config);
-				 
-				if(! $this->upload->do_upload('banner') )
-				$this->upload->display_errors();
-					 
-				$media 			= $this->upload->data();
-				$fileNamePost 	= $media['file_name'];
+				$lokasi_file    	= $_FILES['banner']['tmp_name'][$jb];
+				$tipe_file      	= $_FILES['banner']['type'][$jb];
+				$nama_file      	= $_FILES['banner']['name'][$jb];
+				$nama_file_unik 	= str_replace(' ','_',$nama_file);
 
-				// $lokasi_file[$jb]    	= $_FILES['banner']['tmp_name'][$jb];
-				// $tipe_file[$jb]      	= $_FILES['banner']['type'][$jb];
-				// $nama_file[$jb]      	= $_FILES['banner']['name'][$jb];
-				// $nama_file_unik[$jb] 	= str_replace(' ','_',$nama_file[$jb]);
-
-				// echo $banner;
-
-				// $extension 				= pathinfo($nama_file[$jb], PATHINFO_EXTENSION);
-				// if (!empty($lokasi_file[$jb])){
-				// 	$vfile_upload[$jb] = $dirfile . $nama_file_unik[$jb];
-				// 	move_uploaded_file($lokasi_file[$jb], $vfile_upload[$jb]);
+				$extension 			= pathinfo($nama_file, PATHINFO_EXTENSION);
+				if (!empty($lokasi_file)){
+					$vfile_upload 	= $dirfile . $nama_file_unik;
+					move_uploaded_file($lokasi_file, $vfile_upload);
 
 					$insBanner 			= $this->dbw->query("
 										INSERT INTO detail_banner (orderid,pict,sort,flag_bg) values 
-										('$id','$fileNamePost','$jb','0')
+										('$id','$nama_file_unik','$jb','0')
 										");
-				// }
+				}
 			}
 
 			// UPLOAD GALLERY
