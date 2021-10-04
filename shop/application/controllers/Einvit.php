@@ -211,7 +211,7 @@ class Einvit extends CI_Controller {
 			$lokasi_fileQ    		= $_FILES['qbg']['tmp_name'];
 			$tipe_fileQ      		= $_FILES['qbg']['type'];
 			$nama_fileQ  	     	= $_FILES['qbg']['name'];
-			$filequotes 	 		= str_replace(' ','_',$nama_fileQ);
+			$filequotes 	 		= str_replace(' ','_', 'BGQ-'.$nama_fileQ);
 			$extensionQ 			= pathinfo($nama_fileQ, PATHINFO_EXTENSION);
 			if (!empty($lokasi_fileQ)){
 				$vfile_uploadQ 		= $dirfile . $filequotes;
@@ -247,18 +247,18 @@ class Einvit extends CI_Controller {
 			// UPLOAD GALLERY
 			$jmlGallery 				= count($gallery);
 			for($jg=0;$jg<$jmlGallery;$jg++) {
-				$lokasi_file[$jg]    	= $_FILES['gallery']['tmp_name'][$jg];
-				$tipe_file[$jg]      	= $_FILES['gallery']['type'][$jg];
-				$nama_file[$jg]      	= $_FILES['gallery']['name'][$jg];
-				$nama_file_unik[$jg] 	= str_replace(' ','_',$nama_file[$jg]);
-				$extension 				= pathinfo($nama_file[$jg], PATHINFO_EXTENSION);
-				if (!empty($lokasi_file[$jg])){
-					$vfile_upload[$jg] = $dirfile . $nama_file_unik[$jg];
-					move_uploaded_file($lokasi_file[$jg], $vfile_upload[$jg]);
+				$lokasi_file    	= $_FILES['gallery']['tmp_name'][$jg];
+				$tipe_file 	     	= $_FILES['gallery']['type'][$jg];
+				$nama_file      	= $_FILES['gallery']['name'][$jg];
+				$nama_file_unik 	= str_replace(' ','_',$nama_file);
+				$extension 			= pathinfo($nama_file, PATHINFO_EXTENSION);
+				if (!empty($lokasi_file)){
+					$vfile_upload 	= $dirfile . $nama_file_unik;
+					move_uploaded_file($lokasi_file, $vfile_upload);
 
 					$insGallery 		= $this->dbw->query("
 										INSERT INTO detail_gallery (orderid,pict,thumb,sort) values 
-										('$id','$nama_file_unik[$jg]','$nama_file_unik[$jg]','$jg')
+										('$id','$nama_file_unik','$nama_file_unik','$jg')
 										");
 				}
 			}
