@@ -308,10 +308,7 @@ class Einvit extends CI_Controller {
 	public function modal(){
 		if(checkingsessionpwt()){
 			$id					= trim(strip_tags(stripslashes($this->input->post('id',true))));
-			echo "SELECT 
-									a.*
-								from person_order a where a.id ='$id'";
-								exit;
+			
 			$dataRoles			= $this->dbw->query("
 								SELECT 
 									a.*
