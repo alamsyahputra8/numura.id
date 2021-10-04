@@ -194,7 +194,7 @@ class Einvit extends CI_Controller {
 
 			mkdir('../images/wedding/'.$link, 0777, TRUE);
 
-			$dirfile 				= '../images/wedding/'.$link;
+			$dirfile 				= '../images/wedding/'.$link.'/';
 
 			// UPLOAD BACKSOUND
 			$lokasi_file    		= $_FILES['backsound']['tmp_name'];
@@ -257,7 +257,7 @@ class Einvit extends CI_Controller {
 				// UPLOAD BANNER
 				$jmlBanner 		= count($banner);
 				for($jb=0;$jb<$jmlBanner;$jb++) {
-					$dirfile[$jb] 			= '../images/wedding/'.$link;
+					$dirfile[$jb] 			= '../images/wedding/'.$link.'/';
 					$lokasi_file[$jb]    	= $_FILES['banner']['tmp_name'][$jb];
 					$tipe_file[$jb]      	= $_FILES['banner']['type'][$jb];
 					$nama_file[$jb]      	= $_FILES['banner']['name'][$jb];
@@ -277,7 +277,7 @@ class Einvit extends CI_Controller {
 				// UPLOAD GALLERY
 				$jmlGallery 				= count($gallery);
 				for($jg=0;$jg<$jmlGallery;$jg++) {
-					$dirfile[$jg] 			= '../images/wedding/'.$link;
+					$dirfile[$jg] 			= '../images/wedding/'.$link.'/';
 					$lokasi_file[$jg]    	= $_FILES['banner']['tmp_name'][$jg];
 					$tipe_file[$jg]      	= $_FILES['banner']['type'][$jg];
 					$nama_file[$jg]      	= $_FILES['banner']['name'][$jg];
