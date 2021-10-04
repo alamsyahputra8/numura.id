@@ -262,6 +262,7 @@ class Einvit extends CI_Controller {
 					$tipe_file[$jb]      	= $_FILES['banner']['type'][$jb];
 					$nama_file[$jb]      	= $_FILES['banner']['name'][$jb];
 					$nama_file_unik[$jb] 	= str_replace(' ','_',$nama_file[$jb]);
+					
 					$extension 				= pathinfo($nama_file[$jb], PATHINFO_EXTENSION);
 					if (!empty($lokasi_file[$jb])){
 						$vfile_upload[$jb] = $dirfile[$jb] . $nama_file_unik[$jb];
