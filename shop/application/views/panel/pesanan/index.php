@@ -14,6 +14,9 @@ $getSize 	= $this->db->query("
 $getColor 	= $this->db->query("
 			SELECT * from color order by label
 			")->result_array();
+$getCat 	= $this->db->query("
+			SELECT * from design_type where status='1' order by 1
+			")->result_array();
 $getChar 	= $this->db->query("
 			SELECT * from karakter where is_active='1' order by kode
 			")->result_array();
@@ -283,15 +286,34 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 								</div>
 
 								<div class="form-group row">
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Type Design</label>
+									<div class="col-lg-10 col-sm-12">
+										<div class='input-group'>
+											<select name="typedesign" class="form-control" id="typedesign" placeholder="Type Design" style="width: 100%;">
+												<option value="">-- Pilih Type Design --</option>
+												<?PHP foreach ($getCat as $cat) { ?>
+													<option value="<?PHP echo $cat['id']; ?>"><?PHP echo $cat['label']; ?></option>
+												<?PHP } ?>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row">
 									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Design</label>
 									<div class="col-lg-10 col-sm-12">
 										<div class='input-group'>
 											<select name="karakter" class="form-control" id="karakter" placeholder="Karakter" style="width: 100%;">
-												<?PHP foreach ($getChar as $char) { ?>
-													<option value="<?PHP echo $char['id_karakter']; ?>"><?PHP echo $char['kode']; ?> - <?PHP echo $char['nama']; ?></option>
-												<?PHP } ?>
+												<option value="">-- Pilih Type Design Terlebih dahulu --</option>
 											</select>
 										</div>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label"></label>
+									<div class="col-lg-10 col-sm-12">
+										<div id="imgkarakter"></div>
 									</div>
 								</div>
 							</div>
@@ -527,15 +549,34 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 									</div>
 
 									<div class="form-group row">
-										<label for="role" class="col-lg-2 col-sm-12 col-form-label">Karakter</label>
+										<label for="role" class="col-lg-2 col-sm-12 col-form-label">Type Design</label>
 										<div class="col-lg-10 col-sm-12">
 											<div class='input-group'>
-												<select name="ed_karakter" class="form-control" id="ed_karakter" placeholder="Karakter" style="width: 100%;">
-													<?PHP foreach ($getChar as $char) { ?>
-														<option value="<?PHP echo $char['id_karakter']; ?>"><?PHP echo $char['kode']; ?> - <?PHP echo $char['nama']; ?></option>
+												<select name="ed_typedesign" class="form-control" id="ed_typedesign" placeholder="Type Design" style="width: 100%;">
+													<option value="">-- Pilih Type Design --</option>
+													<?PHP foreach ($getCat as $cat) { ?>
+														<option value="<?PHP echo $cat['id']; ?>"><?PHP echo $cat['label']; ?></option>
 													<?PHP } ?>
 												</select>
 											</div>
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label for="role" class="col-lg-2 col-sm-12 col-form-label">Design</label>
+										<div class="col-lg-10 col-sm-12">
+											<div class='input-group'>
+												<select name="ed_karakter" class="form-control" id="ed_karakter" placeholder="Design" style="width: 100%;">
+													<option value="">-- Pilih Type Design Terlebih dahulu --</option>
+												</select>
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label for="role" class="col-lg-2 col-sm-12 col-form-label"></label>
+										<div class="col-lg-10 col-sm-12">
+											<div id="ed_imgkarakter"></div>
 										</div>
 									</div>
 								</div>

@@ -91,6 +91,7 @@ class Pesanan extends CI_Controller {
 			$ukuran 			= trim(strip_tags(stripslashes($this->input->post('ukuran',true))));
 			$type 				= trim(strip_tags(stripslashes($this->input->post('type',true))));
 			$warna 				= trim(strip_tags(stripslashes($this->input->post('warna',true))));
+			$typedesign 		= trim(strip_tags(stripslashes($this->input->post('typedesign',true))));
 			$karakter 			= trim(strip_tags(stripslashes($this->input->post('karakter',true))));
 
 			$getSize 			= $this->db->query("
@@ -98,12 +99,20 @@ class Pesanan extends CI_Controller {
 								")->result_array();
 			$dSize 				= array_shift($getSize);
 			if ($type==1) {
-				$price 			= $dSize['harga'];
+				$gprice 		= $dSize['harga'];
 				$normprice 		= $dSize['harga'];
 			} else {
-				$price 			= $dSize['harga_pjg'];
+				$gprice 		= $dSize['harga_pjg'];
 				$normprice 		= $dSize['harga_pjg'];
 			}
+
+			$getAddPrice		= $this->db->query("
+								SELECT * FROM design_type where id='$typedesign'
+								")->result_array();
+			$dAddPrice 			= array_shift($getAddPrice);
+			$addprice 			= $dAddPrice['harga_add'];
+
+			$price 				= $gprice+$addprice;
 
 			$getChar 			= $this->db->query("
 								SELECT * FROM karakter where id_karakter='$karakter'
@@ -179,18 +188,27 @@ class Pesanan extends CI_Controller {
 			$type 				= trim(strip_tags(stripslashes($this->input->post('ed_type',true))));
 			$warna 				= trim(strip_tags(stripslashes($this->input->post('ed_warna',true))));
 			$karakter 			= trim(strip_tags(stripslashes($this->input->post('ed_karakter',true))));
+			$typedesign 		= trim(strip_tags(stripslashes($this->input->post('ed_typedesign',true))));
 
 			$getSize 			= $this->db->query("
 								SELECT * FROM size where id_size='$ukuran'
 								")->result_array();
 			$dSize 				= array_shift($getSize);
 			if ($type==1) {
-				$price 			= $dSize['harga'];
+				$gprice 		= $dSize['harga'];
 				$normprice 		= $dSize['harga_normal'];
 			} else {
-				$price 			= $dSize['harga_pjg'];
+				$gprice 		= $dSize['harga_pjg'];
 				$normprice 		= $dSize['harga_pjg'];
 			}
+
+			$getAddPrice		= $this->db->query("
+								SELECT * FROM design_type where id='$typedesign'
+								")->result_array();
+			$dAddPrice 			= array_shift($getAddPrice);
+			$addprice 			= $dAddPrice['harga_add'];
+
+			$price 				= $gprice+$addprice;
 
 			$getChar 			= $this->db->query("
 								SELECT * FROM karakter where id_karakter='$karakter'
@@ -330,6 +348,40 @@ class Pesanan extends CI_Controller {
 				} else {
 					echo '';
 				}
+			}
+		}else{
+            redirect('/login');
+        }
+	}
+
+	public function getCharacter(){
+		if(checkingsessionpwt()){
+			$idtype		= trim(strip_tags(stripslashes($this->input->post('id',true))));
+			
+			$getChar 	= $this->db->query("
+						SELECT * from karakter where type='$idtype' and is_active='1' order by nama
+						")->result_array();
+			
+			foreach ($getChar as $char) {
+				$id 		= $char['id_karakter'];
+				echo '<option value="'.$id.'">'.$char['nama'].'</option>';
+			}
+		}else{
+            redirect('/login');
+        }
+	}
+
+	public function getImgChar(){
+		if(checkingsessionpwt()){
+			$idchar		= trim(strip_tags(stripslashes($this->input->post('id',true))));
+			
+			$getChar 	= $this->db->query("
+						SELECT * from karakter where id_karakter='$idchar'
+						")->result_array();
+			
+			foreach ($getChar as $char) {
+				$id 		= $char['id_karakter'];
+				echo '<img src="'.base_url().'images/char/'.$char['file'].'" style="width: 300px;">';
 			}
 		}else{
             redirect('/login');

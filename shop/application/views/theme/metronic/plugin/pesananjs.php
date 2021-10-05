@@ -44,12 +44,14 @@ $(document).on('click', '.btnupdateM', function(e){
         $('#ed_name').val(data.custom_nama);
         $('#ed_type').val(data.kaos_type);
         $('#ed_ukuran').val(data.ukuran).trigger('change');
+        $('#ed_typedesign').val(data.design_type).trigger('change');
         // $('#ed_warna').val(data.warna).trigger('change');
         // $('#ed_karakter').val(data.karakter).trigger('change');
         setTimeout(function() {
             $('#ed_warna').val(data.warna);
+            $('#ed_karakter').val(data.karakter);
+            $('#ed_karakter').trigger('change');
         }, 2000);
-        $('#ed_karakter').val(data.karakter);
 
         $('#modal-loader').hide();    // hide ajax loader
     })
@@ -132,6 +134,86 @@ $(document).on('click', '.btnProses', function(e){
     })
     .fail(function(){
         $('.modal-body').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+    });
+});
+
+$(document).on('change', '#typedesign', function(e){
+    e.preventDefault();
+
+    var uid = $(this).val();
+
+     $.ajax({
+        url: '<?PHP echo base_url(); ?>pesanan/getCharacter',
+        type: 'POST',
+        data: 'id='+uid,
+    })
+    .done(function(data){
+        $('#karakter').html(data);
+        $('#karakter').trigger('change');
+    })
+    .fail(function(){
+        $('#karakter').html('<option value="">-- Pilih Type Design Terlebih dahulu --</option>');
+        $('#karakter').trigger('change');
+    });
+});
+
+$(document).on('change', '#ed_typedesign', function(e){
+    e.preventDefault();
+
+    var uid = $(this).val();
+
+     $.ajax({
+        url: '<?PHP echo base_url(); ?>pesanan/getCharacter',
+        type: 'POST',
+        data: 'id='+uid,
+    })
+    .done(function(data){
+        $('#ed_karakter').html(data);
+        $('#ed_karakter').trigger('change');
+    })
+    .fail(function(){
+        $('#ed_karakter').html('<option value="">-- Pilih Type Design Terlebih dahulu --</option>');
+        $('#ed_karakter').trigger('change');
+    });
+});
+
+$(document).on('change', '#karakter', function(e){
+    e.preventDefault();
+
+    $('#imgkarakter').html('');
+
+    var uid = $(this).val();
+
+     $.ajax({
+        url: '<?PHP echo base_url(); ?>pesanan/getImgChar',
+        type: 'POST',
+        data: 'id='+uid,
+    })
+    .done(function(data){
+        $('#imgkarakter').html(data);
+    })
+    .fail(function(){
+        $('#imgkarakter').html('');
+    });
+});
+
+$(document).on('change', '#ed_karakter', function(e){
+    e.preventDefault();
+
+    $('#ed_imgkarakter').html('');
+
+    var uid = $(this).val();
+
+     $.ajax({
+        url: '<?PHP echo base_url(); ?>pesanan/getImgChar',
+        type: 'POST',
+        data: 'id='+uid,
+    })
+    .done(function(data){
+        $('#ed_imgkarakter').html(data);
+    })
+    .fail(function(){
+        $('#ed_imgkarakter').html('');
     });
 });
 
