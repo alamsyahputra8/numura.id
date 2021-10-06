@@ -334,9 +334,16 @@ $getSize 	= $this->db->query("
 													) and ukuran='$sizeid' and warna='$colid'
 													";
 										$cekSend 	= $this->db->query($qSend)->num_rows();
+
+										$sisastokfin = ($jml-$cekJml)-$cekSend;
+										if ($sisastokfin<1) {
+											$colte	= 'style="color: #bdbcbc;"';	
+										} else {
+											$colte	= '';
+										}
 									?>
-									<td class="text-center">
-										<b><?PHP echo ($jml-$cekJml)-$cekSend; ?></b> pcs
+									<td class="text-center" <?PHP echo $colte; ?>>
+										<b><?PHP echo $sisastokfin; ?></b> pcs
 									</td>
 									<?PHP } ?>
 								</tr>
