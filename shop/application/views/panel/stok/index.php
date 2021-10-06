@@ -394,7 +394,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 										<?PHP 
 											$sisastokfin = ($jml-$cekJml)-$cekSend;
 											if ($sisastokfin<1) {
-												$colte	= 'style="color: #bdbcbc;';	
+												$colte	= 'style="color: #bdbcbc;"';	
 											} else {
 												$colte	= '';
 											}
