@@ -391,7 +391,15 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 										$cekSend 	= $this->db->query($qSend)->num_rows();
 									?>
 									<td class="text-center">
-										<b><?PHP echo ($jml-$cekJml)-$cekSend; ?></b> pcs
+										<?PHP 
+											$sisastokfin = ($jml-$cekJml)-$cekSend;
+											if ($sisastokfin<1) {
+												$colte	= 'style="color: #bdbcbc;';	
+											} else {
+												$colte	= '';
+											}
+										?>
+										<b <?PHP echo $colte; ?>><?PHP echo $sisastokfin; ?></b> pcs
 									</td>
 									<?PHP } ?>
 								</tr>
