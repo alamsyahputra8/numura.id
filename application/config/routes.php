@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller']	= 'viewfront';
 $route['shirt'] 				= 'viewfront/shirt';
+$route['underconstruction'] 	= 'viewfront/underconstruction';
 $route['wedding/(:any)'] 		= 'viewfront/wedding/$1';
 $route['invitation/(:any)'] 	= 'viewfront/invitation/$1';
 
