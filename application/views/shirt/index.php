@@ -302,7 +302,7 @@
 						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 7.jpg" /></li>
 						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 8.jpg" /></li>
 						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 9.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 10.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font10.jpg" /></li>
 						        </ul>
 						    </div>
 						</div>
