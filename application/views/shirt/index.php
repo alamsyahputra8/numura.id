@@ -296,7 +296,6 @@
 						            <li><img src="<?PHP echo base_url(); ?>images/newchar/karakter4.jpg" /></li>
 						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 1.jpg" /></li>
 						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 2.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 3.jpg" /></li>
 						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 4.jpg" /></li>
 						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 5.jpg" /></li>
 						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 6.jpg" /></li>
