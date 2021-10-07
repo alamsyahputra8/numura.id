@@ -22,6 +22,8 @@
 	<meta name="twitter:label1" content="Written by Numura.id">
 	<meta name="twitter:data1" content="Numura.id">
 
+    <script data-ad-client="ca-pub-5881511926422255" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
     <link rel="icon" type="image/png" href="<?PHP echo base_url(); ?>images/favicosarvel.png">   
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Document title -->

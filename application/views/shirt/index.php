@@ -286,18 +286,24 @@
 						<div class="flex-container">
 						    <div class="flexslider">
 						        <ul class="slides">
-						            <li><img src="<?PHP echo base_url(); ?>images/new/01.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/new/02.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/new/03.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/new/04.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/new/05.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/new/06.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/new/07.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/new/08.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/new/09.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/new/10.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/new/11.jpg" /></li>
-						            <li><img src="<?PHP echo base_url(); ?>images/new/12.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/karakter baru1.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/karakter baru2.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/karakter baru3.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/karakter baru4.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/karakter.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/karakter2.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/karakter3.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/karakter4.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 1.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 2.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 3.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 4.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 5.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 6.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 7.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 8.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 9.jpg" /></li>
+						            <li><img src="<?PHP echo base_url(); ?>images/newchar/font 10.jpg" /></li>
 						        </ul>
 						    </div>
 						</div>
