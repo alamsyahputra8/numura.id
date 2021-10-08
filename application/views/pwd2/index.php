@@ -86,6 +86,9 @@ if (@$_GET['to']!='') {
 			background: #FFF;
 			font: 300 14px/25px Open Sans, Arial,sans-serif;
 		}
+		.bgbotleft {
+			display: none;
+		}
 		.bgtopleft {
 			background: url('<?PHP echo base_url(); ?>assets/wd-assets/bg1.png') no-repeat top left;
 			background-size: auto 100%;
@@ -214,6 +217,38 @@ if (@$_GET['to']!='') {
 			}
 		}
 		@media (max-width: 767px) {
+			.bgtopleft {
+				background: url('<?PHP echo base_url(); ?>assets/wd-assets/bg3.png') no-repeat top left;
+			    background-size: 100% auto;
+			    width: 200px;
+			    height: 100%;
+			    position: absolute;
+			    left: 0px;
+			    top: 0px;
+			    background-position: -10px top;
+			}
+			.bgbotleft {
+				display: block;
+				background: url('<?PHP echo base_url(); ?>assets/wd-assets/bg4.png') no-repeat top left;
+			    background-size: 100% auto;
+			    width: 300px;
+			    height: 100%;
+			    position: absolute;
+			    left: 0px;
+			    bottom: 0px;
+			    background-position: -10px bottom;
+			}
+			.bgbotright {
+				background: url('<?PHP echo base_url(); ?>assets/wd-assets/bg2.png') no-repeat bottom right;
+			    background-size: 100% auto;
+			    width: 190px;
+			    height: 100%;
+			    position: absolute;
+			    right: 0px;
+			    bottom: 0px;
+			    text-align: right;
+			    background-position: 20px bottom;
+			}
 			.gla_flower2_name_mob {
 				display: block;
 				font: 400 55px/60px marsha;
@@ -264,6 +299,7 @@ if (@$_GET['to']!='') {
 
 <body class="post-template post-template-elementor_canvas single single-post postid-24224 single-format-standard header-active footer-active elementor-default elementor-template-canvas elementor-kit-6 elementor-page elementor-page-24224">
 	<div class="bgtopleft"></div>
+	<div class="bgbotleft"></div>
 	<div class="bgbotright"></div>
 
 	<div data-elementor-type="wp-post" data-elementor-id="24224" class="elementor elementor-24224" data-elementor-settings="[]">
