@@ -115,7 +115,7 @@ foreach ($ggroupS as $groupsize) {
 
 		foreach ($getPes as $pes) { 
 			echo '
-			<div id="bgkol" class="bgkolom" style="border: 1px solid rgba(0,0,0,.1); width: 5.19cm; height: 4.1cm; float:left;">
+			<div id="bgkol" class="bgkolom" style="border: 1px solid rgba(0,0,0,.1); width: 5.19cm; height: 4.7cm; float:left;">
 				<div style="text-align: center; font-size: 18px; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,.1); padding: 10px;">
 					<b>'.$pes['charname'].'</b>
 				</div>
@@ -123,8 +123,8 @@ foreach ($ggroupS as $groupsize) {
 				<div style="width: 45%; float: left;">
 					<img src="'.base_url().'images/char/'.$pes['pictchar'].'" style="width: 100%;">
 				</div>
-				<div style="width: 53%; float: left; padding-top: 1rem%">
-					<b style="font-size: 16px!important; text-transform: capitalize;">'.$pes['jmlkar'].'</b><br>
+				<div style="width: 53%; float: left; padding-top: 1rem; text-align:center;">
+					<b style="font-size: 26px!important; text-transform: capitalize;">'.$pes['jmlkar'].'</b> pcs<br>
 				</div>
 			</div>';
 		}
