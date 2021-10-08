@@ -522,6 +522,28 @@ class Viewpanel extends CI_Controller {
 			
 		}
 	}
+	
+	public function printkarakter($id){
+		if(checkingsessionpwt()){
+			$cekAkses				= $this->akses;
+			$data['akses']			= $this->akses;
+			$data['id']				= $id;
+			
+			// CORE 1
+			// $this->load->view('/theme/metronic/base1');
+
+			// CONTENT
+			$this->load->view('panel/pesanan/printkarakter', $data);
+
+			// CORE2
+			// $this->load->view('/theme/metronic/base2');
+
+			// PLUGIN JS
+			// $this->load->view('/theme/metronic/pluginjs');
+		} else {
+			
+		}
+	}
 
 	public function printcard($id){
 		if(checkingsessionpwt()){

@@ -73,6 +73,7 @@ $route['printpesanan/(:any)'] 	= 'viewpanel/printpesanan/$1';
 $route['printcard/(:any)'] 		= 'viewpanel/printcard/$1';
 $route['printkaos/(:any)'] 		= 'viewpanel/printkaos/$1';
 $route['printpaper/(:any)'] 	= 'viewpanel/printpaper/$1';
+$route['printkarakter/(:any)'] 	= 'viewpanel/printkarakter/$1';
 
 // DATA PENGIRIMAN
 $route['pengiriman'] 				= 'viewpanel/pengiriman';

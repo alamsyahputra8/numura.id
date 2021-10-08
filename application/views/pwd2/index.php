@@ -133,7 +133,7 @@ if (@$_GET['to']!='') {
 			width: 395px;
 			height: 395px;
 			margin: -13px 0 0 -12px;
-			border: 3px solid #d0a089;
+			border: 2px solid #d0a089;
 			border-radius: 100%;
 			z-index: 1;
 		}
@@ -267,8 +267,6 @@ if (@$_GET['to']!='') {
 				width: 320px;
 				height: 320px;
 				margin: -13px 0 0 -12px;
-				border: 3px solid #d0a089;
-				border-radius: 100%;
 			}
 			.circprof {
 				width: 295px!important;

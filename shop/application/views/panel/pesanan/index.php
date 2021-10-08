@@ -198,6 +198,12 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 										</a>
 									</li>
 									<li class="kt-nav__item" data-toggle="kt-tooltip" title="" data-html="true">
+										<a href="<?PHP echo base_url(); ?>printkarakter/proses" class="kt-nav__link" id="" target="_blank">
+											<i class="kt-nav__link-icon flaticon2-drop"></i>
+											<span class="kt-nav__link-text">Pesanan Karakter + Cutting</span>
+										</a>
+									</li>
+									<li class="kt-nav__item" data-toggle="kt-tooltip" title="" data-html="true">
 										<a href="#" class="kt-nav__link btnPrintPaperBag" id="" data-toggle="modal" data-target="#printpaper">
 											<i class="kt-nav__link-icon flaticon-open-box"></i>
 											<span class="kt-nav__link-text">Pesanan Paper Bag</span>
