@@ -125,7 +125,7 @@ if (@$_GET['to']!='') {
 			/*background: url('<?PHP echo base_url(); ?>assets/wd-assets/linear2.png');*/
 			/*background-size: cover;*/
 			/*background: none;*/
-			background: none;
+			background: #FFF;
 			background-size: cover;
 			width: 395px;
 			height: 395px;
