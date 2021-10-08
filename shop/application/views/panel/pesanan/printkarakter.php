@@ -114,7 +114,6 @@ foreach ($ggroupS as $groupsize) {
 	if ($cekPes>0) {
 
 		foreach ($getPes as $pes) { 
-			$idpes 	= $pes['id_pesanan'];
 			if ($pes['flag_print']=='1') {
 				$done 	= 'bgsuccess';
 			} else {
@@ -131,7 +130,6 @@ foreach ($ggroupS as $groupsize) {
 				</div>
 				<div style="width: 53%; float: left; padding-top: 1rem%">
 					<b style="font-size: 16px!important; text-transform: capitalize;">'.$pes['jmlkar'].'</b><br>
-					<button type="button" class="btnSelesai" data-id="'.$idpes.'">Selesai</button>
 				</div>
 			</div>';
 		}
