@@ -114,13 +114,8 @@ foreach ($ggroupS as $groupsize) {
 	if ($cekPes>0) {
 
 		foreach ($getPes as $pes) { 
-			if ($pes['flag_print']=='1') {
-				$done 	= 'bgsuccess';
-			} else {
-				$done 	= '';
-			}
 			echo '
-			<div id="bgkol'.$idpes.'" class="bgkolom '.$done.'" style="border: 1px solid rgba(0,0,0,.1); width: 5.19cm; height: 4.1cm; float:left;">
+			<div id="bgkol" class="bgkolom" style="border: 1px solid rgba(0,0,0,.1); width: 5.19cm; height: 4.1cm; float:left;">
 				<div style="text-align: center; font-size: 18px; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,.1); padding: 10px;">
 					<b>'.$pes['charname'].'</b>
 				</div>
