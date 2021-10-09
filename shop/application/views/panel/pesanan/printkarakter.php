@@ -80,20 +80,14 @@ $gTS 		= $this->db->query($qTotSize)->result_array();
 <!-- <h1 style="text-align: center;">Print Pesanan <?PHP echo $statuspesanan; ?> : <?PHP echo $cekTot; ?></h1><hr> -->
 <?PHP
 $qgrpSize 	= "
-			SELECT base.*,
-				jml/paper_size as paper,
-			    ceiling(jml/paper_size) jmlkertas
-			FROM (
-			    SELECT a.*, 
-			        (SELECT count(*) from pesanan where ukuran=a.id_size and status in ($statusvar)) jml
-			    FROM `size` a order by sort asc
-			) as base
-			order by sort asc
+			SELECT distinct(category) as cat, case when category='1' then 'BAYI' else 'ANAK' end as label FROM 
+			size a
+			order by 1 asc
 			";
 $ggroupS 	= $this->db->query($qgrpSize)->result_array();
 
 foreach ($ggroupS as $groupsize) {
-	$idsize 	= $groupsize['id_size'];
+	$idsize 	= $groupsize['category'];
 	echo '
 		<div style="clear:both;"></div>
 		<div style="height: 4.1cm; margin: 0px; font-size: 26px; vertical-align: bottom; text-align: center; padding-top:2cm; margin-bottom:-2cm;">
@@ -105,7 +99,7 @@ foreach ($ggroupS as $groupsize) {
 					(SELECT nama from karakter where id_karakter=a.karakter) charname,
 					(SELECT file from karakter where id_karakter=a.karakter) pictchar
 				from pesanan a
-				where ukuran='$idsize' and status in ($statusvar) $condpes
+				where ukuran in (SELECT id_size from size where category='$idsize') and status in ($statusvar) $condpes
 				and karakter in (select id_karakter from karakter x left join design_type z on x.type=z.id where z.flag_print=1)
 				GROUP by karakter
 				";
