@@ -87,7 +87,7 @@ $qgrpSize 	= "
 $ggroupS 	= $this->db->query($qgrpSize)->result_array();
 
 foreach ($ggroupS as $groupsize) {
-	$idsize 	= $groupsize['category'];
+	$idsize 	= $groupsize['cat'];
 	echo '
 		<div style="clear:both;"></div>
 		<div style="height: 4.1cm; margin: 0px; font-size: 26px; vertical-align: bottom; text-align: center; padding-top:2cm; margin-bottom:-2cm;">
