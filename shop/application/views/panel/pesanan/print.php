@@ -130,7 +130,7 @@ foreach ($ggroupS as $groupsize) {
 				</div>
 				<div class="clear:both;"></div>
 				<div style="width: 45%; float: left;">
-					<img src="'.base_url().'images/char/'.$pes['pictchar'].'" style="width: 100%; max-height: 2.6cm;">
+					<img src="'.base_url().'images/char/'.$pes['pictchar'].'" style="max-width: 100%; max-height: 2.6cm;">
 				</div>
 				<div style="width: 53%; float: left; padding-top: 1rem%">
 					<b style="font-size: 16px!important; text-transform: capitalize;">'.$pes['custom_namalower'].'</b><br>
