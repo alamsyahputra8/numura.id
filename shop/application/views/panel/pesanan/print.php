@@ -136,8 +136,8 @@ foreach ($ggroupS as $groupsize) {
 					<b style="font-size: 16px!important; text-transform: capitalize;">'.$pes['custom_namalower'].'</b><br>
 					'.$pes['label_size'].' <span style="font-size:11px;">'.$pes['detail_size'].'</span><br>
 					<div style="float:left; width: 15px; height: 15px; background-color: '.$pes['codecolor'].'; margin-right: 5px;"></div> '.$pes['label_color'].'
-					<br>
-					<div class="labtypekaos">('.str_replace('LENGAN ','',$pes['label_type_kaos']).')</div>
+					<!--br>
+					<div class="labtypekaos">('.str_replace('LENGAN ','',$pes['label_type_kaos']).')</div-->
 					<button type="button" class="btnSelesai" data-id="'.$idpes.'">Selesai</button>
 				</div>
 			</div>';
