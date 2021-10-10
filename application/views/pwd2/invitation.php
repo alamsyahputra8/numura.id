@@ -164,7 +164,20 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 	<link rel='shortlink' href='https://numura.id/?p=24192' />
 	<style type="text/css">
 		@import url('https://fonts.cdnfonts.com/css/bunch-blossoms-personal-use');
-
+		.elementor-24192 .elementor-element.elementor-element-757a8e72 > .elementor-background-overlay {
+			opacity: 1;
+		    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+		    background: rgb(202,144,120);
+		    background: linear-gradient(0deg, rgba(202,144,120,1) 0%, rgba(245,245,245,0) 31%, rgba(255,255,255,0) 100%);
+		}
+		.elementor-24192 .elementor-element.elementor-element-669e9d2c {
+			border-color: #bb7e65;
+			border-width: 3px 0px 3px 0px!important;
+		}
+		.elementor-24192 .elementor-element.elementor-element-3688c961 {
+			margin-top: 32%;
+    		margin-bottom: 0px;
+		}
 		.bgangpaurek {
 			margin: 30px auto;
 		    background: #fdf5ed;
@@ -281,9 +294,9 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 			font-family: marsha, Arial;
 		}
 		.elementor-24192 .elementor-element.elementor-element-cb44a05 .elementor-heading-title {
-			color: #d8ad83;
+			color: #ca9078;
 			font-family: marsha, Arial;
-    		font-size: 63px;
+    		font-size: 74px;
 		}
 		.elementor-24192 .elementor-element.elementor-element-79fbcdd0 .elementor-heading-title {
 			color: #54595f;
@@ -291,7 +304,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 		    font-size: 21px;
 		}
 		.elementor-24192 .elementor-element.elementor-element-1f6ec9de .elementor-heading-title {
-			color: #d8ad83;
+			color: #818d98;
 		    font-family: marsha, Arial;
 		    font-size: 64px;
 		    padding-top: 10px;
@@ -317,12 +330,25 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 			margin-bottom: -80px;
 		}
 		.img-ourwed {
-			max-width: 220px!important;
-		    margin-top: -10%;
-		    margin-bottom: -5%;
+			max-width: 230px!important;
+		    margin-top: -60px;
+		    margin-bottom: 0px;
 		}
 		.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-title, .elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-title {
-			font-family: marsha, Arial!important;
+			font-family: Dosis, Arial!important;
+			color: #ca9078;
+			font-size: 40px;
+		}
+		.elementor-24192 .elementor-element.elementor-element-3e5dc7b7:not(.elementor-motion-effects-element-type-background) > .elementor-column-wrap, .elementor-24192 .elementor-element.elementor-element-5b3375a1:not(.elementor-motion-effects-element-type-background) > .elementor-column-wrap {
+			background: #FFF;
+		}
+		.elementor-24192 .elementor-element.elementor-element-3e5dc7b7:not(.elementor-motion-effects-element-type-background) > .elementor-column-wrap {
+			background: #FFF url('<?PHP echo base_url(); ?>assets/wd-assets/bg1.png') no-repeat top left;
+			background-size: auto 100%;
+		}
+		.elementor-24192 .elementor-element.elementor-element-5b3375a1:not(.elementor-motion-effects-element-type-background) > .elementor-column-wrap {
+			background: #FFF url('<?PHP echo base_url(); ?>assets/wd-assets/bg2.png') no-repeat bottom right;
+			background-size: auto 100%;
 		}
 
 		.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-description, .elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-description {
@@ -334,6 +360,8 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 			font-family: marsha, Arial!important;
 			font-weight: normal;
 			font-size: 145px;
+			text-shadow: 1px 2px 0px #ca9078;
+			color: #f7f7f7;
 		}
 		.elementor-24192 .elementor-element.elementor-element-3688c961 .elementor-heading-title span {
 			font-size: 60px;
@@ -353,29 +381,40 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 			font-family: Dosis, Arial;
 		}
 
+		.bgstory {
+			background: #f4eadf!important;
+    		border: 0px solid transparent!important;
+		}
+
 		.borderprofile {
-			width: 280px;
-		    height: 280px;
-		    margin-bottom: -276px;
+			width: 260px;
+		    height: 260px;
+		    margin-bottom: -270px;
 		    z-index: 1;
 		    position: relative;
 		    margin-left: auto;
 		    margin-right: auto;
 		    margin-top: 10px;
-		    background: url('<?PHP echo base_url(); ?>assets/wd-assets/borderprof.png') no-repeat center;
 		    background-size: 100% auto;
+		    border: 1px solid #ca9078;
+		    border-radius: 100%;
 		}
-		.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-wrapper .elementor-image-box-img {
+		.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-wrapper .elementor-image-box-img, .elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-wrapper .elementor-image-box-img {
 			width: 250px;
 		    border-radius: 100%;
 		    height: 250px;
 		    margin-bottom: 10px;
-		    background: url('<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictw; ?>') no-repeat center;
 		    background-size: 105% auto;
 		    margin-top: 15px;
 		    position: relative;
     		z-index: 2;
-    		border: 10px solid #fcfcfc;
+    		border: 2px solid #FFF;
+    	}
+		.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-wrapper .elementor-image-box-img {
+			background: url('<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictw; ?>') no-repeat center;
+		}
+		.elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-wrapper .elementor-image-box-img {
+			background: url('<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictm; ?>') no-repeat center;
 		}
 		.elementor-24192 .elementor-element.elementor-element-44ca98a7 .elementor-heading-title {
 			color: #ffffff;
@@ -399,23 +438,16 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 		    font: 400 20px/30px Dosis, Arial;
 		    letter-spacing: 2px;
 		}
-		.elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-wrapper .elementor-image-box-img {
-			width: 250px;
-		    border-radius: 100%;
-		    height: 250px;
-		    margin-bottom: 10px;
-		    background: url('<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictm; ?>') no-repeat center;
-		    background-size: 105% auto;
-		    margin-top: 15px;
-		    position: relative;
-    		z-index: 2;
-    		border: 10px solid #fcfcfc;
-		}
 		.elementor-24192 .elementor-element.elementor-element-c1e288d .elementor-heading-title {
 			font-family: Dosis, Arial;
 		    font-size: 16px;
 		    letter-spacing: 2px;
 		    font-weight: 400;
+		}
+
+		.elementor-24192 .elementor-element.elementor-element-5875a54e .elementor-heading-title {
+			font: 400 23px/30px Dosis, Arial!important;
+			text-shadow: 1px 2px 0px #ca9078;
 		}
 
 		@media (min-width: 1240px) {
@@ -460,11 +492,11 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 				font: 400 15px/20px Dosis, Arial;
 			}
 			.elementor-24192 .elementor-element.elementor-element-1f6ec9de .elementor-heading-title {
-				font-size: 34px;
+				font-size: 43px;
     			padding-top: 0px;
 			}
 			.elementor-24192 .elementor-element.elementor-element-cb44a05 .elementor-heading-title {
-				font-size: 33px;
+				font-size: 53px;
 			}
 			.img-savethedate {
 				max-width: 200px!important;
@@ -485,22 +517,34 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
     			margin-bottom: -50px;
 			}
 			.img-ourwed {
-				max-width: 140px!important;
-			    margin-top: -90px;
-			    margin-bottom: 50px;
+			    max-width: 170px!important;
+			    margin-top: -70px;
+			    margin-bottom: 0px;
 			}
 			.elementor-24192 .elementor-element.elementor-element-12e9168b .elementor-heading-title {
 			    margin-bottom: -30px;
 			    margin-top: 90px;
 			    font-size: 29px;
 			}
+			.elementor-24192 .elementor-element.elementor-element-757a8e72 {
+				padding: 160px 20px 50px 20px;
+			}
+			.elementor-24192 .elementor-element.elementor-element-3688c961 {
+				bottom: -20px;
+    			position: absolute;
+			}
 			.elementor-24192 .elementor-element.elementor-element-5875a54e .elementor-heading-title {
 				font: 400 18px/25px Dosis, Arial!important;
+				position: absolute;
+			    width: 100%;
+			    text-align: center;
+			    left: 0;
+			    bottom: -110px;
 			}
 			.elementor-24192 .elementor-element.elementor-element-3688c961 .elementor-heading-title {
 			    font-size: 69px;
 			}
-				.elementor-24192 .elementor-element.elementor-element-3688c961 .elementor-heading-title span {
+			.elementor-24192 .elementor-element.elementor-element-3688c961 .elementor-heading-title span {
 				font-size: 40px;
 			}
 		}
@@ -532,21 +576,6 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 										</div>
 
 										<div class="elementor-element elementor-element-d642ce3 elementor-widget elementor-widget-spacer" data-id="d642ce3" data-element_type="widget" data-widget_type="spacer.default">
-											<div class="elementor-widget-container">
-												<div class="elementor-spacer">
-													<div class="elementor-spacer-inner"></div>
-												</div>
-											</div>
-										</div>
-
-										<div class="elementor-element elementor-element-12e9168b elementor-widget elementor-widget-heading" data-id="12e9168b" data-element_type="widget" data-widget_type="heading.default">
-											<div class="elementor-widget-container">
-												<!-- <p class="elementor-heading-title elementor-size-default">The Wedding </p> -->
-												<img id="imgourwed" src="<?PHP echo base_url(); ?>assets/wd-assets/ourwedding_wh.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/ourwedding_wh.gif" class="img-ourwed skrollable skrollable-before">
-											</div>
-										</div>
-
-										<div class="elementor-element elementor-element-3501fe5 elementor-widget elementor-widget-spacer" data-id="3501fe5" data-element_type="widget" data-widget_type="spacer.default">
 											<div class="elementor-widget-container">
 												<div class="elementor-spacer">
 													<div class="elementor-spacer-inner"></div>
@@ -631,7 +660,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 					</div>
 				</section>
 				
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-669e9d2c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="669e9d2c" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-669e9d2c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="669e9d2c" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" style="background: #f1f1f1;">
 					<div class="elementor-container elementor-column-gap-default">
 						<div class="elementor-row">
 							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-39197983" data-id="39197983" data-element_type="column">
@@ -643,9 +672,10 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 											</div>
 										</div> -->
 
-										<div class="elementor-element elementor-element-1f6ec9de elementor-widget elementor-widget-heading" data-id="1f6ec9de" data-element_type="widget" data-widget_type="heading.default">
+										<div class="elementor-element elementor-element-12e9168b elementor-widget elementor-widget-heading" data-id="12e9168b" data-element_type="widget" data-widget_type="heading.default">
 											<div class="elementor-widget-container">
-												<p class="elementor-heading-title elementor-size-default">- Pasangan Mempelai -</p>
+												<!-- <p class="elementor-heading-title elementor-size-default">The Wedding </p> -->
+												<img src="<?PHP echo base_url(); ?>assets/wd-assets/ourwedding_blu.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/ourwedding_blu.gif" class="img-ourwed skrollable skrollable-before">
 											</div>
 										</div>
 
@@ -711,17 +741,22 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 											</div>
 										</section>
 
-										<div class="elementor-element elementor-element-62c2f24c elementor-widget-divider--separator-type-pattern elementor-widget elementor-widget-divider" data-id="62c2f24c" data-element_type="widget" data-widget_type="divider.default">
-											<div class="elementor-widget-container">
-												<div class="elementor-divider" style="--divider-pattern-url: url(_data_image/svg%2bxml%2c_svg%20xmlns%3dhttp_/www.w3.org/2000/svg%20preserveAspectRatio%3dnone%20overflow%3dvisible%20h/__/svg_-2.html);">
-													<span class="elementor-divider-separator"></span>
-												</div>
-											</div>
-										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-669e9d2c elementor-section-boxed elementor-section-height-default elementor-section-height-default bgstory" data-id="669e9d2c" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+					<div class="elementor-container elementor-column-gap-default">
+						<div class="elementor-row">
+							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-39197983" data-id="39197983" data-element_type="column">
+								<div class="elementor-column-wrap elementor-element-populated">
+									<div class="elementor-widget-wrap">
 										<div class="elementor-element elementor-element-cb44a05 elementor-widget elementor-widget-heading" data-id="cb44a05" data-element_type="widget" data-widget_type="heading.default">
 											<div class="elementor-widget-container">
-												<p class="elementor-heading-title elementor-size-default">- Cerita Kita -</p>
+												<p class="elementor-heading-title elementor-size-default">Our Story</p><br>
 											</div>
 										</div>
 
@@ -796,7 +831,6 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 												</div>
 											</div>
 										</div>
-
 									</div>
 								</div>
 							</div>
@@ -806,7 +840,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 				
 				<section class="elementor-section elementor-top-section elementor-element elementor-element-2b45caa1 elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-id="2b45caa1" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 					<div class="elementor-background-overlay"></div>
-					
+
 					<div class="elementor-element elementor-element-12e9168b elementor-widget elementor-widget-heading" data-id="12e9168b" data-element_type="widget" data-widget_type="heading.default">
 						<div class="elementor-widget-container">
 							<!-- <p class="elementor-heading-title elementor-size-default">The Wedding </p> -->
@@ -819,6 +853,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-71e01087" data-id="71e01087" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 								<div class="elementor-column-wrap elementor-element-populated">
 									<div class="elementor-widget-wrap">
+
 										<div class="elementor-element elementor-element-44ca98a7 elementor-widget elementor-widget-heading" data-id="44ca98a7" data-element_type="widget" data-widget_type="heading.default">
 											<div class="elementor-widget-container">
 												<p class="elementor-heading-title elementor-size-default">" <?PHP echo $quotes; ?> "</p>
