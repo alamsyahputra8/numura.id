@@ -164,6 +164,16 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 	<link rel='shortlink' href='https://numura.id/?p=24192' />
 	<style type="text/css">
 		@import url('https://fonts.cdnfonts.com/css/bunch-blossoms-personal-use');
+		.elementor-24192 .elementor-element.elementor-element-64f3080c {
+			border-width: 3px 0px 0px 0px;
+    		border-color: #ca9078;
+		}
+		.elementor-24192 .elementor-element.elementor-element-1742ff63:not(.elementor-motion-effects-element-type-background) > .elementor-column-wrap, .elementor-24192 .elementor-element.elementor-element-5052e735:not(.elementor-motion-effects-element-type-background) > .elementor-column-wrap {
+			background: #FFF
+		}
+		.elementor-24192 .elementor-element.elementor-element-4e6ab9b4 .elementor-heading-title {
+			color: #818d98;
+		}
 		.elementor-24192 .elementor-element.elementor-element-757a8e72 > .elementor-background-overlay {
 			opacity: 1;
 		    transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
@@ -199,7 +209,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 		}
 		.kt-portlet__head-title {
 			font-family: marsha, Arial;
-			color: #D8AD83;
+			color: #ca9078;
 			font-size: 4.5rem;
 			margin: 10px auto;
 		}
@@ -224,10 +234,13 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 		    font-size: 20px;
 		}
 		.elementor-24192 .elementor-element.elementor-element-5a026908:not(.elementor-motion-effects-element-type-background), .elementor-24192 .elementor-element.elementor-element-5a026908 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
-			background-color: #343434;
+			background-color: #818d98;
 		}
 		.elementor-24192 .elementor-element.elementor-element-452e86e0:not(.elementor-motion-effects-element-type-background), .elementor-24192 .elementor-element.elementor-element-452e86e0 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
-			background-color: #343434;
+			background-color: #818d98;
+		}
+		.elementor-24192 .elementor-element.elementor-element-511adc5d .elementor-icon-box-title, .elementor-24192 .elementor-element.elementor-element-2b09609f .elementor-icon-box-title {
+			color: #ca9078;
 		}
 		.elementor-element.elementor-element-3d2384d1 .elementor-button, .elementor-widget-button .elementor-button {
 		    background-color: #D8AD83;
@@ -261,6 +274,18 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 			border-radius: 100%;
 			width: 100px;
 			height: 100px;
+			background: #ca9078;
+		}
+		.elementor-24192 .elementor-element.elementor-element-5366a54f > .elementor-widget-container {
+			border-color: #ca9078;
+		}
+		.elementor-24192 .elementor-element.elementor-element-5cece26d .elementor-button {
+			background: #ca9078;
+			color: #FFF;
+		}
+		.elementor-24192 .elementor-element.elementor-element-388c5ffd .elementor-button, .elementor-element.elementor-element-3d2384d1 .elementor-button, .elementor-widget-button .elementor-button {
+			background-color: #ca9078;
+    		border-color: #ca9078;
 		}
 		.lokasistyle {
 			font: 400 18px/25px Dosis, Arial
@@ -871,7 +896,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 					</div>
 				</section>
 				
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-64f3080c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="64f3080c" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-64f3080c elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="64f3080c" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" style="background: #f1f1f1;">
 					<div class="elementor-container elementor-column-gap-default">
 						<div class="elementor-row">
 							<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-47353213" data-id="47353213" data-element_type="column">
@@ -884,7 +909,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 										</div>
 
 										<div class="elementor-element elementor-element-4e6ab9b4 elementor-widget elementor-widget-heading" data-id="4e6ab9b4" data-element_type="widget" data-widget_type="heading.default">
-											<img id="imgsavethedate" src="<?PHP echo base_url(); ?>assets/wd-assets/savethedate.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/savethedate.gif" class="img-savethedate skrollable skrollable-before">
+											<img id="imgsavethedate" src="<?PHP echo base_url(); ?>assets/wd-assets/savethedate_bl.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/savethedate_bl.gif" class="img-savethedate skrollable skrollable-before">
 											<div class="elementor-widget-container">
 												<p class="elementor-heading-title elementor-size-default"><?PHP echo $thedate; ?></p>
 											</div>
@@ -896,7 +921,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 					</div>
 				</section>
 				
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-6bdfb21 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="6bdfb21" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+				<section class="elementor-section elementor-top-section elementor-element elementor-element-6bdfb21 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="6bdfb21" data-element_type="section" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}" style="background: #f1f1f1;">
 					<div class="elementor-container elementor-column-gap-default">
 						<div class="elementor-row">
 							<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-1742ff63 elementor-invisible" data-id="1742ff63" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation&quot;:&quot;slideInUp&quot;}">
@@ -1122,7 +1147,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 
 											<div class="elementor-element elementor-element-27aa024b elementor-widget-divider--separator-type-pattern elementor-widget elementor-widget-divider" data-id="27aa024b" data-element_type="widget" data-widget_type="divider.default">
 												<div class="elementor-widget-container">
-													<div class="elementor-divider" style="--divider-pattern-url: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' overflow='visible' height='100%' viewBox='0 0 24 24' stroke='%23d8ad83' stroke-width='3' fill='none' stroke-linecap='square' stroke-miterlimit='10'%3E%3Cpolyline points='0,18 12,6 24,18 '/%3E%3C/svg%3E&quot;);">
+													<div class="elementor-divider" style="--divider-pattern-url: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' overflow='visible' height='100%' viewBox='0 0 24 24' stroke='%23f4eadf' stroke-width='3' fill='none' stroke-linecap='square' stroke-miterlimit='10'%3E%3Cpolyline points='0,18 12,6 24,18 '/%3E%3C/svg%3E&quot;);">
 														<span class="elementor-divider-separator"></span>
 													</div>
 												</div>
@@ -1457,7 +1482,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 
 											<div class="elementor-element elementor-element-27aa024b elementor-widget-divider--separator-type-pattern elementor-widget elementor-widget-divider" data-id="27aa024b" data-element_type="widget" data-widget_type="divider.default">
 												<div class="elementor-widget-container">
-													<div class="elementor-divider" style="--divider-pattern-url: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' overflow='visible' height='100%' viewBox='0 0 24 24' stroke='%23d8ad83' stroke-width='3' fill='none' stroke-linecap='square' stroke-miterlimit='10'%3E%3Cpolyline points='0,18 12,6 24,18 '/%3E%3C/svg%3E&quot;); padding-top: 20px; padding-bottom: 0px;">
+													<div class="elementor-divider" style="--divider-pattern-url: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' overflow='visible' height='100%' viewBox='0 0 24 24' stroke='%23f4eadf' stroke-width='3' fill='none' stroke-linecap='square' stroke-miterlimit='10'%3E%3Cpolyline points='0,18 12,6 24,18 '/%3E%3C/svg%3E&quot;); padding-top: 20px; padding-bottom: 0px;">
 														<span class="elementor-divider-separator"></span>
 													</div>
 												</div>
