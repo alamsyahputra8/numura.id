@@ -453,7 +453,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 		    margin-right: auto;
 		    margin-top: 10px;
 		    background-size: 100% auto;
-		    border: 1px solid #78968c;
+		    border: 0px solid #78968c;
 		    border-radius: 100%;
 		    position: absolute;
 		}
