@@ -581,11 +581,11 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 	    		display: block;
 			}
 			.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-wrapper .elementor-image-box-img {
-				right: -25%;
+				right: -82px;
 			    margin-bottom: -70px;
 			}
 			.elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-wrapper .elementor-image-box-img {
-				left: -23%;
+				left: -78px;
 				margin-bottom: -70px;
 			}
 			.elementor-widget-image-box .elementor-image-box-content {
