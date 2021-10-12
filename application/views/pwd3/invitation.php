@@ -561,12 +561,12 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
     			height: 310px;
 			}
 			.borderprofile.right {
-				right: -31%;
-				top: -12%;
+				right: -90px;
+				top: -50px;
 			}
 			.borderprofile.left {
-			    left: -28%;
-			    top: -12%;
+			    left: -85px;
+			    top: -50px;
 			}
 			.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-wrapper .elementor-image-box-img, .elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-wrapper .elementor-image-box-img {
 				width: 300px;
