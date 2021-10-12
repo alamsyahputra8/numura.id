@@ -366,9 +366,9 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 		    padding-top: 10px;
 		}
 		.img-savethedate {
-			max-width: 250px!important;
+			max-width: 180px!important;
 		    margin-top: -70px;
-		    margin-bottom: -60px;
+		    margin-bottom: -30px;
 		    position: relative;
 		    z-index: 2;
 		}
@@ -668,9 +668,9 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 				font-size: 53px;
 			}
 			.img-savethedate {
-				max-width: 200px!important;
-			    margin-top: -110px;
-			    margin-bottom: -40px;
+				max-width: 160px!important;
+			    margin-top: -90px;
+			    margin-bottom: 0px;
 			}
 			.img-rsvp {
 				max-width: 200px!important;
@@ -1061,7 +1061,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 										</div>
 
 										<div class="elementor-element elementor-element-4e6ab9b4 elementor-widget elementor-widget-heading" data-id="4e6ab9b4" data-element_type="widget" data-widget_type="heading.default">
-											<img id="imgsavethedate" src="<?PHP echo base_url(); ?>assets/wd-assets/savethedate_bl.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/savethedate_bl.gif" class="img-savethedate skrollable skrollable-before">
+											<img id="imgsavethedate" src="<?PHP echo base_url(); ?>assets/wd-assets/savethedate_gr.gif" data-top-bottom="@src:<?PHP echo base_url(); ?>assets/wd-assets/savethedate_gr.gif" class="img-savethedate skrollable skrollable-before">
 											<div class="elementor-widget-container">
 												<p class="elementor-heading-title elementor-size-default"><?PHP echo $thedate; ?></p>
 											</div>
