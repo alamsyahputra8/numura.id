@@ -35,7 +35,8 @@
 	    text-align: center;
 	}
 	.bgimage img {
-		width: 7cm;
+		max-width: 7cm;
+		max-height: 7cm;
 	}
 	.bgtext {
 		/*position: absolute;*/
