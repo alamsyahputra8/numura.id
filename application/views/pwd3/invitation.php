@@ -495,13 +495,13 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 			background: url('<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictw; ?>') no-repeat center;
 			background-size: cover;
 		    right: -40%;
-    		margin-bottom: -70px;
+    		margin-bottom: 0px;
 		}
 		.elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-wrapper .elementor-image-box-img {
 			background: url('<?PHP echo base_url(); ?>images/wedding/<?PHP echo $dirbase; ?>/<?PHP echo $pictm; ?>') no-repeat center;
 			background-size: cover;
 			left: -15%;
-			margin-bottom: -70px;
+			margin-bottom: 0px;
 		}
 		.elementor-24192 .elementor-element.elementor-element-44ca98a7 .elementor-heading-title {
 			color: #ffffff;
@@ -556,6 +556,9 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 			}
 		}
 		@media (max-width: 767px) {
+			.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-title, .elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-title {
+				font-size: 29px!important;
+			}
 			.borderprofile {
 				width: 310px;
     			height: 310px;
@@ -582,11 +585,11 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 			}
 			.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-wrapper .elementor-image-box-img {
 				right: -82px;
-			    margin-bottom: -70px;
+			    margin-bottom: -50px;
 			}
 			.elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-wrapper .elementor-image-box-img {
 				left: -78px;
-				margin-bottom: -70px;
+				margin-bottom: -50px;
 			}
 			.elementor-widget-image-box .elementor-image-box-content {
 				margin-top: 60px;
