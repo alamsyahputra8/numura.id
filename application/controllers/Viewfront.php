@@ -101,6 +101,10 @@ class Viewfront extends CI_Controller {
 		$this->load->view('/underconstruction');
 	}
 
+	public function lovestory(){
+		$this->load->view('/underconstruction');
+	}
+
 	public function wedding($name){
 		$q 					= "SELECT a.*, b.directory FROM person_order a left join theme b on a.theme=b.id where a.name=?";
 		$cek 				= $this->dbw->query($q,$name)->num_rows();
