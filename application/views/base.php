@@ -194,8 +194,8 @@
                                 <a href="<?PHP echo base_url(); ?>underconstruction"><img src="<?PHP echo base_url(); ?>images/iconbase/einvit.jpg" alt=""></a>
                             </div>
                             <div class="portfolio-description">
-                                <a href="<?PHP echo base_url(); ?>underconstruction">
-                                    <h3>WEBSITE E-INVITATION</h3>
+                                <a href="<?PHP echo base_url(); ?>lovestory">
+                                    <h3>E-INVITATION</h3>
                                     <span>Solusi Undangan Pernikahan Digital berupa Website.</span>
                                 </a>
                             </div>
