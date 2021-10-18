@@ -319,9 +319,9 @@
                                                 <i class="fa fa-star-half"></i>
                                             </div>
                                             <div class="seperator m-b-10"></div>
-                                            <div><b>Promo Berakhir dalam:</b></div>
+                                            <div class="text-center"><b>Promo Berakhir dalam:</b></div>
                                             <style>
-                                                .countdown-container { margin-left: 0px!important; }
+                                                /*.countdown-container { margin-left: -35px!important; }*/
                                             </style>
                                             <?PHP
                                             $time   = strtotime('+32 hours');
