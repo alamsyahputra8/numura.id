@@ -101,7 +101,7 @@ foreach ($ggroupS as $groupsize) {
 		</div>';
 	$qPes 		= "
 				SELECT a.*,
-					lower(a.custom_nama) custom_namalower,
+					a.custom_nama custom_namalower,
 					(SELECT label from size where id_size=a.ukuran) label_size,
 					(SELECT detail from size where id_size=a.ukuran) detail_size,
 					(SELECT label from color where id=a.warna) label_color,
