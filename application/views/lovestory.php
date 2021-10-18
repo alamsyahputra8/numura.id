@@ -342,10 +342,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6">
-                                               <a class="btn btn-warning" href="https://shopee.co.id/numura.id"><i class="icon-shopping-cart"></i> Pesan Melalui Shopee</a>
+                                               <a class="btn btn-warning" href="https://shopee.co.id/Undangan-Digital-Web-Pernikahan-Numura.id-i.305576191.5654510105" target="_blank"><i class="icon-shopping-cart"></i> Pesan Melalui Shopee</a>
                                             </div>
                                             <div class="col-lg-6">
-                                                <a class="btn btn-success text-white" href="https://api.whatsapp.com/send?phone=6282120158144"><i class="fab fa-whatsapp"></i> Pesan Melalui Whatsapp</a>
+                                                <a class="btn btn-success text-white" href="https://api.whatsapp.com/send?phone=6282120158144" target="_blank"><i class="fab fa-whatsapp"></i> Pesan Melalui Whatsapp</a>
                                             </div>
                                         </div>
                                     </div>
