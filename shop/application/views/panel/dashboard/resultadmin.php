@@ -312,8 +312,10 @@ $sisakom 	= $this->formula->rupiah($dKom['price']-$dKomS['price']);
 			</div>
 		</div>
 	</div>
+</div>
 
-	<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+<div class="row">
 	<div class="col-sm-12">
 		<div class="row">
 			<div class="col-12"><h3>History Pembayaran</h3></div>
@@ -353,8 +355,8 @@ $sisakom 	= $this->formula->rupiah($dKom['price']-$dKomS['price']);
 			</div>
 		</div>
 	</div>
-	<div class="clearfix"></div>
 </div>
+	<div class="clearfix"></div>
 
 
 <div class="row">
