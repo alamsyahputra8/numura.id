@@ -116,7 +116,11 @@ $komisi		= $this->formula->rupiah($dKom['price']);
 $sisakom 	= $this->formula->rupiah($dKom['price']-$dKomS['price']);
 
 $getColor 	= $this->db->query("
-			SELECT * from color order by 1
+			SELECT * from color where type=1 order by 1
+			")->result_array();
+
+$getColor2 	= $this->db->query("
+			SELECT * from color where type!=1 order by 1
 			")->result_array();
 
 $getSize 	= $this->db->query("
@@ -180,6 +184,8 @@ $getSize 	= $this->db->query("
 	}
 	.overflowhide { overflow: hidden; }
 	.clearfix {clear: both;}
+	/*#availstock .rotate { transform: rotate(-90deg); white-space: nowrap; }*/
+	/*#availstock th { height: 120px; }*/
 </style>
 <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
 
@@ -330,10 +336,10 @@ $getSize 	= $this->db->query("
 			</div>
 		</div>
 	</div>
-	<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+	<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div><br>
 
-	<div class="row">
-		<div class="col-12"><h3>Available Stock</h3></div>
+	<div class="row" id="availstock">
+		<div class="col-12"><h3>Available Stock (WARNA UTAMA)</h3></div>
 		<div class="col-12">* Refresh halaman untuk meilhat update stok yang tersedia.</div>
 		<div class="kt-portlet kt-portlet--solid-default kt-portlet--bordered">
 			<div class="col-12" style="padding: 0px;">
@@ -341,22 +347,104 @@ $getSize 	= $this->db->query("
 					<table class="table table-striped- table-bordered table-hover table-checkable">
 						<thead>
 							<tr>
-								<th style="width: 150px!important;">WARNA</th>
-								<?PHP foreach($getSize as $size) { ?>
-								<th style="max-width: 50px!important;" class="text-center"><?PHP echo $size['label']; ?></th>
+								<th style="width: 150px!important;">UKURAN</th>
+								<?PHP foreach($getColor as $color) { ?>
+								<th class="text-center">
+									<div class="rotate">
+										<i class="fa fa-circle" style="color: <?PHP echo $color['code_color']; ?>;"></i>
+										<?PHP echo $color['label']; ?>
+									</div>
+								</th>
 								<?PHP } ?>
 							</tr>
 						</thead>
 						<tbody>
 							<?PHP
-							foreach ($getColor as $color) {
-								$colid 	= $color['id'];
+							foreach ($getSize as $size) {
+								$sizeid = $size['id_size'];
 							?>
 								<tr>
-									<td><?PHP echo $color['label']; ?></td>
+									<td><?PHP echo $size['label']; ?></td>
 									<?PHP
-									foreach($getSize as $size) {
-										$sizeid 	= $size['id_size']; 
+									foreach($getColor as $color) {
+										$colid 	= $color['id']; 
+										
+										$getJml 	= $this->db->query("
+													SELECT sum(jml_order) jml_order FROM stok_order_detail a left join stok_order b
+													on a.id_order=b.id_order
+													where a.size='$sizeid' and a.color='$colid' and a.type='1' and b.is_finish=1
+													")->result_array();
+										$dJml 		= array_shift($getJml);
+										$jml 		= $this->formula->rupiah3($dJml['jml_order']);
+
+										$qJml 		= "
+													SELECT * FROM pesanan where status not in (3) and ukuran='$sizeid' 
+													and warna='$colid' and kaos_type='1'
+													";
+										$cekJml 	= $this->db->query($qJml)->num_rows();
+
+										$qSend 		= "
+													SELECT * from pesanan where kaos_type='1' and id_pesanan in (
+														select id_pesanan from pengiriman_detail where id_pengiriman in (
+													    	select id_pengiriman from pengiriman where id_pengiriman in (
+													            select data from data_log where menu='pengiriman' and activity='send' and date_time>='2020-10-25'
+													        )
+													    )
+													) and ukuran='$sizeid' and warna='$colid'
+													";
+										$cekSend 	= $this->db->query($qSend)->num_rows();
+
+										$sisastokfin = ($jml-$cekJml)-$cekSend;
+										if ($sisastokfin<1) {
+											$colte	= 'style="color: #bdbcbc;"';	
+										} else {
+											$colte	= '';
+										}
+									?>
+									<td class="text-center" <?PHP echo $colte; ?>>
+										<b><?PHP echo $sisastokfin; ?></b> pcs
+									</td>
+									<?PHP } ?>
+								</tr>
+							<?PHP } ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div><br>
+
+	<div class="row" id="availstock">
+		<div class="col-12"><h3>Available Stock (WARNA LAMA)</h3></div>
+		<div class="col-12">* Refresh halaman untuk meilhat update stok yang tersedia.</div>
+		<div class="kt-portlet kt-portlet--solid-default kt-portlet--bordered">
+			<div class="col-12" style="padding: 0px;">
+				<div class="kt-portlet__body" style="padding: 0px;">
+					<table class="table table-striped- table-bordered table-hover table-checkable">
+						<thead>
+							<tr>
+								<th style="width: 150px!important;">UKURAN</th>
+								<?PHP foreach($getColor2 as $color) { ?>
+								<th class="text-center">
+									<div class="rotate">
+										<i class="fa fa-circle" style="color: <?PHP echo $color['code_color']; ?>;"></i>
+										<?PHP echo $color['label']; ?>
+									</div>
+								</th>
+								<?PHP } ?>
+							</tr>
+						</thead>
+						<tbody>
+							<?PHP
+							foreach ($getSize as $size) {
+								$sizeid = $size['id_size'];
+							?>
+								<tr>
+									<td><?PHP echo $size['label']; ?></td>
+									<?PHP
+									foreach($getColor2 as $color) {
+										$colid 	= $color['id']; 
 										
 										$getJml 	= $this->db->query("
 													SELECT sum(jml_order) jml_order FROM stok_order_detail a left join stok_order b

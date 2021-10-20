@@ -16,7 +16,11 @@ $getType 	= $this->db->query("
 			")->result_array();
 
 $getColor 	= $this->db->query("
-			SELECT * from color order by 1
+			SELECT * from color where type=1 order by 1
+			")->result_array();
+
+$getColor2 	= $this->db->query("
+			SELECT * from color where type!=1 order by 1
 			")->result_array();
 
 $getSize 	= $this->db->query("
@@ -73,6 +77,27 @@ meter[value="4"]::-moz-meter-bar { background: green; }
     padding-left: 0em;
     margin-top: 1em;
 }
+/*#availstock table {
+   border-collapse: collapse;
+   overflow: hidden;
+}
+#availstock td, th {
+   padding: 10px;
+   position: relative;
+}
+#availstock tr:hover{
+   background-color: rgba(247, 247, 247, 0.5);
+}
+
+#availstock td:hover::after,#availstock th:hover::after { 
+   background-color: rgba(247, 247, 247, 0.5);
+   content: '\00a0';  
+   height: 10000px;    
+   left: 0;
+   position: absolute;  
+   top: -5000px;
+   width: 100%; 
+}*/
 </style>
 <!-- begin:: Content -->
 <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
@@ -344,26 +369,27 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 				</div>
 
 				<div class="tab-pane" id="availstock" role="tabpanel">
+					<div class="col-12"><h3><i class="fas fa-tshirt"></i> Stok Warna Utama</h3></div><br>
 					<!--begin: Datatable -->
 					<table class="table table-striped- table-bordered table-hover table-checkable">
 						<thead>
 							<tr>
-								<th style="width: 150px!important;">WARNA</th>
-								<?PHP foreach($getSize as $size) { ?>
-								<th style="max-width: 50px!important;" class="text-center"><?PHP echo $size['label']; ?></th>
+								<th style="width: 150px!important;">UKURAN</th>
+								<?PHP foreach($getColor as $color) { ?>
+								<th style="max-width: 50px!important;" class="text-center"><i class="fa fa-circle" style="color: <?PHP echo $color['code_color']; ?>;"></i> <?PHP echo $color['label']; ?></th>
 								<?PHP } ?>
 							</tr>
 						</thead>
 						<tbody>
 							<?PHP
-							foreach ($getColor as $color) {
-								$colid 	= $color['id'];
+							foreach ($getSize as $size) {
+								$sizeid = $size['id_size'];
 							?>
 								<tr>
-									<td><?PHP echo $color['label']; ?></td>
+									<td><?PHP echo $size['label']; ?></td>
 									<?PHP
-									foreach($getSize as $size) {
-										$sizeid 	= $size['id_size']; 
+									foreach($getColor as $color) {
+										$colid 		= $color['id']; 
 										
 										$getJml 	= $this->db->query("
 													SELECT sum(jml_order) jml_order FROM stok_order_detail a left join stok_order b
@@ -406,6 +432,72 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 						</tbody>
 					</table>
 					<!--end: Datatable -->
+					<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+
+					<div class="col-12"><h3><i class="fas fa-tshirt"></i> Stok Warna Lama</h3></div><br>
+					<!--begin: Datatable -->
+					<table class="table table-striped- table-bordered table-hover table-checkable">
+						<thead>
+							<tr>
+								<th style="width: 150px!important;">UKURAN</th>
+								<?PHP foreach($getColor2 as $color) { ?>
+								<th style="max-width: 50px!important;" class="text-center"><i class="fa fa-circle" style="color: <?PHP echo $color['code_color']; ?>;"></i> <?PHP echo $color['label']; ?></th>
+								<?PHP } ?>
+							</tr>
+						</thead>
+						<tbody>
+							<?PHP
+							foreach ($getSize as $size) {
+								$sizeid = $size['id_size'];
+							?>
+								<tr>
+									<th><?PHP echo $size['label']; ?></th>
+									<?PHP
+									foreach($getColor2 as $color) {
+										$colid 		= $color['id']; 
+										
+										$getJml 	= $this->db->query("
+													SELECT sum(jml_order) jml_order FROM stok_order_detail a left join stok_order b
+													on a.id_order=b.id_order
+													where a.size='$sizeid' and a.color='$colid' and a.type='1' and b.is_finish=1
+													")->result_array();
+										$dJml 		= array_shift($getJml);
+										$jml 		= $this->formula->rupiah3($dJml['jml_order']);
+
+										$qJml 		= "
+													SELECT * FROM pesanan where status not in (3) and ukuran='$sizeid' 
+													and warna='$colid' and kaos_type='1'
+													";
+										$cekJml 	= $this->db->query($qJml)->num_rows();
+
+										$qSend 		= "
+													SELECT * from pesanan where kaos_type='1' and id_pesanan in (
+														select id_pesanan from pengiriman_detail where id_pengiriman in (
+													    	select id_pengiriman from pengiriman where id_pengiriman in (
+													            select data from data_log where menu='pengiriman' and activity='send' and date_time>='2020-10-25'
+													        )
+													    )
+													) and ukuran='$sizeid' and warna='$colid'
+													";
+										$cekSend 	= $this->db->query($qSend)->num_rows();
+
+										$sisastokfin = ($jml-$cekJml)-$cekSend;
+										if ($sisastokfin<1) {
+											$colte	= 'style="color: #bdbcbc;"';	
+										} else {
+											$colte	= '';
+										}
+									?>
+									<td class="text-center" <?PHP echo $colte; ?>>
+										<b><?PHP echo $sisastokfin; ?></b> pcs
+									</td>
+									<?PHP } ?>
+								</tr>
+							<?PHP } ?>
+						</tbody>
+					</table>
+					<!--end: Datatable -->
+					<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
 				</div>
 			</div>
 
@@ -636,3 +728,4 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 	</div>
 </div>
 <!-- end:: Content -->
+<script>
