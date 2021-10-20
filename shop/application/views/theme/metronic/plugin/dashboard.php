@@ -8,7 +8,10 @@
     state: 'success',
     message: 'Please wait...'
 });*/
-
+$('#tablepay').DataTable({
+    responsive: true,
+    order: [[ 2, "desc" ]],
+});
 KTApp.block('#inboxsite .loaderinbox', {
     overlayColor: '#000000',
     type: 'v2',

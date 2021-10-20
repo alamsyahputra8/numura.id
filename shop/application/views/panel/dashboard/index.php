@@ -27,6 +27,15 @@ $qPesP 		= "
 			";
 $cekPesP 	= $this->db->query($qPesP)->num_rows();
 
+$qLPay 		= "
+			SELECT 
+				a.*,
+				(SELECT label from payment_type where id=a.type) type_name,
+				(SELECT name from user where userid=a.userid) myname
+			from payment a where 1=1 $condpes
+			";
+$gLPay 		= $this->db->query($qLPay)->result_array();
+
 $qPesPr 	= "
 			SELECT *
 			FROM pesanan a where 1=1 and status in (2) $condpes
@@ -285,6 +294,45 @@ $getSize 	= $this->db->query("
 	<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
 
 	<div class="row">
+		<div class="col-12"><h3>History Pembayaran</h3></div>	
+		<div class="col-12">
+			<div class="kt-portlet kt-portlet--solid-default kt-portlet--bordered">
+				<div class="kt-portlet__body">
+					<table class="table table-striped- table-bordered table-hover table-checkable" id="tablepay">
+						<thead>
+							<tr>
+								<th>DARI</th>
+								<th>JUMLAH</th>
+								<th>TGL. BAYAR</th>
+								<th>KE</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?PHP foreach ($gLPay as $dpay) { ?>
+							<tr>
+								<td><?PHP echo $dpay['myname']; ?></td>
+								<td><?PHP echo $this->formula->rupiah($dpay['masuk']); ?></td>
+								<td><?PHP echo $dpay['tgl_paid']; ?></td>
+								<td><?PHP echo $dpay['type_name']; ?></td>
+							</tr>
+							<?PHP } ?>
+						</tbody>
+						<tfoot>
+							<tr>
+								<th>DARI</th>
+								<th>JUMLAH</th>
+								<th>TGL. BAYAR</th>
+								<th>KE</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+
+	<div class="row">
 		<div class="col-12"><h3>Available Stock</h3></div>
 		<div class="col-12">* Refresh halaman untuk meilhat update stok yang tersedia.</div>
 		<div class="kt-portlet kt-portlet--solid-default kt-portlet--bordered">
@@ -402,3 +450,9 @@ $getSize 	= $this->db->query("
 	</div>
 	<?PHP } ?>
 </div>
+<script type="text/javascript">
+	$('#tablepay').DataTable({
+            responsive: true,
+            order: [[ 2, "desc" ]],
+    });
+</script>
