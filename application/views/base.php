@@ -179,8 +179,8 @@
                             </div>
                             <div class="portfolio-description">
                                 <a href="<?PHP echo base_url(); ?>underconstruction">
-                                    <h3>POSTER UNDANGAN PERNIKAHAN</h3>
-                                    <span>Undangan Pernikahan berupa Gambar.</span>
+                                    <h3>WEBSITE DEVELOPMENT</h3>
+                                    <span>Jasa Pembuatan Website dan Aplikasi.</span>
                                 </a>
                             </div>
                         </div>
