@@ -99,7 +99,7 @@ foreach ($ggroupS as $groupsize) {
 					(SELECT nama from karakter where id_karakter=a.karakter) charname,
 					(SELECT file from karakter where id_karakter=a.karakter) pictchar
 				from pesanan a
-				where ukuran in (SELECT id_size from size where category='$idsize') and status in ($statusvar) $condpes
+				where flag_restok=0 and ukuran in (SELECT id_size from size where category='$idsize') and status in ($statusvar) $condpes
 				and karakter in (select id_karakter from karakter x left join design_type z on x.type=z.id where z.flag_print=1)
 				GROUP by karakter
 				";
