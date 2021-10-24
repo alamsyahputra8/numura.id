@@ -102,7 +102,7 @@ class Viewfront extends CI_Controller {
 	}
 
 	public function lovestory(){
-		$this->load->view('/lovestory');
+		$this->load->view('/wedding/lovestory');
 	}
 
 	public function wedding($name){
