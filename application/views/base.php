@@ -193,7 +193,7 @@
                     <div class="portfolio-item img-zoom ct-wedding">
                         <div class="portfolio-item-wrap">
                             <div class="portfolio-image">
-                                <a href="<?PHP echo base_url(); ?>underconstruction"><img src="<?PHP echo base_url(); ?>images/portfolio/35.png" alt=""></a>
+                                <a href="<?PHP echo base_url(); ?>underconstruction"><img src="<?PHP echo base_url(); ?>images/iconbase/webdev.jpg" alt=""></a>
                             </div>
                             <div class="portfolio-description">
                                 <a href="<?PHP echo base_url(); ?>underconstruction">
