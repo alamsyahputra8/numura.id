@@ -99,7 +99,7 @@ class Stok extends CI_Controller {
 
 				// INSERT DETAIL
 				$getColor 		= $this->db->query("
-								SELECT * from color order by 1
+								SELECT * from color where type='1' order by 1
 								")->result_array();
 
 				$getSize 		= $this->db->query("
@@ -186,7 +186,7 @@ class Stok extends CI_Controller {
 
 				// INSERT DETAIL
 				$getColor 		= $this->db->query("
-								SELECT * from color order by 1
+								SELECT * from color where type='1' order by 1
 								")->result_array();
 
 				$getSize 		= $this->db->query("
@@ -325,7 +325,7 @@ class Stok extends CI_Controller {
 	public function cektotal(){
 		if(checkingsessionpwt()){
 			$getColor 	= $this->db->query("
-						SELECT * from color order by 1
+						SELECT * from color where type='1' order by 1
 						")->result_array();
 
 			$getSize 	= $this->db->query("
@@ -357,7 +357,7 @@ class Stok extends CI_Controller {
 	public function cektotaledit(){
 		if(checkingsessionpwt()){
 			$getColor 	= $this->db->query("
-						SELECT * from color order by 1
+						SELECT * from color where type='1' order by 1
 						")->result_array();
 
 			$getSize 	= $this->db->query("
@@ -391,7 +391,7 @@ class Stok extends CI_Controller {
 			$id 		= trim(strip_tags(stripslashes($this->input->post('id',true))));
 
 			$getColor 	= $this->db->query("
-						SELECT * from color order by 1
+						SELECT * from color where type=1 order by 1
 						")->result_array();
 
 			$getSize 	= $this->db->query("
