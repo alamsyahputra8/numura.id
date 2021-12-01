@@ -25,7 +25,8 @@ class Stok_handler extends CI_Model {
 
 		$qUser				= "
 							SELECT 
-								a.*
+								a.*,
+								(select nama_suplier from suplier where id=a.id_suplier) suplier
 							from stok_order a where 1=1 and type=1 $cond
 							";
 		$dataUsr			= $this->db->query($qUser)->result_array();
@@ -104,6 +105,7 @@ class Stok_handler extends CI_Model {
 				
 				$row = array(
 					"keterangan"		=> $data['label'],
+					"suplier"			=> $data['suplier'],
 					"jml"				=> $this->formula->rupiah3($data['jml']).' pcs',
 					"total"				=> $this->formula->rupiah($data['total_harga']),
 					"bayar"				=> $this->formula->rupiah($data['bayar']),

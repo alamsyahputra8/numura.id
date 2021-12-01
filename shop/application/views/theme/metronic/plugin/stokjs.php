@@ -112,6 +112,49 @@ $(document).on('keyup', '.ed_pcsval', function(e){
     });
 });
 
+$(document).on('click', '.btnaddnewdata', function(e){
+    $('#suplier').trigger('change');
+});
+
+$(document).on('change', '#suplier', function(e){
+    e.preventDefault();
+
+    var uid = $(this).val(); // get ids of clicked row
+    $('#dynamic-content').hide(); // hide dive for loader
+    $('#modal-loader').show();  // load ajax loader
+    
+    // $('#bgdetstokins').html('Mengambil data ukuran...');
+    KTApp.block('#bgdetstokins', {
+        overlayColor: '#000000',
+        type: 'v2',
+        state: 'success',
+        message: 'Please wait...'
+    });
+
+    $.ajax({
+        url: '<?PHP echo base_url(); ?>stok/getlist',
+        type: 'POST',
+        data: 'id='+uid,
+    })
+    .done(function(data){
+
+        $('#dynamic-content').hide(); // hide dynamic div
+        $('#dynamic-content').show(); // show dynamic div
+
+        setTimeout(function() {
+            KTApp.unblock('#bgdetstokins');
+            $('#bgdetstokins').html(data);
+            $('.pcsval').trigger('keyup');
+        }, 2000);
+
+        // $('#modal-loader').hide();    // hide ajax loader
+    })
+    .fail(function(){
+        $('#bgdetstokins').html('');
+        $('.modal-body').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please refresh page...');
+    });
+});
+
 $(document).on('click', '.btnupdateM', function(e){
     e.preventDefault();
 
@@ -133,6 +176,8 @@ $(document).on('click', '.btnupdateM', function(e){
         $("#namedata").html(data.label);
 
         $("#ed_id").val(data.id_order);
+        $("#ed_supliersel").val(data.id_suplier);
+        $("#ed_suplier").val(data.id_suplier);
         $('#ed_tgl').val(data.createddate);
         $('#ed_label').val(data.label);
         $('#ed_totalpcs').val(data.jml);
@@ -360,18 +405,19 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
             searchDelay: 500,
             processing: true,
             serverSide: true,
-            order: [[ 4, "desc" ]],
+            order: [[ 5, "desc" ]],
             ajax: {
                 url: '<?PHP echo base_url(); ?>stok/getdata',
                 type: 'POST',
                 data: {
                     // parameters for custom backend script demo
                     columnsDef: [
-                        'keterangan', 'jml', 'total', 'bayar', 'tgl', 'status', 'actions'],
+                        'keterangan', 'suplier', 'jml', 'total', 'bayar', 'tgl', 'status', 'actions'],
                 },
             },
             columns: [
                 {data: 'keterangan', responsivePriority: -1},
+                {data: 'suplier', responsivePriority: -1},
                 {data: 'jml'},
                 {data: 'total'},
                 {data: 'bayar'},

@@ -26,9 +26,14 @@ $getColor2 	= $this->db->query("
 $getSize 	= $this->db->query("
 			SELECT * from size order by sort
 			")->result_array();
+
+$getSup 	= $this->db->query("
+			SELECT * from suplier order by is_default desc
+			")->result_array();
 ?>
 <!-- <script src="<?PHP echo base_url(); ?>assets/zxcvbn.js"></script> -->
 <style>
+.modal-open .modal { overflow: scroll!important; }
 .dataTables_wrapper table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before {
 	top: 25px!important;
 }
@@ -224,6 +229,19 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 							</div>
 							<div class="kt-portlet__body">
 								<div class="form-group row">
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Suplier</label>
+									<div class="col-lg-10 col-sm-12">
+										<div class='input-group'>
+											<select name="suplier" class="form-control kt_select2norm" id="suplier" placeholder="Pilih Suplier" style="width: 100%;">
+												<?PHP foreach ($getSup as $sup) { ?>
+												<option value="<?PHP echo $sup['id']; ?>"><?PHP echo $sup['nama_suplier']; ?></option>
+												<?PHP } ?>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row">
 									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Tgl. Transaksi</label>
 									<div class="col-lg-10 col-sm-12">
 										<div class='input-group'>
@@ -243,47 +261,58 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 									</div>
 								</div>
 								<!-- <div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div> -->
-								
-								<table class="table table-striped- table-bordered table-hover table-sm">
-									<thead>
-										<tr>
-											<th style="width: 150px!important;">WARNA</th>
-											<?PHP foreach($getSize as $size) { ?>
-											<th style="max-width: 50px!important;" class="text-center"><?PHP echo $size['label']; ?></th>
-											<?PHP } ?>
-										</tr>
-									</thead>
-									<tbody>
-										<?PHP
-										foreach ($getColor as $color) {
-											$colid 	= $color['id'];
-										?>
+
+								<div id="bgdetstokins">
+									<table class="table table-striped- table-bordered table-hover table-sm">
+										<thead>
 											<tr>
-												<td><?PHP echo $color['label']; ?></td>
-												<?PHP
-												foreach($getSize as $size) {
-													$sizeid 	= $size['id_size']; 
-													if (($size['id_size']!=5 and $size['id_size']!=6 and $size['id_size']!=7) and ($color['id']==1 or $color['id']==2)) {
-														$value 	= '12';
-													} else if (($size['id_size']!=5 and $size['id_size']!=6 and $size['id_size']!=7) and ($color['id']!=1 and $color['id']!=2)) {
-														$value 	= '0';
-													} else if (($size['id_size']==5 or $size['id_size']==6 or $size['id_size']==7) and ($color['id']==1 or $color['id']==2)) {
-														$value 	= '12';
-													} else {
-														$value 	= '0';
-													}
-													$prc 	= $size['hpp'];
-													@$tjml 	+= $value;
-													@$tprc 	+= $value*$prc;
-												?>
-												<td class="text-center">
-													<input type="number" name="pcscol<?PHP echo $colid; ?>siz<?PHP echo $sizeid; ?>" class="form-control pcsval" id="pcs" placeholder="0" style="width: 100%;" value="<?PHP echo $value; ?>">
-												</td>
+												<th style="width: 150px!important;">WARNA</th>
+												<?PHP foreach($getSize as $size) { ?>
+												<th style="max-width: 50px!important;" class="text-center"><?PHP echo $size['label']; ?></th>
 												<?PHP } ?>
 											</tr>
-										<?PHP } ?>
-									</tbody>
-								</table>
+										</thead>
+										<tbody>
+											<?PHP
+											foreach ($getColor as $color) {
+												$gDefPS = array_shift($getSup);
+												$defids = $gDefPS['id'];
+
+												$colid 	= $color['id'];
+											?>
+												<tr>
+													<td><?PHP echo $color['label']; ?></td>
+													<?PHP
+													foreach($getSize as $size) {
+														$sizeid 	= $size['id_size']; 
+														if (($size['id_size']!=5 and $size['id_size']!=6 and $size['id_size']!=7) and ($color['id']==1 or $color['id']==2)) {
+															$value 	= '1';
+														} else if (($size['id_size']!=5 and $size['id_size']!=6 and $size['id_size']!=7) and ($color['id']!=1 and $color['id']!=2)) {
+															$value 	= '0';
+														} else if (($size['id_size']==5 or $size['id_size']==6 or $size['id_size']==7) and ($color['id']==1 or $color['id']==2)) {
+															$value 	= '1';
+														} else {
+															$value 	= '0';
+														}
+
+														$getPrice 	= $this->db->query("
+																	SELECT * from suplier_harga where id_suplier='$defids' and id_size='$sizeid'
+																	")->result_array();
+														$sprice 	= array_shift($getPrice);
+														// $prc 	= $size['hpp'];
+														$prc 		= $sprice['harga'];
+														@$tjml 		+= $value;
+														@$tprc 		+= $value*$prc;
+													?>
+													<td class="text-center">
+														<input type="number" name="pcscol<?PHP echo $colid; ?>siz<?PHP echo $sizeid; ?>" class="form-control pcsval" id="pcs" placeholder="0" style="width: 100%;" value="<?PHP echo $value; ?>">
+													</td>
+													<?PHP } ?>
+												</tr>
+											<?PHP } ?>
+										</tbody>
+									</table>
+								</div>
 
 								<div class="form-group row">
 									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Total Barang</label>
@@ -345,6 +374,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 						<thead>
 							<tr>
 								<th>KETERANGAN</th>
+								<th>SUPLIER</th>
 								<th>JUMLAH</th>
 								<th>TOTAL</th>
 								<th>BAYAR</th>
@@ -356,6 +386,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 						<tfoot>
 							<tr>
 								<th>KETERANGAN</th>
+								<th>SUPLIER</th>
 								<th>JUMLAH</th>
 								<th>TOTAL</th>
 								<th>BAYAR</th>
@@ -525,6 +556,25 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 									</div>
 								</div>
 								<div class="kt-portlet__body">
+
+									<div class="form-group row">
+										<label for="role" class="col-lg-2 col-sm-12 col-form-label">Suplier</label>
+										<div class="col-lg-10 col-sm-12">
+											<div class='input-group'>
+												<input type="hidden" name="ed_suplier" id="ed_suplier">
+												<select name="ed_supliersel" class="form-control" id="ed_supliersel" placeholder="Pilih Suplier" required disabled>
+													<?PHP 
+													$getSupX 	= $this->db->query("
+																SELECT * from suplier order by is_default desc
+																")->result_array();
+													foreach ($getSupX as $sup) { 
+													?>
+													<option value="<?PHP echo $sup['id']; ?>"><?PHP echo $sup['nama_suplier']; ?></option>
+													<?PHP } ?>
+												</select>
+											</div>
+										</div>
+									</div>
 
 									<div class="form-group row">
 										<label for="role" class="col-lg-2 col-sm-12 col-form-label">Tgl. Transaksi</label>
