@@ -471,6 +471,144 @@ class Stok extends CI_Controller {
         }
 	}
 
+	public function getorderdet(){
+		if(checkingsessionpwt()){
+			$id 		= trim(strip_tags(stripslashes($this->input->post('id',true))));
+
+			$getDetail 	= $this->db->query("
+						SELECT a.*, 
+							(SELECT nama_suplier from suplier where id=a.id_suplier) suplier
+						FROM stok_order a where id_order='$id'
+						")->result_array();
+			$dDetail 	= array_shift($getDetail);
+			$idsuplier 	= $dDetail['id_suplier'];
+			$suplier 	= $dDetail['suplier'];
+			$tgl 		= $dDetail['createddate'];
+			$ket 		= $dDetail['label'];
+			$jmlP 		= $dDetail['jml'];
+			$total 		= $dDetail['total_harga'];
+			$jmlbayar 	= $dDetail['bayar'];
+			$sisaB 		= $total-$jmlbayar;
+
+			$getColor 	= $this->db->query("
+						SELECT * from color where type=1 order by 1
+						")->result_array();
+
+			$getSize 	= $this->db->query("
+						SELECT * from size where 
+						id_size in (
+							SELECT id_size from suplier_harga where id_suplier='$idsuplier'
+						)
+						order by sort
+						")->result_array();
+
+			echo '
+
+			<div class="row">
+				<label for="role" class="col-lg-2 col-sm-12 col-form-label">Suplier</label>
+				<label for="role" class="col-lg-10 col-sm-12 col-form-label">: <b>'.$suplier.'</b></label>
+			</div>
+
+			<div class="row">
+				<label for="role" class="col-lg-2 col-sm-12 col-form-label">Tgl. Transaksi</label>
+				<label for="role" class="col-lg-10 col-sm-12 col-form-label">: <b>'.$tgl.'</b></label>
+			</div>
+
+			<div class="row">
+				<label for="role" class="col-lg-2 col-sm-12 col-form-label">Keterangan</label>
+				<label for="role" class="col-lg-10 col-sm-12 col-form-label">: <b>'.$ket.'</b></label>
+			</div>
+
+			<table class="table table-striped- table-bordered table-hover table-checkable">
+				<thead>
+					<tr>
+						<th style="width: 150px!important;">UKURAN</th>';
+						foreach($getColor as $color) {
+						echo '
+						<th style="max-width: 50px!important;" class="text-center"><i class="fa fa-circle" style="color: '.$color['code_color'].';"></i> '.$color['label'].'</th>';
+						}
+					echo '
+					</tr>
+				</thead>
+				<tbody>
+					';
+					foreach ($getSize as $size) {
+						$sizeid = $size['id_size'];
+						echo '
+						<tr>
+							<td>'.$size['label'].'</td>';
+							foreach($getColor as $color) {
+								$colid 		= $color['id']; 
+
+								$getJml 	= $this->db->query("
+											SELECT * FROM stok_order_detail where id_order='$id' and size='$sizeid' and color='$colid'
+											")->result_array();
+								$dJml 		= array_shift($getJml);
+								$jml 		= $this->formula->rupiah3($dJml['jml_order']);
+								$price 		= $dJml['harga'];
+
+								$sisastokfin = $jml;
+								if ($sisastokfin<1) {
+									$colte	= 'style="color: #bdbcbc;"';	
+								} else if ($sisastokfin>0 and $sisastokfin<5) {
+									$colte	= 'style="color: #cf5555;"';	
+								} else {
+									$colte	= '';
+								}
+							echo '
+							<td class="text-center" '.$colte.'>
+								<b>'.$sisastokfin.'</b> pcs
+							</td>';
+							}
+						echo '
+						</tr>';
+					}
+					echo '
+				</tbody>
+			</table>
+
+			<div class="row">
+				<div class="col-lg-9 col-7 text-right">
+					<h5>Jumlah :</h5>
+				</div>
+				<div class="col-lg-3 col-5 text-right">
+					<h5>'.round($jmlP).' PCS</h5>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-9 col-7 text-right">
+					<h3>Grand Total :</h3>
+				</div>
+				<div class="col-lg-3 col-5 text-right">
+					<h3>'.$this->formula->rupiah($total).'</h3>	
+				</div>
+			</div>
+			<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+
+			<div class="row">
+				<div class="col-lg-9 col-7 text-right">
+					<h5>Total Pembayaran :</h5>
+				</div>
+				<div class="col-lg-3 col-5 text-right">
+					<h5 class="text-success">'.$this->formula->rupiah($jmlbayar).'</h5>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-9 col-7 text-right">
+					<h5>Sisa Pembayaran :</h5>
+				</div>
+				<div class="col-lg-3 col-5 text-right">
+					<h5 class="text-danger">'.$this->formula->rupiah($sisaB).'</h5>	
+				</div>
+			</div>
+			';
+		}else{
+            redirect('/login');
+        }
+	}
+
 	public function getlist(){
 		if(checkingsessionpwt()){
 			$id 		= trim(strip_tags(stripslashes($this->input->post('id',true))));		

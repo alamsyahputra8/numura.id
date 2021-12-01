@@ -635,6 +635,34 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 			</div>
 			<!-- END MODAL UPDATE -->
 
+			<!-- MODAL DETAIL -->
+			<div class="modal fade" id="detailmod" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						
+						<form class="kt-form kt-form--label-left" id="formdetail" enctype="multipart/form-data" method="POST">
+							<div class="modal-body kt-portlet kt-portlet--tabs" style="margin-bottom: 0px;">
+								<div class="kt-portlet__head">
+									<div class="kt-portlet__head-label">
+										<h3 class="kt-portlet__head-title">Detail Data : <b id="namedatad"></b></h3>
+									</div>
+									<div class="kt-portlet__head-toolbar">
+									</div>
+								</div>
+								<div class="kt-portlet__body">
+									<div id="bgdetailstokdet"></div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+			<!-- END MODAL DETAIL -->
+
 			<!-- MODAL DELETE -->
 			<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-sm" role="document">

@@ -65,8 +65,8 @@ class Stok_handler extends CI_Model {
 				}
 
 				$btnDetail 		= '
-								<a href="'.base_url().'detailstok/'.$id.'" title="Lihat Detil" class="btn btn-sm btn-clean btn-icon btn-icon-md">
-	                                <i class="la la-search"></i>
+								<a class="btn btn-sm btn-clean btn-icon btn-icon-md btndetailM" title="Detail" data-toggle="modal" data-target="#detailmod" data-id="'.$id.'">
+	                                <i data-toggle="tooltip" title="Lihat Detil" class="la la-search"></i>
 	                            </a>
 	                            ';
 

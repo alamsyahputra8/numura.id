@@ -217,6 +217,59 @@ $(document).on('click', '.btnupdateM', function(e){
     });
 });
 
+$(document).on('click', '.btndetailM', function(e){
+    e.preventDefault();
+
+    var uid = $(this).data('id'); // get ids of clicked row
+    $('#dynamic-content').hide(); // hide dive for loader
+    $('#modal-loader').show();  // load ajax loader
+    
+    $.ajax({
+        url: '<?PHP echo base_url(); ?>stok/modal',
+        type: 'POST',
+        data: 'id='+uid,
+        dataType: 'json'
+    })
+    .done(function(data){
+
+        $('#dynamic-content').hide(); // hide dynamic div
+        $('#dynamic-content').show(); // show dynamic div
+        $("#namedatad").html(data.label);
+
+        $('#bgdetailstokdet').html('Mengambil data pesanan...');
+        KTApp.block('#bgdetailstokdet', {
+            overlayColor: '#000000',
+            type: 'v2',
+            state: 'success',
+            message: 'Please wait...'
+        });
+
+        $.ajax({
+            url: '<?PHP echo base_url(); ?>stok/getorderdet',
+            data: 'id='+data.id_order,
+            type: 'POST',
+        })
+        .done(function(datay){
+            KTApp.unblock('#bgdetailstokdet');
+
+            $('#dynamic-content').hide(); // hide dynamic div
+            $('#dynamic-content').show(); // show dynamic div
+            
+            $('#bgdetailstokdet').html(datay);
+
+            $('#modal-loader').hide();    // hide ajax loader
+        })
+        .fail(function(){
+            $('#bgdetailstokdet').html('');
+        });
+
+        $('#modal-loader').hide();    // hide ajax loader
+    })
+    .fail(function(){
+        $('.modal-body').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please refresh page...');
+    });
+});
+
 $(document).on('click', '.btnPrint', function(e){
     e.preventDefault();
 
