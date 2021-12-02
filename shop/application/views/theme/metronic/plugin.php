@@ -50,6 +50,7 @@ if ($activepage!='panel') {
 
 		<!--RTL version:<link href="<?PHP echo base_url(); ?>assets/theme/assets/vendors/base/vendors.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 		<link href="<?PHP echo base_url(); ?>assets/theme/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="<?PHP echo base_url(); ?>assets/theme/style.bundle.css?v=7.2.9" type="text/css" rel="stylesheet" type="text/css" />
 
 		<!--RTL version:<link href="<?PHP echo base_url(); ?>assets/theme/assets/demo/default/base/style.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 
@@ -85,7 +86,7 @@ if ($activepage!='panel') {
 				    padding-top: 0px;
 				}
 			}
-			body {background: #f9f9f9;}
+			body {background: #EEF0F8;}
 			.modal-lg, .modal-xl {
 			    max-width: 80%!important;
 			}
@@ -112,5 +113,5 @@ if ($activepage!='panel') {
 	<!-- end::Head -->
 	
 	<!-- begin::Body -->
-	<body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
-	<!-- <body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-aside--minimize"> -->
+	<!-- <body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading"> -->
+	<body class="kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-aside--minimize">

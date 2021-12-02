@@ -274,3 +274,4 @@ $getPesPeng2 = $this->db->query($qPesPeng2)->result_array();
 		</div>
 	</div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
