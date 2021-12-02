@@ -495,7 +495,7 @@ class Stok extends CI_Controller {
 						")->result_array();
 
 			$getSize 	= $this->db->query("
-						SELECT a.*, (select label_size from suplier_harga where id_suplier='$idsuplier' and id_size=a.id_size) from size a where 
+						SELECT a.*, (select label_size from suplier_harga where id_suplier='$idsuplier' and id_size=a.id_size) label_size from size a where 
 						id_size in (
 							SELECT id_size from suplier_harga where id_suplier='$idsuplier'
 						)
@@ -536,7 +536,7 @@ class Stok extends CI_Controller {
 						$sizeid = $size['id_size'];
 						echo '
 						<tr>
-							<td>'.$size['label'].'</td>';
+							<td>'.$size['label_size'].'</td>';
 							foreach($getColor as $color) {
 								$colid 		= $color['id']; 
 
