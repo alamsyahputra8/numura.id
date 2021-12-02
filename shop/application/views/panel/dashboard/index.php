@@ -29,6 +29,7 @@ $qColor 	= $this->db->query("
 				) as base
 				order by jmlpesan desc
 			)
+			) and type='1'
 			")->result_array();
 $qSize 		= $this->db->query("
 			SELECT * from (

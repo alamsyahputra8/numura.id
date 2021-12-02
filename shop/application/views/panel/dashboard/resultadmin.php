@@ -35,7 +35,7 @@ $qColor 	= $this->db->query("
 					group by warna
 				) as base
 				order by jmlpesan desc
-			)
+			) and type='1'
 			")->result_array();
 $qSize 		= $this->db->query("
 			SELECT * from (
