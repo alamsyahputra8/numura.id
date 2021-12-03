@@ -741,7 +741,7 @@ $getSize 	= $this->db->query("
 	                                order by tanggal_pesan asc, jmlpesan desc
 	                                ")->result_array();
 	                    foreach ($qPerform as $perf) {
-	                        echo $perf['jmlpesan'].',';
+	                        echo "{ x: new Date('".$perf['tanggal_pesan']."').getTime(), y: ".$perf['jmlpesan']."},";
 	                    }
 	                    ?>
 	                ]
@@ -759,18 +759,11 @@ $getSize 	= $this->db->query("
 	            curve: 'smooth'
 	        },
 	        xaxis: {
-	            type: 'date',
-	            categories: [
-	                <?PHP
-	                foreach ($qPerform as $perf) {
-	                    echo '"'.$perf['tanggal_pesan'].'",'; 
-	                }
-	                ?>
-	            ]
+	            type: 'datetime',
 	        },
 	        tooltip: {
 	            x: {
-	                format: 'dd/MM/yy'
+	                format: 'dd/MM/yyyyy'
 	            },
 	        }
 	    };

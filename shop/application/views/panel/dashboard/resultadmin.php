@@ -612,7 +612,7 @@ $sisakom 	= $this->formula->rupiah($dKom['price']-$dKomS['price']);
 	                                order by tanggal_pesan asc, jmlpesan desc
 	                                ")->result_array();
 	                    foreach ($qPerform as $perf) {
-	                        echo $perf['jmlpesan'].',';
+	                        echo "{ x: new Date('".$perf['tanggal_pesan']."').getTime(), y: ".$perf['jmlpesan']."},";
 	                    }
 	                    ?>
 	                ]
@@ -630,27 +630,11 @@ $sisakom 	= $this->formula->rupiah($dKom['price']-$dKomS['price']);
 	            curve: 'smooth'
 	        },
 	        xaxis: {
-	            type: 'date',
-	            categories: [
-	                <?PHP
-	                $qPerformX   = $this->db->query("
-	                                SELECT * from (
-	                                    select userid, (select name from user where userid=a.userid) resel, tanggal_pesan, count(*) jmlpesan 
-	                                    from pesanan a 
-	                                    where year(tanggal_pesan)=year(now()) and month(tanggal_pesan)='$curmonth'
-	                                    group by userid, tanggal_pesan
-	                                ) as base
-	                                order by tanggal_pesan asc, jmlpesan desc
-	                                ")->result_array();
-	                foreach ($qPerformX as $perfX) {
-	                    echo '"'.$perfX['tanggal_pesan'].'",'; 
-	                }
-	                ?>
-	            ]
+	            type: 'datetime'
 	        },
 	        tooltip: {
 	            x: {
-	                format: 'dd/MM/yy'
+	                format: 'dd-MM-yyyy'
 	            },
 	        }
 	    };
