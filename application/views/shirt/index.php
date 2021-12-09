@@ -153,7 +153,7 @@
                 background-color: #ddc68e !important;
             }
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .imgcar {
                 max-height: 100%!important;
             }
@@ -344,7 +344,7 @@
                                     $getCol    = $this->db->query("SELECT * FROM color where type=1 order by id")->result_array();
                                     foreach($getCol as $color) {
                                     ?>
-                                    <div class="col-lg-2 col-md-2 col-6">
+                                    <div class="col-lg-2 col-md-3 col-6">
                                         <div class="colcirc" style="background: <?PHP echo $color['code_color']; ?>"></div>
                                         <div class="text-center text-white collabel"><h3><b><?PHP echo $color['label']; ?></b></h3></div>
                                     </div>
@@ -356,7 +356,7 @@
                                     $getCol    = $this->db->query("SELECT * FROM color where type=2 order by id")->result_array();
                                     foreach($getCol as $color) {
                                     ?>
-                                    <div class="col-lg-2 col-6">
+                                    <div class="col-lg-2 col-md-2 col-6">
                                         <div class="colcirc-sm" style="background: <?PHP echo $color['code_color']; ?>"></div>
                                         <div class="text-center text-white collabel"><h4><b><?PHP echo $color['label']; ?></b></h4></div>
                                     </div>
