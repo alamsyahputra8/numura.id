@@ -60,6 +60,9 @@
             width: fit-content;
             box-shadow: 10px 13px 14px rgb(0 0 0 / 14%);
         }
+        .imgcar {
+            max-height: 220px;
+        }
     	@media (max-width: 1024px) {
 			#header #logo {
 			    text-align: left;
@@ -148,6 +151,11 @@
         @media (max-width: 1024px) {
             .mainMenu-open #header .header-inner, .mainMenu-open #header #header-wrap {
                 background-color: #ddc68e !important;
+            }
+        }
+        @media (max-width: 768px) {
+            .imgcar {
+                max-height: 100%!important;
             }
         }
         /* END CUSTOM STYLE */
@@ -336,7 +344,7 @@
                                     $getCol    = $this->db->query("SELECT * FROM color where type=1 order by id")->result_array();
                                     foreach($getCol as $color) {
                                     ?>
-                                    <div class="col-lg-2 col-sm-12">
+                                    <div class="col-lg-2 col-md-2 col-6">
                                         <div class="colcirc" style="background: <?PHP echo $color['code_color']; ?>"></div>
                                         <div class="text-center text-white collabel"><h3><b><?PHP echo $color['label']; ?></b></h3></div>
                                     </div>
@@ -422,7 +430,7 @@
                                     <div class="grid-item">
                                         <div class="product">
                                             <div class="product-image">
-                                                <a href="<?PHP echo base_url(); ?>shop/images/char/<?PHP echo $data['file']; ?>" data-lightbox="image" title="Shop Now!"><img src="<?PHP echo base_url(); ?>shop/images/char/<?PHP echo $data['file']; ?>" style="max-height: 220px;"></a>
+                                                <a href="<?PHP echo base_url(); ?>shop/images/char/<?PHP echo $data['file']; ?>" data-lightbox="image" title="Shop Now!"><img src="<?PHP echo base_url(); ?>shop/images/char/<?PHP echo $data['file']; ?>" class="imgcar"></a>
                                                 <!-- <span class="product-hot">NEW</span> -->
                                                 <!-- <span class="product-wishlist"><a href="#"><i class="fa fa-heart"></i></a></span> -->
                                                 <div class="product-overlay">
