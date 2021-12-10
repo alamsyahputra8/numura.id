@@ -530,6 +530,86 @@
                                 </div>
                                 <!-- end: portfolio item -->
 
+                                <!-- portfolio item -->
+                                <div class="portfolio-item img-zoom ct-shirt">
+                                    <div class="portfolio-item-wrap">
+                                        <div class="portfolio-image">
+                                            <a href="<?PHP echo base_url(); ?>images/newchar/newpolice.jpeg" data-lightbox="image"><img src="<?PHP echo base_url(); ?>images/newchar/newpolice.jpeg" alt=""></a>
+                                        </div>
+                                        <div class="portfolio-description">
+                                            <a href="<?PHP echo base_url(); ?>images/newchar/newpolice.jpeg" data-lightbox="image">
+                                                <h3 class="text-white">KAOS ANAK</h3>
+                                                <span>Klik untuk melihat lebih gambar besar.</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end: portfolio item -->
+
+                                <!-- portfolio item -->
+                                <div class="portfolio-item img-zoom ct-shirt">
+                                    <div class="portfolio-item-wrap">
+                                        <div class="portfolio-image">
+                                            <a href="<?PHP echo base_url(); ?>images/newchar/newpolicew.jpeg" data-lightbox="image"><img src="<?PHP echo base_url(); ?>images/newchar/newpolicew.jpeg" alt=""></a>
+                                        </div>
+                                        <div class="portfolio-description">
+                                            <a href="<?PHP echo base_url(); ?>images/newchar/newpolicew.jpeg" data-lightbox="image">
+                                                <h3 class="text-white">KAOS ANAK</h3>
+                                                <span>Klik untuk melihat lebih gambar besar.</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end: portfolio item -->
+
+                                <!-- portfolio item -->
+                                <div class="portfolio-item img-zoom ct-shirt">
+                                    <div class="portfolio-item-wrap">
+                                        <div class="portfolio-image">
+                                            <a href="<?PHP echo base_url(); ?>images/newchar/newpilot.jpeg" data-lightbox="image"><img src="<?PHP echo base_url(); ?>images/newchar/newpilot.jpeg" alt=""></a>
+                                        </div>
+                                        <div class="portfolio-description">
+                                            <a href="<?PHP echo base_url(); ?>images/newchar/newpilot.jpeg" data-lightbox="image">
+                                                <h3 class="text-white">KAOS ANAK</h3>
+                                                <span>Klik untuk melihat lebih gambar besar.</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end: portfolio item -->
+
+                                <!-- portfolio item -->
+                                <div class="portfolio-item img-zoom ct-shirt">
+                                    <div class="portfolio-item-wrap">
+                                        <div class="portfolio-image">
+                                            <a href="<?PHP echo base_url(); ?>images/newchar/newpilot2.jpeg" data-lightbox="image"><img src="<?PHP echo base_url(); ?>images/newchar/newpilot2.jpeg" alt=""></a>
+                                        </div>
+                                        <div class="portfolio-description">
+                                            <a href="<?PHP echo base_url(); ?>images/newchar/newpilot2.jpeg" data-lightbox="image">
+                                                <h3 class="text-white">KAOS ANAK</h3>
+                                                <span>Klik untuk melihat lebih gambar besar.</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end: portfolio item -->
+
+                                <!-- portfolio item -->
+                                <div class="portfolio-item img-zoom ct-shirt">
+                                    <div class="portfolio-item-wrap">
+                                        <div class="portfolio-image">
+                                            <a href="<?PHP echo base_url(); ?>images/newchar/newpilotw.jpeg" data-lightbox="image"><img src="<?PHP echo base_url(); ?>images/newchar/newpilotw.jpeg" alt=""></a>
+                                        </div>
+                                        <div class="portfolio-description">
+                                            <a href="<?PHP echo base_url(); ?>images/newchar/newpilotw.jpeg" data-lightbox="image">
+                                                <h3 class="text-white">KAOS ANAK</h3>
+                                                <span>Klik untuk melihat lebih gambar besar.</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end: portfolio item -->
+
                                 <?PHP for($x=0;$x<11;$x++) { ?>
                                 <!-- portfolio item -->
                                 <div class="portfolio-item img-zoom ct-shirt">
