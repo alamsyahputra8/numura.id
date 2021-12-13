@@ -82,7 +82,7 @@ class Karakter extends CI_Controller {
 							
 							<div class="d-flex flex-column">
 								<a href="#" class="text-dark-75 font-weight-bolder text-hover-primary font-size-lg">'.$data['nama'].'</a>
-								<span class="text-muted font-weight-bold font-size-sm pb-4">'.$data['kode'].'</span>
+								<span class="text-muted font-weight-bold font-size-sm pb-4"><i class="la la-shopping-cart"></i> '.$data['jml_tot_pes'].'</span>
 								<div>
 								';
 									if ($data['sisa_bayi']<0) { $colbay = 'danger'; } else if ($data['sisa_bayi']==0) { $colbay ='dark'; } else if ($data['sisa_bayi']>0 and $data['sisa_bayi']<=4) { $colbay = 'warning'; } else { $colbay = 'success'; }
