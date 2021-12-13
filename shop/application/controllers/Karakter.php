@@ -116,21 +116,38 @@ class Karakter extends CI_Controller {
 
 	public function insert(){
 		if(checkingsessionpwt()){
-			$url 				= "Pembayaran";
+			$url 				= "Karakter";
 			$activity 			= "INSERT";
 
 			$userdata 			= $this->session->userdata('sesspwt'); 
 			$userid				= $userdata['userid'];
 
-			$user				= trim(strip_tags(stripslashes($this->input->post('user',true))));
-			$masuk 				= trim(strip_tags(stripslashes($this->input->post('masuk',true))));
-			$keluar 			= trim(strip_tags(stripslashes($this->input->post('keluar',true))));
-			$tgl 				= trim(strip_tags(stripslashes($this->input->post('tgl',true))));
-			$type 				= trim(strip_tags(stripslashes($this->input->post('type',true))));
+			$kat				= trim(strip_tags(stripslashes($this->input->post('kat',true))));
+			$nama 				= trim(strip_tags(stripslashes($this->input->post('nama',true))));
+			$kode 				= trim(strip_tags(stripslashes($this->input->post('kode',true))));
+			$fileName 			= str_replace(' ','_',$_FILES['file']['name']);
+
+			$config['upload_path'] 	= './images/char/';
+			$config['file_name'] 	= $fileName;
+			$config['allowed_types']= 'gif|jpg|png|jpeg';
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+			if(! $this->upload->do_upload('file') )
+			$this->upload->display_errors();
+			$media = $this->upload->data('file');
+
+			$config['upload_path'] 	= './images/charprint/';
+			$config['file_name'] 	= $fileName;
+			$config['allowed_types']= 'gif|jpg|png|jpeg';
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+			if(! $this->upload->do_upload('file') )
+			$this->upload->display_errors();
+			$media = $this->upload->data('file');
 
 			$rows 				= $this->db->query("
-								INSERT INTO payment (userid,masuk,keluar,tgl_paid,type) values 
-								('$user','$masuk','$keluar','$tgl','$type')
+								INSERT INTO karakter (nama,kode,file,type,is_active,stok_bayi,stok_anak) values 
+								('$nama','$kode','$fileName','$kat','1','0','0')
 								");
 			
 			if($rows) {

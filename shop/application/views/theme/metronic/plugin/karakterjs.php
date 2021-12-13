@@ -436,16 +436,16 @@ var KTFormWidgets = function () {
 
             form.validate({
                 rules: {
-                    user: {
+                    kat: {
                         required: true
                     },
-                    masuk: {
+                    nama: {
                         required: true
                     },
-                    keluar: {
+                    kode: {
                         required: true
                     },
-                    tgl: {
+                    file: {
                         required: true
                     }
                 }
@@ -458,7 +458,7 @@ var KTFormWidgets = function () {
             btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
 
             form.ajaxSubmit({
-                url: "<?PHP echo base_url(); ?>payment/insert",
+                url: "<?PHP echo base_url(); ?>karakter/insert",
                 type: "POST",
                 beforeSend: function(){ 
                    KTApp.block('#addnewfac .modal-content', {
@@ -478,7 +478,7 @@ var KTFormWidgets = function () {
                             KTApp.unblock('#addnewfac .modal-content');
                             
                             $('#addnewfac').modal('toggle');
-                            $('#tabledata').DataTable().ajax.reload();
+                            loadDataAwal();
                             $('#forminsert')[0].reset();
                             // $('.select2norm').val(null).trigger('change');
                             var alert = $('#suksesinsert');

@@ -12,7 +12,7 @@ $getUser 	= $this->db->query("
 			SELECT * from user order by name
 			")->result_array();
 $getType 	= $this->db->query("
-			SELECT * from payment_type order by 1
+			SELECT * from design_type where status='1' order by 1
 			")->result_array();
 ?>
 <!-- <script src="<?PHP echo base_url(); ?>assets/zxcvbn.js"></script> -->
@@ -184,66 +184,52 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 						<div class="modal-body kt-portlet kt-portlet--tabs" style="margin-bottom: 0px;">
 							<div class="kt-portlet__head">
 								<div class="kt-portlet__head-label">
-									<h3 class="kt-portlet__head-title">Buat Pembayaran</h3>
+									<h3 class="kt-portlet__head-title">Buat Karakter Baru</h3>
 								</div>
 								<div class="kt-portlet__head-toolbar">
 								</div>
 							</div>
 							<div class="kt-portlet__body">
 								<div class="form-group row">
-									<label class="col-form-label col-lg-2 col-sm-12">Ke/Dari</label>
-									<div class="col-lg-10 col-sm-12">
-										<div class='input-group'>
-											<select name="user" class="form-control" id="user" placeholder="Ke/Dari">
-												<option value="">Pilih...</option>
-												<?PHP foreach ($getUser as $usr) { ?>
-													<option value="<?PHP echo $usr['userid']; ?>"><?PHP echo $usr['name']; ?></option>
-												<?PHP } ?>
-											</select>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Uang Masuk</label>
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Kategori</label>
 									<div class="col-lg-10 col-sm-12">
 										<div class='input-group'>
 											<div class='input-group'>
-												<input type="number" name="masuk" class="form-control" id="masuk" placeholder="Uang Masuk">
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Uang Keluar</label>
-									<div class="col-lg-10 col-sm-12">
-										<div class='input-group'>
-											<div class='input-group'>
-												<input type="number" name="keluar" class="form-control" id="keluar" placeholder="Uang Keluar">
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Tgl. Pembayaran</label>
-									<div class="col-lg-10 col-sm-12">
-										<div class='input-group'>
-											<input type="text" name="tgl" class="form-control dp" id="tgl" placeholder="Tgl. Pembayaran">
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Tipe Pembayaran</label>
-									<div class="col-lg-10 col-sm-12">
-										<div class='input-group'>
-											<select name="type" class="form-control" id="type" placeholder="Type Pembayaran" style="width: 100%;">
-												<?PHP foreach ($getType as $type) { ?>
+												<select name="kat" class="form-control" id="kat" placeholder="Kategori">
+													<?PHP foreach ($getType as $type) { ?>
 													<option value="<?PHP echo $type['id']; ?>"><?PHP echo $type['label']; ?></option>
-												<?PHP } ?>
-											</select>
+													<?PHP } ?>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label class="col-form-label col-lg-2 col-sm-12">Nama</label>
+									<div class="col-lg-10 col-sm-12">
+										<div class='input-group'>
+											<input type="text" name="nama" class="form-control" id="nama" placeholder="Nama">
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Kode Karakter</label>
+									<div class="col-lg-10 col-sm-12">
+										<div class='input-group'>
+											<div class='input-group'>
+												<input type="text" name="kode" class="form-control" id="kode" placeholder="Kode Karakter">
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label">File</label>
+									<div class="col-lg-10 col-sm-12">
+										<div class='input-group'>
+											<input type="file" name="file" class="form-control" id="file" placeholder="File">
 										</div>
 									</div>
 								</div>
@@ -251,7 +237,6 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-							<button type="submit" id="saveandcreate" class="btn btn-primary">Simpan & Buat Pembayaran Baru</button>
 							<button type="submit" id="saveinsert" class="btn btn-success">Simpan & Selesai</button>
 						</div>
 					</form>
