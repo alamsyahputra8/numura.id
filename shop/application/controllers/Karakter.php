@@ -85,8 +85,8 @@ class Karakter extends CI_Controller {
 								<span class="text-muted font-weight-bold font-size-sm pb-4">'.$data['kode'].'</span>
 								<div>
 								';
-									if ($data['sisa_bayi']<0) { $colbay = 'danger'; } else if ($data['sisa_bayi']>=0 and $data['sisa_bayi']<=4) { $colbay = 'warning'; } else { $colbay = 'success'; }
-									if ($data['sisa_anak']<0) { $colan = 'danger'; } else if ($data['sisa_anak']>=0 and $data['sisa_anak']<=4) { $colan = 'warning'; } else { $colan = 'success'; }
+									if ($data['sisa_bayi']<0) { $colbay = 'danger'; } else if ($data['sisa_bayi']==0) { $colbay ='dark'; } else if ($data['sisa_bayi']>0 and $data['sisa_bayi']<=4) { $colbay = 'warning'; } else { $colbay = 'success'; }
+									if ($data['sisa_anak']<0) { $colan = 'danger'; } else if ($data['sisa_anak']==0) { $colan ='dark'; } else if ($data['sisa_anak']>0 and $data['sisa_anak']<=4) { $colan = 'warning'; } else { $colan = 'success'; }
 									echo '
 									<button type="button" class="btn btn-'.$colbay.' btn-sm font-weight-bolder font-size-sm py-2">
 										BAYI : '.$data['sisa_bayi'].'
