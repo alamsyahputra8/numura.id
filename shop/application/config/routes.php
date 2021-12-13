@@ -83,11 +83,14 @@ $route['printpengiriman/(:any)'] 	= 'viewpanel/printpengiriman/$1';
 // DATA PEMBAYARAN
 $route['payment'] 				= 'viewpanel/payment';
 
-// DATA PEMBAYARAN
+// DATA STOK
 $route['stok'] 					= 'viewpanel/stok';
 $route['detailstok/(:any)'] 	= 'viewpanel/detailstok/$1';
 $route['stokpjg'] 				= 'viewpanel/stokpjg';
 $route['detailstokpjg/(:any)'] 	= 'viewpanel/detailstokpjg/$1';
+
+// DATA KARAKTER
+$route['karakter'] 				= 'viewpanel/karakter';
 
 // DATA DIGITAL INVITATION
 $route['digitalinv'] 			= 'viewpanel/digitalinv';
