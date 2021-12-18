@@ -303,7 +303,7 @@
                                             </thead>
                                             <tbody>
                                                 <?PHP
-                                                $getSize    = $this->db->query("SELECT * FROM size where label not like '%SETELAN%' order by sort")->result_array();
+                                                $getSize    = $this->db->query("SELECT * FROM size where label not like '%SETELAN%' and flag!=0 order by sort")->result_array();
                                                 foreach($getSize as $size) {
                                                 ?>
                                                 <tr>
