@@ -630,23 +630,23 @@ class Stok extends CI_Controller {
 				<thead>
 					<tr>
 						<th style="width: 150px!important;">WARNA</th>';
-						foreach($getSize as $size) {
-						echo '<th style="max-width: 50px!important;" class="text-center">'.$size['label'].'</th>';
+						// foreach($getSize as $size) {
+						foreach ($getColor as $color) {
+						echo '<th style="max-width: 50px!important;" class="text-center">'.$color['label'].'</th>';
 						}
 					echo '
 					</tr>
 				</thead>
 				<tbody>
 			';
-			foreach ($getColor as $color) {
-				$colid 	= $color['id'];
-
+			foreach($getSize as $size) {
+				$sizeid 	= $size['id_size'];
 				echo '
 				<tr>
-					<td>'.$color['label'].'</td>';
+					<td>'.$size['label'].'</td>';
 
-					foreach($getSize as $size) {
-						$sizeid 	= $size['id_size'];
+					foreach ($getColor as $color) {
+						$colid 	= $color['id'];
 
 						$getPrice 	= $this->db->query("
 									SELECT * from suplier_harga where id_suplier='$id' and id_size='$sizeid'
