@@ -20,7 +20,7 @@ $getColor 	= $this->db->query("
 			")->result_array();
 
 $getColor2 	= $this->db->query("
-			SELECT * from color where type!=1 order by 1
+			SELECT * from color where type=2 order by 1
 			")->result_array();
 
 $getSize 	= $this->db->query("
