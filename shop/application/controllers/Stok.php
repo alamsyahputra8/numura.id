@@ -430,24 +430,24 @@ class Stok extends CI_Controller {
 			<table class="table table-striped- table-bordered table-hover table-sm">
 				<thead>
 					<tr>
-						<th style="width: 150px!important;">WARNA</th>';
-						foreach($getSize as $size) {
-						echo '<th style="max-width: 50px!important;" class="text-center">'.$size['label'].'</th>';
+						<th style="width: 150px!important;">UKURAN</th>';
+						// foreach($getSize as $size) {
+						foreach ($getColor as $color) {
+						echo '<th style="max-width: 50px!important;" class="text-center">'.$color['label'].'</th>';
 						}
 					echo '
 					</tr>
 				</thead>
 				<tbody>
 			';
-			foreach ($getColor as $color) {
-				$colid 	= $color['id'];
+			foreach($getSize as $size) {
+				$sizeid 	= $size['id_size'];
 
 				echo '
 				<tr>
-					<td>'.$color['label'].'</td>';
-
-					foreach($getSize as $size) {
-						$sizeid 	= $size['id_size'];
+					<td>'.$size['label'].'</td>';
+					foreach ($getColor as $color) {
+						$colid 	= $color['id'];
 
 						$getJml 	= $this->db->query("
 									SELECT * FROM stok_order_detail where id_order='$id' and size='$sizeid' and color='$colid'
