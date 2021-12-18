@@ -175,7 +175,7 @@ $getColor2 	= $this->db->query("
 			")->result_array();
 
 $getSize 	= $this->db->query("
-			SELECT * from size order by sort
+			SELECT * from size where flag=1 order by sort
 			")->result_array();
 ?>
 <style>
