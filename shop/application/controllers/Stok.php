@@ -419,7 +419,7 @@ class Stok extends CI_Controller {
 						")->result_array();
 
 			$getSize 	= $this->db->query("
-						SELECT * from size where 
+						SELECT * from size where flag='1' and
 						id_size in (
 							SELECT id_size from suplier_harga where id_suplier='$idsuplier'
 						)
@@ -496,6 +496,7 @@ class Stok extends CI_Controller {
 
 			$getSize 	= $this->db->query("
 						SELECT a.*, (select label_size from suplier_harga where id_suplier='$idsuplier' and id_size=a.id_size) label_size from size a where 
+						flag='1' and
 						id_size in (
 							SELECT id_size from suplier_harga where id_suplier='$idsuplier'
 						)
@@ -618,7 +619,7 @@ class Stok extends CI_Controller {
 						")->result_array();
 
 			$getSize 	= $this->db->query("
-						SELECT * from size where 
+						SELECT * from size where flag='1' and 
 						id_size in (
 							SELECT id_size from suplier_harga where id_suplier='$id'
 						)
