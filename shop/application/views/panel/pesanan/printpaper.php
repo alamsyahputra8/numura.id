@@ -25,7 +25,8 @@
 		position: absolute;
 	    /*top: 0.5cm;*/
 	    bottom: 0.5cm;
-	    right: 0.5cm;
+	    /*right: 0.5cm;*/
+	    left: 0.5cm;
 	    height: 15.5cm;
 	    /*border: 1px solid red;*/
 	}
