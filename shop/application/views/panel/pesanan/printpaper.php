@@ -129,7 +129,7 @@ $qPes 		= "
 					(SELECT name from user where userid=a.userid) reseller,
 					(select nama_penerima from pengiriman x left join pengiriman_detail xb on x.id_pengiriman=xb.id_pengiriman where xb.id_pesanan=a.id_pesanan) penerima,
 					(select x.id_pengiriman from pengiriman x left join pengiriman_detail xb on x.id_pengiriman=xb.id_pengiriman where xb.id_pesanan=a.id_pesanan) id_pengiriman
-				FROM pesanan a where flag_restok=1  and status in ($statusvar) $condpes
+				FROM pesanan a where flag_restok=1 and flag_pengiriman=1  and status in ($statusvar) $condpes
 				order by karakter
 			) AS final
 			order by id_pengiriman,karakter
