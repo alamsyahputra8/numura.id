@@ -5,9 +5,10 @@
 	}
 	#penerima {
 		position: absolute;
-		transform: scaleY(-1) scaleX(-1);
+		/*transform: scaleY(-1) scaleX(-1);*/
 	    /*left: 0.5cm;*/
-	    bottom: 0.5cm;
+	    /*bottom: 0.5cm;*/
+	    top: 0.5cm;
 	    width: 100%;
 	    text-align: center;
 	}
@@ -19,10 +20,11 @@
 	}
 	.bgbox {
 		/*position: absolute;*/
-		transform: scaleY(-1) scaleX(-1);
+		/*transform: scaleY(-1) scaleX(-1);*/
 		/*border: 1px solid black;*/
 		position: absolute;
-	    top: 0.5cm;
+	    /*top: 0.5cm;*/
+	    bottom: 0.5cm;
 	    right: 0.5cm;
 	    height: 15.5cm;
 	    /*border: 1px solid red;*/
