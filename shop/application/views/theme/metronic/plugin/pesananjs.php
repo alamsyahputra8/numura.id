@@ -217,15 +217,25 @@ $(document).on('change', '#ed_karakter', function(e){
     });
 });
 
+$(document).on('change', '#type', function(e){
+    e.preventDefault();
+    $('#ukuran').trigger('change');
+});
+$(document).on('change', '#ed_type', function(e){
+    e.preventDefault();
+    $('#ed_ukuran').trigger('change');
+});
+
 $(document).on('change', '#ukuran', function(e){
     e.preventDefault();
 
     var uid = $(this).val();
+    var kt = $('#type').val();
 
      $.ajax({
         url: '<?PHP echo base_url(); ?>pesanan/getSizeAvail',
         type: 'POST',
-        data: 'id='+uid,
+        data: 'id='+uid+'&kt='+kt,
     })
     .done(function(data){
         $('#warna').html(data);
@@ -239,11 +249,12 @@ $(document).on('change', '#ed_ukuran', function(e){
     e.preventDefault();
 
     var uid = $(this).val();
+    var kt = $('#ed_type').val();
 
      $.ajax({
         url: '<?PHP echo base_url(); ?>pesanan/getSizeAvail',
         type: 'POST',
-        data: 'id='+uid,
+        data: 'id='+uid+'&kt='+kt,
     })
     .done(function(data){
         $('#ed_warna').html(data);

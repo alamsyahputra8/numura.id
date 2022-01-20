@@ -308,6 +308,7 @@ class Pesanan extends CI_Controller {
 	public function getSizeAvail(){
 		if(checkingsessionpwt()){
 			$sizeid		= trim(strip_tags(stripslashes($this->input->post('id',true))));
+			$type		= trim(strip_tags(stripslashes($this->input->post('kt',true))));
 			
 			$getColor 	= $this->db->query("
 						SELECT * from color order by 1
@@ -319,19 +320,19 @@ class Pesanan extends CI_Controller {
 				$getJml 	= $this->db->query("
 							SELECT sum(jml_order) jml_order FROM stok_order_detail a left join stok_order b
 							on a.id_order=b.id_order
-							where a.size='$sizeid' and a.color='$colid' and a.type='1' and b.is_finish=1
+							where a.size='$sizeid' and a.color='$colid' and a.type='$type' and b.is_finish=1
 							")->result_array();
 				$dJml 		= array_shift($getJml);
 				$jml 		= $this->formula->rupiah3($dJml['jml_order']);
 
 				$qJml 		= "
 							SELECT * FROM pesanan where status not in (3) and ukuran='$sizeid' 
-							and warna='$colid' and kaos_type='1'
+							and warna='$colid' and kaos_type='$type'
 							";
 				$cekJml 	= $this->db->query($qJml)->num_rows();
 
 				$qSend 		= "
-							SELECT * from pesanan where kaos_type='1' and id_pesanan in (
+							SELECT * from pesanan where kaos_type='$type' and id_pesanan in (
 								select id_pesanan from pengiriman_detail where id_pengiriman in (
 							    	select id_pengiriman from pengiriman where id_pengiriman in (
 							            select data from data_log where menu='pengiriman' and activity='send' and date_time>='2020-10-25'

@@ -16,15 +16,24 @@ $getType 	= $this->db->query("
 			")->result_array();
 
 $getColor 	= $this->db->query("
-			SELECT * from color order by 1
+			SELECT * from color where type=1 order by 1
+			")->result_array();
+
+$getColor2 	= $this->db->query("
+			SELECT * from color where type=2 order by 1
 			")->result_array();
 
 $getSize 	= $this->db->query("
-			SELECT * from size order by sort
+			SELECT * from size where flag='1' order by sort
+			")->result_array();
+
+$getSup 	= $this->db->query("
+			SELECT * from suplier order by is_default desc
 			")->result_array();
 ?>
 <!-- <script src="<?PHP echo base_url(); ?>assets/zxcvbn.js"></script> -->
 <style>
+.modal-open .modal { overflow: scroll!important; }
 .dataTables_wrapper table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before {
 	top: 25px!important;
 }
@@ -73,6 +82,27 @@ meter[value="4"]::-moz-meter-bar { background: green; }
     padding-left: 0em;
     margin-top: 1em;
 }
+/*#availstock table {
+   border-collapse: collapse;
+   overflow: hidden;
+}
+#availstock td, th {
+   padding: 10px;
+   position: relative;
+}
+#availstock tr:hover{
+   background-color: rgba(247, 247, 247, 0.5);
+}
+
+#availstock td:hover::after,#availstock th:hover::after { 
+   background-color: rgba(247, 247, 247, 0.5);
+   content: '\00a0';  
+   height: 10000px;    
+   left: 0;
+   position: absolute;  
+   top: -5000px;
+   width: 100%; 
+}*/
 </style>
 <!-- begin:: Content -->
 <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
@@ -199,6 +229,19 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 							</div>
 							<div class="kt-portlet__body">
 								<div class="form-group row">
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Suplier</label>
+									<div class="col-lg-10 col-sm-12">
+										<div class='input-group'>
+											<select name="suplier" class="form-control kt_select2norm" id="suplier" placeholder="Pilih Suplier" style="width: 100%;">
+												<?PHP foreach ($getSup as $sup) { ?>
+												<option value="<?PHP echo $sup['id']; ?>"><?PHP echo $sup['nama_suplier']; ?></option>
+												<?PHP } ?>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row">
 									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Tgl. Transaksi</label>
 									<div class="col-lg-10 col-sm-12">
 										<div class='input-group'>
@@ -218,47 +261,58 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 									</div>
 								</div>
 								<!-- <div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div> -->
-								
-								<table class="table table-striped- table-bordered table-hover table-sm">
-									<thead>
-										<tr>
-											<th style="width: 150px!important;">WARNA</th>
-											<?PHP foreach($getSize as $size) { ?>
-											<th style="max-width: 50px!important;" class="text-center"><?PHP echo $size['label']; ?></th>
-											<?PHP } ?>
-										</tr>
-									</thead>
-									<tbody>
-										<?PHP
-										foreach ($getColor as $color) {
-											$colid 	= $color['id'];
-										?>
+
+								<div id="bgdetstokins">
+									<table class="table table-striped- table-bordered table-hover table-sm">
+										<thead>
 											<tr>
-												<td><?PHP echo $color['label']; ?></td>
-												<?PHP
-												foreach($getSize as $size) {
-													$sizeid 	= $size['id_size']; 
-													if (($size['id_size']!=5 and $size['id_size']!=6 and $size['id_size']!=7) and ($color['id']==1 or $color['id']==2)) {
-														$value 	= '12';
-													} else if (($size['id_size']!=5 and $size['id_size']!=6 and $size['id_size']!=7) and ($color['id']!=1 and $color['id']!=2)) {
-														$value 	= '0';
-													} else if (($size['id_size']==5 or $size['id_size']==6 or $size['id_size']==7) and ($color['id']==1 or $color['id']==2)) {
-														$value 	= '12';
-													} else {
-														$value 	= '0';
-													}
-													$prc 	= $size['hpp'];
-													@$tjml 	+= $value;
-													@$tprc 	+= $value*$prc;
-												?>
-												<td class="text-center">
-													<input type="number" name="pcscol<?PHP echo $colid; ?>siz<?PHP echo $sizeid; ?>" class="form-control pcsval" id="pcs" placeholder="0" style="width: 100%;" value="<?PHP echo $value; ?>">
-												</td>
+												<th style="width: 150px!important;">WARNA</th>
+												<?PHP foreach($getSize as $size) { ?>
+												<th style="max-width: 50px!important;" class="text-center"><?PHP echo $size['label']; ?></th>
 												<?PHP } ?>
 											</tr>
-										<?PHP } ?>
-									</tbody>
-								</table>
+										</thead>
+										<tbody>
+											<?PHP
+											foreach ($getColor as $color) {
+												$gDefPS = array_shift($getSup);
+												$defids = $gDefPS['id'];
+
+												$colid 	= $color['id'];
+											?>
+												<tr>
+													<td><?PHP echo $color['label']; ?></td>
+													<?PHP
+													foreach($getSize as $size) {
+														$sizeid 	= $size['id_size']; 
+														if (($size['id_size']!=5 and $size['id_size']!=6 and $size['id_size']!=7) and ($color['id']==1 or $color['id']==2)) {
+															$value 	= '1';
+														} else if (($size['id_size']!=5 and $size['id_size']!=6 and $size['id_size']!=7) and ($color['id']!=1 and $color['id']!=2)) {
+															$value 	= '0';
+														} else if (($size['id_size']==5 or $size['id_size']==6 or $size['id_size']==7) and ($color['id']==1 or $color['id']==2)) {
+															$value 	= '1';
+														} else {
+															$value 	= '0';
+														}
+
+														$getPrice 	= $this->db->query("
+																	SELECT * from suplier_harga where id_suplier='$defids' and id_size='$sizeid'
+																	")->result_array();
+														$sprice 	= array_shift($getPrice);
+														// $prc 	= $size['hpp'];
+														$prc 		= $sprice['harga'];
+														@$tjml 		+= $value;
+														@$tprc 		+= $value*$prc;
+													?>
+													<td class="text-center">
+														<input type="number" name="pcscol<?PHP echo $colid; ?>siz<?PHP echo $sizeid; ?>" class="form-control pcsval" id="pcs" placeholder="0" style="width: 100%;" value="<?PHP echo $value; ?>">
+													</td>
+													<?PHP } ?>
+												</tr>
+											<?PHP } ?>
+										</tbody>
+									</table>
+								</div>
 
 								<div class="form-group row">
 									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Total Barang</label>
@@ -295,6 +349,277 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 		</div>
 		<!-- END MODAL INSERT -->
 
+		<!-- MODAL UPDATE -->
+		<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document" style="min-width: 90%!important;">
+				<div class="modal-content">
+					<!--div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Update Data : <b id="nameroles"></b></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						</button>
+					</div-->
+
+					<form class="kt-form kt-form--label-left" id="formupdate" enctype="multipart/form-data" method="POST">
+						<div class="modal-body kt-portlet kt-portlet--tabs" style="margin-bottom: 0px;">
+							<div class="kt-portlet__head">
+								<div class="kt-portlet__head-label">
+									<h3 class="kt-portlet__head-title">Update Data : <b id="namedata"></b></h3>
+								</div>
+								<div class="kt-portlet__head-toolbar">
+								</div>
+							</div>
+							<div class="kt-portlet__body">
+
+								<div class="form-group row">
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Suplier</label>
+									<div class="col-lg-10 col-sm-12">
+										<div class='input-group'>
+											<input type="hidden" name="ed_suplier" id="ed_suplier">
+											<select name="ed_supliersel" class="form-control" id="ed_supliersel" placeholder="Pilih Suplier" required disabled>
+												<?PHP 
+												$getSupX 	= $this->db->query("
+															SELECT * from suplier order by is_default desc
+															")->result_array();
+												foreach ($getSupX as $sup) { 
+												?>
+												<option value="<?PHP echo $sup['id']; ?>"><?PHP echo $sup['nama_suplier']; ?></option>
+												<?PHP } ?>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Tgl. Transaksi</label>
+									<div class="col-lg-10 col-sm-12">
+										<div class='input-group'>
+											<input type="hidden" name="ed_id" id="ed_id">
+											<input type="text" name="ed_tgl" class="form-control dp" id="ed_tgl" placeholder="Tgl. Transaksi">
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Keterangan</label>
+									<div class="col-lg-10 col-sm-12">
+										<div class='input-group'>
+											<div class='input-group'>
+												<input type="text" name="ed_label" class="form-control" id="ed_label" placeholder="Keterangan">
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- <div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div> -->
+								
+								<div id="bgdetailstok"></div>
+
+								<div class="form-group row">
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Total Barang</label>
+									<div class="col-lg-10 col-sm-12">
+										<div class='input-group'>
+											<div class='input-group'>
+												<input type="number" name="ed_totalpcs" class="form-control" id="ed_totalpcs" placeholder="0" readonly>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="role" class="col-lg-2 col-sm-12 col-form-label">Total Pembayaran</label>
+									<div class="col-lg-10 col-sm-12">
+										<div class='input-group'>
+											<div class='input-group'>
+												<input type="number" name="ed_total" class="form-control" id="ed_total" placeholder="0" readonly>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" id="saveupdate" class="btn btn-primary">Save</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+		<!-- END MODAL UPDATE -->
+
+		<!-- MODAL DETAIL -->
+		<div class="modal fade" id="detailmod" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					
+					<form class="kt-form kt-form--label-left" id="formdetail" enctype="multipart/form-data" method="POST">
+						<div class="modal-body kt-portlet kt-portlet--tabs" style="margin-bottom: 0px;">
+							<div class="kt-portlet__head">
+								<div class="kt-portlet__head-label">
+									<h3 class="kt-portlet__head-title">Detail Data : <b id="namedatad"></b></h3>
+								</div>
+								<div class="kt-portlet__head-toolbar">
+								</div>
+							</div>
+							<div class="kt-portlet__body">
+								<div id="bgdetailstokdet"></div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+		<!-- END MODAL DETAIL -->
+
+		<!-- MODAL DELETE -->
+		<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" style="display: flex;">
+						<div class="swal2-header">
+							<div class="swal2-icon swal2-warning swal2-animate-warning-icon" style="display: flex;"></div>
+							<h2 class="swal2-title" id="swal2-title" style="display: flex;">Are you sure?</h2>
+						</div>
+						<div class="swal2-content">
+							<div id="swal2-content" style="display: block;">You won't be able to revert this!</div>
+						</div>
+						<div class="swal2-actions" style="display: flex;">
+							<form method="POST">
+							<input type="hidden" name="iddel" id="iddel" value="">
+							<center>
+							<button type="button" id="deleteBtn" class="swal2-confirm swal2-styled" aria-label="" style="border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
+								Yes, delete it!
+							</button>
+							<button type="button" class="swal2-cancel swal2-styled" data-dismiss="modal">Cancel</button>
+							</center>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END MODAL DELETE -->
+
+		<!-- MODAL PAYMENT -->
+		<div class="modal fade" id="bayar" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" style="display: flex;">
+						<div class="swal2-header">
+							<div class="swal2-icon swal2-warning swal2-animate-warning-icon" style="display: flex;"></div>
+							<h2 class="swal2-title" id="swal2-title" style="display: flex;">Are you sure?</h2>
+						</div>
+						<div class="swal2-content">
+							<div id="swal2-content" style="display: block;">You won't be able to revert this!</div>
+						</div>
+						<div class="swal2-actions" style="display: flex;">
+							<form id="formbayar" method="POST">
+							<input type="hidden" name="idorder" id="idorder" value="">
+							<input type="text" name="tglbayar" class="form-control dp" id="tglbayar" placeholder="Tgl. Bayar">
+							<input type="number" class="form-control" name="jmlbayar" id="jmlbayar" placeholder="Jumlah Bayar">
+							<center>
+							<button type="submit" id="paymentBtn" class="swal2-confirm swal2-styled" aria-label="" style="border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214); float:left;">
+								Bayar
+							</button>
+							<button type="button" class="swal2-cancel swal2-styled" data-dismiss="modal">Cancel</button>
+							</center>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END MODAL PAYMENT -->
+
+		<!-- MODAL FINISH -->
+		<div class="modal fade" id="finish" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" style="display: flex;">
+						<div class="swal2-header">
+							<div class="swal2-icon swal2-warning swal2-animate-warning-icon" style="display: flex;"></div>
+							<h2 class="swal2-title" id="swal2-title" style="display: flex;">Are you sure?</h2>
+						</div>
+						<div class="swal2-content">
+							<div id="swal2-content" style="display: block;">You won't be able to revert this!</div>
+						</div>
+						<div class="swal2-actions" style="display: flex;">
+							<form id="formfinish" method="POST">
+							<input type="hidden" name="idorderf" id="idorderf" value="">
+							<center>
+							<button type="submit" id="finishBtn" class="swal2-confirm swal2-styled" aria-label="" style="border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
+								Selesai
+							</button>
+							<button type="button" class="swal2-cancel swal2-styled" data-dismiss="modal">Cancel</button>
+							</center>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END MODAL FINISH -->
+
+		<!-- MODAL PRINT -->
+		<div class="modal fade" id="print" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" style="display: flex;">
+						<div class="swal2-header">
+							<div class="swal2-icon swal2-warning swal2-animate-warning-icon" style="display: flex;"></div>
+							<h2 class="swal2-title" id="swal2-title" style="display: flex;">Print data Pesanan?</h2>
+						</div>
+						<div class="swal2-content">
+							<!-- <div id="swal2-content" style="display: block;">You won't be able to revert this!</div> -->
+						</div>
+						<div class="swal2-actions" style="display: flex;">
+							<center>
+							<a href="<?PHP echo base_url(); ?>printpesanan/pending" target="_blank" type="button" id="printfile" class="swal2-confirm swal2-styled" aria-label="" style="border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
+								Ya, print pesanan!
+							</a>
+							<button type="button" class="swal2-cancel swal2-styled" data-dismiss="modal">Cancel</button>
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END MODAL PRINT -->
+
+		<!-- MODAL APPROVE -->
+		<div class="modal fade" id="proses" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" style="display: flex;">
+						<div class="swal2-header">
+							<div class="swal2-icon swal2-warning swal2-animate-warning-icon" style="display: flex;"></div>
+							<h2 class="swal2-title" id="swal2-title" style="display: flex;">Proses pesanan sekarang?</h2>
+						</div>
+						<div class="swal2-content">
+							<div id="swal2-content" style="display: block;">You won't be able to revert this!</div>
+						</div>
+						<div class="swal2-actions" style="display: flex;">
+							<form method="POST">
+							<input type="hidden" name="idapp" id="idapp" value="">
+							<center>
+							<button type="button" id="prosesBtn" class="swal2-confirm swal2-styled" aria-label="" style="border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
+								Ya, proses sekarang!
+							</button>
+							<button type="button" class="swal2-cancel swal2-styled" data-dismiss="modal">Tidak</button>
+							</center>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END MODAL APPROVE -->
+
 		<div class="kt-portlet__body">
 			<!-- <div>
 				Perhatian! Setelah membuat pesanan, mohon buat juga data pengiriman pada menu Pengiriman, atau bisa klik 
@@ -320,6 +645,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 						<thead>
 							<tr>
 								<th>KETERANGAN</th>
+								<th>SUPLIER</th>
 								<th>JUMLAH</th>
 								<th>TOTAL</th>
 								<th>BAYAR</th>
@@ -331,6 +657,7 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 						<tfoot>
 							<tr>
 								<th>KETERANGAN</th>
+								<th>SUPLIER</th>
 								<th>JUMLAH</th>
 								<th>TOTAL</th>
 								<th>BAYAR</th>
@@ -344,29 +671,32 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 				</div>
 
 				<div class="tab-pane" id="availstock" role="tabpanel">
+					<div class="col-12"><h3><i class="fas fa-tshirt"></i> Stok Warna Utama</h3></div><br>
 					<!--begin: Datatable -->
 					<table class="table table-striped- table-bordered table-hover table-checkable">
 						<thead>
 							<tr>
-								<th style="width: 150px!important;">WARNA</th>
-								<?PHP foreach($getSize as $size) { ?>
-								<th style="max-width: 50px!important;" class="text-center"><?PHP echo $size['label']; ?></th>
+								<th style="width: 150px!important;">UKURAN</th>
+								<?PHP foreach($getColor as $color) { ?>
+								<th style="max-width: 50px!important;" class="text-center"><i class="fa fa-circle" style="color: <?PHP echo $color['code_color']; ?>;"></i> <?PHP echo $color['label']; ?></th>
 								<?PHP } ?>
 							</tr>
 						</thead>
 						<tbody>
 							<?PHP
-							foreach ($getColor as $color) {
-								$colid 	= $color['id'];
+							foreach ($getSize as $size) {
+								$sizeid = $size['id_size'];
 							?>
 								<tr>
-									<td><?PHP echo $color['label']; ?></td>
+									<td><?PHP echo $size['label']; ?></td>
 									<?PHP
-									foreach($getSize as $size) {
-										$sizeid 	= $size['id_size']; 
+									foreach($getColor as $color) {
+										$colid 		= $color['id']; 
 										
 										$getJml 	= $this->db->query("
-													SELECT sum(jml_order) jml_order FROM stok_order_detail where size='$sizeid' and color='$colid' and type='2'
+													SELECT sum(jml_order) jml_order FROM stok_order_detail a left join stok_order b
+													on a.id_order=b.id_order
+													where a.size='$sizeid' and a.color='$colid' and a.type='2' and b.is_finish=1
 													")->result_array();
 										$dJml 		= array_shift($getJml);
 										$jml 		= $this->formula->rupiah3($dJml['jml_order']);
@@ -387,9 +717,18 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 													) and ukuran='$sizeid' and warna='$colid'
 													";
 										$cekSend 	= $this->db->query($qSend)->num_rows();
+
+										$sisastokfin = ($jml-$cekJml)-$cekSend;
+										if ($sisastokfin<1) {
+											$colte	= 'style="color: #bdbcbc;"';	
+										} else if ($sisastokfin>0 and $sisastokfin<5) {
+											$colte	= 'style="color: #cf5555;"';	
+										} else {
+											$colte	= '';
+										}
 									?>
-									<td class="text-center">
-										<b><?PHP echo ($jml-$cekJml)-$cekSend; ?></b> pcs
+									<td class="text-center" <?PHP echo $colte; ?>>
+										<b><?PHP echo $sisastokfin; ?></b> pcs
 									</td>
 									<?PHP } ?>
 								</tr>
@@ -397,204 +736,78 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 						</tbody>
 					</table>
 					<!--end: Datatable -->
+					<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+
+					<div class="col-12"><h3><i class="fas fa-tshirt"></i> Stok Warna Lama</h3></div><br>
+					<!--begin: Datatable -->
+					<table class="table table-striped- table-bordered table-hover table-checkable">
+						<thead>
+							<tr>
+								<th style="width: 150px!important;">UKURAN</th>
+								<?PHP foreach($getColor2 as $color) { ?>
+								<th style="max-width: 50px!important;" class="text-center"><i class="fa fa-circle" style="color: <?PHP echo $color['code_color']; ?>;"></i> <?PHP echo $color['label']; ?></th>
+								<?PHP } ?>
+							</tr>
+						</thead>
+						<tbody>
+							<?PHP
+							foreach ($getSize as $size) {
+								$sizeid = $size['id_size'];
+							?>
+								<tr>
+									<th><?PHP echo $size['label']; ?></th>
+									<?PHP
+									foreach($getColor2 as $color) {
+										$colid 		= $color['id']; 
+										
+										$getJml 	= $this->db->query("
+													SELECT sum(jml_order) jml_order FROM stok_order_detail a left join stok_order b
+													on a.id_order=b.id_order
+													where a.size='$sizeid' and a.color='$colid' and a.type='2' and b.is_finish=1
+													")->result_array();
+										$dJml 		= array_shift($getJml);
+										$jml 		= $this->formula->rupiah3($dJml['jml_order']);
+
+										$qJml 		= "
+													SELECT * FROM pesanan where status not in (3) and ukuran='$sizeid' 
+													and warna='$colid' and kaos_type='2'
+													";
+										$cekJml 	= $this->db->query($qJml)->num_rows();
+
+										$qSend 		= "
+													SELECT * from pesanan where kaos_type='2' and id_pesanan in (
+														select id_pesanan from pengiriman_detail where id_pengiriman in (
+													    	select id_pengiriman from pengiriman where id_pengiriman in (
+													            select data from data_log where menu='pengiriman' and activity='send' and date_time>='2020-10-25'
+													        )
+													    )
+													) and ukuran='$sizeid' and warna='$colid'
+													";
+										$cekSend 	= $this->db->query($qSend)->num_rows();
+
+										$sisastokfin = ($jml-$cekJml)-$cekSend;
+										if ($sisastokfin<1) {
+											$colte	= 'style="color: #bdbcbc;"';	
+										} else if ($sisastokfin>0 and $sisastokfin<5) {
+											$colte	= 'style="color: #cf5555;"';
+										} else {
+											$colte	= '';
+										}
+									?>
+									<td class="text-center" <?PHP echo $colte; ?>>
+										<b><?PHP echo $sisastokfin; ?></b> pcs
+									</td>
+									<?PHP } ?>
+								</tr>
+							<?PHP } ?>
+						</tbody>
+					</table>
+					<!--end: Datatable -->
+					<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
 				</div>
 			</div>
-
-			<!-- MODAL UPDATE -->
-			<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-				<div class="modal-dialog modal-lg" role="document">
-					<div class="modal-content">
-						<!--div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLongTitle">Update Data : <b id="nameroles"></b></h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							</button>
-						</div-->
-
-						<form class="kt-form kt-form--label-left" id="formupdate" enctype="multipart/form-data" method="POST">
-							<div class="modal-body kt-portlet kt-portlet--tabs" style="margin-bottom: 0px;">
-								<div class="kt-portlet__head">
-									<div class="kt-portlet__head-label">
-										<h3 class="kt-portlet__head-title">Update Data : <b id="namedata"></b></h3>
-									</div>
-									<div class="kt-portlet__head-toolbar">
-									</div>
-								</div>
-								<div class="kt-portlet__body">
-
-									<div class="form-group row">
-										<label for="role" class="col-lg-2 col-sm-12 col-form-label">Tgl. Transaksi</label>
-										<div class="col-lg-10 col-sm-12">
-											<div class='input-group'>
-												<input type="hidden" name="ed_id" id="ed_id">
-												<input type="text" name="ed_tgl" class="form-control dp" id="ed_tgl" placeholder="Tgl. Transaksi">
-											</div>
-										</div>
-									</div>
-
-									<div class="form-group row">
-										<label for="role" class="col-lg-2 col-sm-12 col-form-label">Keterangan</label>
-										<div class="col-lg-10 col-sm-12">
-											<div class='input-group'>
-												<div class='input-group'>
-													<input type="text" name="ed_label" class="form-control" id="ed_label" placeholder="Keterangan">
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- <div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div> -->
-									
-									<div id="bgdetailstok"></div>
-
-									<div class="form-group row">
-										<label for="role" class="col-lg-2 col-sm-12 col-form-label">Total Barang</label>
-										<div class="col-lg-10 col-sm-12">
-											<div class='input-group'>
-												<div class='input-group'>
-													<input type="number" name="ed_totalpcs" class="form-control" id="ed_totalpcs" placeholder="0" readonly>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="form-group row">
-										<label for="role" class="col-lg-2 col-sm-12 col-form-label">Total Pembayaran</label>
-										<div class="col-lg-10 col-sm-12">
-											<div class='input-group'>
-												<div class='input-group'>
-													<input type="number" name="ed_total" class="form-control" id="ed_total" placeholder="0" readonly>
-												</div>
-											</div>
-										</div>
-									</div>
-
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								<button type="submit" id="saveupdate" class="btn btn-primary">Save</button>
-							</div>
-						</form>
-
-					</div>
-				</div>
-			</div>
-			<!-- END MODAL UPDATE -->
-
-			<!-- MODAL DELETE -->
-			<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-sm" role="document">
-					<div class="modal-content">
-						<div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" style="display: flex;">
-							<div class="swal2-header">
-								<div class="swal2-icon swal2-warning swal2-animate-warning-icon" style="display: flex;"></div>
-								<h2 class="swal2-title" id="swal2-title" style="display: flex;">Are you sure?</h2>
-							</div>
-							<div class="swal2-content">
-								<div id="swal2-content" style="display: block;">You won't be able to revert this!</div>
-							</div>
-							<div class="swal2-actions" style="display: flex;">
-								<form method="POST">
-								<input type="hidden" name="iddel" id="iddel" value="">
-								<center>
-								<button type="button" id="deleteBtn" class="swal2-confirm swal2-styled" aria-label="" style="border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
-									Yes, delete it!
-								</button>
-								<button type="button" class="swal2-cancel swal2-styled" data-dismiss="modal">Cancel</button>
-								</center>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- END MODAL DELETE -->
-
-			<!-- MODAL PAYMENT -->
-			<div class="modal fade" id="bayar" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-sm" role="document">
-					<div class="modal-content">
-						<div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" style="display: flex;">
-							<div class="swal2-header">
-								<div class="swal2-icon swal2-warning swal2-animate-warning-icon" style="display: flex;"></div>
-								<h2 class="swal2-title" id="swal2-title" style="display: flex;">Are you sure?</h2>
-							</div>
-							<div class="swal2-content">
-								<div id="swal2-content" style="display: block;">You won't be able to revert this!</div>
-							</div>
-							<div class="swal2-actions" style="display: flex;">
-								<form id="formbayar" method="POST">
-								<input type="hidden" name="idorder" id="idorder" value="">
-								<input type="text" name="tglbayar" class="form-control dp" id="tglbayar" placeholder="Tgl. Bayar">
-								<input type="number" class="form-control" name="jmlbayar" id="jmlbayar" placeholder="Jumlah Bayar">
-								<center>
-								<button type="submit" id="paymentBtn" class="swal2-confirm swal2-styled" aria-label="" style="border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214); float:left;">
-									Bayar
-								</button>
-								<button type="button" class="swal2-cancel swal2-styled" data-dismiss="modal">Cancel</button>
-								</center>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- END MODAL PAYMENT -->
-
-			<!-- MODAL PRINT -->
-			<div class="modal fade" id="print" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-sm" role="document">
-					<div class="modal-content">
-						<div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" style="display: flex;">
-							<div class="swal2-header">
-								<div class="swal2-icon swal2-warning swal2-animate-warning-icon" style="display: flex;"></div>
-								<h2 class="swal2-title" id="swal2-title" style="display: flex;">Print data Pesanan?</h2>
-							</div>
-							<div class="swal2-content">
-								<!-- <div id="swal2-content" style="display: block;">You won't be able to revert this!</div> -->
-							</div>
-							<div class="swal2-actions" style="display: flex;">
-								<center>
-								<a href="<?PHP echo base_url(); ?>printpesanan/pending" target="_blank" type="button" id="printfile" class="swal2-confirm swal2-styled" aria-label="" style="border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
-									Ya, print pesanan!
-								</a>
-								<button type="button" class="swal2-cancel swal2-styled" data-dismiss="modal">Cancel</button>
-								</center>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- END MODAL PRINT -->
-
-			<!-- MODAL APPROVE -->
-			<div class="modal fade" id="proses" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-sm" role="document">
-					<div class="modal-content">
-						<div aria-labelledby="swal2-title" aria-describedby="swal2-content" class="swal2-popup swal2-modal swal2-show" style="display: flex;">
-							<div class="swal2-header">
-								<div class="swal2-icon swal2-warning swal2-animate-warning-icon" style="display: flex;"></div>
-								<h2 class="swal2-title" id="swal2-title" style="display: flex;">Proses pesanan sekarang?</h2>
-							</div>
-							<div class="swal2-content">
-								<div id="swal2-content" style="display: block;">You won't be able to revert this!</div>
-							</div>
-							<div class="swal2-actions" style="display: flex;">
-								<form method="POST">
-								<input type="hidden" name="idapp" id="idapp" value="">
-								<center>
-								<button type="button" id="prosesBtn" class="swal2-confirm swal2-styled" aria-label="" style="border-left-color: rgb(48, 133, 214); border-right-color: rgb(48, 133, 214);">
-									Ya, proses sekarang!
-								</button>
-								<button type="button" class="swal2-cancel swal2-styled" data-dismiss="modal">Tidak</button>
-								</center>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- END MODAL APPROVE -->
 		</div>
 	</div>
 </div>
 <!-- end:: Content -->
+<script>

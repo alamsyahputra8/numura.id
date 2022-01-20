@@ -25,7 +25,8 @@ class Stokpjg_handler extends CI_Model {
 
 		$qUser				= "
 							SELECT 
-								a.*
+								a.*,
+								(select nama_suplier from suplier where id=a.id_suplier) suplier
 							from stok_order a where 1=1 and type=2 $cond
 							";
 		$dataUsr			= $this->db->query($qUser)->result_array();
@@ -64,15 +65,29 @@ class Stokpjg_handler extends CI_Model {
 				}
 
 				$btnDetail 		= '
-								<a href="'.base_url().'detailstok/'.$id.'" title="Lihat Detil" class="btn btn-sm btn-clean btn-icon btn-icon-md">
-	                                <i class="la la-search"></i>
+								<a class="btn btn-sm btn-clean btn-icon btn-icon-md btndetailM" title="Detail" data-toggle="modal" data-target="#detailmod" data-id="'.$id.'">
+	                                <i data-toggle="tooltip" title="Lihat Detil" class="la la-search"></i>
 	                            </a>
 	                            ';
 
 				if ($data['status']==1) {
-					$status 	= '<b class="text-warning"><i class="fas fa-tshirt"></i> Belum Selesai</b>';
+					$status 	= '<b class="text-danger"><i class="fas fa-tshirt"></i> Belum Lunas</b>';
 				} else {
-					$status 	= '<b class="text-success"><i class="fas fa-tshirt"></i> Selesai</b>';
+					if ($data['is_finish']==1) {
+						$status 	= '<b class="text-success"><i class="fas fa-tshirt"></i> Selesai</b>';
+					} else {
+						$status 	= '<b class="text-warning"><i class="fas fa-tshirt"></i> Lunas</b>';
+					}
+				}
+
+				if ($data['is_finish']==1) {
+					$finish 	= '';
+				} else {
+					$finish 	= '
+								<a title="Selesai" class="btn btn-sm btn-clean btn-icon btn-icon-md btnfinishM" data-toggle="modal" data-target="#finish" data-id="'.$id.'">
+	                                <i class="la la-check-circle"></i>
+	                            </a>
+								';
 				}
 
 				if ($data['total_harga']>$data['bayar']) {
@@ -90,12 +105,13 @@ class Stokpjg_handler extends CI_Model {
 				
 				$row = array(
 					"keterangan"		=> $data['label'],
+					"suplier"			=> $data['suplier'],
 					"jml"				=> $this->formula->rupiah3($data['jml']).' pcs',
 					"total"				=> $this->formula->rupiah($data['total_harga']),
 					"bayar"				=> $this->formula->rupiah($data['bayar']),
 					"tgl"				=> $data['createddate'],
 					"status"			=> $status,
-					"actions"			=> $btnact
+					"actions"			=> $btnact.$finish
 					);
 				$json[] = $row;
 			}

@@ -58,6 +58,7 @@ class Stokpjg extends CI_Controller {
 
 			$columnsDefault = [
 				'keterangan'	=> true,
+				'suplier'		=> true,
 				'jml'			=> true,
 				'total'			=> true,
 				'bayar'			=> true,
@@ -84,14 +85,15 @@ class Stokpjg extends CI_Controller {
 			$userdata 			= $this->session->userdata('sesspwt'); 
 			$userid				= $userdata['userid'];
 
+			$suplier			= trim(strip_tags(stripslashes($this->input->post('suplier',true))));
 			$tgl				= trim(strip_tags(stripslashes($this->input->post('tgl',true))));
 			$label 				= trim(strip_tags(stripslashes($this->input->post('label',true))));
 			$jml 				= trim(strip_tags(stripslashes($this->input->post('totalpcs',true))));
 			$total 				= trim(strip_tags(stripslashes($this->input->post('total',true))));
 
 			$rows 				= $this->db->query("
-								INSERT INTO stok_order (label,jml,total_harga,createddate,status,type) values 
-								('$label','$jml','$total','$tgl','1','2')
+								INSERT INTO stok_order (label,jml,total_harga,createddate,status,type,id_suplier) values 
+								('$label','$jml','$total','$tgl','1','2','$suplier')
 								");
 			
 			if($rows) {
@@ -99,7 +101,7 @@ class Stokpjg extends CI_Controller {
 
 				// INSERT DETAIL
 				$getColor 		= $this->db->query("
-								SELECT * from color order by 1
+								SELECT * from color where type='1' order by 1
 								")->result_array();
 
 				$getSize 		= $this->db->query("
@@ -110,7 +112,7 @@ class Stokpjg extends CI_Controller {
 					$colid 	= $color['id'];
 					foreach($getSize as $size) {
 						$sizeid 		= $size['id_size']; 
-						$price 			= $size['hpp_pjg'];
+						$price 			= $size['hpp'];
 
 						$pcs			= trim(strip_tags(stripslashes($this->input->post('pcscol'.$colid.'siz'.$sizeid,true))));
 
@@ -162,6 +164,7 @@ class Stokpjg extends CI_Controller {
 			$activity 		= "UPDATE";
 			
 			$id 			= trim(strip_tags(stripslashes($this->input->post('ed_id',true))));
+			$idsuplier 		= trim(strip_tags(stripslashes($this->input->post('ed_suplier',true))));
 			$userdata 		= $this->session->userdata('sesspwt'); 
 			
 			$userid			= $userdata['userid'];
@@ -186,7 +189,7 @@ class Stokpjg extends CI_Controller {
 
 				// INSERT DETAIL
 				$getColor 		= $this->db->query("
-								SELECT * from color order by 1
+								SELECT * from color where type='1' order by 1
 								")->result_array();
 
 				$getSize 		= $this->db->query("
@@ -197,7 +200,12 @@ class Stokpjg extends CI_Controller {
 					$colid 	= $color['id'];
 					foreach($getSize as $size) {
 						$sizeid 		= $size['id_size']; 
-						$price 			= $size['hpp_pjg'];
+						$getPrice 		= $this->db->query("
+										SELECT * from suplier_harga where id_suplier='$idsuplier' and id_size='$sizeid'
+										")->result_array();
+						$sprice 		= array_shift($getPrice);
+						$price 			= $sprice['harga'];
+						// $price 			= $size['hpp'];
 
 						$pcs			= trim(strip_tags(stripslashes($this->input->post('ed_pcscol'.$colid.'siz'.$sizeid,true))));
 
@@ -294,10 +302,39 @@ class Stokpjg extends CI_Controller {
 		}
 	}	
 
+	public function setfinish(){
+		if(checkingsessionpwt()){
+			$userdata	= $this->session->userdata('sesspwt'); 
+			$url 		= "Stok";
+			$activity 	= "FINISH";
+			
+			$id 			= trim(strip_tags(stripslashes($this->input->post('idorderf',true))));
+
+			$userdata 		= $this->session->userdata('sesspwt'); 
+			
+			$userid			= $userdata['userid'];
+
+			$rows 			= $this->db->query("
+							UPDATE stok_order set is_finish=1 where id_order='$id'
+							");
+			
+			if($rows) {
+				$log 		= $this->query->insertlog($activity,$url,$id);
+				
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+			}
+		} else {
+			redirect('/panel');
+		}
+	}
+
 	public function cektotal(){
 		if(checkingsessionpwt()){
+			$sup		= trim(strip_tags(stripslashes($this->input->post('suplier',true))));
 			$getColor 	= $this->db->query("
-						SELECT * from color order by 1
+						SELECT * from color where type='1' order by 1
 						")->result_array();
 
 			$getSize 	= $this->db->query("
@@ -308,7 +345,12 @@ class Stokpjg extends CI_Controller {
 				$colid 	= $color['id'];
 				foreach($getSize as $size) {
 					$sizeid 	= $size['id_size']; 
-					$price 		= $size['hpp_pjg'];
+					$getPrice 	= $this->db->query("
+								SELECT * from suplier_harga where id_suplier='$sup' and id_size='$sizeid'
+								")->result_array();
+					$sprice 	= array_shift($getPrice);
+					$price 		= $sprice['harga_pjg'];
+					// $price 		= $size['hpp'];
 
 					$jml		= trim(strip_tags(stripslashes($this->input->post('pcscol'.$colid.'siz'.$sizeid,true))));
 					@$subtotal	+= $jml*$price;
@@ -319,7 +361,7 @@ class Stokpjg extends CI_Controller {
 			if(@$subtotal>0) {
 				print json_encode(array('total'=>$subtotal, 'jml'=>$subjml));
 			} else {
-				echo "";
+				print json_encode(array('total'=>$subtotal, 'jml'=>$subjml));
 			}
 		}else{
             redirect('/login');
@@ -328,8 +370,9 @@ class Stokpjg extends CI_Controller {
 
 	public function cektotaledit(){
 		if(checkingsessionpwt()){
+			$sup		= trim(strip_tags(stripslashes($this->input->post('ed_suplier',true))));
 			$getColor 	= $this->db->query("
-						SELECT * from color order by 1
+						SELECT * from color where type='1' order by 1
 						")->result_array();
 
 			$getSize 	= $this->db->query("
@@ -340,7 +383,12 @@ class Stokpjg extends CI_Controller {
 				$colid 	= $color['id'];
 				foreach($getSize as $size) {
 					$sizeid 	= $size['id_size']; 
-					$price 		= $size['hpp_pjg'];
+					$getPrice 	= $this->db->query("
+								SELECT * from suplier_harga where id_suplier='$sup' and id_size='$sizeid'
+								")->result_array();
+					$sprice 	= array_shift($getPrice);
+					$price 		= $sprice['harga_pjg'];
+					// $price 		= $size['hpp'];
 
 					$jml		= trim(strip_tags(stripslashes($this->input->post('ed_pcscol'.$colid.'siz'.$sizeid,true))));
 					@$subtotal	+= $jml*$price;
@@ -351,7 +399,7 @@ class Stokpjg extends CI_Controller {
 			if(@$subtotal>0) {
 				print json_encode(array('total'=>$subtotal, 'jml'=>$subjml));
 			} else {
-				echo "";
+				print json_encode(array('total'=>$subtotal, 'jml'=>$subjml));
 			}
 		}else{
             redirect('/login');
@@ -362,36 +410,44 @@ class Stokpjg extends CI_Controller {
 		if(checkingsessionpwt()){
 			$id 		= trim(strip_tags(stripslashes($this->input->post('id',true))));
 
+			$getDetail 	= $this->db->query("SELECT * FROM stok_order where id_order='$id'")->result_array();
+			$dDetail 	= array_shift($getDetail);
+			$idsuplier 	= $dDetail['id_suplier'];
+
 			$getColor 	= $this->db->query("
-						SELECT * from color order by 1
+						SELECT * from color where type=1 order by 1
 						")->result_array();
 
 			$getSize 	= $this->db->query("
-						SELECT * from size order by sort
+						SELECT * from size where flag='1' and
+						id_size in (
+							SELECT id_size from suplier_harga where id_suplier='$idsuplier'
+						)
+						order by sort
 						")->result_array();
 
 			echo '
 			<table class="table table-striped- table-bordered table-hover table-sm">
 				<thead>
 					<tr>
-						<th style="width: 150px!important;">WARNA</th>';
-						foreach($getSize as $size) {
-						echo '<th style="max-width: 50px!important;" class="text-center">'.$size['label'].'</th>';
+						<th style="width: 150px!important;">UKURAN</th>';
+						// foreach($getSize as $size) {
+						foreach ($getColor as $color) {
+						echo '<th style="max-width: 50px!important;" class="text-center">'.$color['label'].'</th>';
 						}
 					echo '
 					</tr>
 				</thead>
 				<tbody>
 			';
-			foreach ($getColor as $color) {
-				$colid 	= $color['id'];
+			foreach($getSize as $size) {
+				$sizeid 	= $size['id_size'];
 
 				echo '
 				<tr>
-					<td>'.$color['label'].'</td>';
-
-					foreach($getSize as $size) {
-						$sizeid 	= $size['id_size'];
+					<td>'.$size['label'].'</td>';
+					foreach ($getColor as $color) {
+						$colid 	= $color['id'];
 
 						$getJml 	= $this->db->query("
 									SELECT * FROM stok_order_detail where id_order='$id' and size='$sizeid' and color='$colid'
@@ -403,6 +459,208 @@ class Stokpjg extends CI_Controller {
 					echo '
 					<td class="text-center">
 						<input type="number" name="ed_pcscol'.$colid.'siz'.$sizeid.'" class="form-control ed_pcsval" id="ed_pcs" placeholder="0" style="width: 100%;" value="'.$jml.'">
+					</td>';
+					}
+				echo '</tr>';
+			}
+			echo '
+			</tbody></table>
+			';
+		}else{
+            redirect('/login');
+        }
+	}
+
+	public function getorderdet(){
+		if(checkingsessionpwt()){
+			$id 		= trim(strip_tags(stripslashes($this->input->post('id',true))));
+
+			$getDetail 	= $this->db->query("
+						SELECT a.*, 
+							(SELECT nama_suplier from suplier where id=a.id_suplier) suplier
+						FROM stok_order a where id_order='$id'
+						")->result_array();
+			$dDetail 	= array_shift($getDetail);
+			$idsuplier 	= $dDetail['id_suplier'];
+			$suplier 	= $dDetail['suplier'];
+			$tgl 		= $dDetail['createddate'];
+			$ket 		= $dDetail['label'];
+			$jmlP 		= $dDetail['jml'];
+			$total 		= $dDetail['total_harga'];
+			$jmlbayar 	= $dDetail['bayar'];
+			$sisaB 		= $total-$jmlbayar;
+
+			$getColor 	= $this->db->query("
+						SELECT * from color where type=1 order by 1
+						")->result_array();
+
+			$getSize 	= $this->db->query("
+						SELECT a.*, (select label_size from suplier_harga where id_suplier='$idsuplier' and id_size=a.id_size) label_size from size a where 
+						flag='1' and
+						id_size in (
+							SELECT id_size from suplier_harga where id_suplier='$idsuplier'
+						)
+						order by sort
+						")->result_array();
+
+			echo '
+
+			<div class="row">
+				<label for="role" class="col-lg-2 col-sm-12 col-form-label">Suplier</label>
+				<label for="role" class="col-lg-10 col-sm-12 col-form-label">: <b>'.$suplier.'</b></label>
+			</div>
+
+			<div class="row">
+				<label for="role" class="col-lg-2 col-sm-12 col-form-label">Tgl. Transaksi</label>
+				<label for="role" class="col-lg-10 col-sm-12 col-form-label">: <b>'.$tgl.'</b></label>
+			</div>
+
+			<div class="row">
+				<label for="role" class="col-lg-2 col-sm-12 col-form-label">Keterangan</label>
+				<label for="role" class="col-lg-10 col-sm-12 col-form-label">: <b>'.$ket.'</b></label>
+			</div>
+
+			<table class="table table-striped- table-bordered table-hover table-checkable">
+				<thead>
+					<tr>
+						<th style="width: 150px!important;">UKURAN</th>';
+						foreach($getColor as $color) {
+						echo '
+						<th style="max-width: 50px!important;" class="text-center"><i class="fa fa-circle" style="color: '.$color['code_color'].';"></i> '.$color['label'].'</th>';
+						}
+					echo '
+					</tr>
+				</thead>
+				<tbody>
+					';
+					foreach ($getSize as $size) {
+						$sizeid = $size['id_size'];
+						echo '
+						<tr>
+							<td>'.$size['label_size'].'</td>';
+							foreach($getColor as $color) {
+								$colid 		= $color['id']; 
+
+								$getJml 	= $this->db->query("
+											SELECT * FROM stok_order_detail where id_order='$id' and size='$sizeid' and color='$colid'
+											")->result_array();
+								$dJml 		= array_shift($getJml);
+								$jml 		= $this->formula->rupiah3($dJml['jml_order']);
+								$price 		= $dJml['harga'];
+
+								$sisastokfin = $jml;
+								if ($sisastokfin<1) {
+									$colte	= 'style="color: #bdbcbc;"';	
+								} else if ($sisastokfin>0 and $sisastokfin<5) {
+									$colte	= 'style="color: #cf5555;"';	
+								} else {
+									$colte	= '';
+								}
+							echo '
+							<td class="text-center" '.$colte.'>
+								<b>'.$sisastokfin.'</b> pcs
+							</td>';
+							}
+						echo '
+						</tr>';
+					}
+					echo '
+				</tbody>
+			</table>
+
+			<div class="row">
+				<div class="col-lg-9 col-7 text-right">
+					<h5>Jumlah :</h5>
+				</div>
+				<div class="col-lg-3 col-5 text-right">
+					<h5>'.round($jmlP).' PCS</h5>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-9 col-7 text-right">
+					<h3>Grand Total :</h3>
+				</div>
+				<div class="col-lg-3 col-5 text-right">
+					<h3>'.$this->formula->rupiah($total).'</h3>	
+				</div>
+			</div>
+			<div class="kt-separator kt-separator--space-sm kt-separator--border-dashed"></div>
+
+			<div class="row">
+				<div class="col-lg-9 col-7 text-right">
+					<h5>Total Pembayaran :</h5>
+				</div>
+				<div class="col-lg-3 col-5 text-right">
+					<h5 class="text-success">'.$this->formula->rupiah($jmlbayar).'</h5>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-9 col-7 text-right">
+					<h5>Sisa Pembayaran :</h5>
+				</div>
+				<div class="col-lg-3 col-5 text-right">
+					<h5 class="text-danger">'.$this->formula->rupiah($sisaB).'</h5>	
+				</div>
+			</div>
+			';
+		}else{
+            redirect('/login');
+        }
+	}
+
+	public function getlist(){
+		if(checkingsessionpwt()){
+			$id 		= trim(strip_tags(stripslashes($this->input->post('id',true))));		
+
+			$getColor 	= $this->db->query("
+						SELECT * from color where type=1 order by 1
+						")->result_array();
+
+			$getSize 	= $this->db->query("
+						SELECT * from size where flag='1' and 
+						id_size in (
+							SELECT id_size from suplier_harga where id_suplier='$id'
+						)
+						order by sort
+						")->result_array();
+
+			echo '
+			<table class="table table-striped- table-bordered table-hover table-sm">
+				<thead>
+					<tr>
+						<th style="width: 150px!important;">WARNA</th>';
+						// foreach($getSize as $size) {
+						foreach ($getColor as $color) {
+						echo '<th style="max-width: 50px!important;" class="text-center">'.$color['label'].'</th>';
+						}
+					echo '
+					</tr>
+				</thead>
+				<tbody>
+			';
+			foreach($getSize as $size) {
+				$sizeid 	= $size['id_size'];
+				echo '
+				<tr>
+					<td>'.$size['label'].'</td>';
+
+					foreach ($getColor as $color) {
+						$colid 	= $color['id'];
+
+						$getPrice 	= $this->db->query("
+									SELECT * from suplier_harga where id_suplier='$id' and id_size='$sizeid'
+									")->result_array();
+						$sprice 	= array_shift($getPrice);
+						// $prc 	= $size['hpp'];
+						$prc 		= $sprice['harga'];
+						@$tjml 		+= $value;
+						@$tprc 		+= $value*$prc;
+					
+					echo '
+					<td class="text-center">
+						<input type="number" name="pcscol'.$colid.'siz'.$sizeid.'" class="form-control pcsval" id="pcs" placeholder="0" style="width: 100%;" value="0">
 					</td>';
 					}
 				echo '</tr>';

@@ -112,6 +112,49 @@ $(document).on('keyup', '.ed_pcsval', function(e){
     });
 });
 
+$(document).on('click', '.btnaddnewdata', function(e){
+    $('#suplier').trigger('change');
+});
+
+$(document).on('change', '#suplier', function(e){
+    e.preventDefault();
+
+    var uid = $(this).val(); // get ids of clicked row
+    $('#dynamic-content').hide(); // hide dive for loader
+    $('#modal-loader').show();  // load ajax loader
+    
+    // $('#bgdetstokins').html('Mengambil data ukuran...');
+    KTApp.block('#bgdetstokins', {
+        overlayColor: '#000000',
+        type: 'v2',
+        state: 'success',
+        message: 'Please wait...'
+    });
+
+    $.ajax({
+        url: '<?PHP echo base_url(); ?>stokpjg/getlist',
+        type: 'POST',
+        data: 'id='+uid,
+    })
+    .done(function(data){
+
+        $('#dynamic-content').hide(); // hide dynamic div
+        $('#dynamic-content').show(); // show dynamic div
+
+        setTimeout(function() {
+            KTApp.unblock('#bgdetstokins');
+            $('#bgdetstokins').html(data);
+            $('.pcsval').trigger('keyup');
+        }, 2000);
+
+        // $('#modal-loader').hide();    // hide ajax loader
+    })
+    .fail(function(){
+        $('#bgdetstokins').html('');
+        $('.modal-body').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please refresh page...');
+    });
+});
+
 $(document).on('click', '.btnupdateM', function(e){
     e.preventDefault();
 
@@ -133,6 +176,8 @@ $(document).on('click', '.btnupdateM', function(e){
         $("#namedata").html(data.label);
 
         $("#ed_id").val(data.id_order);
+        $("#ed_supliersel").val(data.id_suplier);
+        $("#ed_suplier").val(data.id_suplier);
         $('#ed_tgl').val(data.createddate);
         $('#ed_label').val(data.label);
         $('#ed_totalpcs').val(data.jml);
@@ -163,6 +208,59 @@ $(document).on('click', '.btnupdateM', function(e){
         })
         .fail(function(){
             $('#bgdetailstok').html('');
+        });
+
+        $('#modal-loader').hide();    // hide ajax loader
+    })
+    .fail(function(){
+        $('.modal-body').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please refresh page...');
+    });
+});
+
+$(document).on('click', '.btndetailM', function(e){
+    e.preventDefault();
+
+    var uid = $(this).data('id'); // get ids of clicked row
+    $('#dynamic-content').hide(); // hide dive for loader
+    $('#modal-loader').show();  // load ajax loader
+    
+    $.ajax({
+        url: '<?PHP echo base_url(); ?>stokpjg/modal',
+        type: 'POST',
+        data: 'id='+uid,
+        dataType: 'json'
+    })
+    .done(function(data){
+
+        $('#dynamic-content').hide(); // hide dynamic div
+        $('#dynamic-content').show(); // show dynamic div
+        $("#namedatad").html(data.label);
+
+        $('#bgdetailstokdet').html('Mengambil data pesanan...');
+        KTApp.block('#bgdetailstokdet', {
+            overlayColor: '#000000',
+            type: 'v2',
+            state: 'success',
+            message: 'Please wait...'
+        });
+
+        $.ajax({
+            url: '<?PHP echo base_url(); ?>stokpjg/getorderdet',
+            data: 'id='+data.id_order,
+            type: 'POST',
+        })
+        .done(function(datay){
+            KTApp.unblock('#bgdetailstokdet');
+
+            $('#dynamic-content').hide(); // hide dynamic div
+            $('#dynamic-content').show(); // show dynamic div
+            
+            $('#bgdetailstokdet').html(datay);
+
+            $('#modal-loader').hide();    // hide ajax loader
+        })
+        .fail(function(){
+            $('#bgdetailstokdet').html('');
         });
 
         $('#modal-loader').hide();    // hide ajax loader
@@ -241,6 +339,31 @@ $(document).on('click', '.btnbayarM', function(e){
         $('#dynamic-content').hide(); // hide dynamic div
         $('#dynamic-content').show(); // show dynamic div
         $('#idorder').val(data.id_order);
+        $('#modal-loader').hide();    // hide ajax loader
+    })
+    .fail(function(){
+        $('.modal-body').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+    });
+});
+
+$(document).on('click', '.btnfinishM', function(e){
+    e.preventDefault();
+
+    var id = $(this).data('id'); // get id of clicked row
+    //console.log('id modal',id)
+    $('#dynamic-content').hide(); // hide dive for loader
+    $('#modal-loader').show();  // load ajax loader
+
+    $.ajax({
+        url: '<?PHP echo base_url(); ?>stokpjg/modal',
+        type: 'POST',
+        data: 'id='+id,
+        dataType: 'json'
+    })
+    .done(function(data){
+        $('#dynamic-content').hide(); // hide dynamic div
+        $('#dynamic-content').show(); // show dynamic div
+        $('#idorderf').val(data.id_order);
         $('#modal-loader').hide();    // hide ajax loader
     })
     .fail(function(){
@@ -335,18 +458,19 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
             searchDelay: 500,
             processing: true,
             serverSide: true,
-            order: [[ 4, "desc" ]],
+            order: [[ 5, "desc" ]],
             ajax: {
                 url: '<?PHP echo base_url(); ?>stokpjg/getdata',
                 type: 'POST',
                 data: {
                     // parameters for custom backend script demo
                     columnsDef: [
-                        'keterangan', 'jml', 'total', 'bayar', 'tgl', 'status', 'actions'],
+                        'keterangan', 'suplier', 'jml', 'total', 'bayar', 'tgl', 'status', 'actions'],
                 },
             },
             columns: [
                 {data: 'keterangan', responsivePriority: -1},
+                {data: 'suplier', responsivePriority: -1},
                 {data: 'jml'},
                 {data: 'total'},
                 {data: 'bayar'},
@@ -830,6 +954,70 @@ var KTFormWidgets = function () {
         });     
     }
 
+    var initFinish = function () {
+        $('#finishBtn').click(function(e) {
+            e.preventDefault();
+
+            var btn = $(this);
+            var form = $(this).closest('form');           
+
+            form.validate({
+                rules: {
+                    idorderf: {
+                        required: true
+                    }
+                }
+            });
+
+            if (!form.valid()) {
+                return;
+            }
+
+            btn.addClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', true);
+
+            form.ajaxSubmit({
+                url: "<?PHP echo base_url(); ?>stokpjg/setfinish",
+                type: "POST",
+                beforeSend: function(){ 
+                   KTApp.block('#finish .modal-content', {
+                        overlayColor: '#000000',
+                        type: 'v2',
+                        state: 'success',
+                        message: 'Please wait...'
+                    });
+                },
+                success: function(data) {
+                    if(data) {
+                        // similate 2s delay
+                        setTimeout(function() {
+                            btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+                            //showErrorMsg(form, 'success', '<strong>Data Insert Success!</strong>');
+                            KTApp.unblock('#finish .modal-content');
+                            
+                            $('#finish').modal('toggle');
+
+                            $('#tabledata').DataTable().ajax.reload();
+                            $('#formfinish')[0].reset();
+                            var alert = $('#suksesinsert');
+                            alert.removeClass('kt-hidden').show();
+                        }, 2000);
+                    } else {
+                        // similate 2s delay
+                        setTimeout(function() {
+                            btn.removeClass('kt-spinner kt-spinner--right kt-spinner--sm kt-spinner--light').attr('disabled', false);
+                            
+                            KTApp.unblock('#finish .modal-content');
+
+                            showErrorMsg(form, 'danger', '<strong>Data Update Failed!</strong> Change a few things up and try submitting again.');
+                            var alert = $('#gagalinsert');
+                            alert.removeClass('kt-hidden').show();
+                        }, 2000);
+                    }
+                }
+            });
+        });     
+    }
+
     var initDelete = function () {
         $('#deleteBtn').click(function(e) {
             e.preventDefault();
@@ -924,6 +1112,7 @@ var KTFormWidgets = function () {
             initDelete();
             initProses();
             initBayar();
+            initFinish();
         }
     };
 }();
