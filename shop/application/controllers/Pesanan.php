@@ -106,11 +106,17 @@ class Pesanan extends CI_Controller {
 				$normprice 		= $dSize['harga_pjg'];
 			}
 
-			$getAddPrice		= $this->db->query("
-								SELECT * FROM design_type where id='$typedesign'
+			$getKar 			= $this->db->query("
+								SELECT a.*, (SELECT harga_add from design_type where id=a.type) as harga_add FROM karakter a where id_karakter='$karakter'
 								")->result_array();
-			$dAddPrice 			= array_shift($getAddPrice);
-			$addprice 			= $dAddPrice['harga_add'];
+			$dKar 				= array_shift($getKar);
+			$addprice 			= $dKar['harga_add'];
+
+			// $getAddPrice		= $this->db->query("
+			// 					SELECT * FROM design_type where id='$typedesign'
+			// 					")->result_array();
+			// $dAddPrice 			= array_shift($getAddPrice);
+			// $addprice 			= $dAddPrice['harga_add'];
 
 			$price 				= $gprice+$addprice;
 
@@ -202,11 +208,17 @@ class Pesanan extends CI_Controller {
 				$normprice 		= $dSize['harga_pjg'];
 			}
 
-			$getAddPrice		= $this->db->query("
-								SELECT * FROM design_type where id='$typedesign'
+			$getKar 			= $this->db->query("
+								SELECT a.*, (SELECT harga_add from design_type where id=a.type) as harga_add FROM karakter a where id_karakter='$karakter'
 								")->result_array();
-			$dAddPrice 			= array_shift($getAddPrice);
-			$addprice 			= $dAddPrice['harga_add'];
+			$dKar 				= array_shift($getKar);
+			$addprice 			= $dKar['harga_add'];
+
+			// $getAddPrice		= $this->db->query("
+			// 					SELECT * FROM design_type where id='$typedesign'
+			// 					")->result_array();
+			// $dAddPrice 			= array_shift($getAddPrice);
+			// $addprice 			= $dAddPrice['harga_add'];
 
 			$price 				= $gprice+$addprice;
 
