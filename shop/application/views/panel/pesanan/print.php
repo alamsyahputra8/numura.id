@@ -22,6 +22,9 @@
 	    font-weight: bold;
 	    white-space: nowrap;
 	}
+	.bgpanjang {
+		background: #FFF;
+	}
 </style>
 <body style="margin: 0px; padding: 0px;">
 <?PHP
@@ -123,8 +126,13 @@ foreach ($ggroupS as $groupsize) {
 			} else {
 				$done 	= '';
 			}
+			if ($pes['kaos_type']=='1') {
+				$clkt 	= '';
+			} else {
+				$clkt 	= 'bgpanjang';
+			}
 			echo '
-			<div id="bgkol'.$idpes.'" class="bgkolom '.$done.'" style="border: 1px solid rgba(0,0,0,.1); width: 5.19cm; height: 4.1cm; float:left;">
+			<div id="bgkol'.$idpes.'" class="bgkolom '.$done.' '.$clkt.'" style="border: 1px solid rgba(0,0,0,.1); width: 5.19cm; height: 4.1cm; float:left;">
 				<div style="text-align: center; font-size: 18px; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,.1); padding: 10px;">
 					<b>'.$pes['reseller'].'</b>
 				</div>
