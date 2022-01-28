@@ -23,7 +23,7 @@
 	    white-space: nowrap;
 	}
 	.bgpanjang {
-		background: #FFF;
+		background: ;
 	}
 </style>
 <body style="margin: 0px; padding: 0px;">
