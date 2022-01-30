@@ -59,7 +59,7 @@ $qPesPeng 	= "
 				SELECT 
 					(SELECT name from user where userid=a.userid) resel,
 					count(id_pesanan) jumlah
-				FROM pesanan a where status=2 and flag_pengiriman=0 and kaos_type=1 and flag_restok=1
+				FROM pesanan a where status=2 and flag_pengiriman=0 and flag_restok=1
 				group by userid
 			) as cek
 			order by jumlah desc

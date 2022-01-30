@@ -311,7 +311,7 @@ class Pengiriman extends CI_Controller {
 								(SELECT label from color where id=a.warna) label_color,
 								(SELECT code_color from color where id=a.warna) codecolor,
 								(SELECT file from karakter where id_karakter=a.karakter) pictchar
-							FROM pesanan a where flag_pengiriman not in (1) and status in (1,2) and kaos_type=1 $condpes
+							FROM pesanan a where flag_pengiriman not in (1) and status in (1,2) $condpes
 							";
 				$getPes 	= $this->db->query($qPes)->result_array();
 				$cekPes 	= $this->db->query($qPes)->num_rows();
