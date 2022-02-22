@@ -362,7 +362,7 @@ $getGal 	= $this->dbw->query($qGal, $baseid)->result_array();
 		.elementor-24192 .elementor-element.elementor-element-1b62ac7c .elementor-image-box-title, .elementor-24192 .elementor-element.elementor-element-6d611096 .elementor-image-box-title {
 			font-family: Dosis, Arial!important;
 			color: #ca9078;
-			font-size: 40px;
+			font-size: 38px;
 		}
 		.elementor-24192 .elementor-element.elementor-element-3e5dc7b7:not(.elementor-motion-effects-element-type-background) > .elementor-column-wrap, .elementor-24192 .elementor-element.elementor-element-5b3375a1:not(.elementor-motion-effects-element-type-background) > .elementor-column-wrap {
 			background: #FFF;
