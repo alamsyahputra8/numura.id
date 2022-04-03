@@ -89,7 +89,7 @@ class Karakter extends CI_Controller {
 									if ($data['sisa_anak']<0) { $colan = 'danger'; } else if ($data['sisa_anak']==0) { $colan ='dark'; } else if ($data['sisa_anak']>0 and $data['sisa_anak']<=2) { $colan = 'warning'; } else { $colan = 'success'; }
 									echo '
 									<button type="button" class="btn btn-'.$colbay.' btn-sm font-weight-bolder font-size-sm py-2">
-										BAYI : '.$data['sisa_bayi'].'
+										BAYI : '.$data['sisa_bayi'].' x
 									</button>
 									<button type="button" class="btn btn-'.$colan.' btn-sm font-weight-bolder font-size-sm py-2">
 										ANAK : '.$data['sisa_anak'].'
