@@ -25,7 +25,16 @@ if (strpos( $activepage, 'blog' ) !== false) {
                     <li><a href="#">Email: <?PHP echo $mail['email']; ?></a></li>
                 </ul>
             </div>
-            <div class="col-md-6 d-none d-sm-block">
+			<div class="col-md-2 d-none d-sm-block">
+				<span class="footer-left">
+					 
+					 <a href="<?php echo site_url('panel/set_to/indonesia');?>">IDN</a>
+					 |
+					 <a href="<?php echo site_url('panel/set_to/english');?>">ENG</a>
+					 
+				</span>
+			</div>
+            <div class="col-md-4 d-none d-sm-block">
                 <div class="social-icons social-icons-colored-hover">
                     <ul>
                         <?PHP if ($site['facebook']!=='') { ?>

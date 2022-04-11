@@ -70,7 +70,87 @@ if (strpos( $activepage, 'blog' ) !== false) {
             <!--Navigation-->
             <div id="mainMenu">
                 <div class="container">
-                    <nav>
+					<?PHP if(get_cookie('lang_is') === 'en'){ 
+					?>
+					 <nav>
+                        <ul>
+                            <?PHP
+                            $qMenu      = "select * from menu_site where parent='0' order by sort asc";
+                            $getMenu    = $this->query->getDatabyQ($qMenu);
+                            foreach ($getMenu as $datamenu) {
+                                $idmenu     = $datamenu['id_menu'];
+                                $cekChild   = $this->query->getNumRows('menu_site','*',"where parent='$idmenu'")->num_rows();
+                                if ($cekChild>0) {
+                                    $classChild = 'class="dropdown"';
+                                } else {
+                                    $classChild = '';
+                                }
+
+                                if ($datamenu['link']=='#' or $datamenu['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                            ?>
+                            <li <?PHP echo $classChild; ?>>
+                                <a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datamenu['link']; ?>"><?PHP echo $datamenu['menu_en']; ?></a>
+                                <?PHP if ($cekChild>0) { ?>
+                                    <ul class="dropdown-menu">
+                                        <?PHP
+                                        $qChild     = "select * from menu_site where parent='$idmenu' order by sort asc";
+                                        $getChild   = $this->query->getDatabyQ($qChild);
+                                        foreach ($getChild as $datachild) {
+                                            $idmenuC     = $datachild['id_menu'];
+                                            $cekChild2   = $this->query->getNumRows('menu_site','*',"where parent='$idmenuC'")->num_rows();
+                                            if ($cekChild2>0) {
+                                                $classChild2 = 'class="dropdown-submenu"';
+                                            } else {
+                                                $classChild2 = '';
+                                            }
+                                            if ($datachild['link']=='#' or $datachild['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                                        ?>
+                                        <li <?PHP echo $classChild2; ?>><a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datachild['link']; ?>"><?PHP echo $datachild['menu_en']; ?></a>
+                                            <?PHP if ($cekChild2>0) { ?>
+                                            <ul class="dropdown-menu">
+                                                <?PHP
+                                                $qChild2     = "select * from menu_site where parent='$idmenuC' order by sort asc";
+                                                $getChild2   = $this->query->getDatabyQ($qChild2);
+                                                foreach ($getChild2 as $datachild2) {
+                                                    $idmenuC2     = $datachild2['id_menu'];
+                                                    $cekChild3   = $this->query->getNumRows('menu_site','*',"where parent='$idmenuC2'")->num_rows();
+                                                    if ($cekChild3>0) {
+                                                        $classChild3 = 'class="dropdown-submenu"';
+                                                    } else {
+                                                        $classChild3 = '';
+                                                    }
+                                                    if ($datachild2['link']=='#' or $datachild2['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                                                ?>
+                                                <li <?PHP echo $classChild3; ?>><a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datachild2['link']; ?>"><?PHP echo $datachild2['menu_en']; ?></a>
+                                                    <?PHP if ($cekChild3>0) { ?>
+                                                    <ul class="dropdown-menu">
+                                                        <?PHP
+                                                        $qChild3     = "select * from menu_site where parent='$idmenuC2' order by sort asc";
+                                                        $getChild3   = $this->query->getDatabyQ($qChild3);
+                                                        foreach ($getChild3 as $datachild3) {
+                                                            $idmenuC3     = $datachild3['id_menu'];
+                                                            if ($datachild3['link']=='#' or $datachild3['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                                                        ?>
+                                                        <li><a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datachild3['link']; ?>"><?PHP echo $datachild3['menu_en']; ?></a></li>
+                                                        <?PHP } ?>
+                                                    </ul>
+                                                    <?PHP } ?>
+                                                </li>
+                                                <?PHP } ?>
+                                            </ul>
+                                            <?PHP } ?>
+                                        </li>
+                                        <?PHP } ?>
+                                    </ul>
+                                <?PHP } ?>
+                            </li>
+                            <?PHP } ?>
+                        </ul>
+                    </nav>
+					<?PHP
+					}else{
+					?>
+					<nav>
                         <ul>
                             <?PHP
                             $qMenu      = "select * from menu_site where parent='0' order by sort asc";
@@ -145,6 +225,10 @@ if (strpos( $activepage, 'blog' ) !== false) {
                             <?PHP } ?>
                         </ul>
                     </nav>
+					<?PHP
+					}
+					?>
+                   
                 </div>
             </div>
             <!--END: NAVIGATION-->

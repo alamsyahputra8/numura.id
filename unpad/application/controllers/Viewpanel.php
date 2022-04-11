@@ -63,7 +63,25 @@ class Viewpanel extends CI_Controller {
 			
 		// }
     }
-	
+	 public function set_to($language) {
+		   if(strtolower($language) === 'english') {
+				$lang = 'en';
+		   } else {
+				$lang = 'in';
+		   }
+		   set_cookie(
+				array(
+				 'name' => 'lang_is',
+				 'value' => $lang,
+				 'expire'  => '8650',
+				 'prefix'  => ''
+				)
+		   );
+	   
+		   if($this->input->server('HTTP_REFERER')){
+			redirect($this->input->server('HTTP_REFERER'));
+		   }
+	}
 	public function index(){
 		if(checkingsessionpwt()){
 			// $data['divisiUAM'] 	= str_replace(",","','",$this->divisiUAM);
