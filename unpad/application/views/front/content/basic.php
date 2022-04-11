@@ -25,7 +25,7 @@ $dataPage   = array_shift($gPage);
 
         <style>
             .post-item .post-item-wrap { background: transparent!important; }
-            .team-members .team-member .team-image { max-height: 330px; }
+            .team-members .team-member .team-image { max-height: 330px; overflow: hidden; }
         </style>
 
         <!-- Page title -->
