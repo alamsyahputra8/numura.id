@@ -32,7 +32,11 @@ $dataPage   = array_shift($gPage);
             <div class="container">
                 <div class="page-title">
                     <!--span class="post-meta-category"><a href="#"><?PHP echo $menu; ?></a></span-->
+                    <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+                    <h1><?PHP echo $dataPage['title_en']; ?></h1>
+                    <?PHP } else { ?>
                     <h1><?PHP echo $dataPage['title']; ?></h1>
+                    <?PHP } ?>
                     <div class="small m-b-20"><?PHP echo $dataPage['last_update']; ?> | <a href="#">by <?PHP echo $dataPage['update_by']; ?></a></div>
                     <!--div class="align-center">
                         <a class="btn btn-xs btn-slide btn-facebook" href="#">
@@ -66,7 +70,13 @@ $dataPage   = array_shift($gPage);
                     <div class="post-item">
                         <div class="post-item-wrap">
                             <div class="post-item-description">
-                                <?PHP echo $dataPage['content']; ?>
+                                <?PHP
+                                if(get_cookie('lang_is') === 'en'){ 
+                                    echo $dataPage['content_en']; 
+                                } else {
+                                    echo $dataPage['content']; 
+                                }
+                                ?>
                             </div>
                             <!--div class="post-tags">
                                 <a href="#">Life</a>
