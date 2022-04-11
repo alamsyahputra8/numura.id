@@ -18,8 +18,8 @@
                 <div class="container">
                     <div class="slide-captions text-center text-light">
                         <!-- Captions -->
-                        <h2 class="text-dark"><?PHP echo $dataslides['title']; ?></h2>
-                        <span class="strong"><?PHP echo $dataslides['sub']; ?></span>
+                        <!-- <h2 class="text-dark"><?PHP echo $dataslides['title']; ?></h2>
+                        <span class="strong"><?PHP echo $dataslides['sub']; ?></span> -->
                         <!-- <a class="btn" href="#">Purchase Now</a>
                         <a class="btn btn-light">Purchase</a> -->
                         <!-- end: Captions -->
@@ -30,158 +30,145 @@
             <?PHP } ?>
         </div>
         <!--end: Inspiro Slider -->
- 
         
-        <style>
-            .relativeposition {
-                position: relative!important;
-            }
-			#contact {
-			}
-        </style>
-        <div class="modal fade show" id="detailworks" tabindex="-2" role="modal" aria-labelledby="modal-label-3" style="z-index: 1041;">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 id="titledetail" class="modal-title"></h4>
-                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container" id="datadetailworks">
-                            <div class="loaderdetailworks"><center>Please Wait...</center></div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button data-dismiss="modal" class="btn btn-b" type="button">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Our Services Carousel -->
-        <style>
-            
-        </style>
-        <section class="" id="services">
+        <section id="page-content">
             <div class="container">
-                <div class="heading-text heading-section  text-center text-center">
-                    <h2>Our Services</h2>
-                </div>
-                <div class="carousel arrows-visibile testimonial testimonial-single testimonial-left" data-items="1" data-autoplay="true" data-loop="true" data-autoplay-timeout="3500">
-                    <?PHP
-                    $qServ  = "
-                            select final.*, s.title, s.picture, s.headline, (case when parentid=0 then 0 else (select menu from menu_site where id_menu=final.parent) end) parent_name from (
-                                select a.*, (select count(*) from menu_site where parent=a.id_menu) as jmlsub,
-                                (select parent from menu_site where id_menu=a.parent) parentid
-                                from menu_site a where parent!=0 and style='services'
-                            ) as final 
-                            left join services s
-                            on final.id_menu=s.id_menu
-                            where jmlsub<1
-                            order by parent,sort
+
+            <div class="heading-text heading-section  text-center text-center">
+                <h2><?PHP if(get_cookie('lang_is') === 'en'){ echo 'Latest News'; } else { echo 'Berita Terkini'; } ?></h2>
+            </div>
+
+            <div id="blog" class="grid-layout post-3-columns m-b-30" data-item="post-item">
+                <?PHP
+                $qPage      = "
+                            select
+                                a.*,
+                                (select menu from menu_site where id_menu=a.id_menu) as menu,
+                                (select name from user where userid=a.create_by) as createby,
+                                (SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
+                                WHERE xa.menu='Manage Berita' AND xa.data = a.id_blog ORDER BY xa.date_time DESC limit 1)as update_by,
+                                (SELECT DATE_FORMAT(xa.date_time, '%d-%b-%y %H:%i:%s') as last_update FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
+                                WHERE xa.menu='Manage Berita' AND xa.data = a.id_blog ORDER BY xa.date_time DESC limit 1)as last_update
+                            from
+                            blog a
+                            order by id_blog desc
                             ";
-                    $gServ  = $this->query->getDatabyQ($qServ);
-                    foreach($gServ as $dataserv) {
-                        if ($dataserv['parent_name']=='0') { $titleserv = $dataserv['menu']; } else { $titleserv = $dataserv['parent_name'].' - '.$dataserv['menu']; }
-                    ?>
-                    <!-- Item -->
-                    <div class="testimonial-item">
-                        <div class="row">
-                            <div class="col-md-6 ">
-                                <h3><?PHP echo $titleserv; ?></h3>
-                                <p><?PHP echo $dataserv['headline']; ?>...</p>
-                                <a href="<?PHP echo base_url().'page/'.$dataserv['link']; ?>" class="btn btn-inverted">Read More</a>
-                            </div>
-                            <div class="col-md-6">
-                                <img src="<?PHP echo base_url(); ?>images/content/<?PHP echo $dataserv['picture']; ?>" alt="">
-                            </div>
+                $gPage      = $this->query->getDatabyQ($qPage);
+                $cek    = $this->query->getNumRowsbyQ($qPage)->num_rows();
+
+                if ($cek>0) {
+                foreach ($gPage as $dataPage) {
+                ?>
+                <div class="post-item border">
+                    <div class="post-item-wrap">
+                        <div class="post-image">
+                            <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>">
+                                <img alt="" src="<?PHP echo base_url(); ?>images/content/<?PHP echo $dataPage['picture']; ?>">
+                            </a>
+                        </div>
+                        <div class="post-item-description">
+                            <span class="post-meta-date">
+                                <i class="fa fa-calendar-alt"></i><?PHP echo $this->formula->TanggalIndo($dataPage['create_date']); ?>
+                            </span>
+                            <span class="post-meta-comments">
+                                <a href="#"><i class="fa fa-user"></i>Added by : <?PHP echo $dataPage['createby']; ?></a>
+                            </span>
+                            <h2>
+                                <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>"><?PHP echo $dataPage['title']; ?></a>
+                            </h2>
+                            <p><?PHP echo $dataPage['headline']; ?></p>
+                            <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>" class="item-link">Read More <i class="fa fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <!-- end: Item-->
-                    <?PHP } ?>
+                </div>
+                <?PHP } } else { ?>
+                <h3>We are sorry, No data available.</h3>
+                <?PHP } ?>
+            <!-- <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item active"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+            </ul> -->
 
-                </div>
             </div>
+
         </section>
-        <!-- end: Our Services Carousel -->
-		 <!-- Our About -->
-		<?PHP  
-		$qPage      = "
-					select
-						a.*,
-						(select menu from menu_site where id_menu=a.id_menu) as menu,
-						(SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
-						WHERE xa.menu='Manage Content' AND xa.data = a.id_content ORDER BY xa.date_time DESC limit 1)as update_by,
-						(SELECT DATE_FORMAT(xa.date_time, '%d-%b-%y %H:%i:%s') as last_update FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
-						WHERE xa.menu='Manage Content' AND xa.data = a.id_content ORDER BY xa.date_time DESC limit 1)as last_update
-					from
-					content a
-					where id_menu='2'
-					"; 
-		$gPage      = $this->query->getDatabyQ($qPage);
-		$dataPage   = array_shift($gPage);
-		?> 
-        <section class="" id="services">
-            <div class="container">
-                <div class="heading-text heading-section  text-center text-center">
-                    <h2>ABOUT US</h2>
-                </div>
-				<div id="blog" class="single-post col-lg-10 center">
-					<!-- Post single item-->
-					<div class="post-item">
-						<div class="post-item-wrap" style="background: transparent;">
-							<div class="post-item-description">
-								<?PHP echo $dataPage['content']; ?>
-							</div>
-							<!--div class="post-tags">
-								<a href="#">Life</a>
-								<a href="#">Sport</a>
-								<a href="#">Tech</a>
-								<a href="#">Travel</a>
-							</div-->
-						</div>
-					</div>
-					<!-- end: Post single item-->
-				</div>
-            </div> 
-        </section>
-        <!-- end: Our About --> 
-		<section class="" id="services">
+        
+		<section class="" id="services" style="background: #f8f9fa;">
         <div class="container">
 			<div class="row">
 				<div class="col-lg-6">
-					<h3 class=" text-uppercase">Get In Touch</h3>
-					<p class="">Please contact us via the form below or at the contact details provided for further information about our business and services.</p>
+                    <div><img src="<?PHP echo base_url(); ?>images/cropped-unnamed.png" alt="UNPAD" style="max-height: 80px;"></div><br>
+					<h3 class=" text-uppercase">
+                        <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Get In Touch'; } else { echo 'Hubungi Kami'; } ?>
+                    </h3>
+					<p class="">
+                        <?PHP if(get_cookie('lang_is') === 'en'){
+                        echo '
+                        Please contact us via the form below or at the contact details provided for further information about our business and services.';
+                        } else {
+                        echo '
+                        Silakan hubungi kami melalui formulir di bawah ini atau di detail kontak yang disediakan untuk informasi lebih lanjut tentang kami.';
+                        }
+                        ?>
+                    </p>
 					<div class="m-t-30">
 						<form class="widget-contact-form" action="<?PHP echo base_url(); ?>core/insertinbox" role="form" method="post">
 							<div class="row">
 								<div class="form-group col-md-6">
-									<label class="" for="name">Nama</label>
+                                    <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+									<label class="" for="name">Name</label>
 									<input type="text" aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="Enter your Name">
+                                    <?PHP } else { ?>
+                                    <label class="" for="name">Nama</label>
+                                    <input type="text" aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="Masukan Nama Anda">
+                                    <?PHP } ?>
 								</div>
 								<div class="form-group col-md-6">
+                                    <?PHP if(get_cookie('lang_is') === 'en'){ ?>
 									<label class="" for="email">Email</label>
 									<input type="email" aria-required="true" name="widget-contact-form-email" class="form-control required email" placeholder="Enter your Email">
+                                    <?PHP } else { ?>
+                                    <label class="" for="email">Email</label>
+                                    <input type="email" aria-required="true" name="widget-contact-form-email" class="form-control required email" placeholder="Masukan Email Anda">
+                                    <?PHP } ?>
 								</div>
 							</div>
 							<div class="row">
 								<div class="form-group col-md-12">
-									<label class="" for="subject">Judul Pesan</label>
+                                    <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+									<label class="" for="subject">Subject</label>
 									<input type="text" name="widget-contact-form-subject" class="form-control required" placeholder="Subject...">
+                                    <?PHP } else { ?>
+                                    <label class="" for="subject">Judul Pesan</label>
+                                    <input type="text" name="widget-contact-form-subject" class="form-control required" placeholder="Judul...">
+                                    <?PHP } ?>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="" for="message">Pesan</label>
+                                <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+								<label class="" for="message">Message</label>
 								<textarea type="text" name="widget-contact-form-message" rows="5" class="form-control required" placeholder="Enter your Message"></textarea>
+                                <?PHP } else { ?>
+                                <label class="" for="message">Pesan</label>
+                                <textarea type="text" name="widget-contact-form-message" rows="5" class="form-control required" placeholder="Masukan Pesan Anda"></textarea>
+                                <?PHP } ?>
 							</div>
-
-							<button class="btn" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Kirim Pesan</button>
+                            <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+							<button class="btn btn-warning" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Send</button>
+                            <?PHP } else { ?>
+                            <button class="btn btn-warning" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Kirim</button>
+                            <?PHP } ?>
 						</form>
 
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<h3 class="text-uppercase ">Address & Map</h3>
+					<h3 class="text-uppercase "><?PHP if(get_cookie('lang_is') === 'en'){ echo 'Address & Map'; } else { echo 'Alamat & Lokasi'; } ?></h3>
 					<div class="row">
 						<div class="col-lg-12 ">
 							<address>

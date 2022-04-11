@@ -62,7 +62,7 @@ $gPage      = $this->query->getDatabyQ($qPage);
                 <!-- Blog -->
                 <div id="blog" class="grid-layout post-3-columns m-b-30" data-item="post-item">
 
-                     <?PHP
+                    <?PHP
                     $cek    = $this->query->getNumRowsbyQ($qPage)->num_rows();
 
                     if ($cek>0) {
@@ -79,7 +79,7 @@ $gPage      = $this->query->getDatabyQ($qPage);
                                 </div>
                                 <div class="post-item-description">
                                     <span class="post-meta-date">
-                                            <i class="fa fa-calendar-alt"></i><?PHP echo $this->formula->TanggalIndo($dataPage['create_date']); ?>
+                                       <i class="fa fa-calendar-alt"></i><?PHP echo $this->formula->TanggalIndo($dataPage['create_date']); ?>
                                     </span>
                                     <span class="post-meta-comments"><a href="#"><i class="fa fa-user"></i>Added by : <?PHP echo $dataPage['createby']; ?></a></span>
                                     <h2><a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>"><?PHP echo $dataPage['title']; ?></a></h2>

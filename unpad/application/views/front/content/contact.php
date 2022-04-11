@@ -29,7 +29,7 @@ $dataPage   = array_shift($gPage);
             <div class="container">
                 <div class="page-title">
                     <!--span class="post-meta-category"><a href="#"><?PHP echo $menu; ?></a></span-->
-                    <h1>Contact Us</h1>
+                    <?PHP if(get_cookie('lang_is') === 'en'){ ?><h1>Contact Us</h1><?PHP } else { ?><h1>Hubungi Kami</h1><?PHP } ?>
                     <div class="small m-b-20">&nbsp;</div>
                     <div class="align-center">
                         <?PHP if ($sitedata['facebook']!=='') { ?>
@@ -61,10 +61,10 @@ $dataPage   = array_shift($gPage);
                         <?PHP } ?>
 
                         <?PHP if ($sitedata['whatsapp_no']!=='') { ?>
-                        <a class="btn btn-xs btn-slide btn-success" href="https://api.whatsapp.com/send?phone=<?PHP echo $sitedata['whatsapp_no']; ?>&text=<?PHP echo $sitedata['whatsapp_text']; ?>">
+                        <!-- <a class="btn btn-xs btn-slide btn-success" href="https://api.whatsapp.com/send?phone=<?PHP echo $sitedata['whatsapp_no']; ?>&text=<?PHP echo $sitedata['whatsapp_text']; ?>">
                             <i class="fab fa-whatsapp"></i>
                             <span>WhatsApp</span>
-                        </a>
+                        </a> -->
                         <?PHP } ?>
                     </div>
 
@@ -78,38 +78,74 @@ $dataPage   = array_shift($gPage);
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <h3 class=" text-uppercase">Get In Touch</h3>
-                        <p class="">Please contact us via the form below or at the contact details provided for further information about our business and services.</p>
+                        <div><img src="<?PHP echo base_url(); ?>images/cropped-unnamed.png" alt="UNPAD" style="max-height: 80px;"></div><br>
+                        <h3 class=" text-uppercase">
+                        <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Get In Touch'; } else { echo 'Hubungi Kami'; } ?>
+                        </h3>
+                        <p class="">
+                            <?PHP if(get_cookie('lang_is') === 'en'){
+                            echo '
+                            Please contact us via the form below or at the contact details provided for further information about our business and services.';
+                            } else {
+                            echo '
+                            Silakan hubungi kami melalui formulir di bawah ini atau di detail kontak yang disediakan untuk informasi lebih lanjut tentang kami.';
+                            }
+                            ?>
+                        </p>
                         <div class="m-t-30">
                             <form class="widget-contact-form" action="<?PHP echo base_url(); ?>core/insertinbox" role="form" method="post">
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label class="" for="name">Nama</label>
+                                        <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+                                        <label class="" for="name">Name</label>
                                         <input type="text" aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="Enter your Name">
+                                        <?PHP } else { ?>
+                                        <label class="" for="name">Nama</label>
+                                        <input type="text" aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="Masukan Nama Anda">
+                                        <?PHP } ?>
                                     </div>
                                     <div class="form-group col-md-6">
+                                        <?PHP if(get_cookie('lang_is') === 'en'){ ?>
                                         <label class="" for="email">Email</label>
                                         <input type="email" aria-required="true" name="widget-contact-form-email" class="form-control required email" placeholder="Enter your Email">
+                                        <?PHP } else { ?>
+                                        <label class="" for="email">Email</label>
+                                        <input type="email" aria-required="true" name="widget-contact-form-email" class="form-control required email" placeholder="Masukan Email Anda">
+                                        <?PHP } ?>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-12">
-                                        <label class="" for="subject">Judul Pesan</label>
+                                        <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+                                        <label class="" for="subject">Subject</label>
                                         <input type="text" name="widget-contact-form-subject" class="form-control required" placeholder="Subject...">
+                                        <?PHP } else { ?>
+                                        <label class="" for="subject">Judul Pesan</label>
+                                        <input type="text" name="widget-contact-form-subject" class="form-control required" placeholder="Judul...">
+                                        <?PHP } ?>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="" for="message">Pesan</label>
+                                    <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+                                    <label class="" for="message">Message</label>
                                     <textarea type="text" name="widget-contact-form-message" rows="5" class="form-control required" placeholder="Enter your Message"></textarea>
+                                    <?PHP } else { ?>
+                                    <label class="" for="message">Pesan</label>
+                                    <textarea type="text" name="widget-contact-form-message" rows="5" class="form-control required" placeholder="Masukan Pesan Anda"></textarea>
+                                    <?PHP } ?>
                                 </div>
 
-                                <button class="btn" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Kirim Pesan</button>
+                                <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+                                <button class="btn btn-warning" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Send</button>
+                                <?PHP } else { ?>
+                                <button class="btn btn-warning" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Kirim</button>
+                                <?PHP } ?>
                             </form>
 
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <h3 class="text-uppercase ">Address & Map</h3>
+                        <h3 class="text-uppercase "><?PHP if(get_cookie('lang_is') === 'en'){ echo 'Address & Map'; } else { echo 'Alamat & Lokasi'; } ?></h3>
                         <div class="row">
                             <div class="col-lg-12 ">
                                 <address>

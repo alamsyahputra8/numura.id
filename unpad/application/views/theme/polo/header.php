@@ -51,15 +51,33 @@ if (strpos( $activepage, 'blog' ) !== false) {
             </div>
             <!-- end: search -->
 
-            <!--Header Extras
+            <!--Header Extras -->
             <div class="header-extras">
                 <ul>
                     <li>
-                        <a id="btn-search" href="#"> <i class="icon-search1"></i></a>
+                        <div class="p-dropdown">
+                            <?PHP if (get_cookie('lang_is')=='en') { ?>
+                                <a href="#"><img src="<?PHP echo base_url(); ?>images/en.png" style="max-height: 20px; margin-top: -5px;"> <span>EN</span></a>
+                            <?PHP } else { ?>
+                                <a href="#"><img src="<?PHP echo base_url(); ?>images/id.png" style="max-height: 20px; margin-top: -5px;"> <span>ID</span></a>
+                            <?PHP } ?>
+                            <ul class="p-dropdown-content">
+                                <li>
+                                    <a href="<?php echo site_url('panel/set_to/indonesia');?>">
+                                        <img src="<?PHP echo base_url(); ?>images/id.png" style="max-height: 20px; margin-top: -5px;"> Indonesia
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url('panel/set_to/english');?>">
+                                        <img src="<?PHP echo base_url(); ?>images/en.png" style="max-height: 20px; margin-top: -5px;"> English
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
-            end: Header Extras-->
+            <!-- end: Header Extras-->
             
             <!--Navigation Resposnive Trigger-->
             <div id="mainMenu-trigger">

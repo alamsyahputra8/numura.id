@@ -82,13 +82,17 @@ if ($dataSEO['id_menu']==1) {
 
     <style>
     /*section { background: #429ed6 url('<?PHP echo base_url(); ?>images/divider.png') repeat-x center bottom; }*/
-    body {
+    /*body {
         background: url('<?PHP echo base_url(); ?>images/bgamr.jpeg') fixed no-repeat center;
         background-size: 70% auto;
-    }
+    }*/
     section { 
         background: rgba(255,255,255,.9);
         border-bottom: 1px solid #e5e5e5;
+    }
+    #header .header-inner #logo a > img {
+        /*height: 65px;*/
+        margin-top: -2px;
     }
     .no-border {
         border: none!important;

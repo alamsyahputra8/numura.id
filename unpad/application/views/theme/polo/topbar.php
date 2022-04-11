@@ -25,7 +25,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
                     <li><a href="#">Email: <?PHP echo $mail['email']; ?></a></li>
                 </ul>
             </div>
-			<div class="col-md-2 d-none d-sm-block">
+			<!-- <div class="col-md-2 d-none d-sm-block">
 				<span class="footer-left">
 					 
 					 <a href="<?php echo site_url('panel/set_to/indonesia');?>">IDN</a>
@@ -33,8 +33,8 @@ if (strpos( $activepage, 'blog' ) !== false) {
 					 <a href="<?php echo site_url('panel/set_to/english');?>">ENG</a>
 					 
 				</span>
-			</div>
-            <div class="col-md-4 d-none d-sm-block">
+			</div> -->
+            <div class="col-md-6 d-none d-sm-block">
                 <div class="social-icons social-icons-colored-hover">
                     <ul>
                         <?PHP if ($site['facebook']!=='') { ?>
@@ -54,7 +54,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
                         <?PHP } ?>
 
                         <?PHP if ($site['whatsapp_no']!=='') { ?>
-                        <li class="social-evernote"><a href="https://api.whatsapp.com/send?phone=<?PHP echo $site['whatsapp_no']; ?>&text=<?PHP echo $site['whatsapp_text']; ?>" target="_blank"><i class="fab fa-whatsapp"></i></a></li>
+                        <!-- <li class="social-evernote"><a href="https://api.whatsapp.com/send?phone=<?PHP echo $site['whatsapp_no']; ?>&text=<?PHP echo $site['whatsapp_text']; ?>" target="_blank"><i class="fab fa-whatsapp"></i></a></li> -->
                         <?PHP } ?>
                     </ul>
                 </div>

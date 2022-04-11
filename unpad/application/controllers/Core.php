@@ -5199,7 +5199,7 @@ class Core extends CI_Controller {
 				$fileName = str_replace(' ','_',time().$_FILES['upl']['name']);
 				$config['upload_path'] = './images/'; //buat folder dengan nama assets di root folder
 				$config['file_name'] = $fileName;
-				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg|svg';
 				$config['max_size'] = 10000000;
 				 
 				$this->load->library('upload');

@@ -218,7 +218,8 @@
 
 		<!--begin::Page Scripts(used by this page) -->
 		<!--script src="<?PHP echo base_url(); ?>assets/metronic/app/base/login-general.js" type="text/javascript"></script-->
-		<script src="<?PHP echo base_url(); ?>assets/metronic/app/base/login.js" type="text/javascript"></script>
+		<!-- <script src="<?PHP echo base_url(); ?>assets/metronic/app/base/login.js" type="text/javascript"></script> -->
+		<?PHP $this->load->view('theme/metronic/plugin/loginjs'); ?>
 
 		<!--end::Page Scripts -->
 
