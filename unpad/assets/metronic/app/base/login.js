@@ -1,7 +1,7 @@
 "use strict";
 
-//var base_url = window.location.origin;
-var base_url = 'https://localhost/amarindomandiri';
+var base_url = window.location.origin;
+//var base_url = 'https://localhost/amarindomandiri';
 // Class Definition
 var KTLoginGeneral = function() {
 
