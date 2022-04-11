@@ -72,26 +72,40 @@
 							</div>
 							<div class="kt-portlet__body">
 								<div class="form-group row">
-									<label class="col-form-label col-lg-3 col-sm-12">Title *</label>
+									<label class="col-form-label col-lg-2 col-sm-12">Title *</label>
 									<div class="col-lg-4 col-md-9 col-sm-12">
 										<div class='input-group'>
 											<input type="text" name="title" class="form-control" id="title" placeholder="Title">
-										</div>
+											<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
+										</div> 
 										<span class="form-text text-muted">Tambahkan <b><code>&ltbr&gt</code></b> jika ingin menambahkan "Enter" atau baris baru.</span>
+									</div>
+									<div class="col-lg-4 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<input type="text" name="title_en" class="form-control" id="title_en" placeholder="Title">
+											<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
+										</div> 
 									</div>
 								</div>
 
 								<div class="form-group row">
-									<label class="col-form-label col-lg-3 col-sm-12">Sub Title *</label>
+									<label class="col-form-label col-lg-2 col-sm-12">Sub Title *</label>
 									<div class="col-lg-4 col-md-9 col-sm-12">
 										<div class='input-group'>
 											<input type="text" name="subtitle" class="form-control" id="subtitle" placeholder="Sub Title">
+											<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<input type="text" name="subtitle_en" class="form-control" id="subtitle_en" placeholder="Sub Title">
+											<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
 										</div>
 									</div>
 								</div>
 
 								<div class="form-group row">
-									<label class="col-form-label col-lg-3 col-sm-12">Banner *</label>
+									<label class="col-form-label col-lg-2 col-sm-12">Banner *</label>
 									<div class="col-lg-4 col-md-9 col-sm-12">
 										<div class='input-group'>
 											<input type="file" name="pict" class="form-control" id="pict" placeholder="Cover">
@@ -158,27 +172,41 @@
 								</div>
 								<div class="kt-portlet__body">
 									<div class="form-group row">
-										<label class="col-form-label col-lg-3 col-sm-12">Title *</label>
+										<label class="col-form-label col-lg-2 col-sm-12">Title *</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<input type="hidden" name="ed_id" class="form-control" id="ed_id">
 												<input type="text" name="ed_title" class="form-control" id="ed_title" placeholder="Title">
-											</div>
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
+											</div> 
 											<span class="form-text text-muted">Tambahkan <b><code>&ltbr&gt</code></b> jika ingin menambahkan "Enter" atau baris baru.</>
+										</div>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'> 
+												<input type="text" name="ed_title_en" class="form-control" id="ed_title_en" placeholder="Title">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
+											</div>   
 										</div>
 									</div>
 
 									<div class="form-group row">
-										<label class="col-form-label col-lg-3 col-sm-12">Sub Title *</label>
+										<label class="col-form-label col-lg-2 col-sm-12">Sub Title *</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<input type="text" name="ed_subtitle" class="form-control" id="ed_subtitle" placeholder="Sub Title">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<input type="text" name="ed_subtitle_en" class="form-control" id="ed_subtitle_en" placeholder="Sub Title">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
 											</div>
 										</div>
 									</div>
 
 									<div class="form-group row">
-										<label class="col-form-label col-lg-3 col-sm-12">Banner *</label>
+										<label class="col-form-label col-lg-2 col-sm-12">Banner *</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<input type="file" name="upl" class="form-control" id="upl" placeholder="Cover">

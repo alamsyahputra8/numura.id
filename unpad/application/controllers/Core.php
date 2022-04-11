@@ -5001,6 +5001,8 @@ class Core extends CI_Controller {
 			$sub		= trim(strip_tags(stripslashes($this->input->post('subtitle',true))));*/
 			$title		= $this->input->post('title',true);
 			$sub		= $this->input->post('subtitle',true);
+			$title_en	= $this->input->post('title_en',true);
+			$sub_en		= $this->input->post('subtitle_en',true);
 			$fileName 	= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict']['name']);
 				
 			$config['upload_path'] = './images/slides/'; //buat folder dengan nama assets di root folder
@@ -5017,7 +5019,7 @@ class Core extends CI_Controller {
 			$fileNamePost 	= $media['file_name'];
 
 			$q 			= "
-						insert into banner (title,sub,img,thumb) values ('$title','$sub','$fileNamePosst','blur_thumb.png')
+						insert into banner (title,sub,title_en,sub_en,img,thumb) values ('$title','$sub','$title_en','$sub_en','$fileNamePosst','blur_thumb.png')
 						";
 						//echo $q;
 			$rows 		= $this->query->insertDatabyQ($q);
@@ -5068,6 +5070,8 @@ class Core extends CI_Controller {
 			$sub		= trim(strip_tags(stripslashes($this->input->post('ed_subtitle',true))));*/
 			$title		= $this->input->post('ed_title',true);
 			$sub		= $this->input->post('ed_subtitle',true);
+			$title_en		= $this->input->post('ed_title_en',true);
+			$sub_en		= $this->input->post('ed_subtitle_en',true);
 
 			$userid		= $userdata['userid'];
 				
@@ -5096,9 +5100,9 @@ class Core extends CI_Controller {
 					 
 				$media = $this->upload->data('upl');
 
-				$rows = $this->query->updateData('banner',"title='$title', sub='$sub', img='$fileName'","WHERE id_banner='$id'");
+				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', img='$fileName'","WHERE id_banner='$id'");
 			} else {
-				$rows = $this->query->updateData('banner',"title='$title', sub='$sub'","WHERE id_banner='$id'");
+				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en'","WHERE id_banner='$id'");
 			}
 
 			if($rows) {
