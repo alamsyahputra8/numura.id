@@ -1,11 +1,10 @@
-
 // Text Rotater
-
 .text-rotator {
-	> span {
+	>span {
 		display: none;
 	}
-	> .animated {
+
+	>.animated {
 		display: inline-block;
 		opacity: 1;
 	}

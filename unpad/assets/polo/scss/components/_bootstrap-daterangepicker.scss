@@ -1,3 +1,6 @@
+/* ----------------------------------------------------------------
+	Date range picker
+-----------------------------------------------------------------*/
 .daterangepicker {
 	.ranges {
 		padding: 0;
@@ -31,7 +34,6 @@
 		padding: 10px 10px;
 		line-height: 10px;
 	}
-
 }
 
 input.daterange:after,
@@ -46,7 +48,6 @@ input.dates:after {
 	position: absolute;
 	right: 4px;
 	background: blue;
-
 }
 
 .daterangepicker .calendar-time select.ampmselect,

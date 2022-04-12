@@ -1,12 +1,11 @@
 /* ----------------------------------------------------------------------
 	Parallax
 -------------------------------------------------------------------------*/
-
-#page-title[data-parallax-image],
-[data-parallax-image] {
+#page-title[data-bg-parallax],
+[data-bg-parallax] {
     background-color: $background-dark;
 }
-//Parallax
+
 .parallax-container {
     margin: 0;
     position: absolute;
@@ -19,7 +18,7 @@
     height: 100%;
     z-index: -100;
     opacity: 0;
-    transition: opacity .5s ease; 
+    transition: opacity .5s linear;
 }
 
 .parallax-container.parallax-responsive {
@@ -28,6 +27,6 @@
     background-position: center center !important;
 }
 
- .img-loaded {
+.img-loaded {
     opacity: 1;
-}  
+}

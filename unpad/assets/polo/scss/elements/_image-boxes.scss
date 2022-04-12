@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------
 Image Boxes
 -------------------------------------------------------------------------*/
-
+//chkd
 .image-box {
   position: relative;
   overflow: hidden;
@@ -18,7 +18,6 @@ Image Boxes
   padding-left: 15px !important;
   padding-right: 15px !important;
 }*/
-
 .col-no-padding [class*="col-"] {
   padding: 0;
 }
@@ -31,11 +30,15 @@ Image Boxes
     top: 0;
     width: 70%;
   }
+
   &.effect img:hover {
     opacity: auto;
   }
+
   .image-box-content {
-    &::before, &::after {
+
+    &::before,
+    &::after {
       pointer-events: none;
     }
   }
@@ -54,7 +57,9 @@ Image Boxes
 }
 
 .image-box-description {
-  h3, h4 {
+
+  h3,
+  h4 {
     margin: 0;
   }
 }
@@ -63,6 +68,7 @@ Image Boxes
   p {
     margin: 0;
   }
+
   .image-box-content {
     height: 100%;
     left: 0;
@@ -79,23 +85,28 @@ Image Boxes
   padding: 12px 0;
   position: relative;
   width: 100%;
-  > p {
+
+  >p {
     color: #333333;
+
     &.subtitle {
       color: #888;
     }
   }
+
   .post-date {
     float: left;
     font-size: 13px;
     margin: 10px 0;
+
     span {
       margin-left: 3px;
     }
   }
 }
 
-.post-date i, .image-box-content .icon-links i {
+.post-date i,
+.image-box-content .icon-links i {
   margin-right: 4px;
 }
 
@@ -107,6 +118,7 @@ Image Boxes
     margin: 9px 0;
     width: auto;
   }
+
   .links {
     margin-top: 20px;
   }
@@ -121,6 +133,7 @@ Image Boxes
   padding: 9px 15px;
   -webkit-transition: all ease 0.5s;
   transition: all ease 0.5s;
+
   &:hover {
     opacity: 0.8;
     color: #fff;
@@ -128,7 +141,6 @@ Image Boxes
 }
 
 /*circle image*/
-
 .image-box {
   &.circle-image {
     border: 6px solid #eee;
@@ -138,30 +150,38 @@ Image Boxes
     float: none;
     text-align: center;
     clear: both;
+
     &.small {
       height: 120px;
       width: 120px;
     }
+
     &.medium {
       height: 180px;
       width: 180px;
     }
+
     &.large {
       height: 220px;
       width: 220px;
     }
   }
+
   &.card {
     .image-box-content {
       background: #383838;
       color: #ffffff;
       padding: 20px;
     }
+
     &.effect .image-box-content {
       position: relative !important;
     }
+
     .image-box-content {
-      h3, p {
+
+      h3,
+      p {
         color: #ffffff;
       }
     }
@@ -169,7 +189,6 @@ Image Boxes
 }
 
 /*Image box Card*/
-
 .image-box-description.card {
   padding: 20px;
 }
@@ -178,23 +197,24 @@ Image Boxes
   cursor: pointer;
 }
 
-.effect > img {
+.effect>img {
   width: 100%;
 }
 
 /* Individual effects */
-
 .image-box {
   &.effect {
     img {
       min-height: auto;
     }
+
     .image-box-content {
       padding: 2em;
       position: absolute;
       cursor: pointer;
     }
   }
+
   .image-box-content h3 {
     font-weight: 800;
   }
@@ -207,13 +227,17 @@ Image Boxes
 .image-box {
   &.effect .image-box-content {
     color: #fff;
-    h3, p {
+
+    h3,
+    p {
       color: #fff;
     }
   }
-  h3 > span {
+
+  h3>span {
     font-weight: 800;
   }
+
   &.effect.dia .image-box-content {
     top: auto;
     bottom: 0;
@@ -229,11 +253,8 @@ Image Boxes
 }
 
 /*---------------*/
-
 /***** dia *****/
-
 /*---------------*/
-
 .portfolio-image.effect.dia .portfolio-description {
   top: auto;
   bottom: 0;
@@ -247,13 +268,15 @@ Image Boxes
   text-transform: uppercase;
 }
 
-.image-box.effect.dia h3, .portfolio-image.effect.dia h3 {
+.image-box.effect.dia h3,
+.portfolio-image.effect.dia h3 {
   float: left;
   font-size: 25px;
   font-weight: 400;
 }
 
-.image-box .icon-links, .portfolio-image .icon-links {
+.image-box .icon-links,
+.portfolio-image .icon-links {
   float: right;
 }
 
@@ -261,6 +284,7 @@ Image Boxes
   .icon-links i {
     margin: 7px;
   }
+
   &.effect {
     &.dia {
       p.icon-links {
@@ -269,63 +293,82 @@ Image Boxes
           font-size: 1.4em;
           color: #fff;
         }
+
         i:hover {
           opacity: 0.9;
         }
       }
+
       &:hover p.icon-links a {
-        &:hover, &:focus {
+
+        &:hover,
+        &:focus {
           color: #fff;
         }
       }
+
       .image-box-content h3 {
         color: #fff;
       }
-      h3, p.icon-links a {
+
+      h3,
+      p.icon-links a {
         -webkit-transition: -webkit-transform 0.35s;
         transition: transform 0.35s;
         -webkit-transform: translate3d(0, 200%, 0);
         transform: translate3d(0, 200%, 0);
       }
+
       h3 {
         font-weight: 600;
         max-width: 66%;
         font-size: 18px;
         line-height: 32px;
       }
+
       &:hover {
-        .image-box-content, h3, p.icon-links a {
+
+        .image-box-content,
+        h3,
+        p.icon-links a {
           -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
         }
+
         h3 {
           -webkit-transition-delay: 0.05s;
           transition-delay: 0.05s;
         }
+
         p.icon-links a {
           &:first-child {
             -webkit-transition-delay: 0.1s;
             transition-delay: 0.1s;
           }
+
           &:nth-child(2) {
             -webkit-transition-delay: 0.15s;
             transition-delay: 0.15s;
           }
+
           &:nth-child(3) {
             -webkit-transition-delay: 0.2s;
             transition-delay: 0.2s;
           }
+
           &:nth-child(4) {
             -webkit-transition-delay: 0.25s;
             transition-delay: 0.25s;
           }
         }
       }
-      .image-box-links > a {
+
+      .image-box-links>a {
         float: right;
         padding: 0 10px;
       }
     }
+
     &.juna {
       img {
         max-width: none;
@@ -335,39 +378,51 @@ Image Boxes
         -webkit-transform: translate3d(-40px, 0, 0);
         transform: translate3d(-40px, 0, 0);
       }
+
       .image-box-content {
         text-align: center;
         -webkit-transition: all ease 0.5s;
         transition: all ease 0.5s;
         background: rgba(0, 0, 0, 0.2);
       }
+
       &:hover .image-box-content {
         background: rgba(0, 0, 0, 0.6);
       }
-      h3, p {
+
+      h3,
+      p {
         -webkit-transform: translate3d(0, 40px, 0);
         transform: translate3d(0, 40px, 0);
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
       }
+
       h3 {
         -webkit-transition: -webkit-transform 0.35s;
         transition: transform 0.35s;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.49);
       }
+
       p {
         color: #fff;
         opacity: 0;
         -webkit-transition: opacity 0.2s, -webkit-transform 0.35s;
         transition: opacity 0.2s, transform 0.35s;
       }
+
       &:hover {
-        img, p {
+
+        img,
+        p {
           opacity: 1;
         }
-        img, h3 {
+
+        img,
+        h3 {
           -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
         }
+
         p {
           -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
@@ -377,25 +432,31 @@ Image Boxes
           transition-duration: 0.35s;
         }
       }
+
       p i {
         margin: 7px;
+
         &:hover {
           opacity: 0.9;
         }
       }
+
       .image-box-links {
         margin-top: 12%;
       }
     }
+
     &.resa {
       .image-box-content {
         text-align: right;
         -webkit-transition: all ease 0.5s;
         transition: all ease 0.5s;
       }
+
       &:hover .image-box-content {
         background: rgba(0, 0, 0, 0.6);
       }
+
       h3 {
         position: absolute;
         right: 30px;
@@ -403,6 +464,7 @@ Image Boxes
         padding: 10px 0;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
       }
+
       p {
         position: absolute;
         right: 30px;
@@ -414,6 +476,7 @@ Image Boxes
         -webkit-transform: translate3d(0, 100%, 0);
         transform: translate3d(0, 100%, 0);
       }
+
       h3 {
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.49);
         top: 30px;
@@ -422,10 +485,12 @@ Image Boxes
         -webkit-transform: translate3d(0, 20px, 0);
         transform: translate3d(0, 20px, 0);
       }
+
       &:hover h3 {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
       }
+
       h3::after {
         position: absolute;
         top: 100%;
@@ -440,13 +505,17 @@ Image Boxes
         -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
         transition: opacity 0.35s, transform 0.35s;
       }
+
       p {
         opacity: 0;
         -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
         transition: opacity 0.35s, transform 0.35s;
       }
+
       &:hover {
-        h3::after, p {
+
+        h3::after,
+        p {
           opacity: 1;
           -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
@@ -454,30 +523,38 @@ Image Boxes
       }
     }
   }
+
   &.alea {
     background-color: rgba(0, 0, 0, 0.9);
     text-align: center;
+
     img {
       opacity: 0.8;
     }
   }
+
   &.effect {
     &.alea {
       -webkit-perspective: 1000px;
       perspective: 1000px;
+
       img {
         -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
         transition: opacity 0.35s, transform 0.35s;
         -webkit-transform: translate3d(0, 0, 300px);
         transform: translate3d(0, 0, 300px);
       }
+
       &:hover img {
         opacity: 0.6;
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
       }
+
       .image-box-content {
-        &::before, &::after {
+
+        &::before,
+        &::after {
           position: absolute;
           top: 50%;
           left: 50%;
@@ -491,19 +568,23 @@ Image Boxes
           transform: translate3d(-50%, -50%, 0);
         }
       }
+
       &:hover .image-box-content {
         &::before {
           opacity: 0.5;
           -webkit-transform: translate3d(-50%, -50%, 0) rotate(45deg);
           transform: translate3d(-50%, -50%, 0) rotate(45deg);
         }
+
         &::after {
           opacity: 0.5;
           -webkit-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
           transform: translate3d(-50%, -50%, 0) rotate(-45deg);
         }
       }
-      h3, p {
+
+      h3,
+      p {
         position: absolute;
         top: 50%;
         left: 0;
@@ -511,38 +592,48 @@ Image Boxes
         -webkit-transition: -webkit-transform 0.35s;
         transition: transform 0.35s;
       }
+
       h3 {
         -webkit-transform: translate3d(0px, -14%, 0px) translate3d(0px, -100%, 0px);
         transform: translate3d(0px, -14%, 0px) translate3d(0px, -100%, 0px);
       }
+
       p {
         padding: 0.25em 2em;
         -webkit-transform: translate3d(0, -28%, 0) translate3d(0, 120%, 0);
         transform: translate3d(0, -28%, 0) translate3d(0, 120%, 0);
       }
+
       &:hover {
         h3 {
           -webkit-transform: translate3d(0px, 0%, 0px) translate3d(0px, -100%, 0px);
           transform: translate3d(0px, 0%, 0px) translate3d(0px, -100%, 0px);
         }
+
         p {
           -webkit-transform: translate3d(0, -50%, 0) translate3d(0, 100%, 0);
           transform: translate3d(0, -50%, 0) translate3d(0, 100%, 0);
         }
       }
     }
+
     &.ariol {
       background: rgba(0, 0, 0, 0.8);
+
       img {
         min-height: 287px;
       }
+
       .image-box-content {
         padding: 3em;
-        &::before, &::after {
+
+        &::before,
+        &::after {
           position: absolute;
           content: '';
           opacity: 0;
         }
+
         &::before {
           top: 50px;
           right: 30px;
@@ -557,6 +648,7 @@ Image Boxes
           -ms-transform-origin: 0 0;
           transform-origin: 0 0;
         }
+
         &::after {
           top: 30px;
           right: 50px;
@@ -572,6 +664,7 @@ Image Boxes
           transform-origin: 100% 0;
         }
       }
+
       h3 {
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.49);
         padding-top: 20px;
@@ -579,6 +672,7 @@ Image Boxes
         -webkit-transition: -webkit-transform 0.35s;
         transition: transform 0.35s;
       }
+
       p {
         padding: 10px 20px;
         text-align: center;
@@ -587,58 +681,79 @@ Image Boxes
         -webkit-transform: translate3d(0, -10px, 0);
         transform: translate3d(0, -10px, 0);
       }
-      img, h3 {
+
+      img,
+      h3 {
         -webkit-transform: translate3d(0, -30px, 0);
         transform: translate3d(0, -30px, 0);
       }
+
       img {
         -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
         transition: opacity 0.35s, transform 0.35s;
       }
+
       .image-box-content {
-        &::before, &::after {
+
+        &::before,
+        &::after {
           -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
           transition: opacity 0.35s, transform 0.35s;
         }
       }
+
       p {
         -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
         transition: opacity 0.35s, transform 0.35s;
       }
+
       &:hover {
         img {
           opacity: 0.7;
           -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
         }
+
         .image-box-content {
-          &::before, &::after {
+
+          &::before,
+          &::after {
             opacity: 1;
             -webkit-transform: scale(1);
             -ms-transform: scale(1);
             transform: scale(1);
           }
         }
-        h3, p {
+
+        h3,
+        p {
           opacity: 1;
           -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
         }
-        .image-box-content::after, h3, p, img {
+
+        .image-box-content::after,
+        h3,
+        p,
+        img {
           -webkit-transition-delay: 0.15s;
           transition-delay: 0.15s;
         }
       }
     }
+
     &.dorian {
       background: rgba(0, 0, 0, 0.8);
+
       img {
         -webkit-transition: opacity 0.35s;
         transition: opacity 0.35s;
       }
+
       &:hover img {
         opacity: 0.4;
       }
+
       .image-box-content::after {
         position: absolute;
         right: 30px;
@@ -652,14 +767,17 @@ Image Boxes
         -webkit-transform: translate3d(0, -100%, 0);
         transform: translate3d(0, -100%, 0);
       }
+
       &:hover .image-box-content::after {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
       }
+
       .image-box-content {
         padding: 3em;
         text-align: left;
       }
+
       p {
         position: absolute;
         right: 60px;
@@ -671,12 +789,14 @@ Image Boxes
         -webkit-transform: translate3d(0, -100px, 0);
         transform: translate3d(0, -100px, 0);
       }
+
       &:hover p {
         opacity: 1;
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
       }
     }
+
     &.emma {
       img {
         -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
@@ -685,35 +805,43 @@ Image Boxes
         -ms-transform: scale(1.12);
         transform: scale(1.12);
       }
+
       &:hover img {
         -webkit-transform: scale(1);
         -ms-transform: scale(1);
         transform: scale(1);
       }
+
       .image-box-content {
         -webkit-transition: all ease 0.6s;
         transition: all ease 0.6s;
       }
+
       &:hover .image-box-content {
         background: rgba(0, 0, 0, 0.6);
       }
+
       .image-box-content {
         padding: 3em;
+
         &::before {
           opacity: 0;
           -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
           transition: opacity 0.35s, transform 0.35s;
         }
       }
+
       p {
         opacity: 0;
         -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
         transition: opacity 0.35s, transform 0.35s;
       }
+
       h3 {
         padding: 10px 20px;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.49);
       }
+
       p {
         margin: 0 auto;
         padding: 10px 20px;
@@ -721,8 +849,11 @@ Image Boxes
         -ms-transform: scale(1.5);
         transform: scale(1.5);
       }
+
       &:hover {
-        .image-box-content::before, p {
+
+        .image-box-content::before,
+        p {
           opacity: 1;
           -webkit-transform: scale(1);
           -ms-transform: scale(1);
@@ -730,14 +861,17 @@ Image Boxes
         }
       }
     }
+
     &.victor {
       .image-box-content {
         -webkit-transition: all ease 0.6s;
         transition: all ease 0.6s;
       }
+
       &:hover .image-box-content {
         background: rgba(0, 0, 0, 0.6);
       }
+
       img {
         max-width: none;
         width: 100%;
@@ -749,10 +883,12 @@ Image Boxes
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
       }
+
       &:hover img {
         -webkit-transform: translate3d(10px, 0px, 0px) scale(1.1);
         transform: translate3d(10px, 0px, 0px) scale(1.1);
       }
+
       h3 {
         position: absolute;
         left: 0;
@@ -765,6 +901,7 @@ Image Boxes
         -webkit-transform: translate3d(-40px, 0, 0);
         transform: translate3d(-40px, 0, 0);
       }
+
       p {
         opacity: 0;
         left: 0;
@@ -777,16 +914,21 @@ Image Boxes
         -webkit-transform: translate3d(-40px, 0, 0);
         transform: translate3d(-40px, 0, 0);
       }
+
       &:hover {
-        h3, p {
+
+        h3,
+        p {
           opacity: 1;
           -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
         }
       }
     }
+
     &.erdi {
       background: #2f3238;
+
       img {
         max-width: none;
         -webkit-transition: opacity 1s, -webkit-transform 1s;
@@ -794,14 +936,17 @@ Image Boxes
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
       }
+
       .image-box-content {
         text-align: left;
       }
+
       h3 {
         padding: 0.5em 0;
         position: relative;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.49);
       }
+
       p {
         display: table;
         margin: 0 0 0.25em;
@@ -815,53 +960,65 @@ Image Boxes
         transition: opacity 0.35s, transform 0.35s;
         -webkit-transform: translate3d(-360px, 0, 0);
         transform: translate3d(-360px, 0, 0);
+
         &:first-child {
           -webkit-transition-delay: 0.15s;
           transition-delay: 0.15s;
         }
+
         &:nth-of-type(2) {
           -webkit-transition-delay: 0.1s;
           transition-delay: 0.1s;
         }
+
         &:nth-of-type(3) {
           -webkit-transition-delay: 0.05s;
           transition-delay: 0.05s;
         }
       }
+
       &:hover {
         p {
           &:first-child {
             -webkit-transition-delay: 0s;
             transition-delay: 0s;
           }
+
           &:nth-of-type(2) {
             -webkit-transition-delay: 0.05s;
             transition-delay: 0.05s;
           }
+
           &:nth-of-type(3) {
             -webkit-transition-delay: 0.1s;
             transition-delay: 0.1s;
           }
         }
+
         img {
           opacity: 0.4;
           -webkit-transform: scale3d(1.1, 1.1, 1);
           transform: scale3d(1.1, 1.1, 1);
         }
+
         p {
           opacity: 1;
           -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
         }
       }
+
       p.image-box-links.image-box-links {
         background-color: transparent;
         margin-left: -15px;
       }
     }
+
     &.tini {
       background: #303fa9;
-      h3, p {
+
+      h3,
+      p {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -873,6 +1030,7 @@ Image Boxes
         -ms-transform-origin: 50%;
         transform-origin: 50%;
       }
+
       .image-box-content::before {
         position: absolute;
         top: 50%;
@@ -890,67 +1048,84 @@ Image Boxes
         -ms-transform-origin: 50%;
         transform-origin: 50%;
       }
+
       p {
         width: 100px;
         text-transform: none;
         font-size: 140%;
         line-height: 2;
+
         a {
           color: #fff;
           margin-right: 6px;
-          &:hover, &:focus {
+
+          &:hover,
+          &:focus {
             opacity: 0.6;
           }
+
           i {
             opacity: 0;
             -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
             transition: opacity 0.35s, transform 0.35s;
           }
+
           &:first-child i {
             -webkit-transform: translate3d(-60px, -60px, 0);
             transform: translate3d(-60px, -60px, 0);
           }
+
           &:nth-child(2) i {
             -webkit-transform: translate3d(60px, -60px, 0);
             transform: translate3d(60px, -60px, 0);
           }
+
           &:nth-child(3) i {
             -webkit-transform: translate3d(-60px, 60px, 0);
             transform: translate3d(-60px, 60px, 0);
           }
+
           &:nth-child(4) i {
             -webkit-transform: translate3d(60px, 60px, 0);
             transform: translate3d(60px, 60px, 0);
           }
+
           &:nth-child(5) i {
             -webkit-transform: translate3d(60px, -60px, 0);
             transform: translate3d(60px, -60px, 0);
           }
+
           &:nth-child(6) i {
             -webkit-transform: translate3d(-60px, -60px, 0);
             transform: translate3d(-60px, -60px, 0);
           }
         }
+
         padding-left: 10px;
       }
+
       &:hover .image-box-content::before {
         opacity: 1;
         -webkit-transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(1, 1, 1);
         transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(1, 1, 1);
       }
+
       .image-box-content {
         -webkit-transition: all ease 0.4s;
         transition: all ease 0.4s;
       }
+
       &:hover {
         .image-box-content {
           background: rgba(0, 0, 0, 0.3);
         }
+
         h3 {
           opacity: 0;
           -webkit-transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
           transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
         }
+
         p i:empty {
           -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
@@ -959,16 +1134,21 @@ Image Boxes
         }
       }
     }
+
     &.bleron {
       background: #df4e4e;
-      img, h3 {
+
+      img,
+      h3 {
         -webkit-transition: -webkit-transform 0.35s;
         transition: transform 0.35s;
       }
+
       img {
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
       }
+
       h3 {
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.49);
         position: absolute;
@@ -976,6 +1156,7 @@ Image Boxes
         left: 0;
         padding: 30px;
       }
+
       p {
         position: absolute;
         bottom: 0;
@@ -989,21 +1170,25 @@ Image Boxes
         -webkit-transform: translate3d(0, 50px, 0);
         transform: translate3d(0, 50px, 0);
       }
+
       &:hover {
         img {
           -webkit-transform: translate3d(0, -80px, 0);
           transform: translate3d(0, -80px, 0);
         }
+
         h3 {
           -webkit-transform: translate3d(0, -100px, 0);
           transform: translate3d(0, -100px, 0);
         }
+
         p {
           opacity: 1;
           -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
         }
       }
+
       p.image-box-links a {
         background-color: #fff;
       }
@@ -1011,97 +1196,25 @@ Image Boxes
   }
 }
 
-/*.image-box.effect.dia p.icon-links a span::before {
-    display: inline-block;
-    padding: 8px 10px;
-    font-family: 'feathericons';
-    speak: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}*/
-
-/*---------------*/
-
-/***** juna *****/
-
-/*---------------*/
-
-/*---------------*/
-
-/***** resa *****/
-
-/*---------------*/
-
-/*---------------*/
-
-/***** alea *****/
-
-/*---------------*/
-
-/*---------------*/
-
-/***** ariol *****/
-
-/*---------------*/
-
-/*---------------*/
-
-/***** dorian *****/
-
-/*---------------*/
-
-/*---------------*/
-
-/***** Emma *****/
-
-/*---------------*/
-
-/*---------------*/
-
-/***** victor *****/
-
-/*---------------*/
-
-/*---------------*/
-
-/***** erdi *****/
-
-/*---------------*/
-
-/*-----------------*/
-
-/***** tini *****/
-
-/*-----------------*/
-
-/*-----------------*/
-
-/***** bleron *****/
-
-/*-----------------*/
-
-/*----------------------*/
-
-/***** social-links *****/
-
-/*----------------------*/
-
 .effect {
   &.social-links {
     text-align: left;
     position: relative;
+
     img {
       -webkit-transition: opacity 0.35s;
       transition: opacity 0.35s;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
     }
+
     h3 {
       -webkit-transition: -webkit-transform 0.25s;
       transition: transform 0.25s;
       -webkit-transform: translate3d(0, 20px, 0);
       transform: translate3d(0, 20px, 0);
     }
+
     p {
       display: inline;
       left: auto;
@@ -1112,25 +1225,30 @@ Image Boxes
       top: 50%;
       width: 100%;
     }
+
     a i {
       margin: 0 4px;
       color: #fff;
       font-size: 146%;
     }
+
     &:hover {
       img {
         opacity: 0.6;
       }
+
       h3 {
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
       }
+
       .image-box-content::before {
         opacity: 0.7;
         -webkit-transform: rotate3d(0, 0, 1, 20deg);
         transform: rotate3d(0, 0, 1, 20deg);
       }
     }
+
     p a i {
       border-radius: 50%;
       height: 42px;
@@ -1143,25 +1261,30 @@ Image Boxes
       -webkit-transform: translate3d(0, 30px, 0);
       transform: translate3d(0, 30px, 0);
     }
+
     &:hover p {
       i {
         opacity: 1;
         -webkit-transform: translate3d(0, 0, 0) rotate(0deg);
         transform: translate3d(0, 0, 0) rotate(0deg);
       }
+
       a {
         &:nth-child(3) i {
           -webkit-transition-delay: 0.05s;
           transition-delay: 0.05s;
         }
+
         &:nth-child(2) i {
           -webkit-transition-delay: 0.1s;
           transition-delay: 0.1s;
         }
+
         &:first-child i {
           -webkit-transition-delay: 0.15s;
           transition-delay: 0.15s;
         }
+
         i:hover {
           -webkit-transition: all 0.5s ease 0s;
           transition: all 0.5s ease 0s;
@@ -1173,25 +1296,25 @@ Image Boxes
       }
     }
   }
+
   .image-box-content p i {
     z-index: 2;
   }
 }
 
 /*---------------*/
-
 /***** Retro *****/
-
 /*---------------*/
-
 .image-box.effect.retro {
   background: #030c17;
   text-align: center;
+
   img {
     opacity: 0.9;
     -webkit-transition: opacity 0.35s;
     transition: opacity 0.35s;
   }
+
   .image-box-content::before {
     position: absolute;
     top: 30px;
@@ -1207,12 +1330,14 @@ Image Boxes
     -webkit-transform: scale3d(1.4, 1.4, 1);
     transform: scale3d(1.4, 1.4, 1);
   }
+
   h3 {
     margin: 20% 0 10px 0;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.49);
     -webkit-transition: -webkit-transform 0.35s;
     transition: transform 0.35s;
   }
+
   p {
     opacity: 0;
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
@@ -1221,20 +1346,25 @@ Image Boxes
     -ms-transform: scale(1.5);
     transform: scale(1.5);
   }
+
   &:hover {
     h3 {
       -webkit-transform: scale(0.9);
       -ms-transform: scale(0.9);
       transform: scale(0.9);
     }
-    .image-box-content::before, p {
+
+    .image-box-content::before,
+    p {
       opacity: 1;
       -webkit-transform: scale3d(1, 1, 1);
       transform: scale3d(1, 1, 1);
     }
+
     .image-box-content {
       background-color: rgba(58, 52, 42, 0);
     }
+
     img {
       opacity: 0.4;
     }

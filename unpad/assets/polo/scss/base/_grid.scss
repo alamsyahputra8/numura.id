@@ -127,7 +127,7 @@
 }
 
 /*Tablet Landscape*/
-@media (max-width: 991px) {
+@include breakpoint-lg(max) {
 
     /*Grid columns: 6,5,4*/
     .grid-6-columns .grid-item,
@@ -530,14 +530,13 @@
     display: none;
 }
 
-@media (max-width: 991px) {
+@include breakpoint-lg(max) {
     .grid-active-title {
         display: none;
     }
 
     .grid-filter {
         li {
-            width: 33.33%;
             margin-right: 0;
             margin-bottom: 4px;
 
@@ -550,9 +549,8 @@
 }
 
 @media (max-width: 479px) {
-    .grid-filter {
+    .grid-filter { 
         li {
-            width: 50%;
             margin-right: 0;
         }
     }

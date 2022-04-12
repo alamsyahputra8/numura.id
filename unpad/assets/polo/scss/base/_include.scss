@@ -2,52 +2,41 @@
 **														              **
 **         POLO Html5 Template		   								  **
 **         Author: INSPIRO MEDIA								      **
-**		   URL: http://www.inspiro-media.com						  **
-**														              **
+**		   URL: //www.inspiro-media.com						  **
+**	       													              **
 ************************************************************************/
-
-/*  Content & Layout */ 
-@import "body/layout";
-@import "body/page-title";
-@import "body/content";
-@import "body/grid";
-
-/*  Header */ 
-@import "header/topbar";
-@import "header/header";
-
-/*  Typography */ 
-//@import "fonts";
-@import "typography/typography";
-
-/*  Sliders */ 
-@import "sliders/sliders";
-
-/*  Portfolio */ 
-@import "portfolio/portfolio"; 
-
-/*  Blog & comments */ 
-@import "blog/blog";
-@import "comments/comments"; 
-
-/*  Shop */ 
-@import "shop/shop";
-
-/*  Forum */ 
-@import "forum/forum";
-
-/*  Helpers */
-@import "helpers/helpers";
-
+/*  Content & Layout */
+@import "layout";
+@import "page-title";
+@import "content";
+@import "grid";
+/*  Header */
+@import "topbar";
+@import "header";
+@import "menu";
+@import "header-extras";
+@import "search";
+@import "side-panel";
+@import "page-menu";
+@import "sidebar";
+/*  Typography */
+@import "typography";
+/*  Sliders */
+@import "sliders";
+/*  Portfolio */
+@import "portfolio";
+/*  Blog & comments */
+@import "blog";
+@import "comments";
+/*  Shop */
+@import "shop";
+/*  Forum */
+@import "forum";
 /*  Footer */
-@import "footer/footer";
-
+@import "footer";
 /*  Widgets */
-@import "widgets/widgets";
-
-/*  Preloaders  */
-@import "preloaders/preloaders";
-
+@import "widgets";
 /*  Extras */
-@import "extras/extras";
-
+@import "extras";
+/*  Helpers */
+@import "helpers";

@@ -313,7 +313,7 @@ Topbar
 }
 
 //TopBar - Responsive
-@media (max-width: 991px) {
+@include breakpoint-lg(max) {
     #topbar {
         &.topbar-transparent.dark {
             background-color: $color-white !important;

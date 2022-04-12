@@ -1,90 +1,54 @@
-/* ----------------------------------------------------------------
-	Cards
------------------------------------------------------------------*/
-
+//	Cards
 .card {
+	border: 1px solid $border-color;
 	border-radius: $border-radius;
-	transition: $transition-base;
-	.card-title {
-		font-family: $font-headings;
+	background-color: $color-white;
+	margin-bottom: 20px;
+	box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+
+	.card-header {
+		background-color: $color-white;
+		border-bottom: 1px solid $border-color;
+		font-weight: 600;
+		padding: 1.8rem 2rem;
+
+		p:last-child {
+			margin-bottom: 0;
+		}
+
+		.card-title {
+			font-size: 1.35714286em;
+			line-height: 1.68421053em;
+			font-weight: 500;
+		}
+
+		.card-subtitle {
+			font-size: 1rem;
+			font-style: normal;
+			font-weight: 400;
+			color: $color-body;
+		}
 	}
-	&:not(.card-static):hover {
-		box-shadow: $box-shadow;
+
+	.card-header-title {
+		font-size: 16px;
+		line-height: 23px;
+		margin-bottom: 0px;
+		font-weight: 600;
+	}
+
+	.card-body {
+		padding: 1.8rem 2rem;
+	}
+
+	.card-body-title {
+		font-size: 18px;
+		line-height: 26px;
+		font-weight: 600;
+	}
+
+	.card-footer {
+		background-color: $color-white;
+		border-top: 1px solid $border-color;
 	}
 }
- 
-/* 
-
-.card {
-    
-	display: block;
-width: calc(100% + 30px);
-left: -15px;
-position: relative;
-display: flex;
-flex-wrap: wrap;
-align-content: center;
-justify-content: center; 
-
-.card-body {
-	.icon-holder {
-		 vertical-align: middle;
-		 top: -4px;
-		 height: 40px;
-		 width: 40px;
-		 background: rgba(0, 0, 0, .04);
-		 display: inline-block;
-		 line-height: 40px;
-		 text-align: center;
-		 border-radius: 4px;
-		 font-size: 24px;
-		 transition: .3s;
-		 position: relative;
-		 position: absolute;
-		 top: 50%;
-		 transform: translateY(-50%)
-	}
-
-	.icon-class {
-		 max-width: 80%;
-		 display: inline-block;
-		 overflow: hidden;
-		 font-size: 14px;
-		 line-height: 20px;
-		 top: 0;
-		 vertical-align: middle;
-		 padding-left: 55px
-	}
-
-}
-
-.row > .col-md-3 {
-	position: relative;
-	font-size: 20px;
-	margin: 12px 12px;
-	background-color: #fff;
-	box-shadow: $box-shadow;
-	border-radius: $border-radius;
-	flex: 1 1 calc(25% - 30px);
-	align-content: center;
-	justify-content: center;
-	display: flex;
-	flex-direction: column;
-	padding: 26px 18px;
-	transition: .3s;
-	color: $color-master;
-
-	&:hover {
-		 transform: translateY(-5px);
-		 background-color: $background-theme;   
-		 color: $color-white;
-		 box-shadow: $box-shadow;
-		 .icon-holder {
-			  background-color: $background-white;
-			  color: $color-master;
-		 }
-	}
-
-}
-
-} */

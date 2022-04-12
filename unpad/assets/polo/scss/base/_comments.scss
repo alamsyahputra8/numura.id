@@ -91,7 +91,7 @@
     }
 }
 
-@media (max-width:991px) {
+@include breakpoint-lg(max) {
     .comments {
         padding: 22px 0 30px;
         margin: 0;

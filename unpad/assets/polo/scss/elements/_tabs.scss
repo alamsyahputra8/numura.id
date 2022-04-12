@@ -1,20 +1,17 @@
-// DELETE VARIABLES
-
 /*--------------------------------------------------------
      Tabs
 ---------------------------------------------------------*/
-
+//chkd
 //Tabs
 $nav-tabs-border-width: $border-width;
 $nav-tabs-border-color: $border-color;
 $nav-tabs-border-radius: $border-radius;
 $nav-tabs-link-hover-border-color: $hover-color;
 $nav-tabs-link-color: $color-body;
-$nav-tabs-link-active-color: $color-theme;
 $nav-tabs-link-active-bg: transparent;
 $nav-tabs-link-active-border-color: $border-color;
 
-ul.nav li.dropdown:hover > ul.dropdown-menu {
+ul.nav li.dropdown:hover>ul.dropdown-menu {
     display: block;
 }
 
@@ -28,30 +25,30 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
         }
 
         .nav-link {
-
+            color: $color-body;
             padding: 14px 24px;
-            color: rgba( $color-body, .8);
+            color: rgba($color-body, .8);
             transition: 0.3s ease;
-            font-weight: 600;
-
-            color: $nav-tabs-link-color;
+            font-weight: 500;
             border: 0;
             /*border: $nav-tabs-border-width solid transparent;*/
             border-top-left-radius: $nav-tabs-border-radius;
             border-top-right-radius: $nav-tabs-border-radius;
             border-bottom: 2px solid $nav-tabs-border-color;
+
             i {
                 margin-right: 6px;
             }
+
             &.disabled {
-                color: rgba( $color-body, .5);
+                color: rgba($color-body, .5);
             }
         }
 
         .nav-link.active {
-            color: $nav-tabs-link-active-color;
+            color: $color-theme;
             background-color: $nav-tabs-link-active-bg;
-            border-bottom: 2px solid $nav-tabs-link-active-color;
+            border-bottom: 2px solid $color-theme;
         }
 
         .dropdown-menu {
@@ -59,90 +56,70 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
             border: 0;
             box-shadow: $box-shadow;
         }
-
-
     }
 
     &.tabs-clean {
         .nav-tabs {
             border-bottom: 0;
+
             .nav-link {
                 border: $nav-tabs-border-width solid transparent;
                 border-bottom-left-radius: $nav-tabs-border-radius;
                 border-bottom-right-radius: $nav-tabs-border-radius;
             }
+
             .nav-link.active {
                 border-color: $nav-tabs-link-active-border-color;
             }
         }
-
     }
 
     &.tabs-vertical {
         .nav-tabs {
             border: 0;
             margin-bottom: 0;
-         
 
-        .nav-link {
-            border-radius: 0;
-            border-bottom: 0;
-            border-right: 2px solid $nav-tabs-border-color;
-        }
-        .nav-link.active {
-            color: $nav-tabs-link-active-color;
-            background-color: $nav-tabs-link-active-bg;
-            border-right: 2px solid $nav-tabs-link-active-color;
+            .nav-link {
+                border-radius: 0;
+                border-bottom: 0;
+                border-right: 2px solid $nav-tabs-border-color;
+            }
+
+            .nav-link.active {
+                color: $color-theme;
+                background-color: $nav-tabs-link-active-bg;
+                border-right: 2px solid $color-theme;
+            }
         }
     }
 
-}
-
-&.tabs-folder {
-    
-    .nav-tabs {
-        margin-bottom: 0;
-         border-bottom: 0;
-        
-         .nav-item {
+    &.tabs-folder {
+        .nav-tabs {
             margin-bottom: 0;
-        }
-        .nav-link {
+            border-bottom: 0;
+
+            .nav-item {
+                margin-bottom: 0;
+            }
+
+            .nav-link {
                 border: $nav-tabs-border-width solid transparent;
-                     border-bottom-left-radius: 0;
+                border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
             }
+
             .nav-link.active {
                 border-color: $nav-tabs-link-active-border-color;
                 border-bottom-color: $color-white;
             }
-        
-        
-       /* .nav-link {
-                border-top-left-radius: $nav-tabs-border-radius;
-                border-top-right-radius: $nav-tabs-border-radius;
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-                border-bottom-width: 2px;
         }
-        .nav-link.active {
+
+        .tab-content {
+            margin-top: -1px;
             border: $nav-tabs-border-width solid $nav-tabs-border-color;
-            border-bottom-color: $nav-tabs-link-active-color;
-        }*/
-    }
-    .tab-content {
-        margin-top: -1px;
-        border: $nav-tabs-border-width solid $nav-tabs-border-color;
-
-        bottom: 10px;
-        padding: 30px;
-        border-radius: 0 6px 6px 6px;
+            bottom: 10px;
+            padding: 30px;
+            border-radius: 0 6px 6px 6px;
+        }
     }
 }
-
-
-
-
-
-}
-

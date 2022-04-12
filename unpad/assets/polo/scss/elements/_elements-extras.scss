@@ -1,5 +1,4 @@
 // Large Boxes
-
 .box-fancy {
 	>.container {
 		padding: 0 30px;
@@ -23,7 +22,6 @@ body.breakpoint-xs .box-fancy [class*="col-"] {
 }
 
 // Site Map
-
 .site-map {
 	i {
 		margin-right: 8px;
@@ -35,8 +33,10 @@ body.breakpoint-xs .box-fancy [class*="col-"] {
 }
 
 // Animations
-
 .animated {
+	&.rounded {
+		animation-fill-mode:none;
+	}
 	&.infinite {
 		animation-duration: 3s;
 		animation-fill-mode: both;
@@ -55,3 +55,22 @@ body.breakpoint-xs .box-fancy [class*="col-"] {
 	opacity: 1;
 }
 
+//Rating
+.rateit,
+.rateit-font .rateit-range {
+	overflow: hidden !important;
+}
+
+.rateit,
+.rateit-font .rateit-range>div,
+.rateit>div {
+	cursor: pointer !important;
+}
+
+.rateit-selected {
+	color: #FFC400 !important;
+}
+
+.rateit-reset {
+	display: none !important;
+}

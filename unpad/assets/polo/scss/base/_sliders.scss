@@ -29,6 +29,7 @@
     }
 
     .slide {
+        overflow: hidden;
         width: 100%;
         height: 100%;
         background-repeat: no-repeat;
@@ -40,7 +41,7 @@
 
         .container,
         .container-wide {
-            padding-top: 160px;
+            padding-top: 120px;
             padding-bottom: 100px;
             align-self: center !important;
         }
@@ -78,7 +79,7 @@
                 font-size: 12px !important;
                 font-weight: 500;
                 letter-spacing: 2px;
-                line-height: 12px;
+                line-height: 18px;
                 margin-bottom: 20px;
                 position: relative;
                 text-transform: uppercase;
@@ -224,14 +225,32 @@
     Inspiro Slider - Responsive Classes
 -----------------------------------------------------------------*/
 @include breakpoint-lg(max) {
-    .inspiro-slider {
-        .flickity-prev-next-button {
-            display: none;
-        }
 
-        .container,
-        .container-wide {
-            padding: 20px;
+    
+    .inspiro-slider {
+
+        .flickity-button:hover {
+            background-color: transparent;
+        }
+            .flickity-button {
+
+                &.next,
+                &.next:hover {
+                    right: -5px !important;
+                    opacity: 1;
+                }
+    
+                &.previous,
+                &.previous:hover {
+                    left: -5px !important;
+                    opacity: 1;
+                }
+            }
+    
+
+        .container {
+            padding-left: 40px;
+            padding-right: 40px;
         }
 
         .slide {
@@ -257,12 +276,6 @@
                     font-weight: 400;
                     line-height: 24px;
                     margin-bottom: 16px;
-                }
-
-                .btn {
-                    padding: 6px 14px !important;
-                    font-size: 10px !important;
-                    line-height: 1.5;
                 }
 
                 h3,

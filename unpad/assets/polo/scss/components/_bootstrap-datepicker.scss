@@ -1,4 +1,6 @@
- 
+/* ----------------------------------------------------------------
+	Date picker
+-----------------------------------------------------------------*/
 .input-daterange .input-group-addon {
   min-width: 44px;
 }
@@ -6,102 +8,124 @@
 .datepicker {
   width: 260px;
   padding: 10px !important;
+
   table {
     width: 100%;
   }
-  
+
   &.datepicker-dropdown {
-      box-shadow: 0px 0px 15px 1px rgba(94, 94, 94, 0.15);
+    box-shadow: 0px 0px 15px 1px rgba(94, 94, 94, 0.15);
   }
+
   thead th,
-  td, th {
+  td,
+  th {
     border-top: none;
     border-bottom: none;
   }
-  td, th {
+
+  td,
+  th {
     width: 34px !important;
     height: 32px !important;
     border-radius: 3px !important;
   }
- 
-  tbody tr > td {
- 
+
+  tbody tr>td {
     &.day {
       &:hover {
         background: #ebedf2;
       }
+
       &.old {
         color: #9c9c9c;
       }
+
       &.new {
         color: #9c9c9c;
       }
+
       &.today.active,
-      &.active, &.selected {
+      &.active,
+      &.selected {
         background: $color-theme !important;
         color: $color-white;
+
         &:hover {
           background: $color-theme;
           color: $color-white;
         }
       }
-      &.today{
+
+      &.today {
         opacity: .8;
       }
-       
+
       &.range {
-        background: #f4f5f8; 
+        background: #f4f5f8;
+
         &.today {
           background: $color-theme;
           opacity: .4;
         }
       }
     }
+
     span.month {
       color: #575962;
-      &.focused, &:hover {
+
+      &.focused,
+      &:hover {
         background: #ebedf2;
       }
+
       &.active {
-        background:$color-theme;
+        background: $color-theme;
         color: #fff;
+
         &:hover {
-          background:$color-theme;
+          background: $color-theme;
           color: #fff;
-        } 
+        }
       }
     }
   }
-  tfoot tr > th {
-    &.clear:hover, &.today:hover {
+
+  tfoot tr>th {
+
+    &.clear:hover,
+    &.today:hover {
       background: #ebedf2;
     }
   }
+
   &.datepicker-inline {
     border: 1px solid #f4f5f8;
   }
-
 }
-
 
 .timepicker-picker {
   a.btn {
     background: transparent !important;
     border: none !important;
-      span {
-        &::before {
-          color: #000;
-        }
+
+    span {
+      &::before {
+        color: #000;
       }
+    }
+
     &:hover {
       background: #ebedf2;
     }
   }
+
   .separator:before,
   .separator:after {
     border: none !important;
   }
 }
+
 .bootstrap-datetimepicker-widget.dropdown-menu {
   width: auto;
   padding: 0px;
@@ -111,29 +135,30 @@
 
 .timepicker,
 .datetimepicker {
- width: 260px;
-padding: 10px;
+  width: 260px;
+  padding: 10px;
 }
 
-
 .datetimepicker {
-
-
-
   &.datetimepicker-orient-top {
     margin-top: 8px;
   }
+
   table {
     width: 100%;
   }
-  td, th {
+
+  td,
+  th {
     width: 34px !important;
     height: 32px !important;
     border-radius: 3px !important;
-
   }
+
   thead th {
-    &.next > span, &.prev > span {
+
+    &.next>span,
+    &.prev>span {
       display: inline-block;
       font-family: inspiro-icons !important;
       font-size: 16px;
@@ -141,15 +166,19 @@ padding: 10px;
       text-rendering: optimizeLegibility;
       text-transform: none;
     }
-    &.next > span:before {
-      content: "\e95a";
+
+    &.next>span:before {
+      content: "\e930";
     }
-    &.prev > span:before {
-      content: "\e959";
+
+    &.prev>span:before {
+      content: "\e92f";
     }
   }
-  tbody tr > td.day.today {
+
+  tbody tr>td.day.today {
     position: relative;
+
     &:before {
       content: '';
       display: inline-block;
@@ -162,8 +191,11 @@ padding: 10px;
       right: 4px;
     }
   }
-  tfoot tr > th {
-    &.clear, &.today {
+
+  tfoot tr>th {
+
+    &.clear,
+    &.today {
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
@@ -177,52 +209,71 @@ padding: 10px;
 .input-daterange .input-group-addon {
   min-width: 44px;
 }
-.datetimepicker tbody tr > td.day.today,
-.datetimepicker table tr td.active:active, .datetimepicker table tr td.active:hover:active, .datetimepicker table tr td.active.disabled:active, .datetimepicker table tr td.active.disabled:hover:active, .datetimepicker table tr td.active.active, .datetimepicker table tr td.active:hover.active, .datetimepicker table tr td.active.disabled.active, .datetimepicker table tr td.active.disabled:hover.active,
-.datetimepicker table tr td span.active:active, .datetimepicker table tr td span.active:hover:active, .datetimepicker table tr td span.active.disabled:active, .datetimepicker table tr td span.active.disabled:hover:active, .datetimepicker table tr td span.active.active, .datetimepicker table tr td span.active:hover.active, .datetimepicker table tr td span.active.disabled.active, .datetimepicker table tr td span.active.disabled:hover.active {
+
+.datetimepicker tbody tr>td.day.today,
+.datetimepicker table tr td.active:active,
+.datetimepicker table tr td.active:hover:active,
+.datetimepicker table tr td.active.disabled:active,
+.datetimepicker table tr td.active.disabled:hover:active,
+.datetimepicker table tr td.active.active,
+.datetimepicker table tr td.active:hover.active,
+.datetimepicker table tr td.active.disabled.active,
+.datetimepicker table tr td.active.disabled:hover.active,
+.datetimepicker table tr td span.active:active,
+.datetimepicker table tr td span.active:hover:active,
+.datetimepicker table tr td span.active.disabled:active,
+.datetimepicker table tr td span.active.disabled:hover:active,
+.datetimepicker table tr td span.active.active,
+.datetimepicker table tr td span.active:hover.active,
+.datetimepicker table tr td span.active.disabled.active,
+.datetimepicker table tr td span.active.disabled:hover.active {
   background: $color-theme !important;
   color: $color-white;
 }
 
-
-.datetimepicker table tr > td.today:hover,
-.datetimepicker table tr > td.today:hover:hover,
-.datetimepicker table tr > td.today.disabled:hover,
-.datetimepicker table tr > td.today.disabled:hover:hover,
-.datetimepicker table tr > td.today:active,
-.datetimepicker table tr > td.today:hover:active,
-.datetimepicker table tr > td.today.disabled:active,
-.datetimepicker table tr > td.today.disabled:hover:active,
-.datetimepicker table tr > td.today.active,
-.datetimepicker table tr > td.today:hover.active,
-.datetimepicker table tr > td.today.disabled.active,
-.datetimepicker table tr > td.today.disabled:hover.active,
-.datetimepicker table tr > td.today.disabled,
-.datetimepicker table tr > td.today:hover.disabled,
-.datetimepicker table tr > td.today.disabled.disabled,
-.datetimepicker table tr > td.today.disabled:hover.disabled,
-.datetimepicker table tr > td.today[disabled],
-.datetimepicker table tr > td.today:hover[disabled],
-.datetimepicker table tr > td.today.disabled[disabled],
-.datetimepicker table tr > td.today.disabled:hover[disabled] {
+.datetimepicker table tr>td.today:hover,
+.datetimepicker table tr>td.today:hover:hover,
+.datetimepicker table tr>td.today.disabled:hover,
+.datetimepicker table tr>td.today.disabled:hover:hover,
+.datetimepicker table tr>td.today:active,
+.datetimepicker table tr>td.today:hover:active,
+.datetimepicker table tr>td.today.disabled:active,
+.datetimepicker table tr>td.today.disabled:hover:active,
+.datetimepicker table tr>td.today.active,
+.datetimepicker table tr>td.today:hover.active,
+.datetimepicker table tr>td.today.disabled.active,
+.datetimepicker table tr>td.today.disabled:hover.active,
+.datetimepicker table tr>td.today.disabled,
+.datetimepicker table tr>td.today:hover.disabled,
+.datetimepicker table tr>td.today.disabled.disabled,
+.datetimepicker table tr>td.today.disabled:hover.disabled,
+.datetimepicker table tr>td.today[disabled],
+.datetimepicker table tr>td.today:hover[disabled],
+.datetimepicker table tr>td.today.disabled[disabled],
+.datetimepicker table tr>td.today.disabled:hover[disabled] {
   background: $color-theme !important;
   color: $color-white;
   opacity: .7;
 }
+
 .datetimepicker-dropdown-bottom-right:before {
   top: -7px;
   left: 6px;
 }
+
 .daterangepicker {
   padding: 10px;
   margin-top: 5px;
+
   .daterangepicker_input .input-mini {
     height: auto;
     padding: .65rem 1rem;
     padding-left: 2.2rem;
     line-height: 1.25;
   }
-  td, th {
+
+  td,
+  th {
     width: 35px;
     height: 35px;
     -webkit-border-radius: 3px;
@@ -234,9 +285,12 @@ padding: 10px;
     vertical-align: middle;
     line-height: 0;
   }
+
   thead {
     .fa {
-      &.fa-chevron-left, &.fa-chevron-right {
+
+      &.fa-chevron-left,
+      &.fa-chevron-right {
         display: inline-block;
         font: normal normal normal 16px/1 LineAwesome;
         font-size: inherit;
@@ -247,20 +301,26 @@ padding: 10px;
         -webkit-font-smoothing: antialiased;
         font-smoothing: antialiased;
       }
+
       &.fa-chevron-left:before {
         content: "";
       }
+
       &.fa-chevron-right:before {
         content: "";
       }
     }
+
     th {
       font-weight: 500;
-      &.next, &.prev {
+
+      &.next,
+      &.prev {
         font-size: 1.3rem;
       }
     }
   }
+
   tbody td {
     &.in-range {
       &.start-date.today {
@@ -275,6 +335,7 @@ padding: 10px;
         -o-border-bottom-left-radius: 0;
         border-bottom-left-radius: 0;
       }
+
       &.end-date.today {
         -webkit-border-top-right-radius: 0;
         -moz-border-top-right-radius: 0;
@@ -288,6 +349,7 @@ padding: 10px;
         border-bottom-right-radius: 0;
       }
     }
+
     &.today {
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
@@ -295,6 +357,7 @@ padding: 10px;
       -o-border-radius: 3px;
       border-radius: 3px;
       position: relative;
+
       &.in-range {
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -302,6 +365,7 @@ padding: 10px;
         -o-border-radius: 3px;
         border-radius: 3px;
         position: relative;
+
         &:before {
           content: '';
           display: inline-block;
@@ -314,6 +378,7 @@ padding: 10px;
           right: 4px;
         }
       }
+
       &:before {
         content: '';
         display: inline-block;
@@ -327,8 +392,14 @@ padding: 10px;
       }
     }
   }
+
   select {
-    &.ampmselect, &.hourselect, &.minuteselect, &.monthselect, &.yearselect {
+
+    &.ampmselect,
+    &.hourselect,
+    &.minuteselect,
+    &.monthselect,
+    &.yearselect {
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
@@ -338,13 +409,19 @@ padding: 10px;
       outline: 0 !important;
     }
   }
+
   .calendar-time {
     margin: 15px 0 5px 0;
+
     select {
-      &.ampmselect, &.hourselect, &.minuteselect {
+
+      &.ampmselect,
+      &.hourselect,
+      &.minuteselect {
         width: 70px;
       }
     }
+
     i {
       left: 3px;
       top: 5px;
@@ -357,16 +434,20 @@ padding: 10px;
       -moz-osx-font-smoothing: grayscale;
       -webkit-font-smoothing: antialiased;
       font-smoothing: antialiased;
+
       &:before {
         content: "";
       }
     }
   }
+
   .ranges {
     padding: 10px;
     margin: 5px 5px 5px 10px;
+
     ul {
       width: 210px;
+
       li {
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -380,8 +461,10 @@ padding: 10px;
         border-color: transparent;
       }
     }
+
     .range_inputs {
       margin-top: 15px;
+
       .btn {
         padding: .6rem 1.6rem;
         -webkit-border-radius: 40px;
@@ -393,40 +476,55 @@ padding: 10px;
       }
     }
   }
+
   .daterangepicker_input {
     .input-mini {
       height: auto;
       border: 1px solid #ebedf2;
-      &.active, &:focus {
+
+      &.active,
+      &:focus {
         border: 1px solid $color-theme;
       }
     }
+
     i {
       color: #b2b1c5;
     }
   }
+
   thead th {
-    &.next:hover, &.prev:hover {
+
+    &.next:hover,
+    &.prev:hover {
       background: #ebedf2;
     }
   }
+
   tbody td {
-    &.available:hover, &:hover {
+
+    &.available:hover,
+    &:hover {
       background: #ebedf2;
     }
+
     &.off {
       color: #7b7e8a;
     }
+
     &.available {
       color: #575962;
     }
+
     &.today {
       background: $color-theme;
       color: #fff;
+
       &:before {
         border-bottom-color: #fff;
         border-top-color: rgba(0, 0, 0, 0.2);
       }
+
       &.in-range {
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
@@ -435,52 +533,81 @@ padding: 10px;
         border-radius: 0;
       }
     }
-    &.active, &.in-range, &.active:hover, &.in-range:hover {
+
+    &.active,
+    &.in-range,
+    &.active:hover,
+    &.in-range:hover {
       background: $color-theme;
       color: #fff;
     }
   }
+
   select {
-    &.ampmselect, &.hourselect, &.minuteselect, &.monthselect, &.yearselect {
+
+    &.ampmselect,
+    &.hourselect,
+    &.minuteselect,
+    &.monthselect,
+    &.yearselect {
       border: 1px solid #ebedf2;
     }
+
     &.ampmselect {
-      &.active, &:focus {
+
+      &.active,
+      &:focus {
         border: 1px solid $color-theme;
       }
     }
+
     &.hourselect {
-      &.active, &:focus {
+
+      &.active,
+      &:focus {
         border: 1px solid $color-theme;
       }
     }
+
     &.minuteselect {
-      &.active, &:focus {
+
+      &.active,
+      &:focus {
         border: 1px solid $color-theme;
       }
     }
+
     &.monthselect {
-      &.active, &:focus {
+
+      &.active,
+      &:focus {
         border: 1px solid $color-theme;
       }
     }
+
     &.yearselect {
-      &.active, &:focus {
+
+      &.active,
+      &:focus {
         border: 1px solid $color-theme;
       }
     }
   }
+
   .calendar-time i {
     color: #b2b1c5;
   }
+
   .ranges li {
     border: 1px solid #ebedf2;
     color: #7b7e8a;
+
     &:hover {
       background: 0 0;
       color: #7b7e8a;
       background: #f9f9fd;
     }
+
     &.active {
       background: $color-theme;
       color: #fff;

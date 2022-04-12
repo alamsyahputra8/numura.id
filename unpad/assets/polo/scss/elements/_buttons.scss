@@ -1,21 +1,22 @@
 /* ----------------------------------------------------------------------
 	Buttons
 -------------------------------------------------------------------------*/
-
 a:not([href]):not([tabindex]):not(.btn) {
     color: none;
 }
 
 //Default base button
-a.btn:not([href]):not([tabindex]),
-.btn {
+button.btn,
+.btn:not(.close):not(.mfp-close),
+a.btn:not([href]):not([tabindex]) {
     font-family: $font-headings;
     border-radius: $button-border-radius $button-border-radius $button-border-radius $button-border-radius;
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: .5px;
+    text-decoration: none;
     outline: none;
-    padding: 10px 18px;
+    padding: 12px 18px;
     position: relative;
     text-transform: uppercase;
     background-color: $color-theme;
@@ -23,12 +24,11 @@ a.btn:not([href]):not([tabindex]),
     border-width: 1px;
     border-style: solid;
     color: $color-white;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
     transition: all 0.3s;
     margin-bottom: 6px;
     outline: none;
     line-height: 14px;
+    cursor: pointer;
 
     &:after {
         content: '';
@@ -38,12 +38,10 @@ a.btn:not([href]):not([tabindex]),
         -moz-transition: all 0.3s;
         transition: all 0.3s;
     }
-    
 
     i {
         text-shadow: none;
     }
-
 
     &.btn-xs {
         font-size: 10px;
@@ -74,6 +72,7 @@ a.btn:not([href]):not([tabindex]),
         background-color: darken($color-theme, 10%);
         border-color: darken($color-theme, 10%);
         color: $color-white;
+        text-decoration: none;
     }
 
     //Outline button
@@ -108,16 +107,17 @@ a.btn:not([href]):not([tabindex]),
     }
 
     //Light button
+    &.btn-white,
     &.btn-light {
-        background-color: #ffffff;
-        border-color: #ebebeb;
+        background-color: $background-white;
+        border-color: $border-color;
         color: #4c5667;
 
         &:hover,
         &:focus,
         &:active,
         &.active {
-            border-color: #ebedf2;
+            border-color: $border-color;
             background-color: #f4f5f8;
             color: #4c5667;
         }
@@ -132,10 +132,11 @@ a.btn:not([href]):not([tabindex]),
             &:active,
             &.active {
                 background-color: #ffffff;
+                border-color: #ffffff;
                 color: #4c5667;
             }
         }
-
+        &.btn-white-hover,
         &.btn-light-hover {
 
             &:hover,
@@ -149,8 +150,6 @@ a.btn:not([href]):not([tabindex]),
         }
     }
 
-
-
     &:not(.btn-shadow):focus,
     &:not(.btn-shadow):focus:active {
         box-shadow: none !important;
@@ -159,9 +158,10 @@ a.btn:not([href]):not([tabindex]),
     &.btn-transparent {
         background-color: transparent;
         border: 0;
-        color:$color-body;
+        color: $color-body;
+
         &.btn-inverted {
-            color:$color-white;
+            color: $color-white;
         }
     }
 
@@ -251,7 +251,6 @@ a.btn:not([href]):not([tabindex]),
 
     //Dark button
     &.btn-dark {
-
         background-color: $color-black;
         border-color: $color-black;
 
@@ -267,6 +266,7 @@ a.btn:not([href]):not([tabindex]),
         &.btn-outline {
             background-color: transparent;
             color: $color-black;
+            border-color: $color-black;
 
             &:hover,
             &:focus,
@@ -295,7 +295,9 @@ a.btn:not([href]):not([tabindex]),
 
     &.btn-round {
         border-radius: 50%;
-        padding: 10px;
+            padding: 0 10px !important;
+    height: 36px !important;
+    line-height: 36px !important;
 
         >i {
             font-size: 14px;
@@ -494,7 +496,7 @@ a.btn:not([href]):not([tabindex]),
 
     //Button icon holder
     &.btn-icon-holder {
-        padding-right: 20px;
+        padding-right: 16px;
 
         &:before {
             border-left: 1px solid rgba(255, 255, 255, 0.2);
@@ -682,9 +684,16 @@ a.btn:not([href]):not([tabindex]),
     }
 }
 
-@media (max-width:991px) {
-    .btn {
-        &.btn-reveal.btn-reveal-left {
+.disabled .btn {
+    opacity: .3;
+}
+
+@include breakpoint-lg(max) {
+    button.btn:not(.btn-creative):not(.btn-slide),
+    .btn:not(.close):not(.mfp-close):not(.btn-creative):not(.btn-slide),
+    a.btn:not([href]):not([tabindex]):not(.btn-creative):not(.btn-slide) {
+        &.btn-reveal {   
+
             &:hover {
                 span {
                     left: auto;
@@ -695,22 +704,57 @@ a.btn:not([href]):not([tabindex]),
                     display: none;
                 }
             }
-        }
     }
+
+
+        font-size: 12px;
+        height: 32px;
+        line-height: 30px;
+        padding: 0 14px;
+
+
+            
+        &.btn-lg {
+            font-size: 13px;
+            height: 38px;
+            line-height: 36px;
+            padding: 0 24px;
+        }
+            &.btn-sm {
+                font-size: 11px;
+                height: 28px;
+                line-height: 28px;
+                padding: 0 12px;
+            }
+
+        &.btn-xs {
+            font-size: 10px;
+            height: 26px;
+            line-height: 26px;
+            padding: 0 10px;
+        }
+
+      
+
+    }
+
+    
+
 }
 
+.dark:not(.submenu-light) {
 
+    a.btn:not([href]):not([tabindex]),
+    .btn {
+        &.btn-shadow {
+            box-shadow: 0 4px 16px #292929;
 
-.dark:not[data-transparent="true"] #mainMenu:not(.light) {
-    .btn-shadow {
-        -webkit-box-shadow: 0 4px 16px #0d0606;
-        -moz-box-shadow: 0 4px 16px #0d0606;
-        box-shadow: 0 4px 16px #0d0606;
-
-        &:hover {
-            -webkit-box-shadow: 4px 8px 16px #1f1f1f;
-            -moz-box-shadow: 4px 8px 16px #1f1f1f;
-            box-shadow: 4px 8px 16px #1f1f1f;
+            &:hover,
+            &:focus,
+            &:not(:disabled):not(.disabled):active,
+            &:not(:disabled):not(.disabled).active {
+                box-shadow: 4px 8px 16px #1d1d1d
+            }
         }
     }
 }

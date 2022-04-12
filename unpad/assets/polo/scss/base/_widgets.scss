@@ -92,21 +92,7 @@
     padding-left: 0;
 }
 
-body {
-    &.breakpoint-md .sidebar .widget {
-        float: left;
-        width: 330px;
-    }
 
-    &.breakpoint-sm .sidebar .widget {
-        width: 100%;
-    }
-
-    &.breakpoint-md .sidebar .widget:nth-child(odd),
-    &.breakpoint-sm .sidebar .widget:nth-child(odd) {
-        margin-right: 30px;
-    }
-}
 
 .flickr-widget,
 .widget-instagram {
@@ -237,6 +223,11 @@ body.breakpoint-sm .col-3 {
 // Widget
 #widget-contact-form {
     clear: left;
+}
+
+.widget .form-inline .custom-select, 
+.widget .form-inline .input-group {
+	width: 100%;
 }
 
 // Twitter

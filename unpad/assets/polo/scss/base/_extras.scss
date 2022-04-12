@@ -1198,7 +1198,6 @@ td.fc-today {
     ul.p-dropdown-content {
         line-height: normal;
         position: absolute;
-        min-width: 140px;
         z-index: 5;
         text-align: left;
         opacity: 0;
@@ -1213,7 +1212,7 @@ td.fc-today {
         border-radius: 4px;
         background-color: $background-white;
         border: 1px solid $border-color;
-        min-width: 180px;
+        min-width: 100px;
         box-shadow: 0 14px 20px rgba(0, 0, 0, 0.1);
 
         hr {
@@ -1267,7 +1266,9 @@ td.fc-today {
         }
     }
 
-    &:hover {
+    
+    &:hover,
+    &.dropdown-active {
         .title {
             &:before {
                 opacity: 1;
@@ -1283,6 +1284,8 @@ td.fc-today {
     }
 }
 
+
+
 .header-extras {
     .p-dropdown {
 
@@ -1290,7 +1293,7 @@ td.fc-today {
         ul.p-dropdown-content {
             right: -26px;
             margin-top: -8px;
-
+            
             &:before {
                 display: none;
             }

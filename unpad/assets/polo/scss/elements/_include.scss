@@ -1,14 +1,7 @@
-/***********************************************************************
-**														              **
-**         POLO Html5 Template		   								  **
-**         Author: INSPIRO MEDIA								      **
-**		   URL: http://www.inspiro-media.com						  **
-**														              **
-************************************************************************/
-
 // Template Elements
 @import "accordion-toggles";
 @import "alerts";
+@import "avatar";
 @import "buttons";
 @import "cards";
 @import "headings";
@@ -19,7 +12,7 @@
 @import "carousel";
 @import "counters";
 @import "countdown-timers";
-@import "dropcat-highlight"; 
+@import "dropcat-highlight";
 @import "team-members";
 @import "progress-bars";
 @import "pie-charts";
@@ -28,6 +21,7 @@
 @import "spinners";
 @import "blockquotes";
 @import "forms";
+@import "floating-div";
 @import "labels-badgets";
 @import "light-box";
 @import "lists";
@@ -40,8 +34,14 @@
 @import "modal";
 @import "client-logos";
 @import "pricing-tables";
+@import "tables";
 @import "testimonials";
 @import "timeline";
 @import "yt-player";
+@import "video-background";
+@import "background-overlays";
 @import "elements-extras";
 @import "parallax";
+@import "background-image";
+@import "shape-dividers";
+@import "wizard";

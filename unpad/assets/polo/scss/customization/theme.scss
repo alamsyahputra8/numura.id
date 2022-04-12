@@ -1,26 +1,20 @@
 @import "../variables";
+@import "../mixins";
+
+
 //Default #2250fc
-$color-theme: #2250fc;
+$color-theme: #7341B4;
 
 /* ----------------------------------------------------------------
 	Typography
 -----------------------------------------------------------------*/
-a:not(.btn) {
-    &.link {
-        color: $color-theme;
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-        color: $color-theme;
-    }
+a:not(.btn):not(.badge):hover, a:not(.btn):not(.badge):focus, a:not(.btn):not(.badge):active {
+	color: $color-theme;
 }
-
 /* ----------------------------------------------------------------
 	Accordion
 -----------------------------------------------------------------*/
-.accordion {
+.accordion { 
     &.accordion-theme {
         .ac-item {
             background-color: $color-theme;
@@ -42,8 +36,8 @@ a:not(.btn) {
 /* ----------------------------------------------------------------------
 	Buttons
 -------------------------------------------------------------------------*/
-a.btn:not([href]):not([tabindex]),
-.btn {
+button.btn, 
+.btn:not(.close):not(.mfp-close), a.btn:not([href]):not([tabindex]) {
     background-color: $color-theme;
     border-color: $color-theme;
 
@@ -100,8 +94,15 @@ a.btn:not([href]):not([tabindex]),
 }
 
 /* ----------------------------------------------------------------
-Carousels
+Carousels & Slider
 -----------------------------------------------------------------*/
+
+.inspiro-slider {
+    .flickity-button:hover {
+	    background-color: $color-theme;
+    }
+}
+
 .carousel {
     .flickity-button {
         &:hover {
@@ -999,7 +1000,7 @@ Dots Menu
     }
 }
 
-@media (max-width: 991px) {
+@include breakpoint-lg(max) {
     .page-menu {
 
         &.menu-rounded,
@@ -1007,7 +1008,7 @@ Dots Menu
         &.menu-lines,
         &.menu-solid,
         &.menu-light,
-        &.menu-creative,
+        &.menu-creative, 
         &.inverted {
             nav {
                 >ul {
@@ -1088,3 +1089,5 @@ Portfolio
         border-color: $color-theme;
     }
 }
+
+

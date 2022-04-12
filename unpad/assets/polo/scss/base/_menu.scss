@@ -79,8 +79,19 @@ Main Menu
                         font-size: 16px;
                         display: none;
                     }
-                }
 
+                   
+                }
+                .dropdown-arrow {
+                    display: none;
+                    height: 40px;
+                    width: 50px;
+                    position: absolute;
+                    z-index: 1;
+                    right: -10px;
+                    top: 0;
+                    cursor: pointer;
+                }
                 .dropdown-menu {
                     background-position: right bottom;
                     background-repeat: no-repeat;
@@ -682,8 +693,7 @@ Dots Menu
                     }
                 }
 
-                &:hover,
-                &.active {
+                &:hover{
                     &:before {
                         background-color: $color-theme;
                     }
@@ -697,7 +707,19 @@ Dots Menu
         }
     }
 }
-
+@include breakpoint-lg(max) {
+    #dotsMenu {
+        ul {
+            li {
+                a {
+                    span {
+                    display: none;
+                    }
+                }
+            }
+        }
+    }
+}
 .mainMenu-open #dotsMenu {
     z-index: -1 !important;
 }
@@ -813,18 +835,15 @@ Overlay Menu
                 >a {
                     color: $color-white;
                 }
-
                 &.hover-active,
                 &.current,
                 &:hover,
                 &:focus {
-
                     >a,
                     >span {
                         color: $color-dark-hover;
                     }
                 }
-
                 &.dropdown {
                     &:before {
                         color: $color-white;
@@ -1190,7 +1209,7 @@ Main menu - Vertical
                     >.dropdown-menu {
                         visibility: visible;
                         opacity: 1;
-                        max-height: 2000px;
+                        max-height: 3000px; 
                     }
                 }
             }
@@ -1292,7 +1311,7 @@ Main menu - Vertical
 /* ----------------------------------------------------------------
 Main Menu: Responsive
 -----------------------------------------------------------------*/
-@media (max-width: 991px) {
+@include breakpoint-lg(max) {
     #mainMenu-trigger {
         position: relative;
         opacity: 1;
@@ -1364,9 +1383,12 @@ Main Menu: Responsive
                         &:before {
                             right: 14px;
                             display: block;
-                        }
+                        } 
+                        
                     }
-
+                    .dropdown-arrow {
+                            display: inline;
+                        }
                     .dropdown-menu {
                         background-image: none !important;
                         max-height: 0;
@@ -1455,7 +1477,7 @@ Main Menu: Responsive
                         >.dropdown-menu {
                             visibility: visible;
                             opacity: 1;
-                            max-height: 2000px;
+                            max-height: 3000px;
                         }
                     }
                 }
@@ -1545,18 +1567,15 @@ Main Menu: Responsive
                 opacity: 1;
                 overflow-y: scroll;
             }
-        }
-
-        #header {
-
             .header-inner,
             #header-wrap {
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
                 background-color: $background-white !important;
             }
         }
 
-        &.dark,
+              
+        &.dark #header,
         #header:not(.submenu-light).dark {
 
             .header-inner,
@@ -1579,7 +1598,7 @@ Main Menu: Responsive
     }
 }
 
-@media (max-width:991px) {
+@include breakpoint-lg(max) {
     .mainMenu-open {
         #header {
             #logo {

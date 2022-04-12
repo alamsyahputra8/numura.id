@@ -367,7 +367,7 @@ body:not(.breakpoint-xs):not(.breakpoint-sm):not(.breakpoint-md) {
     }
 }
 
-@media (max-width: 991px) {
+@include breakpoint-lg(max) {
     .page-menu {
         #pageMenu-trigger {
             opacity: 1;

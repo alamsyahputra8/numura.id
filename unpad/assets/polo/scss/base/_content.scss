@@ -149,7 +149,7 @@
     }
 }
 
-@media (max-width: 991px) {
+@include breakpoint-lg(max) {
     #page-content:not(.no-sidebar) {
         &.sidebar-both {
 
@@ -209,7 +209,7 @@
     }
 }
 
-@media (max-width:991px) {
+@include breakpoint-lg(max) {
     #page-content {
         padding: 20px 0 20px 0;
     }

@@ -57,18 +57,20 @@
 
             &:focus {
                 background-color: transparent;
+                outline: none;
+                box-shadow:none;
             }
 
             &:-webkit-input-placeholder {
-                color: $color-grey;
+                color: $color-light;
             }
 
             &:-moz-placeholder {
-                color: $color-grey;
+                color: $color-light;
             }
 
             &:-ms-input-placeholder {
-                color: $color-grey;
+                color: $color-light;
             }
         }
     }
@@ -143,7 +145,7 @@ body.search-open {
 /* ----------------------------------------------------------------
     Search Responsive
 -----------------------------------------------------------------*/
-@media (max-width: 991px) {
+@include breakpoint-lg(max) {
     #search {
         #search-logo {
             margin: 0 auto !important;

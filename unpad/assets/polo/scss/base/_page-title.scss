@@ -60,32 +60,6 @@
          }
      }
 
-     &.dark {
-         .page-title {
-             >h1 {
-                 color: $dark;
-             }
-
-             >span {
-                 color: $dark;
-             }
-         }
-
-         .breadcrumb {
-             ul {
-                 li {
-                     +li:before {
-                         color: $dark;
-                     }
-
-                     a {
-                         color: $dark;
-                     }
-                 }
-             }
-         }
-     }
-
      &[data-bg-parallax] {
          .page-title {
              >h1 {
@@ -118,6 +92,8 @@
      }
  }
 
+
+
  #header {
      &[data-transparent="true"] {
          +#page-title {
@@ -128,6 +104,37 @@
          }
      }
  }
+
+
+ //dark version
+.dark #page-title,
+ #page-title.dark {
+    background-color: $background-dark;
+
+    .page-title {
+        >h1 {
+            color: $dark;
+        }
+
+        >span {
+            color: $dark;
+        }
+    }
+
+    .breadcrumb {
+        ul {
+            li {
+                +li:before {
+                    color: $dark;
+                }
+
+                a {
+                    color: $dark;
+                }
+            }
+        }
+    }
+}
 
  @include breakpoint-lg(max) {
      #page-title {

@@ -1,5 +1,6 @@
-// DELETE VARIABLES
-// Pagination & Pager
+/* ----------------------------------------------------------------------
+	Pagination & Pager
+-------------------------------------------------------------------------*/
 .pagination-wrap {
     display: block;
     clear: both;
@@ -14,6 +15,7 @@
             background-color: $background-white;
             border-color: $border-color;
         }
+
         &.active,
         &:active,
         &:focus,
@@ -26,12 +28,12 @@
             }
         }
     }
+
     .page-item.disabled {
         >.page-link {
             color: $color-lightest;
         }
     }
-
 
     &.pagination-flat {
         .page-item>.page-link {
@@ -43,12 +45,7 @@
             }
         }
     }
-
 }
-
-
-
-
 
 /*Post Nav*/
 .post-navigation {
@@ -60,6 +57,10 @@
     position: relative;
     width: 100%;
     background-color: $color-white;
+
+    a {
+        color: $color-body;
+    }
 
     .post-next,
     .post-prev {
@@ -89,7 +90,7 @@
         text-align: right;
 
         &:before {
-            content: "\e95a";
+            content: "\e930";
             font-family: "inspiro-icons";
             font-size: 20px;
             position: absolute;
@@ -109,7 +110,7 @@
         left: 25px;
 
         &:before {
-            content: "\e959";
+            content: "\e92f";
             font-family: "inspiro-icons";
             font-size: 20px;
             position: absolute;
@@ -157,7 +158,7 @@
     }
 }
 
-@media (max-width: 991px) {
+@include breakpoint-lg(max) {
 
     .post-prev-title,
     .post-next-title {

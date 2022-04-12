@@ -31,9 +31,8 @@ section {
 	Typography : Font size
 -----------------------------------------------------------------*/
 html {
-    font-size: 88%;
-}
-
+    font-size:88%
+   }
 @media all and (max-width: 768px) {
     html {
         font-size: 81.25%;
@@ -41,7 +40,7 @@ html {
 }
 
 body {
-    font-size: 1em;
+    font-size: 1rem;
     line-height: 1.65714286em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -207,11 +206,36 @@ a:not(.btn):not(.badge) {
     }
 }
 
+
+
+//Dark version
+.dark {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    color: $color-light;
+}
+
+}
+
+
 //Chkd
 // Fonts
 .font-pacifico {
     font-family: 'Dancing Script' !important;
 }
+
+
+
 
 .font-nothing-you-could-do,
 .font-nothing-you-could-do a,

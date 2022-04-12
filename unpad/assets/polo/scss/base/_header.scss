@@ -264,6 +264,8 @@
             box-shadow: 0 12px 6px rgba(0, 0, 0, 0.06);
             top: 0;
             position: fixed;
+            margin: 0 auto;
+            width: 100%;
         }
     }
 
@@ -367,12 +369,12 @@ HEADER: Responsive
 
         #logo {
             position: absolute !important;
-            width: 80%;
+            width: 100%;
             text-align: center;
             margin: 0 !important;
             float: none;
             height: 80px;
-            left: 10%;
+            left: 0;
             right: 0;
             padding: 0 !important;
 
@@ -388,6 +390,21 @@ HEADER: Responsive
             .logo-responsive-dark {
                 display: block;
             }
+        }
+
+        &.header-mobile-logo-left {
+            #header #logo {
+                width: auto;
+                text-align: left;
+                left: 30px;
+                right: auto;
+            }
+            
+            .header-extras {
+                float: right;
+                margin-left: 20px;
+            }
+    
         }
 
         &.header-alternative {

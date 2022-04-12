@@ -152,7 +152,7 @@
 }
 
 //Header Extras: Responsive
-@media (max-width: 991px) {
+@include breakpoint-lg(max) {
     .header-extras {
         float: left;
 
