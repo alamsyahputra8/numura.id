@@ -6,6 +6,10 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 $cekAbout 		= $this->query->getNumRowsbyQ("select * from menu_site where style='about'")->num_rows();
 $cekContact 	= $this->query->getNumRowsbyQ("select * from menu_site where style='contact'")->num_rows();
 $cekEvent 		= $this->query->getNumRowsbyQ("select * from menu_site where style='evet'")->num_rows();
+$qD 				= "
+				select department from ourteam group by department;
+				";
+$getDataDepart	= $this->query->getDatabyQ($qD);
 ?>
  
 <!-- begin:: Content -->
@@ -110,7 +114,21 @@ $cekEvent 		= $this->query->getNumRowsbyQ("select * from menu_site where style='
 												<!--option value="document">Document</option-->
 												<option value="services">Services</option>
 												<option value="link">Link</option>
+												<option value="ourteam">Our Team</option>
 												<!-- <option value="works">Works</option> -->
+											</select>
+										</div>
+									</div>
+								</div>
+								
+								<div class="form-group row ourteam-content" style='display:none;'>
+									<label class="col-form-label col-lg-2 col-sm-12">Department Show *</label>
+									<div class="col-lg-8 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<select name="department_show" class="form-control select2norm" multiple id="department_show" placeholder="Department Show" style="width: 100%;"> 
+												<?PHP foreach ($getDataDepart as $datadepa) { ?>
+												<option value="<?PHP echo $datadepa['department']; ?>"><?PHP echo $datadepa['department']; ?></option>
+												<?PHP } ?>
 											</select>
 										</div>
 									</div>
@@ -297,11 +315,26 @@ $cekEvent 		= $this->query->getNumRowsbyQ("select * from menu_site where style='
 													<!--option value="document">Document</option-->
 													<option value="services">Services</option>
 													<option value="link">Link</option>
+													<option value="ourteam">Our Team</option>
 													<!-- <option value="works">Works</option> -->
 												</select>
 											</div>
 										</div>
 									</div>
+									<div class="form-group row ed_ourteam-content" style='display:none;'>
+										<label class="col-form-label col-lg-2 col-sm-12">Department Show *</label>
+										<div class="col-lg-8 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<select name="ed_department_show" class="form-control select2norm" multiple id="ed_department_show" placeholder="Department Show" style="width: 100%;"> 
+													<?PHP foreach ($getDataDepart as $datadepa) { ?>
+													<option value="<?PHP echo $datadepa['department']; ?>"><?PHP echo $datadepa['department']; ?></option>
+													<?PHP } ?>
+												</select>
+											</div>
+										</div>
+									</div>
+									
+									
 									<div class="form-group row">
 										<label class="col-form-label col-lg-2 col-sm-12">Menu Name *</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">

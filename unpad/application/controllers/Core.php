@@ -1107,6 +1107,8 @@ class Core extends CI_Controller {
 			$type			= trim(strip_tags(stripslashes($this->input->post('type',true))));
 			$icon			= trim(strip_tags(stripslashes($this->input->post('icon',true))));
 			
+			
+			
 			$rows = $this->query->insertData('menu', "id_menu,menu,parent,url,sort,type,icon", "'$id_menu','$menu','$parent','$url','$sort','$type','$icon'");
 			$userid		= $userdata['userid'];
 			$datelog	= date('Y-m-d H:i:s');
@@ -4124,7 +4126,8 @@ class Core extends CI_Controller {
 			$style			= trim(strip_tags(stripslashes($this->input->post('menutype',true))));
 			$parent			= trim(strip_tags(stripslashes($this->input->post('parent',true))));
 			$sort			= trim(strip_tags(stripslashes($this->input->post('sort',true))));
-
+			$depart 		= implode($_POST['department_show']);
+			
 			$config['upload_path'] = './images/content/'; //buat folder dengan nama assets di root folder
 			$config['file_name'] = $fileName;
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -4138,8 +4141,8 @@ class Core extends CI_Controller {
 			$media 			= $this->upload->data();
 			$fileNamePost 	= $media['file_name'];
 			
-			$rows 		= $this->query->insertData('menu_site', "id_menu,menu,description,background,link,style,parent,sort,menu_en,description_en,flag_website", 
-													"'','$menu','$desc','$fileNamePosst','$link','$style','$parent','$sort','$menu_en','$desc_en','$kategori_website'");
+			$rows 		= $this->query->insertData('menu_site', "id_menu,menu,description,background,link,style,parent,sort,menu_en,description_en,flag_website,ourteam_flag", 
+													"'','$menu','$desc','$fileNamePosst','$link','$style','$parent','$sort','$menu_en','$desc_en','$kategori_website','$depart'");
 			$id			= $this->db->insert_id();
 			$url 		= "Manage Menus";
 			$activity 	= "INSERT";
@@ -4195,8 +4198,14 @@ class Core extends CI_Controller {
 			$sort			= trim(strip_tags(stripslashes($this->input->post('ed_sort',true))));
 			$desc			= trim(strip_tags(stripslashes($this->input->post('ed_desc',true))));
 			$kategori		= trim(strip_tags(stripslashes($this->input->post('ed_kategori_website',true))));
-			@$cekinglogo		= $_FILES['upl']['name'];
-
+			@$cekinglogo	= $_FILES['upl']['name'];
+			$jumd = count($_POST['ed_department_show']);
+			if($jumd > 1){
+				$depart 		= implode($_POST['ed_department_show']);				
+			}else{
+				$depart 		= trim(strip_tags(stripslashes($this->input->post('ed_department_show',true))));
+			}
+			 
 			$userid		= $userdata['userid'];
 				
 			$url 		= "Manage Menus";
@@ -4224,7 +4233,7 @@ class Core extends CI_Controller {
 					 
 				$media = $this->upload->data('upl');
 				
-				$rows = $this->query->updateData('menu_site',"menu='$menu', parent='$parent', link='$link', style='$style', background='$fileName', sort='$sort', description='$desc',menu_en='$menu_en',description_en='$description_en',flag_website='$kategori'","WHERE id_menu='".$id."'");
+				$rows = $this->query->updateData('menu_site',"menu='$menu', parent='$parent', link='$link', style='$style', background='$fileName', sort='$sort', description='$desc',menu_en='$menu_en',description_en='$description_en',flag_website='$kategori',ourteam_flag='$depart'","WHERE id_menu='".$id."'");
 				
 				if($rows) {
 					$log = $this->query->insertlog($activity,$url,$id);
@@ -4233,7 +4242,7 @@ class Core extends CI_Controller {
 					echo "";
 				}	
 			} else {
-				$rows = $this->query->updateData('menu_site',"menu='$menu', parent='$parent',link='$link', style='$style', sort='$sort' , description='$desc',menu_en='$menu_en',description_en='$description_en',flag_website='$kategori'","WHERE id_menu='$id'");
+				$rows = $this->query->updateData('menu_site',"menu='$menu', parent='$parent',link='$link', style='$style', sort='$sort' , description='$desc',menu_en='$menu_en',description_en='$description_en',flag_website='$kategori',ourteam_flag='$depart'","WHERE id_menu='$id'");
 
 				if($rows) {
 					$log = $this->query->insertlog($activity,$url,$id);
@@ -4624,6 +4633,27 @@ class Core extends CI_Controller {
 			redirect('/panel');
 		}
 	}
+	public function getdataourteam(){
+		if(checkingsessionpwt()){
+
+			$columnsDefault = [
+				'picture'		=> true,
+				'name'			=> true,
+				'email'			=> true,
+				'position'		=> true,
+				'departemen'	=> true,
+				'updateby'		=> true,
+				'lastupdate'	=> true,
+				'actions'		=> true,
+			];
+			$arraynya	= $columnsDefault;
+			$jsonfile	= base_url().'jsondata/datourteam';
+
+			$this->generateDatatable($arraynya,$jsonfile);
+		} else {
+			redirect('/panel');
+		}
+	}
 
 	public function modallink(){
 		if(checkingsessionpwt()){
@@ -4698,7 +4728,7 @@ class Core extends CI_Controller {
 			redirect('/panel');
 		}
 	}
-
+	
 	public function deletelink(){
 		if(checkingsessionpwt()){
 			$url 		= "Manage Link";
@@ -4784,7 +4814,149 @@ class Core extends CI_Controller {
 			redirect('/panel');
 		}
 	}
+	public function insertourteam(){
+		if(checkingsessionpwt()){
+			$userdata	= $this->session->userdata('sesspwt'); 
+			$userid 	= $userdata['userid'];
 
+			$gname			= trim(strip_tags(stripslashes($this->input->post('name',true))));
+			$name 			= str_replace("'", '`', $gname);
+			$email			= trim(strip_tags(stripslashes($this->input->post('email',true))));
+			$position		= trim(strip_tags(stripslashes($this->input->post('position',true))));
+			$position_en	= trim(strip_tags(stripslashes($this->input->post('position_en',true))));
+			$department		= trim(strip_tags(stripslashes($this->input->post('department',true))));
+			$department_en	= trim(strip_tags(stripslashes($this->input->post('department_en',true))));
+			$fileName 		= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict']['name']);
+			$date 			= date('Y-m-d');
+				
+			$config['upload_path'] = './images/ourteam/'; //buat folder dengan nama assets di root folder
+			$config['file_name'] = $fileName;
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			 
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+			 
+			if(! $this->upload->do_upload('pict') )
+			$this->upload->display_errors();
+				 
+			$media 			= $this->upload->data();
+			$fileNamePost 	= $media['file_name'];
+
+			$q 			= "
+						insert into ourteam (name,email,position,position_en,department,department_en,picture) values ('$name','$email','$position','$position_en','$department','$department_en','$fileNamePost')
+						";
+						//echo $q;
+			$rows 		= $this->query->insertDatabyQ($q);
+
+			if($rows) {
+				print json_encode($media);
+				$filedir 	= 'link';
+				//$this->makeThumbnails($filedir,$fileName);
+
+				$id			= $this->db->insert_id();
+				$url 		= "Manage Our Team";
+				$activity 	= "INSERT";
+
+				$log = $this->query->insertlog($activity,$url,$id);
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+				//echo "insert into content (title,sub,headline,content,id_menu) values ('$title','',$menu,'$headline','$content')";
+			}
+		} else {
+			redirect('/panel');
+		}
+	}
+	public function deleteourteam(){
+		if(checkingsessionpwt()){
+			$url 		= "Manage Our Team";
+			$activity 	= "DELETE";
+
+			$cond	= trim(strip_tags(stripslashes($this->input->post('iddel',true))));
+
+			//delete eksisting
+			$coba = $this->query->getData('ourteam','picture','WHERE id='.$cond.'');
+			foreach ($coba as $dataex) {
+				$dataexis 		= 'images/ourteam/'.$dataex['picture'];
+				$dataexisthumb 	= 'images/ourteam/thumb_'.$dataex['picture'];
+				@unlink($dataexis);
+				@unlink($dataexisthumb);
+			}
+
+			$rows = $this->query->deleteData('ourteam','id',$cond);
+			
+			if(isset($rows)) {
+				$log = $this->query->insertlog($activity,$url,$cond);
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+			}
+		}else{
+            redirect('/login');
+        }
+	}
+
+	public function updateourteam(){
+		if(checkingsessionpwt()){
+			$userdata	= $this->session->userdata('sesspwt'); 
+
+			$cekinglogo	= $_FILES['upl']['name'];
+			$id			= trim(strip_tags(stripslashes($this->input->post('ed_id',true))));
+			$name		= trim(strip_tags(stripslashes($this->input->post('ed_name',true))));
+			$email		= trim(strip_tags(stripslashes($this->input->post('ed_email',true))));
+			$position	= trim(strip_tags(stripslashes($this->input->post('ed_position',true))));
+			$position_en	= trim(strip_tags(stripslashes($this->input->post('ed_position_en',true))));
+			$department		= trim(strip_tags(stripslashes($this->input->post('ed_department',true))));
+			$department_en		= trim(strip_tags(stripslashes($this->input->post('ed_department_en',true))));
+			
+			
+			$userid		= $userdata['userid'];
+				
+			$url 		= "Manage Our Team";
+			$activity 	= "UPDATE";
+
+			if ($cekinglogo!='') {
+				//delete eksisting
+				$coba = $this->query->getData('ourteam','picture','WHERE id='.$id.'');
+				foreach ($coba as $dataex) {
+					$dataexis 		= 'images/ourteam/'.$dataex['picture'];
+					$dataexisthumb	= 'images/ourteam/thumb_'.$dataex['picture'];
+					unlink($dataexis);
+					unlink($dataexisthumb);
+				}
+			
+				// $fileName = str_replace(' ','_',time().$_FILES['upl']['name']);
+				$fileName 	= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['upl']['name']);
+				$config['upload_path'] = './images/ourteam/'; //buat folder dengan nama assets di root folder
+				$config['file_name'] = $fileName;
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size'] = 10000000;
+				 
+				$this->load->library('upload');
+				$this->upload->initialize($config);
+				 
+				if(! $this->upload->do_upload('upl') )
+				$this->upload->display_errors();
+					 
+				// $media = $this->upload->data('upl');
+				$media 			= $this->upload->data();
+				$fileNamePost 	= $media['file_name'];
+
+				$rows = $this->query->updateData('ourteam',"name='$name', email='$email',position='$position', position_en='$position_en',department='$department', department_en='$department_en', picture='$fileNamePost'","WHERE id='$id'");
+			} else {
+				$rows = $this->query->updateData('ourteam',"name='$name', email='$email',position='$position', position_en='$position_en',department='$department', department_en='$department_en'","WHERE id='$id'");
+			}
+
+			if($rows) {
+				$log = $this->query->insertlog($activity,$url,$id);
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+			}
+		} else {
+			redirect('/panel');
+		}
+	}
 	public function getdatamail(){
 		if(checkingsessionpwt()){
 
