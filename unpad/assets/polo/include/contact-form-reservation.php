@@ -1,10 +1,16 @@
 <?php
-
 session_cache_limiter('nocache');
 header('Expires: ' . gmdate('r', 0));
 header('Content-type: application/json');
 
-require_once('php-mailer/PHPMailerAutoload.php');
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'php-mailer/src/Exception.php';
+require 'php-mailer/src/PHPMailer.php';
+//require 'path/to/PHPMailer/src/SMTP.php';
+
 $mail = new PHPMailer();
 
 // Enter your email address:
