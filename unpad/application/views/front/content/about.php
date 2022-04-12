@@ -24,7 +24,7 @@ $dataPage   = array_shift($gPage);
         <?PHP $this->load->view('theme/polo/header'); ?>
 
         <!-- Page title -->
-        <section id="page-title" class="page-title-center text-light background-overlay-dark" style="background:url('<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>') no-repeat center; background-size: cover;">
+        <section id="page-title" class="page-title-center text-light background-overlay-dark" style="background:#bababa url('<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>') no-repeat center; background-size: cover;">
             <div class="container">
                 <div class="page-title">
                     <!--span class="post-meta-category"><a href="#"><?PHP echo $menu; ?></a></span-->

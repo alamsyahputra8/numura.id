@@ -70,14 +70,16 @@
                             <span class="post-meta-date">
                                 <i class="fa fa-calendar-alt"></i><?PHP echo $this->formula->TanggalIndo($dataPage['create_date']); ?>
                             </span>
-                            <span class="post-meta-comments">
-                                <a href="#"><i class="fa fa-user"></i>Added by : <?PHP echo $dataPage['createby']; ?></a>
+                            <span class="post-meta-comments"><a href="#"><i class="fa fa-user"></i>
+                                <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Added by :'; } else { echo 'Dibuat oleh :'; } echo $dataPage['createby']; ?></a>
                             </span>
                             <h2>
                                 <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>"><?PHP echo $dataPage['title']; ?></a>
                             </h2>
                             <p><?PHP echo $dataPage['headline']; ?></p>
-                            <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>" class="item-link">Read More <i class="fa fa-arrow-right"></i></a>
+                            <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>" class="item-link">
+                                <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Read More'; } else { echo 'Selengkapnya'; } ?> <i class="fa fa-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

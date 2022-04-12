@@ -93,7 +93,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
 					 <nav>
                         <ul>
                             <?PHP
-                            $qMenu      = "select * from menu_site where parent='0' order by sort asc";
+                            $qMenu      = "select * from menu_site where parent='0' and flag_website='1' order by sort asc";
                             $getMenu    = $this->query->getDatabyQ($qMenu);
                             foreach ($getMenu as $datamenu) {
                                 $idmenu     = $datamenu['id_menu'];
@@ -104,7 +104,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
                                     $classChild = '';
                                 }
 
-                                if ($datamenu['link']=='#' or $datamenu['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                                if ($datamenu['link']=='#' or $datamenu['link']=='' or $datamenu['style']=='link') { $page   = ''; } else { $page   = 'page/'; }
                             ?>
                             <li <?PHP echo $classChild; ?>>
                                 <a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datamenu['link']; ?>"><?PHP echo $datamenu['menu_en']; ?></a>
@@ -121,7 +121,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
                                             } else {
                                                 $classChild2 = '';
                                             }
-                                            if ($datachild['link']=='#' or $datachild['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                                            if ($datachild['link']=='#' or $datachild['link']=='' or $datachild['style']=='link') { $page   = ''; } else { $page   = 'page/'; }
                                         ?>
                                         <li <?PHP echo $classChild2; ?>><a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datachild['link']; ?>"><?PHP echo $datachild['menu_en']; ?></a>
                                             <?PHP if ($cekChild2>0) { ?>
@@ -137,7 +137,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
                                                     } else {
                                                         $classChild3 = '';
                                                     }
-                                                    if ($datachild2['link']=='#' or $datachild2['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                                                    if ($datachild2['link']=='#' or $datachild2['link']=='' or $datachild2['style']=='link') { $page   = ''; } else { $page   = 'page/'; }
                                                 ?>
                                                 <li <?PHP echo $classChild3; ?>><a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datachild2['link']; ?>"><?PHP echo $datachild2['menu_en']; ?></a>
                                                     <?PHP if ($cekChild3>0) { ?>
@@ -147,7 +147,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
                                                         $getChild3   = $this->query->getDatabyQ($qChild3);
                                                         foreach ($getChild3 as $datachild3) {
                                                             $idmenuC3     = $datachild3['id_menu'];
-                                                            if ($datachild3['link']=='#' or $datachild3['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                                                            if ($datachild3['link']=='#' or $datachild3['link']=='' or $datachild3['style']=='link') { $page   = ''; } else { $page   = 'page/'; }
                                                         ?>
                                                         <li><a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datachild3['link']; ?>"><?PHP echo $datachild3['menu_en']; ?></a></li>
                                                         <?PHP } ?>
@@ -171,7 +171,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
 					<nav>
                         <ul>
                             <?PHP
-                            $qMenu      = "select * from menu_site where parent='0' order by sort asc";
+                            $qMenu      = "select * from menu_site where parent='0' and flag_website='1' order by sort asc";
                             $getMenu    = $this->query->getDatabyQ($qMenu);
                             foreach ($getMenu as $datamenu) {
                                 $idmenu     = $datamenu['id_menu'];
@@ -182,7 +182,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
                                     $classChild = '';
                                 }
 
-                                if ($datamenu['link']=='#' or $datamenu['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                                if ($datamenu['link']=='#' or $datamenu['link']=='' or $datamenu['style']=='link') { $page   = ''; } else { $page   = 'page/'; }
                             ?>
                             <li <?PHP echo $classChild; ?>>
                                 <a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datamenu['link']; ?>"><?PHP echo $datamenu['menu']; ?></a>
@@ -199,7 +199,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
                                             } else {
                                                 $classChild2 = '';
                                             }
-                                            if ($datachild['link']=='#' or $datachild['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                                            if ($datachild['link']=='#' or $datachild['link']=='' or $datachild['style']=='link') { $page   = ''; } else { $page   = 'page/'; }
                                         ?>
                                         <li <?PHP echo $classChild2; ?>><a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datachild['link']; ?>"><?PHP echo $datachild['menu']; ?></a>
                                             <?PHP if ($cekChild2>0) { ?>
@@ -215,7 +215,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
                                                     } else {
                                                         $classChild3 = '';
                                                     }
-                                                    if ($datachild2['link']=='#' or $datachild2['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                                                    if ($datachild2['link']=='#' or $datachild2['link']=='' or $datachild2['style']=='link') { $page   = ''; } else { $page   = 'page/'; }
                                                 ?>
                                                 <li <?PHP echo $classChild3; ?>><a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datachild2['link']; ?>"><?PHP echo $datachild2['menu']; ?></a>
                                                     <?PHP if ($cekChild3>0) { ?>
@@ -225,7 +225,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
                                                         $getChild3   = $this->query->getDatabyQ($qChild3);
                                                         foreach ($getChild3 as $datachild3) {
                                                             $idmenuC3     = $datachild3['id_menu'];
-                                                            if ($datachild3['link']=='#' or $datachild3['link']=='') { $page   = ''; } else { $page   = 'page/'; }
+                                                            if ($datachild3['link']=='#' or $datachild3['link']=='' or $datachild3['style']=='link') { $page   = ''; } else { $page   = 'page/'; }
                                                         ?>
                                                         <li><a href="<?PHP echo base_url(); ?><?PHP echo $page; ?><?PHP echo $datachild3['link']; ?>"><?PHP echo $datachild3['menu']; ?></a></li>
                                                         <?PHP } ?>

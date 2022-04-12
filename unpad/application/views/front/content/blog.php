@@ -25,11 +25,11 @@ $gPage      = $this->query->getDatabyQ($qPage);
         <?PHP $this->load->view('theme/polo/header'); ?>
 
         <!-- Page title -->
-        <section id="page-title" class="page-title-center text-light background-overlay-dark" style="background:url('<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>') no-repeat center; background-size: 100% auto;">
+        <section id="page-title" class="page-title-center text-light background-overlay-dark" style="background:#bababa url('<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>') no-repeat center; background-size: 100% auto;">
             <div class="container">
                 <div class="page-title">
                     <!--span class="post-meta-category"><a href="#"><?PHP echo $menu; ?></a></span-->
-                    <h1>Blog</h1>
+                    <h1><?PHP echo $menu; ?></h1>
                     <!-- <div class="small m-b-20"><?PHP echo $dataPage['last_update']; ?> | <a href="#">by <?PHP echo $dataPage['update_by']; ?></a></div> -->
                     <!-- <div class="small m-b-20"><?PHP echo $dataPage['last_update']; ?> | <a href="#">by <?PHP echo $dataPage['update_by']; ?></a></div> -->
                     <!--div class="align-center">
@@ -81,11 +81,14 @@ $gPage      = $this->query->getDatabyQ($qPage);
                                     <span class="post-meta-date">
                                        <i class="fa fa-calendar-alt"></i><?PHP echo $this->formula->TanggalIndo($dataPage['create_date']); ?>
                                     </span>
-                                    <span class="post-meta-comments"><a href="#"><i class="fa fa-user"></i>Added by : <?PHP echo $dataPage['createby']; ?></a></span>
+                                    <span class="post-meta-comments"><a href="#"><i class="fa fa-user"></i>
+                                        <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Added by :'; } else { echo 'Dibuat oleh :'; } echo $dataPage['createby']; ?></a></span>
                                     <h2><a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>"><?PHP echo $dataPage['title']; ?></a></h2>
                                     <p><?PHP echo $dataPage['headline']; ?></p>
 
-                                    <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>" class="item-link">Read More <i class="fa fa-arrow-right"></i></a>
+                                    <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>" class="item-link">
+                                        <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Read More'; } else { echo 'Selengkapnya'; } ?> <i class="fa fa-arrow-right"></i>
+                                    </a>
 
                                 </div>
                             </div>
