@@ -1,19 +1,27 @@
 <script>
 "use strict";
 $('#menutype').change(function() { 
-    var vals = $(this).val();  
+    var vals = $(this).val();   
 	if(vals == 'link'){
 		$('.content-type').hide();
+		$('.ourteam-content').hide();
+	}else if(vals == 'ourteam'){
+		$('.ourteam-content').show();
 	}else{
 		$('.content-type').show();
+		$('.ourteam-content').hide();
 	}
 });
 $('#ed_menutype').change(function() { 
     var vals = $(this).val();  
 	if(vals == 'link'){
 		$('.content-type').hide();
+		$('.ed_ourteam-content').hide();
+	}else if(vals == 'ourteam'){
+		$('.ed_ourteam-content').show();
 	}else{
 		$('.content-type').show();
+		$('.ed_ourteam-content').hide();
 	}
 });
 $('#parent').change(function() {
@@ -87,7 +95,20 @@ $(document).on('click', '.btnupdateM', function(e){
         $('#ed_link').val(data.link);
         $('#ed_menutype').val(data.style);
 		$('#ed_kategori_website').val(data.flag_website);
-
+		if(data.style=='ourteam'){
+			$('.ed_ourteam-content').show();
+		}else{
+			$('.ed_ourteam-content').hide();
+		}
+		const myTeam = data.ourteam_flag.split(",");
+		var jm = myTeam.length;
+		if(jm > 1){
+			for(i=0;i<jm;i++){
+				$('#ed_department_show').val(myTeam[i]).trigger('change');
+			}
+		}else{
+			$('#ed_department_show').val(data.ourteam_flag).trigger('change');
+		}
         /*if (data.parent==0) {
             $('#ed_parent').val(data.parent);
             $('#ed_parent').trigger('change.select2');
