@@ -72,6 +72,19 @@
 							</div>
 							<div class="kt-portlet__body">
 								<div class="form-group row">
+									<label class="col-form-label col-lg-2 col-sm-12">Kategori Website *</label>
+									<div class="col-lg-8 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<select name="kategori_website" class="form-control" id="kategori_website" placeholder="Jenis Menu" readonly>
+												<option value="">-- Pilih Kategori --</option>
+												<option value="1">Web Fakultas</option>
+												<option value="2">Web Prodi S1 & S2</option> 
+												<option value="3">Web Alumni & Mitra</option> 
+											</select>
+										</div>
+									</div> 
+								</div>
+								<div class="form-group row" style="display:none">
 									<label class="col-form-label col-lg-2 col-sm-12">Title *</label>
 									<div class="col-lg-4 col-md-9 col-sm-12">
 										<div class='input-group'>
@@ -88,7 +101,7 @@
 									</div>
 								</div>
 
-								<div class="form-group row">
+								<div class="form-group row"  style="display:none">
 									<label class="col-form-label col-lg-2 col-sm-12">Sub Title *</label>
 									<div class="col-lg-4 col-md-9 col-sm-12">
 										<div class='input-group'>
@@ -109,6 +122,17 @@
 									<div class="col-lg-4 col-md-9 col-sm-12">
 										<div class='input-group'>
 											<input type="file" name="pict" class="form-control" id="pict" placeholder="Cover">
+											<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
+										</div>
+										<span class="form-text text-muted">Untuk tampilan lebih maksimal, gambar disarankan dengan bentuk persegi panjang atau Landscape.</span>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-form-label col-lg-2 col-sm-12">Banner *</label>
+									<div class="col-lg-4 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<input type="file" name="pict_en" class="form-control" id="pict_en" placeholder="Cover">
+											<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
 										</div>
 										<span class="form-text text-muted">Untuk tampilan lebih maksimal, gambar disarankan dengan bentuk persegi panjang atau Landscape.</span>
 									</div>
@@ -132,9 +156,9 @@
 			<table class="table table-striped- table-bordered table-hover table-checkable" id="tabledata">
 				<thead>
 					<tr>
-						<th>PICTURE</th>
-						<th>TITLE</th>
-						<th>SUBTITLE</th>
+						<th>WEBSITE</th>
+						<th>PICTURE ID</th>
+						<th>PICTURE EN</th> 
 						<th>UPDATE BY</th>
 						<th>LAST UPDATE</th>
 						<th>ACTIONS</th>
@@ -142,9 +166,9 @@
 				</thead>
 				<tfoot>
 					<tr>
-						<th>PICTURE</th>
-						<th>TITLE</th>
-						<th>SUBTITLE</th>
+						<th>WEBSITE</th>
+						<th>PICTURE ID</th>
+						<th>PICTURE EN</th>
 						<th>UPDATE BY</th>
 						<th>LAST UPDATE</th>
 						<th>ACTIONS</th>
@@ -172,6 +196,19 @@
 								</div>
 								<div class="kt-portlet__body">
 									<div class="form-group row">
+										<label class="col-form-label col-lg-2 col-sm-12">Kategori Website *</label>
+										<div class="col-lg-8 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<select name="ed_kategori_website" class="form-control" id="ed_kategori_website" placeholder="Jenis Menu" readonly>
+													<option value="">-- Pilih Kategori --</option>
+													<option value="1">Web Fakultas</option>
+													<option value="2">Web Prodi S1 & S2</option> 
+													<option value="3">Web Alumni & Mitra</option> 
+												</select>
+											</div>
+										</div> 
+									</div>
+									<div class="form-group row" style="display:none">
 										<label class="col-form-label col-lg-2 col-sm-12">Title *</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
@@ -189,7 +226,7 @@
 										</div>
 									</div>
 
-									<div class="form-group row">
+									<div class="form-group row" style="display:none">
 										<label class="col-form-label col-lg-2 col-sm-12">Sub Title *</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
@@ -210,6 +247,17 @@
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<input type="file" name="upl" class="form-control" id="upl" placeholder="Cover">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
+											</div>
+											<span class="form-text text-muted">Kosongkan jika tidak akan merubah banner.</span>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-form-label col-lg-2 col-sm-12">Banner *</label>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<input type="file" name="upl_en" class="form-control" id="upl_en" placeholder="Cover">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
 											</div>
 											<span class="form-text text-muted">Kosongkan jika tidak akan merubah banner.</span>
 										</div>

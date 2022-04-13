@@ -847,14 +847,38 @@ class Jsondata extends CI_Controller {
 	                                </div>
 	                            </div>';
 				}
-				
+				$filefound_en = $data['img_en'];
+				$url_en = base_url()."images/slides/".$filefound_en;
+				$exis_en = file_exists(FCPATH."images/slides/".$filefound_en);
+				if($exis_en==1 AND $filefound_en !=''){
+					
+				}else{
+					$filefound='default.png';
+				}
+				if ($data['img_en']=='') {
+					$picture_en 		= '<center><span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold"> '.substr($data['title_en'],0,1).'</span></center>';
+				} else {
+					$picture_en 		= '
+								<div class="kt-user-card-v2">
+	                                <div class="" style="margin: 0 auto; max-width: 150px;">
+	                                    <center><img src="'.base_url().'images/slides/'.$filefound_en.'" class="img-responsive" style="max-width:150px;" alt="photo"></center>
+	                                </div>
+	                            </div>';
+				}
+				if($data['flag_website']==1){
+					$flag_web = '<b>Web Fakultas</b>';
+				}else if($data['flag_website']==2){
+					$flag_web = '<b>Web Prodi S1 & S2</b>';
+				}else if($data['flag_website']==3){
+					$flag_web = '<b>Web Alumni & Mitra</b>';					
+				}
 				//$buttonupdate = getRoleUpdate($akses,'update',$id);
 				//$buttondelete = getRoleDelete($akses,'delete',$id);
 
 				$row = array(
+					"website"		=> $flag_web,
 					"picture"		=> $picture,
-					"title"			=> $data['title'],
-					"sub"			=> $data['sub'],
+					"picture_en"	=> $picture_en, 
 					"updateby"		=> $data['update_by'],
 					"lastupdate"	=> $data['last_update'],
 					"actions"		=> $id

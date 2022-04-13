@@ -25,6 +25,7 @@ $(document).on('click', '.btnupdateM', function(e){
         $('#ed_id').val(data.id_banner);
         $('#ed_title').val(data.title);
         $('#ed_subtitle').val(data.sub);
+		$('#ed_kategori_website').val(data.flag_website).trigger('change');
 
         $('#modal-loader').hide();    // hide ajax loader
     })
@@ -105,13 +106,13 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                 data: {
                     // parameters for custom backend script demo
                     columnsDef: [
-                        'picture', 'title', 'sub', 'updateby', 'lastupdate', 'actions',],
+                        'website','picture','picture_en', 'updateby', 'lastupdate', 'actions',],
                 },
             },
 			columns: [
-                {data: 'picture'},
-                {data: 'title'},
-				{data: 'sub'},
+                {data: 'website'},
+				{data: 'picture'},
+                {data: 'picture_en'}, 
                 {data: 'updateby'},
                 {data: 'lastupdate'},
                 {data: 'actions', responsivePriority: -1},
@@ -125,8 +126,9 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                     var input;
 
                     switch (column.title()) {
-                        case 'TITLE':
-                        case 'SUBTITLE':
+						case 'WEBSITE':
+                        case 'PICTURE ID':
+                        case 'PICTURE EN':
                         case 'UPDATE BY':
                             input = $(`<input type="text" class="form-control form-control-sm form-filter kt-input" data-col-index="` + column.index() + `"/>`);
                             break;

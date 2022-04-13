@@ -5126,9 +5126,9 @@ class Core extends CI_Controller {
 		if(checkingsessionpwt()){
 
 			$columnsDefault = [
+				'website'		=> true,
 				'picture'		=> true,
-				'title'			=> true,
-				'sub'			=> true,
+				'picture_en'	=> true, 
 				'updateby'		=> true,
 				'lastupdate'	=> true,
 				'actions'		=> true,
@@ -5177,23 +5177,40 @@ class Core extends CI_Controller {
 			$sub		= $this->input->post('subtitle',true);
 			$title_en	= $this->input->post('title_en',true);
 			$sub_en		= $this->input->post('subtitle_en',true);
+			$website	= $this->input->post('kategori_website',true);
 			$fileName 	= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict']['name']);
+			$fileName_en 	= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict_en']['name']);
 				
 			$config['upload_path'] = './images/slides/'; //buat folder dengan nama assets di root folder
 			$config['file_name'] = $fileName;
-			$config['allowed_types'] = 'gif|jpg|png|jpeg';
-			 
+			$config['allowed_types'] = 'gif|jpg|png|jpeg'; 
+			
 			$this->load->library('upload');
 			$this->upload->initialize($config);
 			 
 			if(! $this->upload->do_upload('pict') )
 			$this->upload->display_errors();
-				 
+		
 			$media 			= $this->upload->data();
 			$fileNamePost 	= $media['file_name'];
+			
+			$config_en['upload_path'] = './images/slides/'; //buat folder dengan nama assets di root folder
+			$config_en['file_name'] = $fileName_en;
+			$config_en['allowed_types'] = 'gif|jpg|png|jpeg';
+			
+			$this->load->library('upload');
+			$this->upload->initialize($config_en);
+			 
+			if(! $this->upload->do_upload('pict_en') )
+			$this->upload->display_errors();
+		
+			$media_en 			= $this->upload->data();
+			$fileNamePost_en 	= $media_en['file_name'];
+				 
+			
 
 			$q 			= "
-						insert into banner (title,sub,title_en,sub_en,img,thumb) values ('$title','$sub','$title_en','$sub_en','$fileNamePosst','blur_thumb.png')
+						insert into banner (title,sub,title_en,sub_en,img,img_en,thumb,thumb_en,flag_website) values ('$title','$sub','$title_en','$sub_en','$fileNamePost','blur_thumb.png','$fileNamePost_en','blur_thumb.png','$website')
 						";
 						//echo $q;
 			$rows 		= $this->query->insertDatabyQ($q);
@@ -5239,13 +5256,15 @@ class Core extends CI_Controller {
 			$userdata	= $this->session->userdata('sesspwt'); 
 
 			$cekinglogo	= $_FILES['upl']['name'];
+			$cekinglogo_en	= $_FILES['upl_en']['name'];
 			$id			= trim(strip_tags(stripslashes($this->input->post('ed_id',true))));
-			/*$title		= trim(strip_tags(stripslashes($this->input->post('ed_title',true))));
+			/*$title	= trim(strip_tags(stripslashes($this->input->post('ed_title',true))));
 			$sub		= trim(strip_tags(stripslashes($this->input->post('ed_subtitle',true))));*/
 			$title		= $this->input->post('ed_title',true);
 			$sub		= $this->input->post('ed_subtitle',true);
-			$title_en		= $this->input->post('ed_title_en',true);
+			$title_en	= $this->input->post('ed_title_en',true);
 			$sub_en		= $this->input->post('ed_subtitle_en',true);
+			$website		= $this->input->post('ed_kategori_website',true);
 
 			$userid		= $userdata['userid'];
 				
@@ -5274,10 +5293,34 @@ class Core extends CI_Controller {
 					 
 				$media = $this->upload->data('upl');
 
-				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', img='$fileName'","WHERE id_banner='$id'");
+				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', img='$fileName', flag_website='$website'","WHERE id_banner='$id'");
+			} else if($cekinglogo_en !=''){
+				//delete eksisting
+				$coba_en = $this->query->getData('banner','img_en','WHERE id_banner='.$id.'');
+				foreach ($coba_en as $dataex_en) {
+					$dataexis_en = 'images/slides/'.$dataex_en['img_en'];
+				}
+				unlink($dataexis_en);
+			
+				$fileName_en = str_replace(' ','_',time().$_FILES['upl_en']['name']);
+				$config_en['upload_path'] = './images/slides/'; //buat folder dengan nama assets di root folder
+				$config_en['file_name'] = $fileName_en;
+				$config_en['allowed_types'] = 'gif|jpg|png';
+				$config_en['max_size'] = 10000000;
+				 
+				$this->load->library('upload');
+				$this->upload->initialize($config_en);
+				 
+				if(! $this->upload->do_upload('upl_en') )
+				$this->upload->display_errors();
+					 
+				$media_en = $this->upload->data('upl_en');
+
+				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', img_en='$fileName_en', flag_website='$website'","WHERE id_banner='$id'");
 			} else {
-				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en'","WHERE id_banner='$id'");
+				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', flag_website='$website'","WHERE id_banner='$id'");
 			}
+			 
 
 			if($rows) {
 				$log = $this->query->insertlog($activity,$url,$id);
