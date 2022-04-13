@@ -5129,6 +5129,7 @@ class Core extends CI_Controller {
 				'website'		=> true,
 				'picture'		=> true,
 				'picture_en'	=> true, 
+				'link'			=> true, 
 				'updateby'		=> true,
 				'lastupdate'	=> true,
 				'actions'		=> true,
@@ -5178,6 +5179,7 @@ class Core extends CI_Controller {
 			$title_en	= $this->input->post('title_en',true);
 			$sub_en		= $this->input->post('subtitle_en',true);
 			$website	= $this->input->post('kategori_website',true);
+			$link		= $this->input->post('link',true);
 			$fileName 	= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict']['name']);
 			$fileName_en 	= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict_en']['name']);
 				
@@ -5210,7 +5212,7 @@ class Core extends CI_Controller {
 			
 
 			$q 			= "
-						insert into banner (title,sub,title_en,sub_en,img,img_en,thumb,thumb_en,flag_website) values ('$title','$sub','$title_en','$sub_en','$fileNamePost','blur_thumb.png','$fileNamePost_en','blur_thumb.png','$website')
+						insert into banner (title,sub,title_en,sub_en,img,img_en,thumb,thumb_en,flag_website,link) values ('$title','$sub','$title_en','$sub_en','$fileNamePost','blur_thumb.png','$fileNamePost_en','blur_thumb.png','$website','$link')
 						";
 						//echo $q;
 			$rows 		= $this->query->insertDatabyQ($q);
@@ -5264,8 +5266,8 @@ class Core extends CI_Controller {
 			$sub		= $this->input->post('ed_subtitle',true);
 			$title_en	= $this->input->post('ed_title_en',true);
 			$sub_en		= $this->input->post('ed_subtitle_en',true);
-			$website		= $this->input->post('ed_kategori_website',true);
-
+			$website	= $this->input->post('ed_kategori_website',true);
+			$link		= $this->input->post('ed_link',true);
 			$userid		= $userdata['userid'];
 				
 			$url 		= "Manage Banner";
@@ -5293,7 +5295,7 @@ class Core extends CI_Controller {
 					 
 				$media = $this->upload->data('upl');
 
-				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', img='$fileName', flag_website='$website'","WHERE id_banner='$id'");
+				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', img='$fileName', flag_website='$website', link='$link'","WHERE id_banner='$id'");
 			} else if($cekinglogo_en !=''){
 				//delete eksisting
 				$coba_en = $this->query->getData('banner','img_en','WHERE id_banner='.$id.'');
@@ -5316,9 +5318,9 @@ class Core extends CI_Controller {
 					 
 				$media_en = $this->upload->data('upl_en');
 
-				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', img_en='$fileName_en', flag_website='$website'","WHERE id_banner='$id'");
+				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', img_en='$fileName_en', flag_website='$website', link='$link'","WHERE id_banner='$id'");
 			} else {
-				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', flag_website='$website'","WHERE id_banner='$id'");
+				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', flag_website='$website', link='$link'","WHERE id_banner='$id'");
 			}
 			 
 

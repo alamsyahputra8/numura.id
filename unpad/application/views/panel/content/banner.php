@@ -137,6 +137,14 @@
 										<span class="form-text text-muted">Untuk tampilan lebih maksimal, gambar disarankan dengan bentuk persegi panjang atau Landscape.</span>
 									</div>
 								</div>
+								<div class="form-group row">
+										<label class="col-form-label col-lg-2 col-sm-12">Link *</label>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'> 
+												<input type="text" name="link" class="form-control" id="link" placeholder="Link"> 
+											</div>  
+										</div> 
+									</div>
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -159,6 +167,7 @@
 						<th>WEBSITE</th>
 						<th>PICTURE ID</th>
 						<th>PICTURE EN</th> 
+						<th>LINK</th> 
 						<th>UPDATE BY</th>
 						<th>LAST UPDATE</th>
 						<th>ACTIONS</th>
@@ -169,6 +178,7 @@
 						<th>WEBSITE</th>
 						<th>PICTURE ID</th>
 						<th>PICTURE EN</th>
+						<th>LINK</th> 
 						<th>UPDATE BY</th>
 						<th>LAST UPDATE</th>
 						<th>ACTIONS</th>
@@ -262,6 +272,15 @@
 											<span class="form-text text-muted">Kosongkan jika tidak akan merubah banner.</span>
 										</div>
 									</div>
+									<div class="form-group row">
+										<label class="col-form-label col-lg-2 col-sm-12">Link *</label>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'> 
+												<input type="text" name="ed_link" class="form-control" id="ed_link" placeholder="Link"> 
+											</div>  
+										</div> 
+									</div>
+
 								</div>
 							</div>
 							<div class="modal-footer">

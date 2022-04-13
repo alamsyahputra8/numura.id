@@ -106,13 +106,14 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                 data: {
                     // parameters for custom backend script demo
                     columnsDef: [
-                        'website','picture','picture_en', 'updateby', 'lastupdate', 'actions',],
+                        'website','picture','picture_en','link', 'updateby', 'lastupdate', 'actions',],
                 },
             },
 			columns: [
                 {data: 'website'},
 				{data: 'picture'},
                 {data: 'picture_en'}, 
+			    {data: 'link'}, 
                 {data: 'updateby'},
                 {data: 'lastupdate'},
                 {data: 'actions', responsivePriority: -1},
@@ -129,6 +130,7 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
 						case 'WEBSITE':
                         case 'PICTURE ID':
                         case 'PICTURE EN':
+						case 'LINK' :
                         case 'UPDATE BY':
                             input = $(`<input type="text" class="form-control form-control-sm form-filter kt-input" data-col-index="` + column.index() + `"/>`);
                             break;

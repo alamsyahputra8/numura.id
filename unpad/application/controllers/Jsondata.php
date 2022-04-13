@@ -879,6 +879,7 @@ class Jsondata extends CI_Controller {
 					"website"		=> $flag_web,
 					"picture"		=> $picture,
 					"picture_en"	=> $picture_en, 
+					"link"			=> $data['link'], 
 					"updateby"		=> $data['update_by'],
 					"lastupdate"	=> $data['last_update'],
 					"actions"		=> $id
