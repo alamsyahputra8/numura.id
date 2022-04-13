@@ -6,6 +6,11 @@ $q 				= "
 				where style='blog' order by sort asc
 				";
 $getDataMenu	= $this->query->getDatabyQ($q);
+
+$qcat 				= "
+				select * from category_blog
+				";
+$getDataCategory	= $this->query->getDatabyQ($qcat);
 ?>
 <!-- begin:: Content -->
 <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
@@ -95,7 +100,19 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 										</div>
 									</div>
 								</div>
-
+								<div class="form-group row">
+									<label class="col-form-label col-lg-2 col-sm-12">Category Blog *</label>
+									<div class="col-lg-8 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<select name="category" class="form-control select2norm" id="category" placeholder="Category Blog" style="width: 100%;">
+												<option value="">-- Choose Category --</option>
+												<?PHP foreach ($getDataCategory as $datax) { ?>
+												<option value="<?PHP echo $datax['id']; ?>"><?PHP echo $datax['category']; ?></option>
+												<?PHP } ?>
+											</select>
+										</div> 
+									</div>
+								</div>
 								<div class="form-group row">
 									<label class="col-form-label col-lg-2 col-sm-12">Menu *</label>
 									<div class="col-lg-8 col-md-9 col-sm-12">
@@ -178,6 +195,7 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 						<th>TITLE</th>
 						<th>MENU</th>
 						<th>HEADLINE</th>
+						<th>CATEGORY</th>
 						<th>UPDATE BY</th>
 						<th>LAST UPDATE</th>
 						<th>ACTIONS</th>
@@ -189,6 +207,7 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 						<th>TITLE</th>
 						<th>MENU</th>
 						<th>HEADLINE</th>
+						<th>CATEGORY</th>
 						<th>UPDATE BY</th>
 						<th>LAST UPDATE</th>
 						<th>ACTIONS</th>
@@ -231,7 +250,19 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 											</div>
 										</div>
 									</div>
-
+									<div class="form-group row">
+									<label class="col-form-label col-lg-2 col-sm-12">Category Blog *</label>
+									<div class="col-lg-8 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<select name="ed_category" class="form-control select2norm" id="ed_category" placeholder="Category Blog" style="width: 100%;">
+												<option value="">-- Choose Category --</option>
+												<?PHP foreach ($getDataCategory as $datax) { ?>
+												<option value="<?PHP echo $datax['id']; ?>"><?PHP echo $datax['category']; ?></option>
+												<?PHP } ?>
+											</select>
+										</div> 
+									</div>
+								</div>
 									<div class="form-group row">
 										<label class="col-form-label col-lg-3 col-sm-12">Menu *</label>
 										<div class="col-lg-8 col-md-9 col-sm-12">

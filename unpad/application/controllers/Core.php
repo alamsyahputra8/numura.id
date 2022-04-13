@@ -4440,6 +4440,7 @@ class Core extends CI_Controller {
 				'title'			=> true,
 				'menu'			=> true,
 				'headline'		=> true,
+				'category' 		=> true,
 				'updateby'		=> true,
 				'lastupdate'	=> true,
 				'actions'		=> true,
@@ -4491,6 +4492,7 @@ class Core extends CI_Controller {
 			$content_en	= str_replace("'",'`',$_POST['content_en']);
 			$fileName 	= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict']['name']);
 			$date 		= date('Y-m-d');
+			$category	= trim(strip_tags(stripslashes($this->input->post('category',true))));
 
 			$link		= $this->formula->clean(strtolower($title));
 				
@@ -4508,7 +4510,7 @@ class Core extends CI_Controller {
 			$fileNamePost 	= $media['file_name'];
 
 			$q 			= "
-						insert into blog (title,sub,id_menu,headline,link,content,picture,create_by,create_date,title_en,headline_en,content_en) values ('$title','',$menu,'$headline','$link','$content','$fileNamePosst','$userid','$date','$title_en','$headline_en','$content_en')
+						insert into blog (title,sub,id_menu,headline,link,content,picture,create_by,create_date,title_en,headline_en,content_en,id_category) values ('$title','',$menu,'$headline','$link','$content','$fileNamePosst','$userid','$date','$title_en','$headline_en','$content_en','$category')
 						";
 						//echo $q;
 			$rows 		= $this->query->insertDatabyQ($q);
@@ -4567,6 +4569,7 @@ class Core extends CI_Controller {
 			$menu		= trim(strip_tags(stripslashes($this->input->post('ed_menu',true))));
 			$headline	= trim(strip_tags(stripslashes($this->input->post('ed_headline',true))));
 			$headline_en	= trim(strip_tags(stripslashes($this->input->post('ed_headline_en',true))));
+			$category	= trim(strip_tags(stripslashes($this->input->post('ed_category',true))));
 			$content	= str_replace("'",'`',$_POST['ed_content']);
 			$content_en	= str_replace("'",'`',$_POST['ed_content_en']);
 			$link		= $this->formula->clean(strtolower($title));
@@ -4598,9 +4601,9 @@ class Core extends CI_Controller {
 					 
 				$media = $this->upload->data('upl');
 
-				$rows = $this->query->updateData('blog',"id_menu='$menu', title='$title', link='$link',headline='$headline', content='$content', picture='$fileName' , title_en='$title_en', link_en='$link_en',headline_en='$headline_en', content_en='$content_en'","WHERE id_blog='$id'");
+				$rows = $this->query->updateData('blog',"id_menu='$menu', title='$title', link='$link',headline='$headline', content='$content', picture='$fileName' , title_en='$title_en', link_en='$link_en',headline_en='$headline_en', content_en='$content_en', id_category='$category'","WHERE id_blog='$id'");
 			} else {
-				$rows = $this->query->updateData('blog',"id_menu='$menu', title='$title', link='$link',headline='$headline', content='$content'","WHERE id_blog='$id'");
+				$rows = $this->query->updateData('blog',"id_menu='$menu', title='$title', link='$link',headline='$headline', content='$content', id_category='$category'","WHERE id_blog='$id'");
 			}
 
 			if($rows) {

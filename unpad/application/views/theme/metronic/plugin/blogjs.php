@@ -27,7 +27,7 @@ $(document).on('click', '.btnupdateM', function(e){
 		$('#ed_title_en').val(data.title_en);
         $('#ed_menu').val(data.id_menu);
         $('#ed_menu').trigger('change.select2');
-
+		$('#ed_category').trigger('change');
         $('#ed_headline').val(data.headline);
 		$('#ed_headline_en').val(data.headline_en);
         //$('#ed_content').val(data.content);
@@ -115,7 +115,7 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                 data: {
                     // parameters for custom backend script demo
                     columnsDef: [
-                        'picture', 'title', 'menu', 'headline', 'updateby', 'lastupdate', 'actions',],
+                        'picture', 'title', 'menu', 'headline','category', 'updateby', 'lastupdate', 'actions',],
                 },
             },
 			columns: [
@@ -123,7 +123,8 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                 {data: 'title'},
                 {data: 'menu'},
 				{data: 'headline'},
-                {data: 'updateby'},
+                {data: 'category'},
+				{data: 'updateby'},
                 {data: 'lastupdate'},
                 {data: 'actions', responsivePriority: -1},
             ],
@@ -140,6 +141,7 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                         case 'MENU':
                         case 'UPDATE BY':
                         case 'HEADLINE':
+						case 'CATEGORY':
                             input = $(`<input type="text" class="form-control form-control-sm form-filter kt-input" data-col-index="` + column.index() + `"/>`);
                             break;
 

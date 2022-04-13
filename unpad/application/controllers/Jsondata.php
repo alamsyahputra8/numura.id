@@ -550,6 +550,7 @@ class Jsondata extends CI_Controller {
 					select
 						a.*,
 						(select menu from menu_site where id_menu=a.id_menu) as menu,
+						(select category from category_blog where id=a.id_category) as category,
 						(SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
 						WHERE xa.menu='Manage Berita' AND xa.data = a.id_blog ORDER BY xa.date_time DESC limit 1)as update_by,
 						(SELECT DATE_FORMAT(xa.date_time, '%d-%b-%y %H:%i:%s') as last_update FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
@@ -599,6 +600,7 @@ class Jsondata extends CI_Controller {
 					"title"			=> $data['title'],
 					"menu"			=> $data['menu'],
 					"headline"		=> $data['headline'],
+					"category"		=> $data['category'],
 					"updateby"		=> $data['update_by'],
 					"lastupdate"	=> $data['last_update'],
 					"actions"		=> $id
