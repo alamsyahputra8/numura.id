@@ -71,7 +71,8 @@ $route['panel/services'] 		= 'viewpanel/services';
 $route['panel/works']	 		= 'viewpanel/works';
 $route['panel/album']	 		= 'viewpanel/album';
 $route['panel/event']	 		= 'viewpanel/event';
-$route['panel/set_to/(:any)'] 			= 'viewpanel/set_to/$1';
+$route['panel/set_to/(:any)'] 	= 'viewpanel/set_to/$1';
+$route['panel/configweb'] 		= 'viewpanel/configweb';
 
 $route['panel/detailinbox/(:any)'] = 'viewpanel/detailinbox/$1';
 $route['panel/banner'] 			= 'viewpanel/banner';

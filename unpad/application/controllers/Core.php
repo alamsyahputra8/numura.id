@@ -4384,6 +4384,118 @@ class Core extends CI_Controller {
 			redirect('/panel');
 		}
 	}
+	public function getdataconfigweb(){
+		if(checkingsessionpwt()){ 
+			$columnsDefault = [
+				'nama'			=> true,
+				'deskripsi'		=> true,  
+				'updateby'		=> true,
+				'lastupdate'	=> true,
+				'actions'		=> true,
+			];
+			$arraynya	= $columnsDefault;
+			$jsonfile	= base_url().'jsondata/dataconfigweb'; 
+			$this->generateDatatable($arraynya,$jsonfile);
+		} else {
+			redirect('/panel');
+		}
+	}
+
+	public function modalconfigweb(){
+		if(checkingsessionpwt()){
+			
+			$id				= trim(strip_tags(stripslashes($this->input->post('id',true))));
+			
+			$q 				= "
+							select * from config_web
+							where id_web='".$id."'
+							";
+			$getData		= $this->query->getDatabyQ($q);
+			
+			header('Content-type: application/json; charset=UTF-8');
+			
+			if (isset($id) && !empty($id)) {
+				foreach($getData as $row) {
+					echo json_encode($row);
+					exit;
+				}
+			}
+		} else {
+			redirect('/panel');
+		}
+	}	
+
+	public function insertconfigweb(){
+		if(checkingsessionpwt()){
+			$userdata	= $this->session->userdata('sesspwt'); 
+			$userid 	= $userdata['userid']; 
+			$nama		= trim(strip_tags(stripslashes($this->input->post('nama',true))));
+			$deskripsi	= trim(strip_tags(stripslashes($this->input->post('deskripsi',true))));  
+			$blog		= trim(strip_tags(stripslashes($this->input->post('blog',true))));
+			$basic 		= trim(strip_tags(stripslashes($this->input->post('basic',true))));  
+			$ourteam	= trim(strip_tags(stripslashes($this->input->post('ourteam',true))));
+			$contact	= trim(strip_tags(stripslashes($this->input->post('contact',true))));  
+			$q 			= "
+						insert into config_web (nama,deskripsi,blog,basic_content,ourteam,contact) values ('$nama','$deskripsi','$blog','$basic','$ourteam','$contact')
+						";
+			$rows 		= $this->query->insertDatabyQ($q); 
+			if($rows) {
+				$id			= $this->db->insert_id();
+				$url 		= "Manage Config Web";
+				$activity 	= "INSERT";
+
+				$log = $this->query->insertlog($activity,$url,$id);
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+				//echo "insert into content (title,sub,headline,content,id_menu) values ('$title','',$menu,'$headline','$content')";
+			}
+		} else {
+			redirect('/panel');
+		}
+	}
+
+	public function deleteconfigweb(){
+		if(checkingsessionpwt()){
+			$url 		= "Manage Config Web";
+			$activity 	= "DELETE"; 
+			$cond	= trim(strip_tags(stripslashes($this->input->post('iddel',true)))); 
+			$rows = $this->query->deleteData('config_web','id_web',$cond); 
+			if(isset($rows)) {
+				$log = $this->query->insertlog($activity,$url,$cond);
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+			}
+		}else{
+            redirect('/login');
+        }
+	}
+
+	public function updateconfigweb(){
+		if(checkingsessionpwt()){
+			$userdata	= $this->session->userdata('sesspwt');  
+			$id_menu	= trim(strip_tags(stripslashes($this->input->post('ed_id',true))));
+			$nama		= trim(strip_tags(stripslashes($this->input->post('ed_nama',true)))); 
+			$deskripsi	= trim(strip_tags(stripslashes($this->input->post('ed_deskripsi',true)))); 
+			$blog		= trim(strip_tags(stripslashes($this->input->post('ed_blog',true))));
+			$basic 		= trim(strip_tags(stripslashes($this->input->post('ed_basic',true))));  
+			$ourteam	= trim(strip_tags(stripslashes($this->input->post('ed_ourteam',true))));
+			$contact	= trim(strip_tags(stripslashes($this->input->post('ed_contact',true)))); 			
+			$userid		= $userdata['userid']; 
+			$url 		= "Manage Config Web";
+			$activity 	= "UPDATE"; 
+			$rows = $this->query->updateData('config_web',"nama='$nama', deskripsi='$deskripsi',blog='$blog', basic_content='$basic',ourteam='$ourteam', contact='$contact'","WHERE id_web='$id_menu'"); 
+			if($rows) {
+				$log = $this->query->insertlog($activity,$url,$id);
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+			}
+		} else {
+			redirect('/panel');
+		}
+	}
 
 	public function cekAvailMenu(){
 		if(checkingsessionpwt()){

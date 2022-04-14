@@ -334,6 +334,59 @@ class Jsondata extends CI_Controller {
 			echo json_encode($json);
 		}
 	}
+	
+	public function dataconfigweb(){
+		$data_aksess = $this->query->getAkses($this->profile,'panel/content');
+		$shift = array_shift($data_aksess);
+		$akses = $shift['akses'];
+
+		$q 		= "
+					select
+						a.*, 
+						(SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
+						WHERE xa.menu='Manage Config Web' AND xa.data = a.id_web ORDER BY xa.date_time DESC limit 1)as update_by,
+						(SELECT DATE_FORMAT(xa.date_time, '%d-%b-%y %H:%i:%s') as last_update FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
+						WHERE xa.menu='Manage Config Web' AND xa.data = a.id_web ORDER BY xa.date_time DESC limit 1)as last_update
+					from
+					config_web a
+					ORDER BY a.id_web desc
+				";
+		$getdata= $this->query->getDatabyQ($q);
+		
+		$no=0;
+		header('Content-type: application/json; charset=UTF-8');
+
+		$cek 	= $this->query->getNumRowsbyQ($q)->num_rows();
+
+		if ($cek>0) {
+			foreach($getdata as $data) {
+				$no++;
+
+				$id = $data['id_web'];
+				
+				//$buttonupdate = getRoleUpdate($akses,'update',$id);
+				//$buttondelete = getRoleDelete($akses,'delete',$id);
+				if($id ==1 or $id ==4){
+					$idx = '';
+				}else{
+					$idx = $id;
+				}
+				 
+				$row = array(
+					"nama"			=> $data['nama'],
+					"deskripsi"		=> $data['deskripsi'],  
+					"updateby"		=> $data['update_by'],
+					"lastupdate"	=> $data['last_update'],
+					"actions"		=> $idx
+					);
+				$json[] = $row;
+			}
+			echo json_encode($json);
+		} else {
+			$json ='';
+			echo json_encode($json);
+		}
+	}
 
 	public function datalog(){
 		error_reporting(0);
