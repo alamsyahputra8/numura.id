@@ -29,7 +29,8 @@ $dataPage   = array_shift($gPage);
         </style>
 
         <!-- Page title -->
-        <section id="page-title" class="page-title-center text-light background-overlay-dark" style="background:#bababa url('<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>') no-repeat center; background-size: cover;">
+        <!-- <section id="page-title" class="page-title-center text-light background-overlay-dark" style="background:#bababa url('<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>') no-repeat center; background-size: cover;"> -->
+        <section id="page-title" data-bg-parallax="<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>">
             <div class="container">
                 <div class="page-title">
                     <!--span class="post-meta-category"><a href="#"><?PHP echo $menu; ?></a></span-->

@@ -86,6 +86,9 @@ if ($dataSEO['id_menu']==1) {
         background: url('<?PHP echo base_url(); ?>images/bgamr.jpeg') fixed no-repeat center;
         background-size: 70% auto;
     }*/
+    .img-loaded {
+        opacity: 0.5;
+    }
     section { 
         background: rgba(255,255,255,.9);
         border-bottom: 1px solid #e5e5e5;

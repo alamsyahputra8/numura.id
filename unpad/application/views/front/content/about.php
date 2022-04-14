@@ -24,12 +24,12 @@ $dataPage   = array_shift($gPage);
         <?PHP $this->load->view('theme/polo/header'); ?>
 
         <!-- Page title -->
-        <section id="page-title" class="page-title-center text-light background-overlay-dark" style="background:#bababa url('<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>') no-repeat center; background-size: cover;">
+        <!-- <section id="page-title" class="page-title-center text-light background-overlay-dark" style="background:#bababa url('<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>') no-repeat center; background-size: cover;"> -->
+        <section id="page-title" data-bg-parallax="<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>">
             <div class="container">
                 <div class="page-title">
                     <!--span class="post-meta-category"><a href="#"><?PHP echo $menu; ?></a></span-->
-                    <h1>About Us</h1>
-                    <div class="small m-b-20">&nbsp;</div>
+                    <h1><?PHP echo $menu; ?></h1>
                     <div class="align-center">
                         <?PHP if ($sitedata['facebook']!=='') { ?>
                         <a class="btn btn-xs btn-slide btn-facebook" href="<?PHP echo $sitedata['facebook']; ?>">
@@ -60,10 +60,10 @@ $dataPage   = array_shift($gPage);
                         <?PHP } ?>
 
                         <?PHP if ($sitedata['whatsapp_no']!=='') { ?>
-                        <a class="btn btn-xs btn-slide btn-success" href="https://api.whatsapp.com/send?phone=<?PHP echo $sitedata['whatsapp_no']; ?>&text=<?PHP echo $sitedata['whatsapp_text']; ?>">
+                        <!-- <a class="btn btn-xs btn-slide btn-success" href="https://api.whatsapp.com/send?phone=<?PHP echo $sitedata['whatsapp_no']; ?>&text=<?PHP echo $sitedata['whatsapp_text']; ?>">
                             <i class="fab fa-whatsapp"></i>
                             <span>WhatsApp</span>
-                        </a>
+                        </a> -->
                         <?PHP } ?>
                     </div>
 
