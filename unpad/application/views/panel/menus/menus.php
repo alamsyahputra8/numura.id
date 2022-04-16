@@ -10,6 +10,11 @@ $qD 				= "
 				select department from ourteam group by department;
 				";
 $getDataDepart	= $this->query->getDatabyQ($qD);
+
+$qconfig_web 				= "
+				select * from config_web;
+				";
+$getconfig_web	= $this->query->getDatabyQ($qconfig_web);
 ?>
  
 <!-- begin:: Content -->
@@ -86,14 +91,27 @@ $getDataDepart	= $this->query->getDatabyQ($qD);
 							</div>
 							<div class="kt-portlet__body">
 								<div class="form-group row">
-									<label class="col-form-label col-lg-2 col-sm-12">Kategori Website *</label>
+									<label class="col-form-label col-lg-2 col-sm-12">Kategori Menu *</label>
 									<div class="col-lg-8 col-md-9 col-sm-12">
 										<div class='input-group'>
-											<select name="kategori_website" class="form-control" id="kategori_website" placeholder="Jenis Menu" readonly>
-												<option value="">-- Pilih Kategori --</option>
-												<option value="1">Web Fakultas</option>
-												<option value="2">Web Prodi S1 & S2</option> 
-												<option value="3">Web Alumni & Mitra</option> 
+											<select name="kategori_website" class="form-control" id="kategori_website" placeholder="Kategori Menu" readonly> 
+												<option value="">-- Pilih Kategori Menu --</option> 
+												<?PHP foreach ($getconfig_web as $dataweb) { ?>
+												<option value="<?PHP echo $dataweb['id_web'];?>"><?PHP echo $dataweb['nama'];?> </option> 
+												<?PHP } ?>
+											</select>
+										</div>
+									</div> 
+								</div>
+								<div class="form-group row">
+									<label class="col-form-label col-lg-2 col-sm-12">Kategori Core *</label>
+									<div class="col-lg-8 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<select name="kategori_core" class="form-control" id="kategori_core" placeholder="Kategori Core" readonly> 
+												<option value="">-- Pilih Kategori Core --</option> 
+												<?PHP foreach ($getconfig_web as $dataweb) { ?>
+												<option value="<?PHP echo $dataweb['id_web'];?>"><?PHP echo $dataweb['nama'];?> </option> 
+												<?PHP } ?>
 											</select>
 										</div>
 									</div> 
@@ -240,7 +258,8 @@ $getDataDepart	= $this->query->getDatabyQ($qD);
 			<table class="table table-striped- table-bordered table-hover table-checkable" id="tabledata">
 				<thead>
 					<tr> 
-						<th>KATEGORI</th>
+						<th>KATEGORI WEB</th>
+						<th>KATEGORI CORE</th>
 						<th>MENU</th> 
 						<th>PARENT</th>
 						<th>SORT</th>
@@ -253,7 +272,8 @@ $getDataDepart	= $this->query->getDatabyQ($qD);
 				</thead>
 				<tfoot>
 					<tr> 
-						<th>KATEGORI</th>
+						<th>KATEGORI WEB</th>
+						<th>KATEGORI CORE</th>
 						<th>MENU</th> 
 						<th>PARENT</th>
 						<th>SORT</th>
@@ -287,14 +307,27 @@ $getDataDepart	= $this->query->getDatabyQ($qD);
 								
 								<div class="kt-portlet__body">
 									<div class="form-group row">
-										<label class="col-form-label col-lg-2 col-sm-12">Kategori Website *</label>
+										<label class="col-form-label col-lg-2 col-sm-12">Kategori Menu *</label>
 										<div class="col-lg-8 col-md-9 col-sm-12">
 											<div class='input-group'>
-												<select name="ed_kategori_website" class="form-control" id="ed_kategori_website" placeholder="Jenis Menu" readonly>
-													<option value="">-- Pilih Kategori --</option>
-													<option value="1">Web Fakultas</option>
-													<option value="2">Web Prodi S1 & S2</option> 
-													<option value="3">Web Alumni & Mitra</option> 
+												<select name="ed_kategori_website" class="form-control" id="ed_kategori_website" placeholder="Kategori Menu" readonly> 
+													<option value="">-- Pilih Kategori Menu --</option> 
+													<?PHP foreach ($getconfig_web as $dataweb) { ?>
+													<option value="<?PHP echo $dataweb['id_web'];?>"><?PHP echo $dataweb['nama'];?> </option> 
+													<?PHP } ?>
+												</select>
+											</div>
+										</div> 
+									</div>
+									<div class="form-group row">
+										<label class="col-form-label col-lg-2 col-sm-12">Kategori Core *</label>
+										<div class="col-lg-8 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<select name="ed_kategori_core" class="form-control" id="ed_kategori_core" placeholder="Kategori Core" readonly> 
+													<option value="">-- Pilih Kategori Core --</option> 
+													<?PHP foreach ($getconfig_web as $dataweb) { ?>
+													<option value="<?PHP echo $dataweb['id_web'];?>"><?PHP echo $dataweb['nama'];?> </option> 
+													<?PHP } ?>
 												</select>
 											</div>
 										</div> 

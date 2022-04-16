@@ -4,24 +4,24 @@ $('#menutype').change(function() {
     var vals = $(this).val();   
 	if(vals == 'link'){
 		$('.content-type').hide();
-		$('.ourteam-content').hide();
+		//$('.ourteam-content').hide();
 	}else if(vals == 'ourteam'){
-		$('.ourteam-content').show();
+		//$('.ourteam-content').show();
 	}else{
 		$('.content-type').show();
-		$('.ourteam-content').hide();
+		//$('.ourteam-content').hide();
 	}
 });
 $('#ed_menutype').change(function() { 
     var vals = $(this).val();  
 	if(vals == 'link'){
 		$('.content-type').hide();
-		$('.ed_ourteam-content').hide();
+		//$('.ed_ourteam-content').hide();
 	}else if(vals == 'ourteam'){
-		$('.ed_ourteam-content').show();
+		//$('.ed_ourteam-content').show();
 	}else{
 		$('.content-type').show();
-		$('.ed_ourteam-content').hide();
+		//$('.ed_ourteam-content').hide();
 	}
 });
 $('#parent').change(function() {
@@ -95,6 +95,7 @@ $(document).on('click', '.btnupdateM', function(e){
         $('#ed_link').val(data.link);
         $('#ed_menutype').val(data.style);
 		$('#ed_kategori_website').val(data.flag_website);
+		$('#ed_kategori_core').val(data.flag_core);
 		if(data.style=='ourteam'){
 			$('.ed_ourteam-content').show();
 		}else{
@@ -214,11 +215,12 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                 data: {
                     // parameters for custom backend script demo
                     columnsDef: [
-                         'flag_web','menu', 'parent', 'sort', 'link', 'style', 'updateby', 'lastupdate', 'actions',],
+                         'flag_web','flag_core','menu', 'parent', 'sort', 'link', 'style', 'updateby', 'lastupdate', 'actions',],
                 },
             },
 			columns: [
                 {data: 'flag_web'},
+				 {data: 'flag_core'},
 				{data: 'menu'}, 
 				{data: 'parent'},
                 {data: 'sort'},
@@ -238,7 +240,8 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
 
                     switch (column.title()) {
                         //case 'PHOTO':
-						case 'KATEGORI':
+						case 'KATEGORI WEB':
+						case 'KATEGORI CORE':
                         case 'MENU': 
                         case 'PARENT':
                         case 'LINK':

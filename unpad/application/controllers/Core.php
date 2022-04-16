@@ -4027,6 +4027,7 @@ class Core extends CI_Controller {
 
 			$columnsDefault = [
 				'flag_web'		=> true,
+				'flag_core'		=> true,
 				'menu'			=> true, 
 				'parent'		=> true,
 				'sort'			=> true,
@@ -4119,6 +4120,7 @@ class Core extends CI_Controller {
 			$menu			= trim(strip_tags(stripslashes($this->input->post('menu',true))));
 			$menu_en		= trim(strip_tags(stripslashes($this->input->post('menu_en',true))));
 			$kategori_website = trim(strip_tags(stripslashes($this->input->post('kategori_website',true))));
+			$kategori_core = trim(strip_tags(stripslashes($this->input->post('kategori_core',true))));
 			$desc			= trim(strip_tags(stripslashes($this->input->post('desc',true))));
 			$desc_en		= trim(strip_tags(stripslashes($this->input->post('desc_en',true))));
 			$fileName 		= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict']['name']);
@@ -4141,8 +4143,8 @@ class Core extends CI_Controller {
 			$media 			= $this->upload->data();
 			$fileNamePost 	= $media['file_name'];
 			
-			$rows 		= $this->query->insertData('menu_site', "id_menu,menu,description,background,link,style,parent,sort,menu_en,description_en,flag_website,ourteam_flag", 
-													"'','$menu','$desc','$fileNamePosst','$link','$style','$parent','$sort','$menu_en','$desc_en','$kategori_website','$depart'");
+			$rows 		= $this->query->insertData('menu_site', "id_menu,menu,description,background,link,style,parent,sort,menu_en,description_en,flag_website,ourteam_flag,flag_core", 
+													"'','$menu','$desc','$fileNamePosst','$link','$style','$parent','$sort','$menu_en','$desc_en','$kategori_website','$depart','$kategori_core'");
 			$id			= $this->db->insert_id();
 			$url 		= "Manage Menus";
 			$activity 	= "INSERT";
@@ -4198,6 +4200,7 @@ class Core extends CI_Controller {
 			$sort			= trim(strip_tags(stripslashes($this->input->post('ed_sort',true))));
 			$desc			= trim(strip_tags(stripslashes($this->input->post('ed_desc',true))));
 			$kategori		= trim(strip_tags(stripslashes($this->input->post('ed_kategori_website',true))));
+			$kategori_core		= trim(strip_tags(stripslashes($this->input->post('ed_kategori_core',true))));
 			@$cekinglogo	= $_FILES['upl']['name'];
 			$jumd = count($_POST['ed_department_show']);
 			if($jumd > 1){
@@ -4233,8 +4236,7 @@ class Core extends CI_Controller {
 					 
 				$media = $this->upload->data('upl');
 				
-				$rows = $this->query->updateData('menu_site',"menu='$menu', parent='$parent', link='$link', style='$style', background='$fileName', sort='$sort', description='$desc',menu_en='$menu_en',description_en='$description_en',flag_website='$kategori',ourteam_flag='$depart'","WHERE id_menu='".$id."'");
-				
+				$rows = $this->query->updateData('menu_site',"menu='$menu', parent='$parent', link='$link', style='$style', background='$fileName', sort='$sort', description='$desc',menu_en='$menu_en',description_en='$description_en',flag_website='$kategori',ourteam_flag='$depart',flag_core='$kategori_core'","WHERE id_menu='".$id."'"); 
 				if($rows) {
 					$log = $this->query->insertlog($activity,$url,$id);
 					print json_encode(array('success'=>true,'total'=>1));
@@ -4242,8 +4244,7 @@ class Core extends CI_Controller {
 					echo "";
 				}	
 			} else {
-				$rows = $this->query->updateData('menu_site',"menu='$menu', parent='$parent',link='$link', style='$style', sort='$sort' , description='$desc',menu_en='$menu_en',description_en='$description_en',flag_website='$kategori',ourteam_flag='$depart'","WHERE id_menu='$id'");
-
+				$rows = $this->query->updateData('menu_site',"menu='$menu', parent='$parent',link='$link', style='$style', sort='$sort' , description='$desc',menu_en='$menu_en',description_en='$description_en',flag_website='$kategori',ourteam_flag='$depart',flag_core='$kategori_core'","WHERE id_menu='$id'"); 
 				if($rows) {
 					$log = $this->query->insertlog($activity,$url,$id);
 					print json_encode(array('success'=>true,'total'=>1));

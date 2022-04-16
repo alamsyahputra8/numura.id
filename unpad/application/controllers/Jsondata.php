@@ -209,6 +209,8 @@ class Jsondata extends CI_Controller {
 							when style='link' then 'External Link'
 							when style='ourteam' then 'Our Team'
 						else 'Article' end)as stylename,
+						 (SELECT nama FROM config_web where id_web = a.flag_website) as flag_web,
+						  (SELECT nama FROM config_web where id_web = a.flag_core) as flag_core,
 						(case when parent='0' then 'Parent Menu' else (select menu from menu_site where id_menu=a.parent) end )as parentname,
 						(SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
 						WHERE xa.menu='Manage Menus' AND xa.data = a.id_menu ORDER BY xa.date_time DESC limit 1)as update_by,
@@ -266,7 +268,8 @@ class Jsondata extends CI_Controller {
 				//$buttondelete = getRoleDelete($akses,'delete',$id);
 
 				$row = array( 
-					"flag_web"		=> '<strong>'.$flag_web.'</strong>',
+					"flag_web"		=> '<strong>'.$data['flag_web'].'</strong>',
+					"flag_core"		=> '<strong>'.$data['flag_core'].'</strong>',
 					"menu"			=> $data['menu'], 
 					"parent"		=> $data['parentname'],
 					"sort"			=> $data['sort'],
