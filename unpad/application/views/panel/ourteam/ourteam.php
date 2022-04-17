@@ -6,6 +6,11 @@ $q 				= "
 				where style='blog' order by sort asc
 				";
 $getDataMenu	= $this->query->getDatabyQ($q);
+
+$qm 				= "
+				select * from menu_site where style='ourteam' order by sort asc
+				";
+$getDataMenum	= $this->query->getDatabyQ($qm);
 ?>
 <!-- begin:: Content -->
 <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
@@ -145,6 +150,19 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 										</div>
 									</div>
 								</div>
+								<div class="form-group row">
+									<label class="col-form-label col-lg-3 col-sm-12">Menu *</label>
+									<div class="col-lg-4 col-md-9 col-sm-12">
+										<div class='input-group'>
+											 <select name="menu_x" class="form-control" id="menu_x" placeholder="Menu" readonly> 
+												<option value="">-- Pilih Menu --</option> 
+												<?PHP foreach ($getDataMenum as $datamenux) { ?>
+												<option value="<?PHP echo $datamenux['id_menu'];?>"><?PHP echo $datamenux['menu'];?> </option> 
+												<?PHP } ?>
+											</select>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -274,6 +292,20 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 											</div>
 										</div>
 									</div>
+									
+									<div class="form-group row">
+									<label class="col-form-label col-lg-3 col-sm-12">Menu *</label>
+									<div class="col-lg-4 col-md-9 col-sm-12">
+										<div class='input-group'>
+											 <select name="ed_menu_x" class="form-control" id="ed_menu_x" placeholder="Menu" readonly> 
+												<option value="">-- Pilih Menu --</option> 
+												<?PHP foreach ($getDataMenum as $datamenux) { ?>
+												<option value="<?PHP echo $datamenux['id_menu'];?>"><?PHP echo $datamenux['menu'];?> </option> 
+												<?PHP } ?>
+											</select>
+										</div>
+									</div>
+								</div>
 								</div>
 							</div>
 							<div class="modal-footer">

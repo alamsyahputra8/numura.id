@@ -28,6 +28,7 @@ $(document).on('click', '.btnupdateM', function(e){
         $('#ed_department').val(data.department);
 		$('#ed_position_en').val(data.position_en);
         $('#ed_department_en').val(data.department_en);
+		$('#ed_menu_x').val(data.id_menu).trigger('change');
 
 
         $('#modal-loader').hide();    // hide ajax loader

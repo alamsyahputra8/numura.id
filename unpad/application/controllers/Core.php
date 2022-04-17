@@ -4117,18 +4117,18 @@ class Core extends CI_Controller {
 			$userdata		= $this->session->userdata('sesspwt'); 
 			$userid 		= $userdata['userid'];
 
-			$menu			= trim(strip_tags(stripslashes($this->input->post('menu',true))));
-			$menu_en		= trim(strip_tags(stripslashes($this->input->post('menu_en',true))));
-			$kategori_website = trim(strip_tags(stripslashes($this->input->post('kategori_website',true))));
-			$kategori_core = trim(strip_tags(stripslashes($this->input->post('kategori_core',true))));
-			$desc			= trim(strip_tags(stripslashes($this->input->post('desc',true))));
-			$desc_en		= trim(strip_tags(stripslashes($this->input->post('desc_en',true))));
-			$fileName 		= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict']['name']);
-			$link			= trim(strip_tags(stripslashes($this->input->post('link',true))));
-			$style			= trim(strip_tags(stripslashes($this->input->post('menutype',true))));
-			$parent			= trim(strip_tags(stripslashes($this->input->post('parent',true))));
-			$sort			= trim(strip_tags(stripslashes($this->input->post('sort',true))));
-			$depart 		= implode($_POST['department_show']);
+			$menu				= trim(strip_tags(stripslashes($this->input->post('menu',true))));
+			$menu_en			= trim(strip_tags(stripslashes($this->input->post('menu_en',true))));
+			$kategori_website 	= trim(strip_tags(stripslashes($this->input->post('kategori_website',true))));
+			$kategori_core 		= trim(strip_tags(stripslashes($this->input->post('kategori_core',true))));
+			$desc				= trim(strip_tags(stripslashes($this->input->post('desc',true))));
+			$desc_en			= trim(strip_tags(stripslashes($this->input->post('desc_en',true))));
+			$fileName 			= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict']['name']);
+			$link				= trim(strip_tags(stripslashes($this->input->post('link',true))));
+			$style				= trim(strip_tags(stripslashes($this->input->post('menutype',true))));
+			$parent				= trim(strip_tags(stripslashes($this->input->post('parent',true))));
+			$sort				= trim(strip_tags(stripslashes($this->input->post('sort',true))));
+			$depart 			= implode($_POST['department_show']);
 			
 			$config['upload_path'] = './images/content/'; //buat folder dengan nama assets di root folder
 			$config['file_name'] = $fileName;
@@ -4945,7 +4945,8 @@ class Core extends CI_Controller {
 			$department_en	= trim(strip_tags(stripslashes($this->input->post('department_en',true))));
 			$fileName 		= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict']['name']);
 			$date 			= date('Y-m-d');
-				
+			$menux 			= trim(strip_tags(stripslashes($this->input->post('menu_x',true))));
+			
 			$config['upload_path'] = './images/ourteam/'; //buat folder dengan nama assets di root folder
 			$config['file_name'] = $fileName;
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -4960,7 +4961,7 @@ class Core extends CI_Controller {
 			$fileNamePost 	= $media['file_name'];
 
 			$q 			= "
-						insert into ourteam (name,email,position,position_en,department,department_en,sort,picture) values ('$name','$email','$position','$position_en','$department','$department_en','$sort','$fileNamePost')
+						insert into ourteam (name,email,position,position_en,department,department_en,sort,picture,id_menu) values ('$name','$email','$position','$position_en','$department','$department_en','$sort','$fileNamePost','$menux')
 						";
 						//echo $q;
 			$rows 		= $this->query->insertDatabyQ($q);
@@ -5023,9 +5024,10 @@ class Core extends CI_Controller {
 			$name		= trim(strip_tags(stripslashes($this->input->post('ed_name',true))));
 			$email		= trim(strip_tags(stripslashes($this->input->post('ed_email',true))));
 			$position	= trim(strip_tags(stripslashes($this->input->post('ed_position',true))));
-			$position_en	= trim(strip_tags(stripslashes($this->input->post('ed_position_en',true))));
-			$department		= trim(strip_tags(stripslashes($this->input->post('ed_department',true))));
-			$department_en		= trim(strip_tags(stripslashes($this->input->post('ed_department_en',true))));
+			$position_en= trim(strip_tags(stripslashes($this->input->post('ed_position_en',true))));
+			$department	= trim(strip_tags(stripslashes($this->input->post('ed_department',true))));
+			$department_en = trim(strip_tags(stripslashes($this->input->post('ed_department_en',true))));
+			$menux		= trim(strip_tags(stripslashes($this->input->post('ed_menu_x',true))));
 			
 			
 			$userid		= $userdata['userid'];
@@ -5060,9 +5062,9 @@ class Core extends CI_Controller {
 				$media 			= $this->upload->data();
 				$fileNamePost 	= $media['file_name'];
 
-				$rows = $this->query->updateData('ourteam',"name='$name', email='$email',position='$position', position_en='$position_en',department='$department', department_en='$department_en', sort='$sort', picture='$fileNamePost'","WHERE id='$id'");
+				$rows = $this->query->updateData('ourteam',"name='$name', email='$email',position='$position', position_en='$position_en',department='$department', department_en='$department_en', sort='$sort', picture='$fileNamePost',id_menu='$menux'","WHERE id='$id'");
 			} else {
-				$rows = $this->query->updateData('ourteam',"name='$name', email='$email',position='$position', position_en='$position_en',department='$department', sort='$sort', department_en='$department_en'","WHERE id='$id'");
+				$rows = $this->query->updateData('ourteam',"name='$name', email='$email',position='$position', position_en='$position_en',department='$department', sort='$sort', department_en='$department_en',id_menu='$menux'","WHERE id='$id'");
 			}
 
 			if($rows) {
