@@ -6,6 +6,7 @@ $urlmenuact     = str_replace('page/','',$this->uri->uri_string());
 $qSEO           = "select meta_desc,meta_key,menu,id_menu from menu_site where link='$urlmenuact'";
 $getMetaSEO     = $this->query->getDatabyQ($qSEO);
 $dataSEO        = array_shift($getMetaSEO);
+
 if ($dataSEO['id_menu']==1) {
     $menutitle = '';
 } else {
@@ -14,6 +15,20 @@ if ($dataSEO['id_menu']==1) {
     } else {
         $menutitle = '';
     }
+}
+
+if ($coreid==1) {
+    $path   = 'polo';
+} else if ($coreid==2) {
+    $path   = 'prodi';
+} else if ($coreid==3) {
+    $path   = 'prodi';
+} else if ($coreid==4) {
+    $path   = 'alumni';
+} else if ($coreid==5) {
+    $path   = 'prodi';
+} else {
+    $path   = 'polo';
 }
 ?>
 <!DOCTYPE html>
@@ -34,9 +49,9 @@ if ($dataSEO['id_menu']==1) {
     <!-- Document title -->
     <title><?PHP echo $menutitle; ?><?PHP echo $site['name_site']; ?></title>
     <!-- Stylesheets & Fonts --><link href="<?PHP echo base_url(); ?>assets/plugins.css" rel="stylesheet">
-    <link href="<?PHP echo base_url(); ?>assets/polo/css/style.css" rel="stylesheet">
-    <link href="<?PHP echo base_url(); ?>assets/polo/css/responsive.css" rel="stylesheet">
-    <link href="<?PHP echo base_url(); ?>assets/polo/css/pageloader.css" rel="stylesheet">
+    <link href="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/css/style.css" rel="stylesheet">
+    <link href="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/css/responsive.css" rel="stylesheet">
+    <link href="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/css/pageloader.css" rel="stylesheet">
 
     <!-- Favicon and touch icons -->
     <link rel="shortcut icon" href="<?PHP echo base_url(); ?>images/<?PHP echo $site['favicon']; ?>" type="image/x-icon">
@@ -51,11 +66,11 @@ if ($dataSEO['id_menu']==1) {
     <!-- LOADING FONTS AND ICONS -->
     <link href="https://fonts.googleapis.com/css?family=Rubik:500%2C400%2C700" rel="stylesheet" property="stylesheet" type="text/css" media="all">
     
-    <!-- <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
-    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/fonts/font-awesome/css/font-awesome.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/fonts/font-awesome/css/font-awesome.css"> -->
     
     <!-- REVOLUTION STYLE SHEETS -->
-    <!-- <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/css/settings.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/css/settings.css"> -->
     
     
     
@@ -63,22 +78,22 @@ if ($dataSEO['id_menu']==1) {
     <style type="text/css">.bullet-bar.tp-bullets{}.bullet-bar.tp-bullets:before{content:" ";position:absolute;width:100%;height:100%;background:transparent;padding:10px;margin-left:-10px;margin-top:-10px;box-sizing:content-box}.bullet-bar .tp-bullet{width:60px;height:3px;position:absolute;background:#aaa;  background:rgba(204,204,204,0.5);cursor:pointer;box-sizing:content-box}.bullet-bar .tp-bullet:hover,.bullet-bar .tp-bullet.selected{background:rgba(204,204,204,1)}.bullet-bar .tp-bullet-image{}.bullet-bar .tp-bullet-title{}</style>
     
     <!-- REVOLUTION JS FILES -->
-    <!-- <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script> -->
+    <!-- <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script> -->
     
     <!-- SLICEY ADD-ON FILES -->
-    <!-- <script type='text/javascript' src='<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/revolution-addons/slicey/js/revolution.addon.slicey.min.js?ver=1.0.0'></script> -->
+    <!-- <script type='text/javascript' src='<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/revolution-addons/slicey/js/revolution.addon.slicey.min.js?ver=1.0.0'></script> -->
 
     <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->    
-    <!-- <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
-    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/polo/js/plugins/revolution/js/extensions/revolution.extension.video.min.js"></script> -->
+    <!-- <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="<?PHP echo base_url(); ?>assets/<?PHP echo $path; ?>/js/plugins/revolution/js/extensions/revolution.extension.video.min.js"></script> -->
 
     <style>
     /*section { background: #429ed6 url('<?PHP echo base_url(); ?>images/divider.png') repeat-x center bottom; }*/

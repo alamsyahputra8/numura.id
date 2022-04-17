@@ -5,6 +5,8 @@
         <?PHP $this->load->view('theme/polo/topbar'); ?>
 
         <?PHP $this->load->view('theme/polo/header'); ?>
+
+        <?PHP if ($coreid==1) { ?>
         <style>
             .linkbanner {
                 width: 100%;
@@ -15,10 +17,12 @@
                 left: 0;
             }
         </style>
+        <?PHP } ?>
+
         <!-- Inspiro Slider -->
-        <div id="slider" class="inspiro-slider slider-fullscreen arrows-small arrows-creative dots-creative" data-height-xs="360">
+        <div id="slider" class="inspiro-slider slider-fullscreen arrows-small arrows-creative dots-creative" <?PHP if ($coreid!=1) { ?>data-height=""<?PHP } ?> data-height-xs="360" style="background: #f6a113;">
             <?PHP
-            $qSlides    = "select * from banner where flag_website='1' order by 1 desc";
+            $qSlides    = "select * from banner where flag_website='$coreid' order by 1 desc";
             $getSlides  = $this->query->getDatabyQ($qSlides);
             foreach ($getSlides as $dataslides) {
                 if(get_cookie('lang_is') === 'en'){
@@ -46,226 +50,280 @@
             <?PHP } ?>
         </div>
         <!--end: Inspiro Slider -->
-        
-        <section id="page-content">
-            <div class="container">
-
-            <div class="heading-text heading-section  text-center text-center">
-                <h2><?PHP if(get_cookie('lang_is') === 'en'){ echo 'Latest News'; } else { echo 'Berita Terkini'; } ?></h2>
-            </div>
-
-            <div id="blog" class="grid-layout post-4-columns m-b-30" data-item="post-item">
-                <?PHP
-                $qPage      = "
-                            select
-                                a.*,
-                                (select menu from menu_site where id_menu=a.id_menu) as menu,
-                                (select name from user where userid=a.create_by) as createby,
-                                (SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
-                                WHERE xa.menu='Manage Berita' AND xa.data = a.id_blog ORDER BY xa.date_time DESC limit 1)as update_by,
-                                (SELECT DATE_FORMAT(xa.date_time, '%d-%b-%y %H:%i:%s') as last_update FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
-                                WHERE xa.menu='Manage Berita' AND xa.data = a.id_blog ORDER BY xa.date_time DESC limit 1)as last_update
-                            from
-                            blog a
-                            order by id_blog desc
-                            limit 12
-                            ";
-                $gPage      = $this->query->getDatabyQ($qPage);
-                $cek    = $this->query->getNumRowsbyQ($qPage)->num_rows();
-
-                if ($cek>0) {
-                foreach ($gPage as $dataPage) {
-                ?>
-                <div class="post-item border">
-                    <div class="post-item-wrap">
-                        <div class="post-image">
-                            <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>">
-                                <img alt="" src="<?PHP echo base_url(); ?>images/content/<?PHP echo $dataPage['picture']; ?>">
-                            </a>
-                        </div>
-                        <div class="post-item-description">
-                            <span class="post-meta-date">
-                                <i class="fa fa-calendar-alt"></i><?PHP echo $this->formula->TanggalIndo($dataPage['create_date']); ?>
-                            </span>
-                            <span class="post-meta-comments"><a href="#"><i class="fa fa-user"></i>
-                                <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Added by :'; } else { echo 'Dibuat oleh :'; } echo $dataPage['createby']; ?></a>
-                            </span>
-                            <h2>
-                                <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>"><?PHP echo $dataPage['title']; ?></a>
-                            </h2>
-                            <p><?PHP echo $dataPage['headline']; ?></p>
-                            <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>" class="item-link">
-                                <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Read More'; } else { echo 'Selengkapnya'; } ?> <i class="fa fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <?PHP } } else { ?>
-                <h3>We are sorry, No data available.</h3>
-                <?PHP } ?>
-            <!-- <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item active"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
-            </ul> -->
-
-            </div>
-
-        </section>
-
-        <?PHP
-        $qOT        = "
-                    select
-                        a.*
-                    from
-                    ourteam a
-                    where (upper(department)='PIMPINAN' or upper(department_en)='LEADER')
-                    order by sort asc
-                    ";
-        $qOT      = $this->query->getDatabyQ($qOT);
-        ?>
-        <style>
-            .team-members.team-members-shadow .team-member .team-desc {
-                padding: 10px;
-            }
-        </style>
-
-        <section id="page-content">
-            <div class="container">
-                <div class="heading-text heading-section  text-center text-center">
-                    <h2><?PHP if(get_cookie('lang_is') === 'en'){ echo 'Leader'; } else { echo 'Pimpinan'; } ?></h2>
-                </div>
-                <div class="row team-members team-members-shadow m-b-40">
-                    <?PHP
-                    foreach ($qOT as $data) {
-                        if(get_cookie('lang_is') === 'en'){
-                            $pos    = $data['position_en'];
-                        } else {
-                            $pos    = $data['position'];
-                        }
-                    ?>
-                    <div class="col-lg-3">
-                        <div class="team-member equalheight">
-                            <div class="team-image">
-                                <img src="<?PHP echo base_url(); ?>images/ourteam/<?PHP echo $data['picture']; ?>">
+        <?PHP if ($cbase==1) { ?>
+            <?PHP
+            $qCH    = "SELECT * FROM content where id_menu='$idmenu' order by 1 asc";
+            $cCH    = $this->db->query($qCH)->num_rows();
+            if ($cCH>0) {
+                $gCH= $this->db->query($qCH)->result_array();
+                $noc =0;
+                foreach($gCH as $dch) { $noc++;
+                    if ($noc % 2==0) {
+                        $colcon = '#f8f9fa';
+                    } else {
+                        $colcon = '#FFF';
+                    }
+            ?>
+                    <section id="page-content" style="background: <?PHP echo $colcon; ?>">
+                        <div class="container">
+                            <div class="row">
+                                <?PHP if ($noc % 2==0) { ?>
+                                    <div class="col-lg-7">
+                                        <div class="heading-text heading-section text-left">
+                                            <h4><?PHP if(get_cookie('lang_is') === 'en'){ echo $dch['title_en']; } else { echo $dch['title']; } ?></h4>
+                                        </div>
+                                        <div>
+                                            <?PHP if(get_cookie('lang_is') === 'en'){ echo $dch['headline_en']; } else { echo $dch['headline']; } ?>
+                                        </div><br>
+                                        <a href="<?PHP echo base_url(); ?>content/<?PHP echo $dch['id_content']; ?>" class="btn btn-sm btn-warning">
+                                            <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Read More'; } else { echo 'Selengkapnya'; } ?> <i class="fa fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="post-image">
+                                            <img src="<?PHP echo base_url(); ?>images/content/<?PHP echo $dch['cover']; ?>">
+                                        </div>
+                                    </div>
+                                <?PHP } else { ?>
+                                    <div class="col-lg-5">
+                                        <div class="post-image">
+                                            <img src="<?PHP echo base_url(); ?>images/content/<?PHP echo $dch['cover']; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="heading-text heading-section text-left">
+                                            <h4><?PHP if(get_cookie('lang_is') === 'en'){ echo $dch['title_en']; } else { echo $dch['title']; } ?></h4>
+                                        </div>
+                                        <div>
+                                            <?PHP if(get_cookie('lang_is') === 'en'){ echo $dch['headline_en']; } else { echo $dch['headline']; } ?>
+                                        </div><br>
+                                        <a href="<?PHP echo base_url(); ?>content/<?PHP echo $dch['id_content']; ?>" class="btn btn-sm btn-warning">
+                                            <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Read More'; } else { echo 'Selengkapnya'; } ?> <i class="fa fa-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                <?PHP } ?>
                             </div>
-                            <div class="team-desc">
-                                <h3><?PHP echo $data['name']; ?></h3>
-                                <span><?PHP echo $pos; ?></span><br>
-                                <?PHP if ($data['email']!='' and $data['email']!='-' and $data['email']!=NULL) { ?>
-                                <div class="align-center">
-                                    <a class="btn btn-xs btn-light" href="mailto:<?PHP echo $data['email']; ?>">
-                                        <i class="icon-mail" style="margin-top: -6px;"></i>
-                                        <span><?PHP echo $data['email']; ?></span>
+                        </div>
+                    </section>
+                <?PHP } ?>
+            <?PHP } ?>
+        <?PHP } ?>
+        
+        <?PHP if ($cblog==1) { ?>
+            <section id="page-content">
+                <div class="container">
+
+                    <div class="heading-text heading-section  text-center text-center">
+                        <h4><?PHP if(get_cookie('lang_is') === 'en'){ echo 'Latest News'; } else { echo 'Berita Terkini'; } ?></h4>
+                    </div>
+
+                    <div id="blog" class="grid-layout post-4-columns m-b-30" data-item="post-item">
+                        <?PHP
+                        $qPage      = "
+                                    select
+                                        a.*,
+                                        (select menu from menu_site where id_menu=a.id_menu) as menu,
+                                        (select name from user where userid=a.create_by) as createby,
+                                        (SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
+                                        WHERE xa.menu='Manage Berita' AND xa.data = a.id_blog ORDER BY xa.date_time DESC limit 1)as update_by,
+                                        (SELECT DATE_FORMAT(xa.date_time, '%d-%b-%y %H:%i:%s') as last_update FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
+                                        WHERE xa.menu='Manage Berita' AND xa.data = a.id_blog ORDER BY xa.date_time DESC limit 1)as last_update
+                                    from
+                                    blog a
+                                    order by id_blog desc
+                                    limit 8
+                                    ";
+                        $gPage      = $this->query->getDatabyQ($qPage);
+                        $cek    = $this->query->getNumRowsbyQ($qPage)->num_rows();
+
+                        if ($cek>0) {
+                        foreach ($gPage as $dataPage) {
+                        ?>
+                        <div class="post-item border">
+                            <div class="post-item-wrap">
+                                <div class="post-image">
+                                    <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>">
+                                        <img alt="" src="<?PHP echo base_url(); ?>images/content/<?PHP echo $dataPage['picture']; ?>">
                                     </a>
                                 </div>
-                                <?PHP } ?>
+                                <div class="post-item-description">
+                                    <span class="post-meta-date">
+                                        <i class="fa fa-calendar-alt"></i><?PHP echo $this->formula->TanggalIndo($dataPage['create_date']); ?>
+                                    </span>
+                                    <span class="post-meta-comments"><a href="#"><i class="fa fa-user"></i>
+                                        <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Added by :'; } else { echo 'Dibuat oleh :'; } echo $dataPage['createby']; ?></a>
+                                    </span>
+                                    <h2>
+                                        <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>"><?PHP echo $dataPage['title']; ?></a>
+                                    </h2>
+                                    <p><?PHP echo $dataPage['headline']; ?></p>
+                                    <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>" class="item-link">
+                                        <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Read More'; } else { echo 'Selengkapnya'; } ?> <i class="fa fa-arrow-right"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <?PHP } ?>
+                        <?PHP } } else { ?>
+                        <h3>We are sorry, No data available.</h3>
+                        <?PHP } ?>
+
                 </div>
-            </div>
-        </section> 
-        
-		<section class="" id="services" style="background: #f8f9fa;">
-        <div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-                    <div><img src="<?PHP echo base_url(); ?>images/cropped-unnamed.png" alt="UNPAD" style="max-height: 80px;"></div><br>
-					<h3 class=" text-uppercase">
-                        <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Get In Touch'; } else { echo 'Hubungi Kami'; } ?>
-                    </h3>
-					<p class="">
-                        <?PHP if(get_cookie('lang_is') === 'en'){
-                        echo '
-                        Please contact us via the form below or at the contact details provided for further information about our business and services.';
-                        } else {
-                        echo '
-                        Silakan hubungi kami melalui formulir di bawah ini atau di detail kontak yang disediakan untuk informasi lebih lanjut tentang kami.';
-                        }
+
+            </section>
+        <?PHP } ?>
+
+        <?PHP if ($cour==1) { ?>
+            <?PHP
+            $qOT        = "
+                        select
+                            a.*
+                        from
+                        ourteam a
+                        where (upper(department)='PIMPINAN' or upper(department_en)='LEADER')
+                        order by sort asc
+                        ";
+            $qOT      = $this->query->getDatabyQ($qOT);
+            ?>
+            <style>
+                .team-members.team-members-shadow .team-member .team-desc {
+                    padding: 10px;
+                }
+            </style>
+
+            <section id="page-content">
+                <div class="container">
+                    <div class="heading-text heading-section  text-center text-center">
+                        <h4><?PHP if(get_cookie('lang_is') === 'en'){ echo 'Leader'; } else { echo 'Pimpinan'; } ?></h4>
+                    </div>
+                    <div class="row team-members team-members-shadow m-b-40">
+                        <?PHP
+                        foreach ($qOT as $data) {
+                            if(get_cookie('lang_is') === 'en'){
+                                $pos    = $data['position_en'];
+                            } else {
+                                $pos    = $data['position'];
+                            }
                         ?>
-                    </p>
-					<div class="m-t-30">
-						<form class="widget-contact-form" action="<?PHP echo base_url(); ?>core/insertinbox" role="form" method="post">
-							<div class="row">
-								<div class="form-group col-md-6">
-                                    <?PHP if(get_cookie('lang_is') === 'en'){ ?>
-									<label class="" for="name">Name</label>
-									<input type="text" aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="Enter your Name">
-                                    <?PHP } else { ?>
-                                    <label class="" for="name">Nama</label>
-                                    <input type="text" aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="Masukan Nama Anda">
+                        <div class="col-lg-3">
+                            <div class="team-member equalheight">
+                                <div class="team-image">
+                                    <img src="<?PHP echo base_url(); ?>images/ourteam/<?PHP echo $data['picture']; ?>">
+                                </div>
+                                <div class="team-desc">
+                                    <h3><?PHP echo $data['name']; ?></h3>
+                                    <span><?PHP echo $pos; ?></span><br>
+                                    <?PHP if ($data['email']!='' and $data['email']!='-' and $data['email']!=NULL) { ?>
+                                    <div class="align-center">
+                                        <a class="btn btn-xs btn-light" href="mailto:<?PHP echo $data['email']; ?>">
+                                            <i class="icon-mail" style="margin-top: -6px;"></i>
+                                            <span><?PHP echo $data['email']; ?></span>
+                                        </a>
+                                    </div>
                                     <?PHP } ?>
-								</div>
-								<div class="form-group col-md-6">
-                                    <?PHP if(get_cookie('lang_is') === 'en'){ ?>
-									<label class="" for="email">Email</label>
-									<input type="email" aria-required="true" name="widget-contact-form-email" class="form-control required email" placeholder="Enter your Email">
-                                    <?PHP } else { ?>
-                                    <label class="" for="email">Email</label>
-                                    <input type="email" aria-required="true" name="widget-contact-form-email" class="form-control required email" placeholder="Masukan Email Anda">
-                                    <?PHP } ?>
-								</div>
-							</div>
-							<div class="row">
-								<div class="form-group col-md-12">
-                                    <?PHP if(get_cookie('lang_is') === 'en'){ ?>
-									<label class="" for="subject">Subject</label>
-									<input type="text" name="widget-contact-form-subject" class="form-control required" placeholder="Subject...">
-                                    <?PHP } else { ?>
-                                    <label class="" for="subject">Judul Pesan</label>
-                                    <input type="text" name="widget-contact-form-subject" class="form-control required" placeholder="Judul...">
-                                    <?PHP } ?>
-								</div>
-							</div>
-							<div class="form-group">
-                                <?PHP if(get_cookie('lang_is') === 'en'){ ?>
-								<label class="" for="message">Message</label>
-								<textarea type="text" name="widget-contact-form-message" rows="5" class="form-control required" placeholder="Enter your Message"></textarea>
-                                <?PHP } else { ?>
-                                <label class="" for="message">Pesan</label>
-                                <textarea type="text" name="widget-contact-form-message" rows="5" class="form-control required" placeholder="Masukan Pesan Anda"></textarea>
-                                <?PHP } ?>
-							</div>
-                            <?PHP if(get_cookie('lang_is') === 'en'){ ?>
-							<button class="btn btn-warning" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Send</button>
-                            <?PHP } else { ?>
-                            <button class="btn btn-warning" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Kirim</button>
-                            <?PHP } ?>
-						</form>
-
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<h3 class="text-uppercase "><?PHP if(get_cookie('lang_is') === 'en'){ echo 'Address & Map'; } else { echo 'Alamat & Lokasi'; } ?></h3>
-					<div class="row">
-						<div class="col-lg-12 ">
-							<address>
-							  <strong><?PHP echo $logo['name_site']; ?></strong><br>
-							  <?PHP echo $logo['alamat']; ?><br>
-							  <abbr title="Phone">P:</h4> <?PHP echo $logo['phone']; ?>
-							  </address>
-						</div>
-						<div class="col-lg-12">
-							
-						</div>
-					</div>
-					<!-- Google map sensor -->
-					<div class="m-t-30">
-						<?PHP echo $logo['maps']; ?>
-					</div>
-					<!-- Google map sensor -->
-
-				</div>
-			</div>
-		</div>  
-		</section>
+                                </div>
+                            </div>
+                        </div>
+                        <?PHP } ?>
+                    </div>
+                </div>
+            </section> 
+        <?PHP } ?>
         
+        <?PHP if ($ccont==1) { ?>
+		<section class="" id="services" style="background: #f8f9fa;">
+            <div class="container">
+    			<div class="row">
+    				<div class="col-lg-6">
+                        <div><img src="<?PHP echo base_url(); ?>images/cropped-unnamed.png" alt="UNPAD" style="max-height: 80px;"></div><br>
+    					<h3 class=" text-uppercase">
+                            <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Get In Touch'; } else { echo 'Hubungi Kami'; } ?>
+                        </h3>
+    					<p class="">
+                            <?PHP if(get_cookie('lang_is') === 'en'){
+                            echo '
+                            Please contact us via the form below or at the contact details provided for further information about our business and services.';
+                            } else {
+                            echo '
+                            Silakan hubungi kami melalui formulir di bawah ini atau di detail kontak yang disediakan untuk informasi lebih lanjut tentang kami.';
+                            }
+                            ?>
+                        </p>
+    					<div class="m-t-30">
+    						<form class="widget-contact-form" action="<?PHP echo base_url(); ?>core/insertinbox" role="form" method="post">
+    							<div class="row">
+    								<div class="form-group col-md-6">
+                                        <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+    									<label class="" for="name">Name</label>
+    									<input type="text" aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="Enter your Name">
+                                        <?PHP } else { ?>
+                                        <label class="" for="name">Nama</label>
+                                        <input type="text" aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="Masukan Nama Anda">
+                                        <?PHP } ?>
+    								</div>
+    								<div class="form-group col-md-6">
+                                        <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+    									<label class="" for="email">Email</label>
+    									<input type="email" aria-required="true" name="widget-contact-form-email" class="form-control required email" placeholder="Enter your Email">
+                                        <?PHP } else { ?>
+                                        <label class="" for="email">Email</label>
+                                        <input type="email" aria-required="true" name="widget-contact-form-email" class="form-control required email" placeholder="Masukan Email Anda">
+                                        <?PHP } ?>
+    								</div>
+    							</div>
+    							<div class="row">
+    								<div class="form-group col-md-12">
+                                        <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+    									<label class="" for="subject">Subject</label>
+    									<input type="text" name="widget-contact-form-subject" class="form-control required" placeholder="Subject...">
+                                        <?PHP } else { ?>
+                                        <label class="" for="subject">Judul Pesan</label>
+                                        <input type="text" name="widget-contact-form-subject" class="form-control required" placeholder="Judul...">
+                                        <?PHP } ?>
+    								</div>
+    							</div>
+    							<div class="form-group">
+                                    <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+    								<label class="" for="message">Message</label>
+    								<textarea type="text" name="widget-contact-form-message" rows="5" class="form-control required" placeholder="Enter your Message"></textarea>
+                                    <?PHP } else { ?>
+                                    <label class="" for="message">Pesan</label>
+                                    <textarea type="text" name="widget-contact-form-message" rows="5" class="form-control required" placeholder="Masukan Pesan Anda"></textarea>
+                                    <?PHP } ?>
+    							</div>
+                                <?PHP if(get_cookie('lang_is') === 'en'){ ?>
+    							<button class="btn btn-warning" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Send</button>
+                                <?PHP } else { ?>
+                                <button class="btn btn-warning" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Kirim</button>
+                                <?PHP } ?>
+    						</form>
+
+    					</div>
+    				</div>
+    				<div class="col-lg-6">
+    					<h3 class="text-uppercase "><?PHP if(get_cookie('lang_is') === 'en'){ echo 'Address & Map'; } else { echo 'Alamat & Lokasi'; } ?></h3>
+    					<div class="row">
+    						<div class="col-lg-12 ">
+    							<address>
+    							  <strong><?PHP echo $logo['name_site']; ?></strong><br>
+    							  <?PHP echo $logo['alamat']; ?><br>
+    							  <abbr title="Phone">P:</h4> <?PHP echo $logo['phone']; ?>
+    							  </address>
+    						</div>
+    						<div class="col-lg-12">
+    							
+    						</div>
+    					</div>
+    					<!-- Google map sensor -->
+    					<div class="m-t-30">
+    						<?PHP echo $logo['maps']; ?>
+    					</div>
+    					<!-- Google map sensor -->
+
+    				</div>
+    			</div>
+    		</div>  
+		</section>
+        <?PHP } ?>
 
         <style>
         .headershowreel {
@@ -278,21 +336,6 @@
             padding: 0px;
         }
         </style>
-
-        <div class="modal fade show" id="modalshowreel" tabindex="-1" role="modal" aria-labelledby="modal-label-3">
-            <div class="modal-dialog modal-lg" style="max-width: 80%;">
-                <div class="modal-content">
-                    <div class="modal-body bodyshowreel">
-                        <div class="row">
-                            <?PHP
-                            $showreel   = str_replace('https://www.youtube.com/watch?v=','https://www.youtube.com/embed/',$logo['showreel']);
-                            ?>
-                            <iframe width="1280" height="720" src="<?PHP echo $showreel; ?>?rel=0&amp;showinfo=0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
        <?PHP $this->load->view('theme/polo/footer'); ?>
 

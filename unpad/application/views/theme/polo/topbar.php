@@ -14,9 +14,37 @@ if (strpos( $activepage, 'blog' ) !== false) {
     $transparent    = '';
     // $transparent    = 'topbar-transparent';
 }
+
+if ($coreid==1) {
+    $path   = 'polo';
+} else if ($coreid==2) {
+    $path   = 'prodi';
+} else if ($coreid==3) {
+    $path   = 'prodi';
+} else if ($coreid==4) {
+    $path   = 'alumni';
+} else if ($coreid==5) {
+    $path   = 'prodi';
+} else {
+    $path   = 'polo';
+}
+
+if ($coreid==1) {
+    $topbar   = '<div id="topbar" class="topbar-fullwidth d-none d-xl-block d-lg-block">';
+} else if ($coreid==2) {
+    $topbar   = '<div id="topbar" class="topbar-transparent dark topbar-fullwidth d-none d-xl-block d-lg-block">';
+} else if ($coreid==3) {
+    $topbar   = '<div id="topbar" class="topbar-transparent dark topbar-fullwidth d-none d-xl-block d-lg-block">';
+} else if ($coreid==4) {
+    $topbar   = '<div id="topbar" class="topbar-transparent dark topbar-fullwidth d-none d-xl-block d-lg-block">';
+} else if ($coreid==5) {
+    $topbar   = '<div id="topbar" class="topbar-transparent dark topbar-fullwidth d-none d-xl-block d-lg-block">';
+} else {
+    $topbar   = '<div id="topbar" class="topbar-fullwidth d-none d-xl-block d-lg-block">';
+}
+echo $topbar;
 ?>
 <!-- Topbar -->
-<div id="topbar" class="<?PHP echo $transparent; ?> topbar-fullwidth d-none d-xl-block d-lg-block">
     <div class="container">
         <div class="row">
             <div class="col-md-6">

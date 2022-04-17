@@ -14,6 +14,7 @@ $qPage      = "
             blog a
             where id_menu='$idmenu'
             order by id_blog desc
+            limit 1
             ";
 $gPage      = $this->query->getDatabyQ($qPage);
 ?>
@@ -61,44 +62,55 @@ $gPage      = $this->query->getDatabyQ($qPage);
 
             <div class="container">
                 <!-- Blog -->
-                <div id="blog" class="grid-layout post-3-columns m-b-30" data-item="post-item">
+                <div id="bgblog">
+                    <div id="blog" class="grid-layout post-4-columns m-b-30" data-item="post-item">
 
-                    <?PHP
-                    $cek    = $this->query->getNumRowsbyQ($qPage)->num_rows();
+                        <?PHP
+                        $cek    = $this->query->getNumRowsbyQ($qPage)->num_rows();
 
-                    if ($cek>0) {
-                    foreach ($gPage as $dataPage) {
-                    ?>
-                        <!-- Post item-->
-                        <div class="post-item border">
-                            <div class="post-item-wrap">
-                                <div class="post-image">
-                                    <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>">
-                                        <img alt="" src="<?PHP echo base_url(); ?>images/content/<?PHP echo $dataPage['picture']; ?>">
-                                    </a>
-                                    <!--span class="post-meta-category"><a href="">Lifestyle</a></span-->
-                                </div>
-                                <div class="post-item-description">
-                                    <span class="post-meta-date">
-                                       <i class="fa fa-calendar-alt"></i><?PHP echo $this->formula->TanggalIndo($dataPage['create_date']); ?>
-                                    </span>
-                                    <span class="post-meta-comments"><a href="#"><i class="fa fa-user"></i>
-                                        <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Added by :'; } else { echo 'Dibuat oleh :'; } echo $dataPage['createby']; ?></a></span>
-                                    <h2><a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>"><?PHP echo $dataPage['title']; ?></a></h2>
-                                    <p><?PHP echo $dataPage['headline']; ?></p>
+                        if ($cek>0) {
+                        foreach ($gPage as $dataPage) {
+                        ?>
+                            <!-- Post item-->
+                            <div class="post-item border">
+                                <div class="post-item-wrap">
+                                    <div class="post-image">
+                                        <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>">
+                                            <img alt="" src="<?PHP echo base_url(); ?>images/content/<?PHP echo $dataPage['picture']; ?>">
+                                        </a>
+                                    </div>
+                                    <div class="post-item-description">
+                                        <span class="post-meta-date">
+                                           <i class="fa fa-calendar-alt"></i><?PHP echo $this->formula->TanggalIndo($dataPage['create_date']); ?>
+                                        </span>
+                                        <span class="post-meta-comments"><a href="#"><i class="fa fa-user"></i>
+                                            <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Added by :'; } else { echo 'Dibuat oleh :'; } echo $dataPage['createby']; ?></a></span>
+                                        <h2><a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>"><?PHP echo $dataPage['title']; ?></a></h2>
+                                        <p><?PHP echo $dataPage['headline']; ?></p>
 
-                                    <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>" class="item-link">
-                                        <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Read More'; } else { echo 'Selengkapnya'; } ?> <i class="fa fa-arrow-right"></i>
-                                    </a>
+                                        <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $dataPage['link']; ?>" class="item-link">
+                                            <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Read More'; } else { echo 'Selengkapnya'; } ?> <i class="fa fa-arrow-right"></i>
+                                        </a>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- end: Post item-->
-                    <?PHP } } else { ?>
-                    <h3>We are sorry, No data available.</h3>
-                    <?PHP } ?>
+                            <!-- end: Post item-->
+                        <?PHP } } else { ?>
+                        <h3>We are sorry, No data available.</h3>
+                        <?PHP } ?>
+                    </div>
                 </div>
+                <ul class="pagination" id='pagination'></ul> 
+                <!-- <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+                </ul> -->
 
                 <?PHP if ($cek>20) { ?>
                 <!--div id="pagination" class="infinite-scroll">
@@ -114,3 +126,56 @@ $gPage      = $this->query->getDatabyQ($qPage);
         </section>
 
         <?PHP $this->load->view('theme/polo/footer'); ?>
+
+        <script type='text/javascript'>
+            $(document).ready(function() {
+                createPagination(0);
+                $('#pagination').on('click','a',function(e){
+                    e.preventDefault(); 
+                    var pageNum = $(this).attr('data-ci-pagination-page');
+                    createPagination(pageNum);
+                });
+                function createPagination(pageNum){
+                    $.ajax({
+                        url: '<?PHP echo base_url(); ?>blog/loadData/'+pageNum,
+                        type: 'get',
+                        dataType: 'json',
+                        success: function(responseData){
+                            $('#pagination').html(responseData.pagination);
+                            paginationData(responseData.empData);
+                        }
+                    });
+                }
+                function paginationData(data) {
+                    $('#bgblog #blog').empty();
+                    for(emp in data){
+                        var empRow = `
+                            <div class="post-item border">
+                                <div class="post-item-wrap">
+                                    <div class="post-image">
+                                        <a href="<?PHP echo base_url(); ?>blog/`+data[emp].link+`">
+                                            <img alt="" src="<?PHP echo base_url(); ?>images/content/`+data[emp].picture+`">
+                                        </a>
+                                    </div>
+                                    <div class="post-item-description">
+                                        <span class="post-meta-date">
+                                           <i class="fa fa-calendar-alt"></i>`+data[emp].create_date+`
+                                        </span>
+                                        <span class="post-meta-comments"><a href="#"><i class="fa fa-user"></i>
+                                            <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Added by :'; } else { echo 'Dibuat oleh :'; } ?> `+data[emp].createby+`</a></span>
+                                        <h2><a href="<?PHP echo base_url(); ?>blog/`+data[emp].link+`">`+data[emp].title+`</h2>
+                                        <p>`+data[emp].headline+`</p>
+
+                                        <a href="<?PHP echo base_url(); ?>blog/`+data[emp].link+`" class="item-link">
+                                            <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Read More'; } else { echo 'Selengkapnya'; } ?> <i class="fa fa-arrow-right"></i>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        $('#bgblog #blog').append(empRow);                    
+                    }
+                }
+            });
+        </script>

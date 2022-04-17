@@ -2,7 +2,8 @@
 $getSiteData    = $this->query->getData('configsite','*',"");
 $site           = array_shift($getSiteData); 
 
-$activepage = $this->uri->uri_string();
+$activepage     = $this->uri->uri_string();
+
 //if ($activepage=='page/blog') {
 if (strpos( $activepage, 'blog' ) !== false) {
     $transparent    = '';
@@ -12,6 +13,14 @@ if (strpos( $activepage, 'blog' ) !== false) {
 }
 ?>
 <style>
+<?PHP if ($coreid!=1) { ?>
+    #page-title {
+        top: -120px;
+        margin-bottom: -124px;
+        position: relative;
+        padding: 220px 0 160px;
+    }
+<?PHP } ?>
 @media (max-width: 991px) {
     #logo { text-align: left!important; background: #1e1e1e!important; }
     #header .header-inner #logo a > img, #header #header-wrap #logo a > img { max-width: 82%; height: auto; margin-top: 1rem;}
@@ -27,19 +36,40 @@ if (strpos( $activepage, 'blog' ) !== false) {
 }
 </style>
 <!-- Header -->
-<header id="header" <?PHP echo $transparent; ?> data-fullwidth="true" class="">
+<?PHP
+if ($coreid==1) {
+    $header   = '<header id="header" data-fullwidth="true" class="">';
+    $logo     = $site['logo'];
+} else if ($coreid==2) {
+    $header   = '<header id="header" data-fullwidth="true" data-transparent="true" class="dark submenu-light">';
+    $logo     = 'unpad-peternakan_w.png';
+} else if ($coreid==3) {
+    $header   = '<header id="header" data-fullwidth="true" data-transparent="true" class="dark submenu-light">';
+    $logo     = 'unpad-peternakan_w.png';
+} else if ($coreid==4) {
+    $header   = '<header id="header" data-fullwidth="true" data-transparent="true" class="dark submenu-light">';
+    $logo     = 'unpad-peternakan_w.png';
+} else if ($coreid==5) {
+    $header   = '<header id="header" data-fullwidth="true" data-transparent="true" class="dark submenu-light">';
+    $logo     = 'unpad-peternakan_w.png';
+} else {
+    $header   = '<header id="header" data-fullwidth="true" class="">';
+    $logo     = $site['logo'];
+}
+echo $header;
+?>
     <div class="header-inner">
         <div class="container"> <!--Logo-->
             <div id="logo">
-                <a href="<?PHP echo base_url(); ?>" class="logo" data-src-dark="<?PHP echo base_url(); ?>images/<?PHP echo $site['logo']; ?>">
-                    <img src="<?PHP echo base_url(); ?>images/<?PHP echo $site['logo']; ?>" alt="<?PHP echo $site['name_site']; ?>">
+                <a href="<?PHP echo base_url(); ?>" class="logo" data-src-dark="<?PHP echo base_url(); ?>images/<?PHP echo $logo; ?>">
+                    <img src="<?PHP echo base_url(); ?>images/<?PHP echo $logo; ?>" alt="<?PHP echo $site['name_site']; ?>">
                 </a>
             </div>
             <!--End: Logo-->
 
             <!-- Search -->
             <div id="search">
-                <div id="search-logo"><img src="<?PHP echo base_url(); ?>images/<?PHP echo $site['logo']; ?>" alt="<?PHP echo $site['name_site']; ?>"></div>
+                <div id="search-logo"><img src="<?PHP echo base_url(); ?>images/<?PHP echo $logo; ?>" alt="<?PHP echo $site['name_site']; ?>"></div>
                 <button id="btn-search-close" class="btn-search-close" aria-label="Close search form"><i
                         class="icon-x"></i>
                 </button>
@@ -93,7 +123,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
 					 <nav>
                         <ul>
                             <?PHP
-                            $qMenu      = "select * from menu_site where parent='0' and flag_website='1' order by sort asc";
+                            $qMenu      = "select * from menu_site where parent='0' and flag_website='$coreid' order by sort asc";
                             $getMenu    = $this->query->getDatabyQ($qMenu);
                             foreach ($getMenu as $datamenu) {
                                 $idmenu     = $datamenu['id_menu'];
@@ -171,7 +201,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
 					<nav>
                         <ul>
                             <?PHP
-                            $qMenu      = "select * from menu_site where parent='0' and flag_website='1' order by sort asc";
+                            $qMenu      = "select * from menu_site where parent='0' and flag_website='$coreid' order by sort asc";
                             $getMenu    = $this->query->getDatabyQ($qMenu);
                             foreach ($getMenu as $datamenu) {
                                 $idmenu     = $datamenu['id_menu'];

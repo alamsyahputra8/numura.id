@@ -95,8 +95,34 @@ class Viewfront extends CI_Controller {
 	
 	public function index(){
 		$data['getSiteData'] 	= $this->query->getData('configsite','*',"");
-		//$data['getRoomCat'] 	= $this->query->getData('category_room','*',"order by id_cat ASC");
-		
+		$qPage 		= "select * from menu_site where id_menu='1'";
+		$gPage 		= $this->query->getDatabyQ($qPage);
+		$dPage		= array_shift($gPage);
+		$stylepage	= $dPage['style'];
+		$background	= $dPage['background'];
+		$coreid		= $dPage['flag_core'];
+
+		if(get_cookie('lang_is') === 'en'){
+			$menu		= $dPage['menu_en'];
+		} else {
+			$menu		= $dPage['menu'];
+		}
+
+		$data['idmenu']			= $dPage['id_menu'];
+		$data['coreid']			= $coreid;
+		$data['background']		= $background;
+		$data['menu']			= $menu;
+		$data['getSiteData'] 	= $this->query->getData('configsite','*',"");
+
+		$data['coreid']			= $coreid;
+
+		$getCore 		= $this->db->query("SELECT * FROM config_web where id_web='$coreid'")->result_array();
+		$dcore 			= array_shift($getCore);
+		$data['cblog'] 	= $dcore['blog'];
+		$data['cbase'] 	= $dcore['basic_content'];
+		$data['cour'] 	= $dcore['ourteam'];
+		$data['ccont']  = $dcore['contact'];
+
 		$this->load->view('/front/home/home',$data);
 	}
 	
@@ -254,6 +280,8 @@ class Viewfront extends CI_Controller {
 		$dPage		= array_shift($gPage);
 		$stylepage	= $dPage['style'];
 		$background	= $dPage['background'];
+		$coreid		= $dPage['flag_core'];
+
 		if(get_cookie('lang_is') === 'en'){
 			$menu		= $dPage['menu_en'];
 		} else {
@@ -261,9 +289,17 @@ class Viewfront extends CI_Controller {
 		}
 
 		$data['idmenu']			= $dPage['id_menu'];
+		$data['coreid']			= $coreid;
 		$data['background']		= $background;
 		$data['menu']			= $menu;
 		$data['getSiteData'] 	= $this->query->getData('configsite','*',"");
+
+		$getCore 		= $this->db->query("SELECT * FROM config_web where id_web='$coreid'")->result_array();
+		$dcore 			= array_shift($getCore);
+		$data['cblog'] 	= $dcore['blog'];
+		$data['cbase'] 	= $dcore['basic_content'];
+		$data['cour'] 	= $dcore['ourteam'];
+		$data['ccont']  = $dcore['contact'];
 		
 		if ($stylepage=='download') {
 			$this->load->database();
@@ -279,9 +315,31 @@ class Viewfront extends CI_Controller {
 	    	  	$data['posts'] = $query->result();
 			  	$this->load->view('front/content/download', $data);
 			}
+		} else if ($stylepage=='home') {
+			$this->load->view('/front/home/home' ,$data);
 		} else {
 			$this->load->view('/front/content/'.$stylepage.'' ,$data);
 		}
+	}
+
+	public function content($id){
+
+		$qPage 		= "select a.*, b.flag_core from content a left join menu_site b on a.id_menu=b.id_menu where id_content='$id'";
+		$gPage 		= $this->query->getDatabyQ($qPage);
+		$dPage		= array_shift($gPage);
+		
+		if(get_cookie('lang_is') === 'en'){
+			$menu		= $dPage['title_en'];
+		} else {
+			$menu		= $dPage['title'];
+		}
+
+		$data['coreid']			= $dPage['flag_core'];
+		$data['id']				= $dPage['id_content'];
+		$data['background']		= $background;
+		$data['getSiteData'] 	= $this->query->getData('configsite','*',"");
+		
+		$this->load->view('/front/content/detailcontent' ,$data);
 	}
 
 	public function blog($id){
