@@ -1,6 +1,16 @@
 <script>
 "use strict";
 
+// $(document).on('click', '#ed_ourteam_enable', function(e){
+    // e.preventDefault(); 
+   // var values = $(this).val(); // get id of clicked row 
+   // $('#ourteam_config').show(); 
+// });
+// $(document).on('click', '#ed_ourteam_disable', function(e){
+    // e.preventDefault(); 
+   // var values = $(this).val(); // get id of clicked row 
+   // $('#ourteam_config').hide(); 
+// });
 $('#menu').change(function() {
 
     var id_menu = $(this).val();
@@ -54,8 +64,9 @@ $(document).on('click', '.btnupdateM', function(e){
 		$('#ed_deskripsi').val(data.deskripsi);  
 		if(data.blog =='1'){$("#ed_blog_enable").prop("checked", true);}else{$("#ed_blog_disable").prop("checked", true);}
 		if(data.basic_content =='1'){$("#ed_basic_enable").prop("checked", true);}else{$("#ed_basic_disable").prop("checked", true);}
-		if(data.ourteam =='1'){$("#ed_ourteam_enable").prop("checked", true);}else{$("#ed_ourteam_disable").prop("checked", true);}
+		if(data.ourteam =='1'){$("#ed_ourteam_enable").prop("checked", true); $('#ourteam_config').show(); }else{$("#ed_ourteam_disable").prop("checked", true); $('#ourteam_config').hide(); }
 		if(data.contact =='1'){$("#ed_contact_enable").prop("checked", true);}else{$("#ed_contact_disable").prop("checked", true);}
+		
         $('#modal-loader').hide();    // hide ajax loader
     })
     .fail(function(){
@@ -237,7 +248,7 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
 							if (aksesUpdate=='ada') {
 								var z = `
 								<a class="btn btn-sm btn-clean btn-icon btn-icon-md btnupdateM" title="Edit" data-toggle="modal" data-target="#update" data-id="`+data+`">
-									<i data-toggle="tooltip" title="Update" class="la la-edit"></i>
+									<i data-toggle="tooltip" title="Update" class="la la-gears"></i>
 								</a>`;
 							} else {
 								var z = ``;
@@ -256,7 +267,7 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
 								<a title="Config" class="btn btn-sm btn-clean btn-icon btn-icon-md btnConfig" data-toggle="modal" data-target="#config" data-id="`+data+`">
 									<i class="la la-gears"></i>
 								</a>`;
-                        return z + x;
+                        return z;
                         
                     },
 				},
@@ -642,5 +653,19 @@ var KTFormWidgets = function () {
 jQuery(document).ready(function() {    
     KTDatatablesSearchOptionsColumnSearch.init();
     KTFormWidgets.init();
+	$('input:radio[name="ed_ourteam"]').change(function(){
+
+        if ($(this).val() == '1') {
+            //true
+			//alert('ok');
+			 $('#ourteam_config').show(); 
+        }
+        else {
+            //false
+			//alert('nok');
+			 $('#ourteam_config').hide(); 
+        }
+    });
+	 
 });
 </script>

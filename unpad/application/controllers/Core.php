@@ -4306,16 +4306,30 @@ class Core extends CI_Controller {
 			$userid 	= $userdata['userid'];
 
 			$title		= trim(strip_tags(stripslashes($this->input->post('title',true))));
-			$title_en		= trim(strip_tags(stripslashes($this->input->post('title_en',true))));
+			$title_en	= trim(strip_tags(stripslashes($this->input->post('title_en',true))));
 			$menu		= trim(strip_tags(stripslashes($this->input->post('menu',true))));
 			$headline	= trim(strip_tags(stripslashes($this->input->post('headline',true))));
 			$content	= str_replace("'",'`',$_POST['content']);
-			$headline_en	= trim(strip_tags(stripslashes($this->input->post('headline_en',true))));
+			$headline_en= trim(strip_tags(stripslashes($this->input->post('headline_en',true))));
 			$content_en	= str_replace("'",'`',$_POST['content_en']);
-
-
+			$fileName 	= preg_replace("/[^a-zA-Z]/", "", time().$_FILES['pict']['name']);
+			$date 		= date('Y-m-d');
+			$config['upload_path'] 		= './images/content/'; //buat folder dengan nama assets di root folder
+			$config['file_name'] 		= $fileName;
+			$config['allowed_types'] 	= 'gif|jpg|png|jpeg';
+			 
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+			 
+			if(! $this->upload->do_upload('pict') )
+			$this->upload->display_errors();
+				 
+			$media 			= $this->upload->data();
+			$fileNamePost 	= $media['file_name'];
+			
+			
 			$q 			= "
-						insert into content (title,sub,id_menu,headline,content,title_en,headline_en,content_en) values ('$title','',$menu,'$headline','$content','$title_en','$headline_en','$content_en')
+						insert into content (title,sub,id_menu,headline,content,title_en,headline_en,content_en,cover) values ('$title','',$menu,'$headline','$content','$title_en','$headline_en','$content_en','$fileNamePost')
 						";
 			$rows 		= $this->query->insertDatabyQ($q);
 
@@ -4341,6 +4355,12 @@ class Core extends CI_Controller {
 			$activity 	= "DELETE";
 
 			$cond	= trim(strip_tags(stripslashes($this->input->post('iddel',true))));
+			//delete eksisting
+			$coba = $this->query->getData('content','cover','WHERE id_content='.$cond.'');
+			foreach ($coba as $dataex) {
+				$dataexis = 'images/content/'.$dataex['cover'];
+			}
+			@unlink($dataexis);
 
 			$rows = $this->query->deleteData('content','id_content',$cond);
 			
@@ -4359,12 +4379,14 @@ class Core extends CI_Controller {
 		if(checkingsessionpwt()){
 			$userdata	= $this->session->userdata('sesspwt'); 
 
+
+			$cekinglogo	= $_FILES['ed_pict']['name'];
 			$id			= trim(strip_tags(stripslashes($this->input->post('ed_id',true))));
 			$title		= trim(strip_tags(stripslashes($this->input->post('ed_title',true))));
-			$title_en		= trim(strip_tags(stripslashes($this->input->post('ed_title_en',true))));
+			$title_en	= trim(strip_tags(stripslashes($this->input->post('ed_title_en',true))));
 			$menu		= trim(strip_tags(stripslashes($this->input->post('ed_menu',true))));
 			$headline	= trim(strip_tags(stripslashes($this->input->post('ed_headline',true))));
-			$headline_en	= trim(strip_tags(stripslashes($this->input->post('ed_headline_en',true))));
+			$headline_en= trim(strip_tags(stripslashes($this->input->post('ed_headline_en',true))));
 			$content	= str_replace("'",'`',$_POST['ed_content']);
 			$content_en	= str_replace("'",'`',$_POST['ed_content_en']);
 
@@ -4372,9 +4394,32 @@ class Core extends CI_Controller {
 				
 			$url 		= "Manage Content";
 			$activity 	= "UPDATE";
+			if ($cekinglogo!='') {
+				//delete eksisting
+				$coba = $this->query->getData('content','cover','WHERE id_content='.$id.'');
+				foreach ($coba as $dataex) {
+					$dataexis = 'images/content/'.$dataex['cover'];
+				}
+				@unlink($dataexis);
 			
-			$rows = $this->query->updateData('content',"id_menu='$menu', title='$title',headline='$headline', content='$content', title_en='$title_en',headline_en='$headline_en', content_en='$content_en'","WHERE id_content='$id'");
+				$fileName = str_replace(' ','_',time().$_FILES['ed_pict']['name']);
+				$config['upload_path'] = './images/content/'; //buat folder dengan nama assets di root folder
+				$config['file_name'] = $fileName;
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size'] = 10000000;
+				 
+				$this->load->library('upload');
+				$this->upload->initialize($config);
+				 
+				if(! $this->upload->do_upload('ed_pict') )
+				$this->upload->display_errors();
+					 
+				$media = $this->upload->data('ed_pict');
 
+				$rows = $this->query->updateData('content',"id_menu='$menu', title='$title',headline='$headline', content='$content', title_en='$title_en',headline_en='$headline_en', content_en='$content_en',cover='$fileName'","WHERE id_content='$id'");
+			} else {
+				$rows = $this->query->updateData('content',"id_menu='$menu', title='$title',headline='$headline', content='$content', title_en='$title_en',headline_en='$headline_en', content_en='$content_en'","WHERE id_content='$id'");
+			}
 			if($rows) {
 				$log = $this->query->insertlog($activity,$url,$id);
 				print json_encode(array('success'=>true,'total'=>1));

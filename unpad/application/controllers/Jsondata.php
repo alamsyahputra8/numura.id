@@ -369,11 +369,11 @@ class Jsondata extends CI_Controller {
 				
 				//$buttonupdate = getRoleUpdate($akses,'update',$id);
 				//$buttondelete = getRoleDelete($akses,'delete',$id);
-				if($id ==1 or $id ==4){
-					$idx = '';
-				}else{
+				// if($id ==1 or $id ==4){
+					// $idx = '';
+				// }else{
 					$idx = $id;
-				}
+				// }
 				 
 				$row = array(
 					"nama"			=> $data['nama'],

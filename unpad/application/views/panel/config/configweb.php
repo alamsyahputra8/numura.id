@@ -56,7 +56,7 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 							<i class="la la-download"></i> Export
 						</a-->
 						&nbsp;
-						<?PHP echo getRoleInsert($akses,'addnewfac','Add New Config Web');?>
+						<?PHP //echo getRoleInsert($akses,'addnewfac','Add New Config Web');?>
 					</div>
 				</div>
 			</div>
@@ -209,11 +209,11 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 							<div class="modal-body kt-portlet kt-portlet--tabs" style="margin-bottom: 0px;">
 								<div class="kt-portlet__head">
 									<div class="kt-portlet__head-label">
-										<h3 class="kt-portlet__head-title">Update Data : <b id="namedata"></b></h3>
+										<h3 class="kt-portlet__head-title">Configuration Homepage for : <b id="namedata"></b></h3>
 									</div>
 								</div>
 								<div class="kt-portlet__body">
-									<div class="form-group row">
+									<div class="form-group row" style="display:none;">
 										<label class="col-form-label col-lg-2 col-sm-12">Nama *</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
@@ -222,16 +222,15 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 											</div> 
 										</div>  
 									</div>  
-									<div class="form-group row">
+									<div class="form-group row"  style="display:none;">
 										<label class="col-form-label col-lg-2 col-sm-12">Nama</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<input type="text" name="ed_deskripsi" class="form-control" id="ed_deskripsi" placeholder="Deskripsi" > 
 											</div>
 										</div> 
-									</div> 
-									<hr style="border:1px solid black;"><h5>Config Homepage</h5>
-								<div class="form-group row">
+									</div>  
+									<div class="form-group row">
 										<label class="col-2 col-form-label">Blog</label>
 										<div class="col-9">
 											<div class="kt-radio-inline"> 
@@ -274,6 +273,12 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 													<span></span>
 												</label> 
 											</div> 
+										</div>
+									</div>
+									<div class="form-group row" id="ourteam_config" style="display:none">
+										<label class="col-2 col-form-label">Choose Our Team Category</label>
+										<div class="col-9">
+											 OK
 										</div>
 									</div>
 									<div class="form-group row">

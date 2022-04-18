@@ -3,7 +3,7 @@ $q 				= "
 				select a.*, 
 					(select count(*) from content where id_menu=a.id_menu) as jmlcontent 
 				from menu_site a 
-				where style in ('basic','about') order by sort asc
+				where style in ('basic','about','home') order by sort asc
 				";
 $getDataMenu	= $this->query->getDatabyQ($q);
 ?>
@@ -126,7 +126,15 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 										</div>
 									</div>
 								</div>
-
+								<div class="form-group row">
+									<label class="col-form-label col-lg-2 col-sm-12">Cover *</label>
+									<div class="col-lg-8 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<input type="file" name="pict" class="form-control" id="pict" placeholder="Cover">
+										</div>
+										<span class="form-text text-muted">Untuk tampilan lebih maksimal, gambar disarankan dengan bentuk kotak (525px x 350px)</span>
+									</div>
+								</div>
 								<div class="form-group row">
 									<label class="col-form-label col-lg-2 col-sm-12">Content *</label>
 									<div class="col-lg-10 col-md-10 col-sm-12">
@@ -250,7 +258,15 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 											</div>
 										</div>
 									</div>
-
+									<div class="form-group row">
+										<label class="col-form-label col-lg-2 col-sm-12">Cover *</label>
+										<div class="col-lg-8 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<input type="file" name="ed_pict" class="form-control" id="ed_pict" placeholder="Cover">
+											</div>
+											<span class="form-text text-muted">Untuk tampilan lebih maksimal, gambar disarankan dengan bentuk kotak (525px x 350px)</span>
+										</div>
+									</div>
 									<div class="form-group row">
 										<label class="col-form-label col-lg-2 col-sm-12">Content *</label>
 										<div class="col-lg-10 col-md-10 col-sm-12">

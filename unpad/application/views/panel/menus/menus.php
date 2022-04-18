@@ -126,6 +126,7 @@ $getconfig_web	= $this->query->getDatabyQ($qconfig_web);
 												<?PHP if ($cekAbout<1) { ?><option value="about">About</option><?PHP } ?> 
 												<?PHP if ($cekContact<1) { ?><option value="contact">Contact</option><?PHP } ?>
 												<!-- <?PHP // if ($cekEvent<1) { ?><option value="Event">Download</option><?PHP //} ?> -->
+												<option value="home">Home</option>
 												<option value="blog">Blog</option>
 												<option value="basic">Basic Content</option>
 												<!-- <option value="gallery">Gallery</option> -->
@@ -339,6 +340,7 @@ $getconfig_web	= $this->query->getDatabyQ($qconfig_web);
 											<div class='input-group'>
 												<select name="ed_menutype" class="form-control" id="ed_menutype" placeholder="Menu Type" readonly>
 													<option value="">-- Pilih Type Content --</option>
+													<option value="home">Home</option>
 													<option value="about">About</option>
 													<option value="contact">Contact</option>
 													<option value="blog">Blog</option>
