@@ -4527,11 +4527,20 @@ class Core extends CI_Controller {
 			$blog		= trim(strip_tags(stripslashes($this->input->post('ed_blog',true))));
 			$basic 		= trim(strip_tags(stripslashes($this->input->post('ed_basic',true))));  
 			$ourteam	= trim(strip_tags(stripslashes($this->input->post('ed_ourteam',true))));
-			$contact	= trim(strip_tags(stripslashes($this->input->post('ed_contact',true)))); 			
+			$contact	= trim(strip_tags(stripslashes($this->input->post('ed_contact',true)))); 	
+			$ourteam_config = $_POST['ed_menuxx'];
+			$apakaharray = count($ourteam_config);
+		 
+			if($apakaharray < 2){
+				$ourteam_c = $ourteam_config[0];
+			}else{
+				$ourteam_c = implode(',',$ourteam_config);
+			}
+			
 			$userid		= $userdata['userid']; 
 			$url 		= "Manage Config Web";
 			$activity 	= "UPDATE"; 
-			$rows = $this->query->updateData('config_web',"nama='$nama', deskripsi='$deskripsi',blog='$blog', basic_content='$basic',ourteam='$ourteam', contact='$contact'","WHERE id_web='$id_menu'"); 
+			$rows = $this->query->updateData('config_web',"nama='$nama', deskripsi='$deskripsi',blog='$blog', basic_content='$basic',ourteam='$ourteam',ourteam_config='$ourteam_c', contact='$contact'","WHERE id_web='$id_menu'"); 
 			if($rows) {
 				$log = $this->query->insertlog($activity,$url,$id);
 				print json_encode(array('success'=>true,'total'=>1));

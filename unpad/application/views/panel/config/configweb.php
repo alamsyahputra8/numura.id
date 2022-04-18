@@ -6,6 +6,14 @@ $q 				= "
 				where style in ('basic','about') order by sort asc
 				";
 $getDataMenu	= $this->query->getDatabyQ($q);
+
+$q1 				= "
+				select a.*, 
+					(select count(*) from content where id_menu=a.id_menu) as jmlcontent 
+				from menu_site a 
+				where style in ('ourteam') order by sort asc
+				";
+$getDataMenu1	= $this->query->getDatabyQ($q1);
 ?>
 <!-- begin:: Content -->
 <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
@@ -278,7 +286,11 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 									<div class="form-group row" id="ourteam_config" style="display:none">
 										<label class="col-2 col-form-label">Choose Our Team Category</label>
 										<div class="col-9">
-											 OK
+											 <select name="ed_menuxx[]" class="form-control select2norm" multiple id="ed_menuxx" placeholder="Category" style="width: 100%;"> 
+												<?PHP foreach ($getDataMenu1 as $datacat) { ?>
+												<option value="<?PHP echo $datacat['id_menu']; ?>"><?PHP echo $datacat['menu']; ?></option>
+												<?PHP } ?>
+											</select>
 										</div>
 									</div>
 									<div class="form-group row">

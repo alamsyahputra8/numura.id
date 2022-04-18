@@ -66,7 +66,13 @@ $(document).on('click', '.btnupdateM', function(e){
 		if(data.basic_content =='1'){$("#ed_basic_enable").prop("checked", true);}else{$("#ed_basic_disable").prop("checked", true);}
 		if(data.ourteam =='1'){$("#ed_ourteam_enable").prop("checked", true); $('#ourteam_config').show(); }else{$("#ed_ourteam_disable").prop("checked", true); $('#ourteam_config').hide(); }
 		if(data.contact =='1'){$("#ed_contact_enable").prop("checked", true);}else{$("#ed_contact_disable").prop("checked", true);}
-		
+		const myTeam = data.ourteam_config.split(",");
+		var jm = myTeam.length; 
+		if(jm > 1){ 
+				$('#ed_menuxx').val(myTeam).trigger('change'); 
+		}else{
+			$('#ed_menuxx').val(data.ourteam_config).trigger('change');
+		}
         $('#modal-loader').hide();    // hide ajax loader
     })
     .fail(function(){
