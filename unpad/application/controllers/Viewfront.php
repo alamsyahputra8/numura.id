@@ -122,6 +122,7 @@ class Viewfront extends CI_Controller {
 		$data['cbase'] 	= $dcore['basic_content'];
 		$data['cour'] 	= $dcore['ourteam'];
 		$data['ccont']  = $dcore['contact'];
+		$data['otidm']  = $dcore['ourteam_config'];
 
 		$this->load->view('/front/home/home',$data);
 	}
@@ -300,6 +301,7 @@ class Viewfront extends CI_Controller {
 		$data['cbase'] 	= $dcore['basic_content'];
 		$data['cour'] 	= $dcore['ourteam'];
 		$data['ccont']  = $dcore['contact'];
+		$data['otidm']  = $dcore['ourteam_config'];
 		
 		if ($stylepage=='download') {
 			$this->load->database();
@@ -316,7 +318,11 @@ class Viewfront extends CI_Controller {
 			  	$this->load->view('front/content/download', $data);
 			}
 		} else if ($stylepage=='home') {
-			$this->load->view('/front/home/home' ,$data);
+			if ($coreid==4) {
+				$this->load->view('/front/home/homealumni' ,$data);
+			} else {
+				$this->load->view('/front/home/home' ,$data);
+			}
 		} else {
 			$this->load->view('/front/content/'.$stylepage.'' ,$data);
 		}

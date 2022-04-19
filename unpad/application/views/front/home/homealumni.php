@@ -2,12 +2,123 @@
 
 <?PHP $this->load->view('theme/polo/plugin1'); ?>
 
-        <?PHP $this->load->view('theme/polo/topbar'); ?>
+        <?PHP $this->load->view('theme/polo/topbaralumni'); ?>
 
-        <?PHP $this->load->view('theme/polo/header'); ?>
+        <?PHP $this->load->view('theme/polo/headeralumni'); ?>
 
-        <?PHP if ($coreid==1) { ?>
-        <style>
+       <style>
+            .owl-carousel.arrows-large .owl-nav [class*="owl-"] {
+                width: 48px!important;
+                height: 48px!important;
+                line-height: 48px!important;
+            }
+            .owl-carousel.arrows-large .owl-nav [class*="owl-"] i {
+                line-height: 48px;
+                font-size: 18px;
+            }
+            .owl-carousel .bgcontent {
+                background: rgba(24,49,130,0.7);
+                padding: 10px;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+            }
+            .inspiro-slider .slide-captions h2 {
+                font-size: 18px!important;
+                line-height: 16px!important;
+                margin-bottom: 10px!important;
+            }
+            .inspiro-slider .slide-captions .strong {
+                font-size: 9px !important;
+                letter-spacing: 1px!important;
+                line-height: 9px!important;
+                margin-bottom: 20px!important;
+            }
+            .inspiro-slider .slide-captions .strong::after {
+                border-top: 3px solid transparent!important;
+            }
+            .tabs .nav-tabs .nav-link.active {
+                color: #FFF!important;
+                background-color: #f2a138!important;
+                border-bottom: 2px solid #6a4734!important;
+            }
+            .tabs .nav-tabs .nav-link {
+                background: #d2d2d2;
+                padding: 10px 20px!important;
+            }
+            .homepost .post-thumbnail-entry {
+                border-bottom: 1px solid #eaeaea;
+                float: left;
+                margin-bottom: 7px;
+                width: 100%;
+            }
+            .tabs.hometabs .nav-tabs {
+                margin-bottom: 15px;
+            }
+            .post-thumbnail-list.homepost .post-thumbnail-entry .post-thumbnail-content a {
+                font-size: 14px;
+                font-weight: bold;
+                color: #6a4734;
+            }
+            .homepost .post-thumbnail-entry .post-thumbnail-content .post-date, .post-thumbnail-entry .post-thumbnail-content .post-category {
+                font-size: 12px;
+            }
+            #clientslogo .owl-carousel .owl-item img {
+                display: block;
+                width: auto;
+                max-width: 100%;
+                max-height: 100px;
+            }
+            #autoslide {
+                padding: 0;
+                background: #f5b83c;
+                width: 100%;
+                height: auto!important;
+            }
+            #autoslide li {
+                padding: 0 15px 0 15px;
+                list-style: none;
+            }
+            #autoslide .news-item.light {
+                background: rgba(255,255,255,0.2);
+            }
+            .imgkomoditi {
+                max-height: 45px;
+                padding-top: 6px;
+            }
+            .titlekomoditi {
+                font-size: 15px;
+                font-weight: bold;
+                padding-top: 5px;
+                margin-bottom: -5px;
+            }
+            .subtitlekomoditi {
+                font-size: 11px;
+                padding-bottom: 5px;
+            }
+            .galhome {
+                height: 254px!important;
+                width: auto!important;
+            }
+            .homecounter .counter {
+                margin-bottom: -8px;
+            }
+            .homecounter .icon-box {
+                margin-bottom: -10px;
+                width: 100%;
+            }
+            .homecounter .icon-box.effect.small:not(.center) > .counter span {
+                font-size: 25px !important;
+            }
+            .homecounter .icon {
+                border-color: #f5b83c!important;
+            }
+            .homecounter .icon i {
+                color: #f5b83c!important;
+            }
+            #gmapsembed iframe {
+                width: 100%!important;
+            }
             .linkbanner {
                 width: 100%;
                 height: 100%;
@@ -17,39 +128,105 @@
                 left: 0;
             }
         </style>
-        <?PHP } ?>
 
-        <!-- Inspiro Slider -->
-        <div id="slider" class="inspiro-slider slider-fullscreen arrows-small arrows-creative dots-creative" <?PHP if ($coreid!=1) { ?>data-height=""<?PHP } ?> data-height-xs="360" style="background: #f6a113;">
-            <?PHP
-            $qSlides    = "select * from banner where flag_website='$coreid' order by 1 desc";
-            $getSlides  = $this->query->getDatabyQ($qSlides);
-            foreach ($getSlides as $dataslides) {
-                if(get_cookie('lang_is') === 'en'){
-                    $imgs   = $dataslides['img_en'];
-                } else {
-                    $imgs   = $dataslides['img'];
-                }
-            ?>
-            <!-- Slide 1 -->
-            <div class="slide kenburns" style="background-image:url('<?PHP echo base_url(); ?>images/slides/<?PHP echo $imgs; ?>');">
-                <div class="container">
-                    <a href="<?PHP echo $dataslides['link']; ?>">
-                    <div class="slide-captions text-center text-light linkbanner">
-                        <!-- Captions -->
-                        <!-- <h2 class="text-dark"><?PHP echo $dataslides['title']; ?></h2>
-                        <span class="strong"><?PHP echo $dataslides['sub']; ?></span> -->
-                        <!-- <a class="btn" href="#">Purchase Now</a>
-                        <a class="btn btn-light">Purchase</a> -->
-                        <!-- end: Captions -->
+        <section id="page-content" class="p20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Inspiro Slider -->
+                        <div id="slider" class="inspiro-slider slider-fullscreen arrows-large arrows-creative dots-creative" data-height="440" data-height-xs="360" >
+                            <?PHP
+                            $qSlides    = "select * from banner where flag_website='$coreid' order by 1 desc";
+                            $getSlides  = $this->query->getDatabyQ($qSlides);
+                            foreach ($getSlides as $dataslides) {
+                                if(get_cookie('lang_is') === 'en'){
+                                    $imgs   = $dataslides['img_en'];
+                                } else {
+                                    $imgs   = $dataslides['img'];
+                                }
+                            ?>
+                            <!-- Slide 1 -->
+                            <div class="slide kenburns" style="background-image:url('<?PHP echo base_url(); ?>images/slides/<?PHP echo $imgs; ?>');">
+                                <div class="bgcontent">
+                                    <a href="<?PHP echo $dataslides['link']; ?>">
+                                        <div class="slide-captions text-center text-light">
+                                            <!-- Captions -->
+                                            <!-- <h2 class="text-dark"><?PHP echo $dataslides['title']; ?></h2>
+                                            <span class="strong"><?PHP echo $dataslides['sub']; ?></span> -->
+                                            <!-- <a class="btn" href="#">Purchase Now</a>
+                                            <a class="btn btn-light">Purchase</a> -->
+                                            <!-- end: Captions -->
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- end: Slide 1 -->
+                            <?PHP } ?>
+                        </div>
+                        <!--end: Inspiro Slider -->
                     </div>
-                    </a>
+                    <div class="col-md-6 padding0">
+                        <div class="tabs hometabs">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <?PHP
+                                $qBC    = "select * from category_blog order by id asc";
+                                $gBC    = $this->query->getDatabyQ($qBC);
+                                $xb     = 0;
+                                foreach ($gBC as $data) { $xb++;
+                                    $id = $data['id'];
+                                    if($xb==1) { $active='active'; } else { $active=''; }
+                                ?>
+                                <li class="nav-item">
+                                    <a class="nav-link <?PHP echo $active; ?>" id="homeblog<?PHP echo $id; ?>-tab" data-toggle="tab" href="#homeblog<?PHP echo $id; ?>" role="tab" aria-controls="homeblog<?PHP echo $id; ?>" aria-selected="true">
+                                        <?PHP if(get_cookie('lang_is') === 'en'){ echo $data['category_en']; } else { echo $data['category']; } ?>
+                                    </a>
+                                </li>
+                                <?PHP } ?>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <?PHP
+                                $qBC    = "select * from category_blog order by id asc";
+                                $gBC    = $this->query->getDatabyQ($qBC);
+                                $xbD    = 0;
+                                foreach ($gBC as $dataD) { $xbD++;
+                                    $id = $dataD['id'];
+                                    if($xbD==1) { $active='show active'; } else { $active=''; }
+                                ?>
+                                <div class="tab-pane fade <?PHP echo $active; ?>" id="homeblog<?PHP echo $id; ?>" role="tabpanel" aria-labelledby="homeblog<?PHP echo $id; ?>-tab">
+                                    <div class="widget " style="margin-bottom:0px;">
+                                        <div class="post-thumbnail-list homepost">
+                                            <?PHP
+                                            $qBlog      = "select a.* from blog a where a.id_category='$id' order by id_blog desc limit 5";
+                                            $getBlog    = $this->query->getDatabyQ($qBlog);
+                                            if ($getBlog) {
+                                            foreach ($getBlog as $blog) {
+                                            ?>
+                                            <div class="post-thumbnail-entry">
+                                                <img alt="" src="<?PHP echo base_url(); ?>images/content/<?PHP echo $blog['picture']; ?>">
+                                                <div class="post-thumbnail-content">
+                                                    <a href="<?PHP echo base_url(); ?>blog/<?PHP echo $blog['link']; ?>">
+                                                        <?PHP if(get_cookie('lang_is') === 'en'){ echo $blog['title_en']; } else { echo $blog['title']; } ?>
+                                                    </a>
+                                                    <span class="post-date"><i class="far fa-clock"></i> <?PHP echo $this->formula->TanggalIndo($blog['create_date']); ?></span>
+                                                </div>
+                                            </div>
+                                            <?PHP } ?>
+                                            <?PHP } else { ?>
+                                            <center>
+                                                Mohon maaf, belum tersedia data pada kolom ini.
+                                            </center>
+                                            <?PHP } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?PHP } ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- end: Slide 1 -->
-            <?PHP } ?>
-        </div>
-        <!--end: Inspiro Slider -->
+        </section>
+
         <?PHP if ($cbase==1) { ?>
             <?PHP
             $qCH    = "SELECT * FROM content where id_menu='$idmenu' order by 1 asc";
