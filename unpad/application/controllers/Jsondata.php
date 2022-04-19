@@ -865,6 +865,7 @@ class Jsondata extends CI_Controller {
 		$q 		= "
 					select
 						a.*,
+						(SELECT nama FROM config_web where id_web = a.flag_website) as flag_web,
 						(SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
 						WHERE xa.menu='Manage Banner' AND xa.data = a.id_banner ORDER BY xa.date_time DESC limit 1)as update_by,
 						(SELECT DATE_FORMAT(xa.date_time, '%d-%b-%y %H:%i:%s') as last_update FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
@@ -934,7 +935,7 @@ class Jsondata extends CI_Controller {
 				//$buttondelete = getRoleDelete($akses,'delete',$id);
 
 				$row = array(
-					"website"		=> $flag_web,
+					"website"		=> $data['flag_web'],
 					"picture"		=> $picture,
 					"picture_en"	=> $picture_en, 
 					"link"			=> $data['link'], 

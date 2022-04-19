@@ -5468,7 +5468,11 @@ class Core extends CI_Controller {
 				$media = $this->upload->data('upl');
 
 				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', img='$fileName', flag_website='$website', link='$link'","WHERE id_banner='$id'");
-			} else if($cekinglogo_en !=''){
+			} else {
+				$rows = $this->query->updateData('banner',"title='$title', sub='$sub',title_en='$title_en', sub_en='$sub_en', flag_website='$website', link='$link'","WHERE id_banner='$id'");
+			}
+			
+			if($cekinglogo_en !=''){
 				//delete eksisting
 				$coba_en = $this->query->getData('banner','img_en','WHERE id_banner='.$id.'');
 				foreach ($coba_en as $dataex_en) {

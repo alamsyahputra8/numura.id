@@ -1,3 +1,9 @@
+<?php
+$qconfig_web 				= "
+				select * from config_web;
+				";
+$getconfig_web	= $this->query->getDatabyQ($qconfig_web);
+?>
 <!-- begin:: Content -->
 <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
 	<div id="gagalinsert" class="alert alert-warning alert-elevate kt-hidden" role="alert">
@@ -76,10 +82,10 @@
 									<div class="col-lg-8 col-md-9 col-sm-12">
 										<div class='input-group'>
 											<select name="kategori_website" class="form-control" id="kategori_website" placeholder="Jenis Menu" readonly>
-												<option value="">-- Pilih Kategori --</option>
-												<option value="1">Web Fakultas</option>
-												<option value="2">Web Prodi S1 & S2</option> 
-												<option value="3">Web Alumni & Mitra</option> 
+												<option value="">-- Pilih Kategori Menu --</option> 
+												<?PHP foreach ($getconfig_web as $dataweb) { ?>
+												<option value="<?PHP echo $dataweb['id_web'];?>"><?PHP echo $dataweb['nama'];?> </option> 
+												<?PHP } ?>
 											</select>
 										</div>
 									</div> 
@@ -210,10 +216,10 @@
 										<div class="col-lg-8 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<select name="ed_kategori_website" class="form-control" id="ed_kategori_website" placeholder="Jenis Menu" readonly>
-													<option value="">-- Pilih Kategori --</option>
-													<option value="1">Web Fakultas</option>
-													<option value="2">Web Prodi S1 & S2</option> 
-													<option value="3">Web Alumni & Mitra</option> 
+													<option value="">-- Pilih Kategori Menu --</option> 
+													<?PHP foreach ($getconfig_web as $dataweb) { ?>
+													<option value="<?PHP echo $dataweb['id_web'];?>"><?PHP echo $dataweb['nama'];?> </option> 
+													<?PHP } ?> 
 												</select>
 											</div>
 										</div> 
