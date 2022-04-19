@@ -169,7 +169,7 @@
                         <div class="tabs hometabs">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <?PHP
-                                $qBC    = "select * from category_blog order by id asc";
+                                $qBC    = "select * from category_blog order by id desc limit 3";
                                 $gBC    = $this->query->getDatabyQ($qBC);
                                 $xb     = 0;
                                 foreach ($gBC as $data) { $xb++;
@@ -185,7 +185,7 @@
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <?PHP
-                                $qBC    = "select * from category_blog order by id asc";
+                                $qBC    = "select * from category_blog order by id desc limit 3";
                                 $gBC    = $this->query->getDatabyQ($qBC);
                                 $xbD    = 0;
                                 foreach ($gBC as $dataD) { $xbD++;

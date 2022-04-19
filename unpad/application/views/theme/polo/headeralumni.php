@@ -12,6 +12,7 @@ if (strpos( $activepage, 'blog' ) !== false) {
 }
 ?>
 <style>
+#footer .copyright-content { background-color: #f2a138; }
 .padding0 {padding:0px!important;}
 .p20{
     padding: 20px 0 20px 0!important;

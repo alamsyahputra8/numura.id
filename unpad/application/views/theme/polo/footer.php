@@ -60,7 +60,7 @@ $dataAbout      = array_shift($gAbout);
     </div>
 
     <!-- Scroll top -->
-    <a id="scrollTop"><i class="icon-chevron-up1"></i><i class="icon-chevron-up1"></i></a>
+    <a id="scrollTop"><i class="icon-arrow-up"></i><i class="icon-arrow-up"></i></a>
 
     <!--Plugins-->
     <!--script src="<?PHP echo base_url(); ?>assets/polo/js/jquery.js"></script-->
