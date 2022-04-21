@@ -5384,7 +5384,7 @@ class Core extends CI_Controller {
 			
 
 			$q 			= "
-						insert into banner (title,sub,title_en,sub_en,img,img_en,thumb,thumb_en,flag_website,link) values ('$title','$sub','$title_en','$sub_en','$fileNamePost','blur_thumb.png','$fileNamePost_en','blur_thumb.png','$website','$link')
+						insert into banner (title,sub,title_en,sub_en,img,img_en,thumb,thumb_en,flag_website,link) values ('$title','$sub','$title_en','$sub_en','$fileNamePost','$fileNamePost_en','blur_thumb.png','blur_thumb.png','$website','$link')
 						";
 						//echo $q;
 			$rows 		= $this->query->insertDatabyQ($q);
