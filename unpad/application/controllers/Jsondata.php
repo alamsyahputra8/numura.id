@@ -1115,6 +1115,51 @@ class Jsondata extends CI_Controller {
 			echo json_encode($json);
 		}
 	}
+	
+	public function datacategoryblog(){
+		$data_aksess = $this->query->getAkses($this->profile,'panel/categoryblog');
+		$shift = array_shift($data_aksess);
+		$akses = $shift['akses'];
+
+		$q 		= "
+					select
+						a.*, 
+						(SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
+						WHERE xa.menu='Manage Category Blog' AND xa.data = a.id ORDER BY xa.date_time DESC limit 1)as update_by,
+						(SELECT DATE_FORMAT(xa.date_time, '%d-%b-%y %H:%i:%s') as last_update FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
+						WHERE xa.menu='Manage Category Blog' AND xa.data = a.id ORDER BY xa.date_time DESC limit 1)as last_update
+					from
+					category_blog a
+					ORDER BY a.id desc
+				";
+		$getdata= $this->query->getDatabyQ($q);
+		
+		$no=0;
+		header('Content-type: application/json; charset=UTF-8');
+
+		$cek 	= $this->query->getNumRowsbyQ($q)->num_rows();
+
+		if ($cek>0) {
+			foreach($getdata as $data) {
+				$no++;
+
+				$id = $data['id']; 
+
+				$row = array(
+					"category"		=> $data['category'], 
+					"description"	=> $data['deskripsi'], 
+					"updateby"		=> $data['update_by'],
+					"lastupdate"	=> $data['last_update'],
+					"actions"		=> $id
+					);
+				$json[] = $row;
+			}
+			echo json_encode($json);
+		} else {
+			$json ='';
+			echo json_encode($json);
+		}
+	}
 
 	public function dataalbum(){
 		$data_aksess = $this->query->getAkses($this->profile,'panel/album');

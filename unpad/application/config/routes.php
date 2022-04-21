@@ -68,6 +68,7 @@ $route['panel/document'] 		= 'viewpanel/document';
 $route['panel/link'] 			= 'viewpanel/link';
 $route['panel/ourteam'] 		= 'viewpanel/ourteam';
 $route['panel/services'] 		= 'viewpanel/services';
+$route['panel/categoryblog'] 	= 'viewpanel/categoryblog';
 $route['panel/works']	 		= 'viewpanel/works';
 $route['panel/album']	 		= 'viewpanel/album';
 $route['panel/event']	 		= 'viewpanel/event';

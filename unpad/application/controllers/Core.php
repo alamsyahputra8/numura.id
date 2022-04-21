@@ -6456,7 +6456,129 @@ class Core extends CI_Controller {
 			redirect('/panel');
 		}
 	}
+	
+	public function getdatacategory(){
+		if(checkingsessionpwt()){
 
+			$columnsDefault = [
+				'category'		=> true,
+				'description'	=> true,
+				'updateby'		=> true,
+				'lastupdate'	=> true,
+				'actions'		=> true,
+			];
+			$arraynya	= $columnsDefault;
+			$jsonfile	= base_url().'jsondata/datacategoryblog';
+
+			$this->generateDatatable($arraynya,$jsonfile);
+		} else {
+			redirect('/panel');
+		}
+	}
+	public function modalcategoryblog(){
+		if(checkingsessionpwt()){
+			
+			$id				= trim(strip_tags(stripslashes($this->input->post('id',true))));
+			
+			$q 				= "
+							select * from category_blog
+							where id='".$id."'
+							";
+			$getData		= $this->query->getDatabyQ($q);
+			
+			header('Content-type: application/json; charset=UTF-8');
+			
+			if (isset($id) && !empty($id)) {
+				foreach($getData as $row) {
+					echo json_encode($row);
+					exit;
+				}
+			}
+		} else {
+			redirect('/panel');
+		}
+	}	
+
+	public function insertcategoryblog(){
+		if(checkingsessionpwt()){
+			$userdata	= $this->session->userdata('sesspwt'); 
+			$userid 	= $userdata['userid'];
+
+			$nama_id		= trim(strip_tags(stripslashes($this->input->post('name_cat_id',true))));
+			$nama_en		= trim(strip_tags(stripslashes($this->input->post('name_cat_en',true)))); 
+			$deskripsi_id	= trim(strip_tags(stripslashes($this->input->post('deskripsi_id',true))));
+			$deskripsi_en	= trim(strip_tags(stripslashes($this->input->post('deskripsi_en',true)))); 
+
+			 
+			$q 			= "
+						insert into category_blog (category,category_en,deskripsi,deskripsi_en) values ('$nama_id','$nama_en','$deskripsi_id','$deskripsi_en')
+						"; 
+			$rows 		= $this->query->insertDatabyQ($q);
+
+			if($rows) {
+				$id			= $this->db->insert_id();
+				$url 		= "Manage Category Blog";
+				$activity 	= "INSERT";
+
+				$log = $this->query->insertlog($activity,$url,$id);
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+				//echo "insert into content (title,sub,headline,content,id_menu) values ('$title','',$menu,'$headline','$content')";
+			}
+		} else {
+			redirect('/panel');
+		}
+	}
+
+	public function deletecategoryblog(){
+		if(checkingsessionpwt()){
+			$url 		= "Manage Category Blog";
+			$activity 	= "DELETE";
+
+			$cond	= trim(strip_tags(stripslashes($this->input->post('iddel',true)))); 
+
+			$rows = $this->query->deleteData('category_blog','id',$cond);
+			
+			if(isset($rows)) {
+				$log = $this->query->insertlog($activity,$url,$cond);
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+			}
+		}else{
+            redirect('/login');
+        }
+	}
+
+	public function updatecategoryblog(){
+		if(checkingsessionpwt()){
+			$userdata	= $this->session->userdata('sesspwt'); 
+ 
+			$id				= trim(strip_tags(stripslashes($this->input->post('ed_id',true))));
+			$nama_id		= trim(strip_tags(stripslashes($this->input->post('ed_name_cat_id',true))));
+			$nama_en		= trim(strip_tags(stripslashes($this->input->post('ed_name_cat_en',true)))); 
+			$deskripsi_id	= trim(strip_tags(stripslashes($this->input->post('ed_deskripsi_id',true))));
+			$deskripsi_en	= trim(strip_tags(stripslashes($this->input->post('ed_deskripsi_en',true)))); 
+		 
+			$userid		= $userdata['userid'];
+				
+			$url 		= "Manage Category Blog";
+			$activity 	= "UPDATE";
+ 
+			$rows = $this->query->updateData('category_blog',"category='$nama_id', category_en='$nama_en', deskripsi='$deskripsi_id',deskripsi_en='$deskripsi_en'","WHERE id='$id'");
+			 
+			if($rows) {
+				$log = $this->query->insertlog($activity,$url,$id);
+				echo $headline;
+				print json_encode(array('success'=>true,'total'=>1));
+			} else {
+				echo "";
+			}
+		} else {
+			redirect('/panel');
+		}
+	}
 	public function modalservices(){
 		if(checkingsessionpwt()){
 			

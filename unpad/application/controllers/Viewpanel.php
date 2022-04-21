@@ -793,4 +793,31 @@ class Viewpanel extends CI_Controller {
 			
 		}
 	}
+	
+	public function categoryblog(){
+		if(checkingsessionpwt()){
+			$cekAkses			= $this->akses;
+			if ($cekAkses=='') {
+				redirect('panel/error');
+			} else {
+				$data['akses']			= $this->akses;
+				$data['userid']			= $this->userid;
+				
+				// CORE 1
+				$this->load->view('/theme/metronic/base1');
+
+				// CONTENT
+				$this->load->view('panel/content/catblog', $data);
+
+				// CORE2
+				$this->load->view('/theme/metronic/base2', $data);
+
+				// PLUGIN JS
+				$this->load->view('/theme/metronic/pluginjs');
+			}
+		} else {
+			
+		}
+	}
+
 }
