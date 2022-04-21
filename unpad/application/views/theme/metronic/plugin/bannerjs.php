@@ -433,13 +433,10 @@ var KTFormWidgets = function () {
 
             form.validate({
                 rules: {
-                    title: {
+                    kategori_website: {
                         required: true
                     },
-                    picture: {
-                        required: true
-                    },
-                    sub: {
+                    pict: {
                         required: true
                     },
                 }
@@ -503,10 +500,7 @@ var KTFormWidgets = function () {
 
             form.validate({
                 rules: {
-                    title: {
-                        required: true
-                    },
-                    sub: {
+                    ed_kategori_website: {
                         required: true
                     },
                 }
