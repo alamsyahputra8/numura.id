@@ -65,9 +65,9 @@ $gPage      = $this->query->getDatabyQ($qPage);
 			                                <img src="<?PHP echo base_url(); ?>images/icon/iconfolder2.svg">
 			                            </div>
 			                            <div class="team-desc bolddesc">
-			                                <h3><?PHP echo $data['title']; ?></h3>
+			                                <h3><?PHP if(get_cookie('lang_is') === 'en'){ echo $data['title_en']; } else { echo $data['title']; } ?></h3>
 			                                <hr>
-			                                <span><i class="icon-documents"></i> <?PHP echo $data['jmldoc']; ?> Documents</span><br>
+			                                <span><i class="icon-documents"></i> <?PHP echo $data['jmldoc']; ?> <?PHP if(get_cookie('lang_is') === 'en'){ echo 'Documents'; } else { echo 'Dokumen'; } ?></span><br>
 			                                <span><i class="icon-user11"></i> <?PHP echo $data['update_by']; ?></span><br>
 			                                <span><i class="icon-clock1"></i> <?PHP echo $data['last_update']; ?></span>
 			                            </div>

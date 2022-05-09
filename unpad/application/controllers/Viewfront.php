@@ -414,6 +414,7 @@ class Viewfront extends CI_Controller {
 		                a.*,
 		                (select link from menu_site where id_menu=a.id_menu) as menulink,
 		                (select menu from menu_site where id_menu=a.id_menu) as menuname,
+		                (select menu_en from menu_site where id_menu=a.id_menu) as menuname_en,
 		                (SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
 		                WHERE xa.menu='Manage Document' AND xa.data = a.id_doc ORDER BY xa.date_time DESC limit 1)as update_by,
 		                (SELECT DATE_FORMAT(xa.date_time, '%d-%b-%y %H:%i:%s') as last_update FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
@@ -424,11 +425,16 @@ class Viewfront extends CI_Controller {
 					";
 		$gPage 		= $this->query->getDatabyQ($qPage);
 		$dPage		= array_shift($gPage);
-		$folder		= $dPage['title'];
 
 		$data['link']			= $id;
 		$data['doclink']		= $dPage['menulink'];
-		$data['menuname']		= $dPage['menuname'];
+		if(get_cookie('lang_is') === 'en'){
+			$data['menuname']	= $dPage['menuname_en'];
+			$folder				= $dPage['title_en'];
+		} else {
+			$data['menuname']	= $dPage['menuname'];
+			$folder				= $dPage['title'];
+		}
 		$data['id_doc']			= $dPage['id_doc'];
 		$data['folder']			= $folder;
 		$data['update_by']		= $dPage['update_by'];
