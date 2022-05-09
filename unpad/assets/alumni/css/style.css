@@ -1617,7 +1617,7 @@ Main Menu
 #mainMenu nav > ul > li > a {
   position: relative;
   font-family: "Poppins", sans-serif;
-  padding: 10px 12px;
+  padding: 10px 6px;
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 600;
@@ -1967,7 +1967,7 @@ Main Menu
 }
 #mainMenu.menu-left nav {
   float: left;
-  margin-left: 20px;
+  margin-left: 0px;
 }
 #mainMenu.menu-left nav > ul > li.mega-menu-item {
   position: static;
