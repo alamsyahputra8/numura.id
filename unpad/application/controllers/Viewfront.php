@@ -351,7 +351,7 @@ class Viewfront extends CI_Controller {
 	public function blog($id){
 		$data['id'] 			= $id;
 		
-		$qPage 		= "select * from menu_site where link='$id'";
+		$qPage 		= "select * from menu_site where type='blog' limit 1";
 		$gPage 		= $this->query->getDatabyQ($qPage);
 		$dPage		= array_shift($gPage);
 		$stylepage	= $dPage['style'];
@@ -382,7 +382,7 @@ class Viewfront extends CI_Controller {
 	}
 
 	public function doc($id){
-		$qPage 		= "select * from menu_site where link='$id'";
+		$qPage 		= "select * from menu_site where type='document' limit 1";
 		$gPage 		= $this->query->getDatabyQ($qPage);
 		$dPage		= array_shift($gPage);
 		$stylepage	= $dPage['style'];
