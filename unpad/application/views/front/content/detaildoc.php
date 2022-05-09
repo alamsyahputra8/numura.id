@@ -60,13 +60,13 @@ $gPage      = $this->query->getDatabyQ($qPage);
 		                    foreach($gPage as $data) {
 		                    ?>
 		                    <div class="col-lg-6">
-		                    	<a href="<?PHP echo base_url(); ?>images/document/<?PHP echo $data['file_doc']; ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="View File <?PHP echo $data['name_doc']; ?>">
+		                    	<a href="<?PHP echo base_url(); ?>images/document/<?PHP if(get_cookie('lang_is') === 'en'){ echo $data['file_doc']; } else { echo $data['file_doc_en']; } ?>" target="_blank" data-toggle="tooltip" data-placement="top" title="" data-original-title="View File <?PHP if(get_cookie('lang_is') === 'en'){ echo $data['name_doc']; } else { echo $data['name_doc_en']; } ?>">
 			                        <div class="team-member">
 			                            <div class="team-image">
 			                                <center><img src="<?PHP echo base_url(); ?>images/icon/docicon.png"></center>
 			                            </div>
 			                            <div class="team-desc bolddesc">
-			                                <h3><?PHP echo $data['name_doc']; ?></h3>
+			                                <h3><?PHP if(get_cookie('lang_is') === 'en'){ echo $data['name_doc']; } else { echo $data['name_doc_en']; } ?></h3>
                                             <span><i class="icon-user11"></i> <?PHP echo $data['update_by']; ?></span><br>
                                             <span><i class="icon-clock1"></i> <?PHP echo $data['last_update']; ?></span>
 			                            </div>
