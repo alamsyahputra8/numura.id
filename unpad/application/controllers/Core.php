@@ -5673,8 +5673,10 @@ class Core extends CI_Controller {
 			$userid 	= $userdata['userid'];
 
 			$doc		= trim(strip_tags(stripslashes($this->input->post('document',true))));
+			$doc_en		= trim(strip_tags(stripslashes($this->input->post('document_en',true))));
 			$menu		= trim(strip_tags(stripslashes($this->input->post('menu',true))));
 			$fdName		= $_POST['fdname'];
+			$fdName_en	= $_POST['fdname_en'];
 
 			$link		= $this->formula->clean(strtolower($doc));
 			
@@ -5687,7 +5689,7 @@ class Core extends CI_Controller {
 			}
 
 			$q 			= "
-						insert into document (id_doc,title,id_menu,link) values ('$id','$doc','$menu','$link')
+						insert into document (id_doc,title,id_menu,link,title_en) values ('$id','$doc','$menu','$link','$doc_en')
 						";
 						//echo $q;
 			$rows 		= $this->query->insertDatabyQ($q);
@@ -5724,11 +5726,36 @@ class Core extends CI_Controller {
 						//Simpan gambar dalam ukuran sebenarnya
 						move_uploaded_file($lokasi_file[$y], $vfile_upload[$y]);
 						
-						$qFD 		= "insert into file_doc (name_doc,file_doc,id_doc) values ('".$fdName[$y]."','$nama_file_unik[$y]','$id')";
-						$insertFD 	= $this->query->insertDatabyQ($qFD);
 					}
-				}
+					
+					$direktori2[$y] 			= './images/document/';
+					$lokasi_file2[$y]    	= $_FILES['upl_en']['tmp_name'][$y];
+					$tipe_file2[$y]      	= $_FILES['upl_en']['type'][$y];
+					$nama_file2[$y]      	= $_FILES['upl_en']['name'][$y];
+					$acak2[$y]           	= rand(000000,999999);
+					$nama_file_unik2[$y] 	= str_replace(' ','_',time().''.$nama_file2[$y]);
+					
+					// echo 'filenya'.$lokasi_file2[$y]; 
 
+					if(!in_array(strtolower($extension), $allowed)){
+						echo '{"status":"error"}';
+						exit;
+					}
+					
+					if (!empty($lokasi_file2[$y])){
+						//direktori gambar
+						$vfile_upload2[$y] = $direktori2[$y] . $nama_file_unik2[$y];
+
+						//Simpan gambar dalam ukuran sebenarnya
+						move_uploaded_file($lokasi_file2[$y], $vfile_upload2[$y]);
+						
+					}
+					
+					
+					
+					$qFD 		= "insert into file_doc (name_doc,file_doc,id_doc,name_doc_en,file_doc_en) values ('".$fdName[$y]."','$nama_file_unik[$y]','$id','".$fdName_en[$y]."','$nama_file_unik2[$y]')";
+					$insertFD 	= $this->query->insertDatabyQ($qFD);
+				} 
 				$log = $this->query->insertlog($activity,$url,$id);
 				print json_encode(array('success'=>true,'total'=>1));
 			} else {
@@ -5746,9 +5773,10 @@ class Core extends CI_Controller {
 
 			$cond	= trim(strip_tags(stripslashes($this->input->post('iddel',true))));
 
-			$coba = $this->query->getData('file_doc','file_doc','WHERE id_doc='.$cond.'');
+			$coba = $this->query->getData('file_doc','file_doc,file_doc_en','WHERE id_doc='.$cond.'');
 			foreach ($coba as $dataex) {
 				$dataexis = 'images/document/'.$dataex['file_doc'];
+				$dataexis2 = 'images/document/'.$dataex['file_doc_en'];
 				@unlink($dataexis);
 			}
 
@@ -5772,9 +5800,10 @@ class Core extends CI_Controller {
 			
 			$id				= trim(strip_tags(stripslashes($this->input->post('id',true))));
 			
-			$coba = $this->query->getData('file_doc','file_doc','WHERE id_file='.$id.'');
+			$coba = $this->query->getData('file_doc','file_doc,file_doc_en','WHERE id_file='.$id.'');
 			foreach ($coba as $dataex) {
 				$dataexis = 'images/document/'.$dataex['file_doc'];
+				$dataexis2 = 'images/document/'.$dataex['file_doc_en'];
 				@unlink($dataexis);
 			}
 
@@ -5802,7 +5831,14 @@ class Core extends CI_Controller {
                     <label class="col-form-label col-lg-3 col-sm-12"></label>
                     <div class="col-lg-4 col-md-9 col-sm-12">
                         <div class="input-group">
-                            <input type="text" name="ed_fwd[]" class="form-control" id="ed_fwd" readonly placeholder="Forward To" value="'.$data['name_doc'].'">
+                            <input type="text" name="ed_fwd[]" class="form-control" id="ed_fwd" readonly placeholder="Forward To ID" value="'.$data['name_doc'].'">
+							<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
+                        </div>
+                    </div>
+					<div class="col-lg-4 col-md-9 col-sm-12">
+                        <div class="input-group">
+                            <input type="text" name="ed_fwd_en[]" class="form-control" id="ed_fwd_en" readonly placeholder="Forward To EN" value="'.$data['name_doc_en'].'">
+							<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
                             <button type="button" class="btn btn-sm btn-danger text-white ed_deleterow" data-toggle="kt-tooltip" title="Remove File" data-id="#exed_newrow'.$x.'" data-idfile="'.$data['id_file'].'">
                             	<i class="fa fa-times text-white"></i>
                             </button>
@@ -5824,6 +5860,7 @@ class Core extends CI_Controller {
 
 			$id				= trim(strip_tags(stripslashes($this->input->post('ed_id',true))));
 			$doc			= trim(strip_tags(stripslashes($this->input->post('ed_document',true))));
+			$doc_en			= trim(strip_tags(stripslashes($this->input->post('ed_document_en',true))));
 			$menu			= trim(strip_tags(stripslashes($this->input->post('ed_menu',true))));
 
 			$link		= $this->formula->clean(strtolower($doc));
@@ -5831,12 +5868,14 @@ class Core extends CI_Controller {
 			$url 		= "Manage Document";
 			$activity 	= "UPDATE";
 
-			$rows = $this->query->updateData('document',"title='$doc',id_menu='$menu',link='$link'","WHERE id_doc='$id'");
+			$rows = $this->query->updateData('document',"title='$doc',id_menu='$menu',link='$link',title_en='$doc_en'","WHERE id_doc='$id'");
 
 			if($rows) {
 				$fdName		= $_POST['ed_fdname'];
+				$fdName_en		= $_POST['ed_fdname_en'];
 				//$jmlImg = count($_FILES['upl']['name']);
 				$jmlImg = count($_FILES['ed_upl']['name']);
+				
 				if ($jmlImg>0) {
 					for($y = 0; $y < $jmlImg; $y++){
 						$direktori[$y] 			= './images/document/';
@@ -5864,12 +5903,42 @@ class Core extends CI_Controller {
 							//Simpan gambar dalam ukuran sebenarnya
 							move_uploaded_file($lokasi_file[$y], $vfile_upload[$y]);
 							
-							$qFD 		= "insert into file_doc (name_doc,file_doc,id_doc) values ('".$fdName[$y]."','$nama_file_unik[$y]','$id')";
-							$insertFD 	= $this->query->insertDatabyQ($qFD);
+							// $qFD 		= "insert into file_doc (name_doc,file_doc,id_doc) values ('".$fdName[$y]."','$nama_file_unik[$y]','$id')";
+							// $insertFD 	= $this->query->insertDatabyQ($qFD);
 						}
+						
+						$direktori_en[$y] 			= './images/document/';
+						$lokasi_file_en[$y]    	= $_FILES['ed_upl_en']['tmp_name'][$y];
+						$tipe_file_en[$y]      	= $_FILES['ed_upl_en']['type'][$y];
+						$nama_file_en[$y]      	= $_FILES['ed_upl_en']['name'][$y];
+						$acak_en[$y]           	= rand(000000,999999);
+						$nama_file_unik_en[$y] 	= str_replace(' ','_',time().''.$nama_file_en[$y]);
+						
+						// echo 'filenya'.$nama_file[$y];
+						
+						$allowed_en = array('pdf','doc','docx');
+						
+						$extension_en = pathinfo($nama_file_en[$y], PATHINFO_EXTENSION);
+
+						if(!in_array(strtolower($extension_en), $allowed_en)){
+							echo '{"status":"error"}';
+							exit;
+						}
+						
+						if (!empty($lokasi_file_en[$y])){
+							//direktori gambar
+							$vfile_upload_en[$y] = $direktori_en[$y] . $nama_file_unik_en[$y];
+
+							//Simpan gambar dalam ukuran sebenarnya
+							move_uploaded_file($lokasi_file_en[$y], $vfile_upload_en[$y]);
+							
+							
+						}
+						$qFD 		= "insert into file_doc (name_doc,file_doc,id_doc,name_doc_en,file_doc_en) values ('".$fdName[$y]."','$nama_file_unik[$y]','$id','".$fdName_en[$y]."','$nama_file_unik_en[$y]')";
+						$insertFD 	= $this->query->insertDatabyQ($qFD);
 					}
 				}
-
+				 
 				$log = $this->query->insertlog($activity,$url,$id);
 				print json_encode(array('success'=>true,'total'=>1));
 			} else {

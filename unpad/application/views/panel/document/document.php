@@ -85,9 +85,17 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 							<div class="kt-portlet__body">
 								<div class="form-group row">
 									<label class="col-form-label col-lg-3 col-sm-12">Document Name *</label>
+									 
 									<div class="col-lg-4 col-md-9 col-sm-12">
 										<div class='input-group'>
-											<input type="text" name="document" class="form-control" id="document" placeholder="Document Name">
+											<input type="text" name="document" class="form-control" id="document" placeholder="Document Name ID">
+											<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
+										</div>
+									</div>
+									<div class="col-lg-4 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<input type="text" name="document_en" class="form-control" id="document_en" placeholder="Document Name EN">
+											<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
 										</div>
 									</div>
 								</div>
@@ -112,7 +120,14 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 										<label class="col-form-label col-lg-3 col-sm-12">File Name *</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
-												<input type="text" name="fdname[]" class="form-control" id="fdname" placeholder="File Name">
+												<input type="text" name="fdname[]" class="form-control" id="fdname" placeholder="File Name ID">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<input type="text" name="fdname_en[]" class="form-control" id="fdname_en" placeholder="File Name EN">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
 												<button type="button" class="btn btn-sm btn-secondary addScnt" data-toggle="kt-tooltip" title="" data-html="true" data-content="" data-original-title="Add More File Document"><i class="fa fa-plus"></i></button>
 											</div>
 										</div>
@@ -123,6 +138,14 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<input type="file" name="upl[]" class="form-control" id="upl" placeholder="File Doc" accept="application/msword,application/pdf">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
+											</div>
+											<span class="form-text text-muted">File yang disarankan untuk file document adalah .doc, .docx, dan .pdf</span>
+										</div>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<input type="file" name="upl_en[]" class="form-control" id="upl_en" placeholder="File Doc" accept="application/msword,application/pdf">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
 											</div>
 											<span class="form-text text-muted">File yang disarankan untuk file document adalah .doc, .docx, dan .pdf</span>
 										</div>
@@ -189,7 +212,14 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<input type="hidden" name="ed_id" class="form-control" id="ed_id">
-												<input type="text" name="ed_document" class="form-control" id="ed_document" placeholder="Document Name">
+												<input type="text" name="ed_document" class="form-control" id="ed_document" placeholder="Document Name ID">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
+											</div>
+										</div>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<input type="text" name="ed_document_en" class="form-control" id="ed_document_en" placeholder="Document Name EN">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
 											</div>
 										</div>
 									</div>

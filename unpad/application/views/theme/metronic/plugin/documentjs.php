@@ -24,6 +24,7 @@ $(document).on('click', '.btnupdateM', function(e){
         $('#namedata').html(data.title);
         $('#ed_id').val(data.id_doc);
         $('#ed_document').val(data.title);
+		$('#ed_document_en').val(data.title_en);
         $('#ed_menu').val(data.id_menu);
         $('#ed_menu').trigger('change.select2');
 
@@ -317,12 +318,19 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                                         <label class="col-form-label col-lg-3 col-sm-12">File Name *</label>
                                         <div class="col-lg-4 col-md-9 col-sm-12">
                                             <div class='input-group'>
-                                                <input type="text" name="fdname[]" class="form-control" id="fdname" placeholder="File Name">
-                                                <button type="button" class="btn btn-sm btn-danger text-white deleterow" title="Remove Email" data-id="#newrow`+x+`">
-                                                    <i class="fa fa-times text-white"></i>
-                                                </button>
+                                                <input type="text" name="fdname[]" class="form-control" id="fdname" placeholder="File Name ID">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div> 
                                             </div>
                                         </div>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<input type="text" name="fdname_en[]" class="form-control" id="fdname_en" placeholder="File Name EN">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
+												 <button type="button" class="btn btn-sm btn-danger text-white deleterow" title="Remove Email" data-id="#newrow`+x+`">
+                                                    <i class="fa fa-times text-white"></i>
+                                                </button>
+											</div>
+										</div>
                                     </div>
 
                                     <div class="form-group row">
@@ -330,9 +338,17 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                                         <div class="col-lg-4 col-md-9 col-sm-12">
                                             <div class='input-group'>
                                                 <input type="file" name="upl[]" class="form-control" id="upl" placeholder="File Doc" accept="application/msword,application/pdf">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
                                             </div>
                                             <span class="form-text text-muted">File yang disarankan untuk file document adalah .doc, .docx, dan .pdf</span>
                                         </div>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<input type="file" name="upl_en[]" class="form-control" id="upl_en" placeholder="File Doc" accept="application/msword,application/pdf">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
+											</div>
+											<span class="form-text text-muted">File yang disarankan untuk file document adalah .doc, .docx, dan .pdf</span>
+										</div>
                                     </div>
                                 </div>
                                 `;
@@ -363,22 +379,37 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                                         <label class="col-form-label col-lg-3 col-sm-12">File Name *</label>
                                         <div class="col-lg-4 col-md-9 col-sm-12">
                                             <div class='input-group'>
-                                                <input type="text" name="ed_fdname[]" class="form-control" id="ed_fdname" placeholder="File Name">
-                                                <button type="button" class="btn btn-sm btn-danger text-white ed_deleterowN" title="Remove Email" data-id="#ed_newrow`+x+`">
-                                                    <i class="fa fa-times text-white"></i>
-                                                </button>
+                                                <input type="text" name="ed_fdname[]" class="form-control" id="ed_fdname" placeholder="File Name ID">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div> 
                                             </div>
                                         </div>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<input type="text" name="ed_fdname_en[]" class="form-control" id="ed_fdname_en" placeholder="File Name EN">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
+												   <button type="button" class="btn btn-sm btn-danger text-white ed_deleterowN" title="Remove Email" data-id="#ed_newrow`+x+`">
+                                                    <i class="fa fa-times text-white"></i>
+                                                </button>
+											</div>
+										</div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label class="col-form-label col-lg-3 col-sm-12">File Document *</label>
                                         <div class="col-lg-4 col-md-9 col-sm-12">
                                             <div class='input-group'>
-                                                <input type="file" name="ed_upl[]" class="form-control" id="ed_upl[]" placeholder="File Doc" accept="application/msword,application/pdf">
+                                                <input type="file" name="ed_upl[]" class="form-control" id="ed_upl[]" placeholder="File Doc ID" accept="application/msword,application/pdf">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">ID</span></div>
                                             </div>
                                             <span class="form-text text-muted">File yang disarankan untuk file document adalah .doc, .docx, dan .pdf</span>
                                         </div>
+										<div class="col-lg-4 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<input type="file" name="ed_upl_en[]" class="form-control" id="ed_upl_en" placeholder="File Doc EN" accept="application/msword,application/pdf">
+												<div class="input-group-append"><span class="input-group-text" id="basic-addon2">EN</span></div>
+											</div>
+											<span class="form-text text-muted">File yang disarankan untuk file document adalah .doc, .docx, dan .pdf</span>
+										</div>
                                     </div>
                                 </div>
                                 `;
