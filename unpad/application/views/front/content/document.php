@@ -34,7 +34,7 @@ $gPage      = $this->query->getDatabyQ($qPage);
         <?PHP $this->load->view('theme/polo/header'); ?>
 
 		<!-- Page title -->
-        <section id="page-title" class="page-title-center text-light background-overlay-dark" style="background:url('<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>') no-repeat top center; background-size: 100% auto;">
+        <section id="page-title" class="page-title-center background-overlay-dark" data-bg-parallax="<?PHP echo base_url(); ?>images/content/<?PHP echo $background; ?>">
             <div class="container">
                 <div class="page-title">
                     <span class="post-meta-category">&nbsp;</span>
