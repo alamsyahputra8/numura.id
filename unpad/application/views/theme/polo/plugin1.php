@@ -109,8 +109,8 @@ if ($coreid==1) {
         border-bottom: 1px solid #e5e5e5;
     }
     #header .header-inner #logo a > img {
-        /*height: 65px;*/
-        margin-top: -2px;
+        height: 60px;
+        margin-top: 10px;
     }
     .no-border {
         border: none!important;
