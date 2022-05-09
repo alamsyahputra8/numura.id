@@ -349,14 +349,65 @@ class Viewfront extends CI_Controller {
 	}
 
 	public function blog($id){
-		$data['getSiteData'] 	= $this->query->getData('configsite','*',"");
 		$data['id'] 			= $id;
+		
+		$qPage 		= "select * from menu_site where link='$id'";
+		$gPage 		= $this->query->getDatabyQ($qPage);
+		$dPage		= array_shift($gPage);
+		$stylepage	= $dPage['style'];
+		$background	= $dPage['background'];
+		$coreid		= $dPage['flag_core'];
+
+		if(get_cookie('lang_is') === 'en'){
+			$menu		= $dPage['menu_en'];
+		} else {
+			$menu		= $dPage['menu'];
+		}
+
+		$data['idmenu']			= $dPage['id_menu'];
+		$data['coreid']			= $coreid;
+		$data['background']		= $background;
+		$data['menu']			= $menu;
+		$data['getSiteData'] 	= $this->query->getData('configsite','*',"");
+
+		$getCore 		= $this->db->query("SELECT * FROM config_web where id_web='$coreid'")->result_array();
+		$dcore 			= array_shift($getCore);
+		$data['cblog'] 	= $dcore['blog'];
+		$data['cbase'] 	= $dcore['basic_content'];
+		$data['cour'] 	= $dcore['ourteam'];
+		$data['ccont']  = $dcore['contact'];
+		$data['otidm']  = $dcore['ourteam_config'];
 		
 		$this->load->view('/front/content/detailblog' ,$data);
 	}
 
 	public function doc($id){
+		$qPage 		= "select * from menu_site where link='$id'";
+		$gPage 		= $this->query->getDatabyQ($qPage);
+		$dPage		= array_shift($gPage);
+		$stylepage	= $dPage['style'];
+		$background	= $dPage['background'];
+		$coreid		= $dPage['flag_core'];
+
+		if(get_cookie('lang_is') === 'en'){
+			$menu		= $dPage['menu_en'];
+		} else {
+			$menu		= $dPage['menu'];
+		}
+
+		$data['idmenu']			= $dPage['id_menu'];
+		$data['coreid']			= $coreid;
+		$data['background']		= $background;
+		$data['menu']			= $menu;
 		$data['getSiteData'] 	= $this->query->getData('configsite','*',"");
+
+		$getCore 		= $this->db->query("SELECT * FROM config_web where id_web='$coreid'")->result_array();
+		$dcore 			= array_shift($getCore);
+		$data['cblog'] 	= $dcore['blog'];
+		$data['cbase'] 	= $dcore['basic_content'];
+		$data['cour'] 	= $dcore['ourteam'];
+		$data['ccont']  = $dcore['contact'];
+		$data['otidm']  = $dcore['ourteam_config'];
 
 		$qPage 		= "
 					select
