@@ -202,6 +202,27 @@ meter[value="4"]::-moz-meter-bar { background: green; }
 						</div>
 						<?PHP } ?>
 
+						<?PHP 
+						$cekexport 		= getRoleAction($akses,'export','export',$userid); 
+						if ($cekexport=='ada') {
+						?>
+						<div class="dropdown dropdown-inline">
+							<button type="button" class="btn btn-default btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="la la-file"></i> Export
+							</button>
+							<div class="dropdown-menu dropdown-menu-right" style="width: 25rem;">
+								<ul class="kt-nav">
+									<li class="kt-nav__item" data-toggle="kt-tooltip" title="" data-html="true">
+										<a href="<?PHP echo base_url(); ?>shopee/exportstok" class="kt-nav__link" id="" target="_blank">
+											<i class="kt-nav__link-icon flaticon-clock-1"></i>
+											<span class="kt-nav__link-text">Export Stok</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<?PHP } ?>
+
 						<?PHP echo getRoleInsert($akses,'addnewfac','Buat Pesanan Stok');?>
 					</div>
 				</div>
