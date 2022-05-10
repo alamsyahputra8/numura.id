@@ -89,6 +89,9 @@ $route['detailstok/(:any)'] 	= 'viewpanel/detailstok/$1';
 $route['stokpjg'] 				= 'viewpanel/stokpjg';
 $route['detailstokpjg/(:any)'] 	= 'viewpanel/detailstokpjg/$1';
 
+// DATA UKURAN
+$route['pemetaan-ukuran'] 		= 'viewpanel/pemetaanukuran';
+
 // DATA KARAKTER
 $route['karakter'] 				= 'viewpanel/karakter';
 

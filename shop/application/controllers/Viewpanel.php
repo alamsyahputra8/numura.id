@@ -689,6 +689,32 @@ class Viewpanel extends CI_Controller {
 		}
 	}
 
+	public function pemetaanukuran(){
+		if(checkingsessionpwt()){
+			$cekAkses			= $this->akses;
+			if ($cekAkses=='') {
+				redirect('panel/error');
+			} else {
+				$data['akses']			= $this->akses;
+				$data['userid']			= $this->userid;
+				
+				// CORE 1
+				$this->load->view('/theme/metronic/base1');
+
+				// CONTENT
+				$this->load->view('panel/size/pemetaanukuran', $data);
+
+				// CORE2
+				$this->load->view('/theme/metronic/base2');
+
+				// PLUGIN JS
+				$this->load->view('/theme/metronic/pluginjs');
+			}
+		} else {
+			
+		}
+	}
+
 	public function stok(){
 		if(checkingsessionpwt()){
 			$cekAkses			= $this->akses;
