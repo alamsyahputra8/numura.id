@@ -141,7 +141,7 @@ foreach ($ggroupS as $groupsize) {
 					<img src="'.base_url().'images/char/'.$pes['pictchar'].'" style="max-width: 100%; max-height: 2.6cm;">
 				</div>
 				<div style="width: 53%; float: left; padding-top: 1rem%">
-					<b style="font-size: 16px!important; text-transform: capitalize;">'.$pes['custom_namalower'].'</b><br>
+					<b style="font-size: 16px!important; text-transform: capitalize;">'.str_replace("`","'",$pes['custom_namalower']).'</b><br>
 					'.$pes['label_size'].' <span style="font-size:11px;">'.$pes['detail_size'].'</span><br>
 					<div style="float:left; width: 15px; height: 15px; background-color: '.$pes['codecolor'].'; margin-right: 5px;"></div> '.$pes['label_color'].'
 					<!--br>
