@@ -4149,6 +4149,42 @@ class Core extends CI_Controller {
 			redirect('/panel');
 		}
 	}
+	public function getMenuBasic(){
+		if(checkingsessionpwt()){
+			
+			$id 	 = $_GET['id'];
+			
+			$cond	= "WHERE flag_website='$id'";
+			
+			$getData = $this->query->getData('menu_site','*',"$cond ORDER BY id_menu DESC");
+			
+			header('Content-type: application/json; charset=UTF-8');
+
+			$cek 	= $this->query->getNumRowsbyQ("select * from menu_site $cond order by id_menu desc")->num_rows();
+
+			if ($cek>0) {
+				$row[] 	= array('id' => '','text' => '-- Choose Menu --' ); 
+				foreach($getData as $data) {
+					//$sort 	= $data['sort']+1;
+					$row[] 	= array(
+						'id'		=> $data['id_menu'],
+						'text'		=> $data['menu'].'(ID) /'.$data['menu_en'].'(EN)',
+						);
+					$json = $row;
+					
+				}
+				$json = $row;
+			} else {
+				$row[] 	= array('id' => '','text' => 'Not Found' );
+
+				$json = $row;
+			}
+			
+			echo json_encode($json);
+		} else {
+			redirect('/panel');
+		}
+	}
 
 	public function insertmenus(){
 		if(checkingsessionpwt()){
@@ -4329,6 +4365,13 @@ class Core extends CI_Controller {
 			
 			if (isset($id) && !empty($id)) {
 				foreach($getData as $row) {
+					$getweb  = "
+							select * from menu_site
+							where id_menu='".$row['id_menu']."'
+							";
+					$getWeb	 = $this->query->getDatabyQ($getweb);
+					$dataWeb =array_shift($getWeb);
+					$row['flag_website'] = $dataWeb['flag_website'];
 					echo json_encode($row);
 					exit;
 				}

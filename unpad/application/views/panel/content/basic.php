@@ -6,6 +6,10 @@ $q 				= "
 				where style in ('basic','about','home') order by sort asc
 				";
 $getDataMenu	= $this->query->getDatabyQ($q);
+$qconfig_web 				= "
+				select * from config_web;
+				";
+$getconfig_web	= $this->query->getDatabyQ($qconfig_web);
 ?>
 <!-- begin:: Content -->
 <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
@@ -95,7 +99,19 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 										</div>
 									</div>
 								</div>
-
+								<div class="form-group row">
+									<label class="col-form-label col-lg-2 col-sm-12">Kategori Menu *</label>
+									<div class="col-lg-8 col-md-9 col-sm-12">
+										<div class='input-group'>
+											<select name="kategori_website" class="form-control" id="kategori_website" placeholder="Kategori Menu" readonly> 
+												<option value="">-- Pilih Kategori Menu --</option> 
+												<?PHP foreach ($getconfig_web as $dataweb) { ?>
+												<option value="<?PHP echo $dataweb['id_web'];?>"><?PHP echo $dataweb['nama'];?> </option> 
+												<?PHP } ?>
+											</select>
+										</div>
+									</div> 
+								</div>
 								<div class="form-group row">
 									<label class="col-form-label col-lg-2 col-sm-12">Menu *</label>
 									<div class="col-lg-8 col-md-8 col-sm-12">
@@ -227,7 +243,19 @@ $getDataMenu	= $this->query->getDatabyQ($q);
 											</div>
 										</div>
 									</div>
-
+									<div class="form-group row">
+										<label class="col-form-label col-lg-2 col-sm-12">Kategori Menu *</label>
+										<div class="col-lg-8 col-md-9 col-sm-12">
+											<div class='input-group'>
+												<select name="ed_kategori_website" class="form-control" id="ed_kategori_website" placeholder="Kategori Menu" readonly> 
+													<option value="">-- Pilih Kategori Menu --</option> 
+													<?PHP foreach ($getconfig_web as $dataweb) { ?>
+													<option value="<?PHP echo $dataweb['id_web'];?>"><?PHP echo $dataweb['nama'];?> </option> 
+													<?PHP } ?>
+												</select>
+											</div>
+										</div> 
+									</div>
 									<div class="form-group row">
 										<label class="col-form-label col-lg-2 col-sm-12">Menu *</label>
 										<div class="col-lg-8 col-md-8 col-sm-12">

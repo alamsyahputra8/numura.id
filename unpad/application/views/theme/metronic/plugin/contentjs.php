@@ -29,6 +29,51 @@ $('#menu').change(function() {
     });
 });
 
+
+$('#kategori_website').change(function() {
+    $('#menu').html('');
+    var id_core = $(this).val();
+
+    if(id_core == ""){
+
+    }else{
+        $.ajax({
+            url: "<?PHP echo base_url(); ?>core/getMenuBasic?id="+id_core,
+            type: 'Get',
+            dataType: "json",
+
+            success: function (result) {
+                    $("#menu").select2({ data: result });
+            },
+            error: function failCallBk(XMLHttpRequest, textStatus, errorThrown) {
+                alert("An error occurred while processing your request. Please try again.");
+            }
+        });
+    }
+});
+
+$('#ed_kategori_website').change(function() {
+    $('#ed_menu').html('');
+    var id_core = $(this).val();
+
+    if(id_core == ""){
+
+    }else{
+        $.ajax({
+            url: "<?PHP echo base_url(); ?>core/getMenuBasic?id="+id_core,
+            type: 'Get',
+            dataType: "json",
+
+            success: function (result) {
+                    $("#ed_menu").select2({ data: result });
+            },
+            error: function failCallBk(XMLHttpRequest, textStatus, errorThrown) {
+                alert("An error occurred while processing your request. Please try again.");
+            }
+        });
+    }
+});
+
 $(document).on('click', '.btnupdateM', function(e){
     e.preventDefault();
 
@@ -53,14 +98,29 @@ $(document).on('click', '.btnupdateM', function(e){
         $('#ed_id').val(data.id_content);
         $('#ed_title').val(data.title);
 		$('#ed_title_en').val(data.title_en);
-        $('#ed_menu').val(data.id_menu);
-        $('#ed_menu').trigger('change.select2');
+		$('#ed_kategori_website').val(data.flag_website).trigger('change.select2');
+		 $("#ed_menu").html("");
+		$.ajax({
+            url: "<?PHP echo base_url(); ?>core/getMenuBasic?id="+data.flag_website,
+            type: 'Get',
+            dataType: "json",
+
+            success: function (result) {
+                    $("#ed_menu").select2({ data: result });
+					$('#ed_menu').val(data.id_menu);
+					$('#ed_menu').trigger('change.select2');
+            },
+            error: function failCallBk(XMLHttpRequest, textStatus, errorThrown) {
+                alert("An error occurred while processing your request. Please try again.");
+            }
+        });
+        
 
         $('#ed_headline').val(data.headline);
 		$('#ed_headline_en').val(data.headline_en);
         $('#ed_content').summernote('code', data.content);
 		$('#ed_content_en').summernote('code', data.content_en);
-
+		
 
         $('#modal-loader').hide();    // hide ajax loader
     })
