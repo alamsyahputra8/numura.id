@@ -24,6 +24,52 @@ $('#ed_menutype').change(function() {
 		//$('.ed_ourteam-content').hide();
 	}
 });
+
+$('#kategori_core').change(function() {
+    $('#parent').html('');
+    var id_core = $(this).val();
+
+    if(id_core == ""){
+
+    }else{
+        $.ajax({
+            url: "<?PHP echo base_url(); ?>core/getMenuCore?id="+id_core,
+            type: 'Get',
+            dataType: "json",
+
+            success: function (result) {
+                    $("#parent").select2({ data: result });
+            },
+            error: function failCallBk(XMLHttpRequest, textStatus, errorThrown) {
+                alert("An error occurred while processing your request. Please try again.");
+            }
+        });
+    }
+});
+$('#ed_kategori_core').change(function() {
+	 
+    $('#ed_parent').html('');
+    var id_core = $(this).val();
+
+    if(id_core == ""){
+
+    }else{
+        $.ajax({
+            url: "<?PHP echo base_url(); ?>core/getMenuCore?id="+id_core,
+            type: 'Get',
+            dataType: "json",
+
+            success: function (result) {
+                    $("#ed_parent").select2({ data: result });
+            },
+            error: function failCallBk(XMLHttpRequest, textStatus, errorThrown) {
+                alert("An error occurred while processing your request. Please try again.");
+            }
+        });
+    }
+});
+
+
 $('#parent').change(function() {
     $('#sort').html('');
     var id_menu = $(this).val();
@@ -117,8 +163,24 @@ $(document).on('click', '.btnupdateM', function(e){
             $('#ed_sort').val(data.sort);
             $('#ed_sort').trigger('change.select2');
         } else {*/
-            $('#ed_parent').val(data.parent);
-            $('#ed_parent').trigger('change.select2');
+			$("#ed_parent").html("");
+			$.ajax({
+				url: "<?PHP echo base_url(); ?>core/getMenuCore?id="+data.flag_core,
+				type: 'Get',
+				dataType: "json",
+
+				success: function (result) {
+					$("#ed_parent").select2({ data: result });
+					
+				},
+				error: function failCallBk(XMLHttpRequest, textStatus, errorThrown) {
+					alert("An error occurred while processing your request. Please try again.");
+				}
+			});
+			$('#ed_parent').val(data.parent);
+			$('#ed_parent').trigger('change.select2');
+            //$('#ed_parent').val(data.parent);
+            //$('#ed_parent').trigger('change.select2');
             //$('#ed_parent').trigger("change");
             $.ajax({
                 url: "<?PHP echo base_url(); ?>core/getMenuAfter?id="+data.parent,
@@ -134,6 +196,7 @@ $(document).on('click', '.btnupdateM', function(e){
                     alert("An error occurred while processing your request. Please try again.");
                 }
             });
+			
         //}
 
         $('#modal-loader').hide();    // hide ajax loader

@@ -4111,6 +4111,44 @@ class Core extends CI_Controller {
 			redirect('/panel');
 		}
 	}
+	
+	public function getMenuCore(){
+		if(checkingsessionpwt()){
+			
+			$id 	 = $_GET['id'];
+			
+			$cond	= "WHERE flag_website='$id'";
+			
+			$getData = $this->query->getData('menu_site','*',"$cond ORDER BY id_menu DESC");
+			
+			header('Content-type: application/json; charset=UTF-8');
+
+			$cek 	= $this->query->getNumRowsbyQ("select * from menu_site $cond order by id_menu desc")->num_rows();
+
+			if ($cek>0) {
+				$row[] 	= array('id' => '','text' => '-- Choose Menu --' );
+				$row[] 	= array('id' => '0','text' => 'Set as Parent' );
+				foreach($getData as $data) {
+					//$sort 	= $data['sort']+1;
+					$row[] 	= array(
+						'id'		=> $data['id_menu'],
+						'text'		=> 'After '.$data['menu'],
+						);
+					$json = $row;
+					
+				}
+				$json = $row;
+			} else {
+				$row[] 	= array('id' => '1','text' => 'At beginning of Menu' );
+
+				$json = $row;
+			}
+			
+			echo json_encode($json);
+		} else {
+			redirect('/panel');
+		}
+	}
 
 	public function insertmenus(){
 		if(checkingsessionpwt()){
