@@ -6,7 +6,7 @@ $qPage      = "
                 a.*
             from
             ourteam a
-            where (department='$menu' or department_en='$menu')
+            where id_menu='$idmenu'
             order by sort asc
             ";
 $gPage      = $this->query->getDatabyQ($qPage);
