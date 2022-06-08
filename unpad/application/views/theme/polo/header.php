@@ -127,7 +127,7 @@ echo $header;
                             $getMenu    = $this->query->getDatabyQ($qMenu);
                             foreach ($getMenu as $datamenu) {
                                 $idmenu     = $datamenu['id_menu'];
-                                $cekChild   = $this->query->getNumRows('menu_site','*',"where parent='$idmenu'")->num_rows();
+                                $cekChild   = $this->query->getNumRows('menu_site','*',"where parent='$idmenu' and flag_website='$coreid'")->num_rows();
                                 if ($cekChild>0) {
                                     $classChild = 'class="dropdown"';
                                 } else {
@@ -141,7 +141,7 @@ echo $header;
                                 <?PHP if ($cekChild>0) { ?>
                                     <ul class="dropdown-menu">
                                         <?PHP
-                                        $qChild     = "select * from menu_site where parent='$idmenu' order by sort asc";
+                                        $qChild     = "select * from menu_site where parent='$idmenu' and flag_website='$coreid' order by sort asc";
                                         $getChild   = $this->query->getDatabyQ($qChild);
                                         foreach ($getChild as $datachild) {
                                             $idmenuC     = $datachild['id_menu'];
@@ -205,7 +205,7 @@ echo $header;
                             $getMenu    = $this->query->getDatabyQ($qMenu);
                             foreach ($getMenu as $datamenu) {
                                 $idmenu     = $datamenu['id_menu'];
-                                $cekChild   = $this->query->getNumRows('menu_site','*',"where parent='$idmenu'")->num_rows();
+                                $cekChild   = $this->query->getNumRows('menu_site','*',"where parent='$idmenu' and flag_website='$coreid'")->num_rows();
                                 if ($cekChild>0) {
                                     $classChild = 'class="dropdown"';
                                 } else {
@@ -219,7 +219,7 @@ echo $header;
                                 <?PHP if ($cekChild>0) { ?>
                                     <ul class="dropdown-menu">
                                         <?PHP
-                                        $qChild     = "select * from menu_site where parent='$idmenu' order by sort asc";
+                                        $qChild     = "select * from menu_site where parent='$idmenu' and flag_website='$coreid' order by sort asc";
                                         $getChild   = $this->query->getDatabyQ($qChild);
                                         foreach ($getChild as $datachild) {
                                             $idmenuC     = $datachild['id_menu'];
