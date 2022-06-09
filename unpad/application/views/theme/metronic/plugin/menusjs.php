@@ -171,14 +171,16 @@ $(document).on('click', '.btnupdateM', function(e){
 
 				success: function (result) {
 					$("#ed_parent").select2({ data: result });
+					$('#ed_parent').val(data.parent);
+					$('#ed_parent').trigger('change.select2');
 					
 				},
 				error: function failCallBk(XMLHttpRequest, textStatus, errorThrown) {
 					alert("An error occurred while processing your request. Please try again.");
 				}
 			});
-			$('#ed_parent').val(data.parent);
-			$('#ed_parent').trigger('change.select2');
+			// $('#ed_parent').val(data.parent).trigger('change');
+			// $('#ed_parent').trigger('change.select2');
             //$('#ed_parent').val(data.parent);
             //$('#ed_parent').trigger('change.select2');
             //$('#ed_parent').trigger("change");

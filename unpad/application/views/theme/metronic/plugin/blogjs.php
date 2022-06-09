@@ -27,6 +27,7 @@ $(document).on('click', '.btnupdateM', function(e){
 		$('#ed_title_en').val(data.title_en);
         $('#ed_menu').val(data.id_menu);
         $('#ed_menu').trigger('change.select2');
+		$('#ed_category').val(data.id_category);
 		$('#ed_category').trigger('change');
         $('#ed_headline').val(data.headline);
 		$('#ed_headline_en').val(data.headline_en);

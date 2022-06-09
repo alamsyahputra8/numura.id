@@ -235,7 +235,7 @@ $getDataCategory	= $this->query->getDatabyQ($qcat);
 								</div>
 								<div class="kt-portlet__body">
 									<div class="form-group row">
-										<label class="col-form-label col-lg-3 col-sm-12">Title *</label>
+										<label class="col-form-label col-lg-2 col-sm-12">Title *</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<input type="hidden" name="ed_id" class="form-control" id="ed_id" placeholder="">
@@ -264,7 +264,7 @@ $getDataCategory	= $this->query->getDatabyQ($qcat);
 									</div>
 								</div>
 									<div class="form-group row">
-										<label class="col-form-label col-lg-3 col-sm-12">Menu *</label>
+										<label class="col-form-label col-lg-2 col-sm-12">Menu *</label>
 										<div class="col-lg-8 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<select name="ed_menu" class="form-control select2norm" id="ed_menu" placeholder="Menu" style="width: 100%;">
@@ -279,7 +279,7 @@ $getDataCategory	= $this->query->getDatabyQ($qcat);
 									</div>
 
 									<div class="form-group row">
-										<label class="col-form-label col-lg-3 col-sm-12">Cover *</label>
+										<label class="col-form-label col-lg-2 col-sm-12">Cover *</label>
 										<div class="col-lg-8 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<input type="file" name="upl" class="form-control" id="upl" placeholder="Cover">
@@ -289,7 +289,7 @@ $getDataCategory	= $this->query->getDatabyQ($qcat);
 									</div>
 
 									<div class="form-group row">
-										<label class="col-form-label col-lg-3 col-sm-12">Headline</label>
+										<label class="col-form-label col-lg-2 col-sm-12">Headline</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<input type="text" name="ed_headline" class="form-control" id="ed_headline" placeholder="Headline" maxlength="250">
@@ -305,7 +305,7 @@ $getDataCategory	= $this->query->getDatabyQ($qcat);
 									</div>
 
 									<div class="form-group row">
-										<label class="col-form-label col-lg-3 col-sm-12">Content *</label>
+										<label class="col-form-label col-lg-2 col-sm-12">Content *</label>
 										<div class="col-lg-9 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<textarea name="ed_content" class="form-control summernote" id="ed_content"></textarea>
@@ -314,7 +314,7 @@ $getDataCategory	= $this->query->getDatabyQ($qcat);
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-form-label col-lg-3 col-sm-12">Content *</label>
+										<label class="col-form-label col-lg-2 col-sm-12">Content *</label>
 										<div class="col-lg-9 col-md-9 col-sm-12">
 											<div class='input-group'>
 												<textarea name="ed_content_en" class="form-control summernote" id="ed_content_en"></textarea>
