@@ -188,6 +188,7 @@ $getconfig_web	= $this->query->getDatabyQ($qconfig_web);
 			<table class="table table-striped- table-bordered table-hover table-checkable" id="tabledata">
 				<thead>
 					<tr>
+						<th>CATEGORY</th>
 						<th>TITLE</th>
 						<th>MENU</th>
 						<th>HEADLINE</th>
@@ -198,6 +199,7 @@ $getconfig_web	= $this->query->getDatabyQ($qconfig_web);
 				</thead>
 				<tfoot>
 					<tr>
+						<th>CATEGORY</th> 
 						<th>TITLE</th>
 						<th>MENU</th>
 						<th>HEADLINE</th>

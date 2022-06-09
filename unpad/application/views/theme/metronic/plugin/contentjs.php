@@ -201,10 +201,11 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                 data: {
                     // parameters for custom backend script demo
                     columnsDef: [
-                        'title', 'menu', 'headline', 'updateby', 'lastupdate', 'actions',],
+                        'category','title', 'menu', 'headline', 'updateby', 'lastupdate', 'actions',],
                 },
             },
 			columns: [
+				{data: 'category'},
                 {data: 'title'},
 				{data: 'menu'},
 				{data: 'headline'},
@@ -221,6 +222,7 @@ var KTDatatablesSearchOptionsColumnSearch = function() {
                     var input;
 
                     switch (column.title()) {
+						case 'CATEGORY':
                         case 'TITLE':
                         case 'MENU':
                         case 'HEADLINE':

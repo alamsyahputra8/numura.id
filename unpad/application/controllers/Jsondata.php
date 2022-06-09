@@ -294,9 +294,11 @@ class Jsondata extends CI_Controller {
 		$akses = $shift['akses'];
 
 		$q 		= "
+					
 					select
 						a.*,
 						(select menu from menu_site where id_menu=a.id_menu) as menu,
+						(select x.nama from menu_site z left join config_web x on z.flag_website = x.id_web where z.id_menu=a.id_menu) as flag_website,
 						(SELECT xb.name as  update_by FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
 						WHERE xa.menu='Manage Content' AND xa.data = a.id_content ORDER BY xa.date_time DESC limit 1)as update_by,
 						(SELECT DATE_FORMAT(xa.date_time, '%d-%b-%y %H:%i:%s') as last_update FROM `data_log` xa LEFT JOIN user xb ON xa.userid=xb.userid 
@@ -322,6 +324,7 @@ class Jsondata extends CI_Controller {
 				//$buttondelete = getRoleDelete($akses,'delete',$id);
 
 				$row = array(
+					"category" 		=> $data['flag_website'],
 					"title"			=> $data['title'],
 					"menu"			=> $data['menu'],
 					"headline"		=> $data['headline'],

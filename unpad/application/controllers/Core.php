@@ -4335,6 +4335,7 @@ class Core extends CI_Controller {
 		if(checkingsessionpwt()){
 
 			$columnsDefault = [
+				'category'		=> true,
 				'title'			=> true,
 				'menu'			=> true,
 				'headline'		=> true,

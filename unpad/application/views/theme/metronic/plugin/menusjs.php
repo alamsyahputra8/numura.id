@@ -142,11 +142,11 @@ $(document).on('click', '.btnupdateM', function(e){
         $('#ed_menutype').val(data.style);
 		$('#ed_kategori_website').val(data.flag_website);
 		$('#ed_kategori_core').val(data.flag_core);
-		if(data.style=='ourteam'){
-			$('.ed_ourteam-content').show();
-		}else{
-			$('.ed_ourteam-content').hide();
-		}
+		// if(data.style=='ourteam'){
+			// $('.ed_ourteam-content').show();
+		// }else{
+			// $('.ed_ourteam-content').hide();
+		// }
 		const myTeam = data.ourteam_flag.split(",");
 		var jm = myTeam.length;
 		if(jm > 1){
