@@ -449,7 +449,7 @@ $getconfig_web	= $this->query->getDatabyQ($qconfig_web);
 											<span class="form-text text-muted">Choose Parent Menu First</span>
 										</div>
 									</div>
-									<div class="form-group row">
+									<div class="form-group row" style="display:none;">
 										<label class="col-form-label col-lg-2 col-sm-12">Kategori Menu *</label>
 										<div class="col-lg-8 col-md-9 col-sm-12">
 											<div class='input-group'>
