@@ -208,6 +208,7 @@ $(document).on('click', '.btnupdateM', function(e){
             $('#ed_sort').val(data.sort);
             $('#ed_sort').trigger('change.select2');
         } else {*/
+		if(data.flag_website==data.flag_core){
 			$("#ed_parent").html("");
 			$.ajax({
 				url: "<?PHP echo base_url(); ?>core/getMenuCore?id="+data.flag_core,
@@ -224,6 +225,10 @@ $(document).on('click', '.btnupdateM', function(e){
 					alert("An error occurred while processing your request. Please try again.");
 				}
 			});
+		}else{
+			$('#ed_parent').val(data.parent);
+			$('#ed_parent').trigger('change.select2');
+		}
 			// $('#ed_parent').val(data.parent).trigger('change');
 			// $('#ed_parent').trigger('change.select2');
             //$('#ed_parent').val(data.parent);
