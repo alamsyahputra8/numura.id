@@ -24,14 +24,14 @@ $('#ed_menutype').change(function() {
 		//$('.ed_ourteam-content').hide();
 	}
 });
+$('#kategori_website').change(function() {
+	var id_web = $(this).val();
+    var id_core = $('#kategori_core').val();
 
-$('#kategori_core').change(function() {
-    $('#parent').html('');
-    var id_core = $(this).val();
-
-    if(id_core == ""){
+	if(id_core == "" || id_web !=id_core){
 
     }else{
+		$('#parent').html('');
         $.ajax({
             url: "<?PHP echo base_url(); ?>core/getMenuCore?id="+id_core,
             type: 'Get',
@@ -46,14 +46,59 @@ $('#kategori_core').change(function() {
         });
     }
 });
-$('#ed_kategori_core').change(function() {
-	 
-    $('#ed_parent').html('');
+$('#kategori_core').change(function() {
+  
+	var id_web = $('#kategori_website').val();
     var id_core = $(this).val();
 
-    if(id_core == ""){
+	if(id_core == "" || id_web !=id_core){
 
     }else{
+		$('#parent').html('');
+        $.ajax({
+            url: "<?PHP echo base_url(); ?>core/getMenuCore?id="+id_core,
+            type: 'Get',
+            dataType: "json",
+
+            success: function (result) {
+                    $("#parent").select2({ data: result });
+            },
+            error: function failCallBk(XMLHttpRequest, textStatus, errorThrown) {
+                alert("An error occurred while processing your request. Please try again.");
+            }
+        });
+    }
+});
+$('#ed_kategori_website').change(function() {
+	var id_web = $(this).val(); 
+    var id_core = $('#ed_kategori_core').val();
+
+    if(id_core == "" || id_web !=id_core){
+
+    }else{
+		 $('#ed_parent').html('');
+        $.ajax({
+            url: "<?PHP echo base_url(); ?>core/getMenuCore?id="+id_core,
+            type: 'Get',
+            dataType: "json",
+
+            success: function (result) {
+                    $("#ed_parent").select2({ data: result });
+            },
+            error: function failCallBk(XMLHttpRequest, textStatus, errorThrown) {
+                alert("An error occurred while processing your request. Please try again.");
+            }
+        });
+    }
+});
+$('#ed_kategori_core').change(function() {
+	var id_web = $('#ed_kategori_website').val(); 
+    var id_core = $(this).val();
+
+    if(id_core == "" || id_web !=id_core){
+
+    }else{
+		 $('#ed_parent').html('');
         $.ajax({
             url: "<?PHP echo base_url(); ?>core/getMenuCore?id="+id_core,
             type: 'Get',
