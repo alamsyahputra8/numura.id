@@ -4759,7 +4759,7 @@ class Core extends CI_Controller {
 			$fileNamePost 	= $media['file_name'];
 
 			$q 			= "
-						insert into blog (title,sub,id_menu,headline,link,content,picture,create_by,create_date,title_en,headline_en,content_en,id_category) values ('$title','',$menu,'$headline','$link','$content','$fileNamePosst','$userid','$date','$title_en','$headline_en','$content_en','$category')
+						insert into blog (title,sub,id_menu,headline,link,content,picture,create_by,create_date,title_en,headline_en,content_en,id_category) values ('$title','',$menu,'$headline','$link','$content','$fileNamePost','$userid','$date','$title_en','$headline_en','$content_en','$category')
 						";
 						//echo $q;
 			$rows 		= $this->query->insertDatabyQ($q);

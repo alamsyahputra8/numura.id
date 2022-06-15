@@ -450,13 +450,19 @@ var KTFormWidgets = function () {
                     title: {
                         required: true
                     },
-                    picture: {
+                    pict: {
                         required: true
                     },
                     headline: {
                         required: true
                     },
+					headline_en: {
+                        required: true
+                    },
                     content: {
+                        required: true
+                    },
+                    content_en: {
                         required: true
                     }
                 }

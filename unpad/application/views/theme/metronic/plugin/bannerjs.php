@@ -26,7 +26,7 @@ $(document).on('click', '.btnupdateM', function(e){
         $('#ed_title').val(data.title);
         $('#ed_subtitle').val(data.sub);
 		$('#ed_kategori_website').val(data.flag_website).trigger('change');
-
+		$('#ed_link').val(data.link);
         $('#modal-loader').hide();    // hide ajax loader
     })
     .fail(function(){
