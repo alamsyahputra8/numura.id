@@ -1023,7 +1023,7 @@ Topbar
 }
 #topbar.dark .top-menu > li > a,
 #topbar.dark .social-icons li a {
-  color: #ffffff !important;
+  color: #00000 !important;
 }
 #topbar.topbar-colored, #topbar.topbar-colored.dark {
   background-color: #2250fc;
@@ -1181,7 +1181,7 @@ Topbar
 #topbar.topbar-dark .top-menu > li > a,
 #topbar.topbar-dark .social-icons li a, #topbar.dark .top-menu > li > a,
 #topbar.dark .social-icons li a {
-  color: #ffffff !important;
+  color: #00000 !important;
 }
 #topbar .topbar-light .top-menu > li > a,
 #topbar .topbar-light .social-icons li a {
@@ -12457,7 +12457,7 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 }
 
 .dark .social-icons li a {
-  color: #ffffff;
+  color: #00000;
 }
 
 .social-icons.social-icons-colored a,
