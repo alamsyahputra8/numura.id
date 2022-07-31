@@ -145,7 +145,7 @@ foreach ($ggroupS as $groupsize) {
 			}
 			echo '
 			<div id="bgkol'.$idpes.'" class="bgkolom '.$done.' '.$clkt.'" style="border: 1px solid rgba(0,0,0,.1); width: 5.19cm; height: 4.1cm; float:left;">
-				<div style="text-align: center; font-size: 13px!important; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,.1); padding: 10px 2px;">
+				<div style="text-align: center; font-size: 14px!important; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,.1); padding: 10px 2px;">
 					<b>'.$labpen.'</b>
 				</div>
 				<div class="clear:both;"></div>
