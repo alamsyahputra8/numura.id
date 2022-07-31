@@ -131,6 +131,17 @@ foreach ($ggroupS as $groupsize) {
 			} else {
 				$clkt 	= 'bgpanjang';
 			}
+
+			if ($pes['userid']==319) {
+				$gpen 	= $this->db->query("
+							SELECT * FROM pengiriman 
+							where id_pengiriman in (select id_pengiriman from pengiriman_detail where id_pesanan='$idpes')
+						")->result_array();
+				$dpen 	= array_shift($gpen);
+				$labpen = ' ('.$dpen['nama_penerima'].')';
+			} else {
+				$labpen = '';
+			}
 			echo '
 			<div id="bgkol'.$idpes.'" class="bgkolom '.$done.' '.$clkt.'" style="border: 1px solid rgba(0,0,0,.1); width: 5.19cm; height: 4.1cm; float:left;">
 				<div style="text-align: center; font-size: 18px; margin-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,.1); padding: 10px;">
