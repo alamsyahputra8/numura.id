@@ -97,11 +97,7 @@ $ggroupS 	= $this->db->query($qgrpSize)->result_array();
 
 foreach ($ggroupS as $groupsize) {
 	$idsize 	= $groupsize['id_size'];
-	echo '
-		<div style="clear:both;"></div>
-		<div style="height: 4.1cm; margin: 0px; font-size: 26px; vertical-align: bottom; text-align: center; padding-top:2cm; margin-bottom:-2cm;">
-			UKURAN : '.$groupsize['label'].'
-		</div>';
+
 	$qPes 		= "
 				SELECT a.*,
 					a.custom_nama custom_namalower,
@@ -118,6 +114,11 @@ foreach ($ggroupS as $groupsize) {
 	$getPes 	= $this->db->query($qPes)->result_array();
 	$cekPes 	= $this->db->query($qPes)->num_rows();
 	if ($cekPes>0) {
+		echo '
+		<div style="clear:both;"></div>
+		<div style="height: 4.1cm; margin: 0px; font-size: 26px; vertical-align: bottom; text-align: center; padding-top:2cm; margin-bottom:-2cm;">
+			UKURAN : '.$groupsize['label'].'
+		</div>';
 
 		foreach ($getPes as $pes) { 
 			$idpes 	= $pes['id_pesanan'];
@@ -163,13 +164,13 @@ foreach ($ggroupS as $groupsize) {
 		}
 
 	} else {
-		echo '
-		<div class="col-sm-12" style="padding: 10px;">
-			Mohon maaf belum ada data pesanan.<br>
-			Silahkan membuat pesanan terlebih dahulu di menu Pesanan, atau bisa klik 
-			<b><a href="<?PHP echo base_url(); ?>pesanan">disini</a></b>.
-		</div>
-		';
+		// echo '
+		// <div class="col-sm-12" style="padding: 10px;">
+		// 	Mohon maaf belum ada data pesanan.<br>
+		// 	Silahkan membuat pesanan terlebih dahulu di menu Pesanan, atau bisa klik 
+		// 	<b><a href="'.base_url().'pesanan">disini</a></b>.
+		// </div>';
+		echo '';
 	}
 	// echo '<div style="clear: both;"></div><hr style="border-color: #bdbcbc;">';
 }
